@@ -1,0 +1,173 @@
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site 网站
+title: Mr Yao 的个人博客           # 网站标题
+subtitle: ''          # 网站副标题
+description: ''       # 网站描述
+keywords:
+author: Jusheng Yao   # 博主的名字
+language: en          # 网站使用的语言
+timezone: ''          # 网站时区。Hexo 默认使用您电脑的时区
+
+# 侧边栏头像设置
+# 将头像放置主题目录下的 source/uploads/ （新建uploads目录若不存在） 配置为：
+# avatar: /uploads/avatar.png
+# 放置在 source/images/ 目录下, 配置为：
+# avatar: /images/avatar.jpg
+# 完整的互联网 URI
+avatar: 
+   url: https://avatars0.githubusercontent.com/u/42117749?s=40&v=4
+
+# 开启侧边栏社交链接
+# Social links
+social:
+  GitHub: https://github.com/YaoJusheng
+  CSDN: https://blog.csdn.net/weixin_41599858
+  Zhihu: https://www.zhihu.com/people/qing-kuang-shu-sheng-78-59
+  Weibo: 
+  # 等等
+
+social_icons:
+  enable: true
+  # Icon Mappings.
+  GitHub: github
+  CSDN: csdn
+  ZhiHu: zhihu
+  Weibo: weibo
+
+# 开启打赏功能
+reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
+wechatpay:              # 你的微信收款码链接
+alipay:                 # 你的支付宝收款码链接
+
+# 开启友情链接
+links_title: Links
+links:
+  Baidu: https://www.baidu.com/
+  Google: https://www.google.com/
+  Bing: https://cn.bing.com/
+  Translate: https://translate.google.cn/
+
+# 开启订阅微信公众号
+wechat_subscriber:
+  enabled: true
+  qcode:             # e.g. /uploads/wechat-qcode.jpg
+  description: 欢迎您扫一扫上面的微信公众号，订阅我的博客！
+
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://yoursite.com
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link:
+  enable: true # Open external links in new tab
+  field: site # Apply to the whole site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: false
+
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# Metadata elements
+## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
+meta_generator: true
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+## Use post's date for updated date unless set in front-matter
+use_date_for_updated: false
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 10
+pagination_dir: page
+
+# Include / Exclude file(s)
+## include:/exclude: options only apply to the 'source/' folder
+include:
+exclude:
+ignore:
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+# theme: landscape
+theme: yilia
+
+# yilia主题所需新增内容
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true
+
+# Deployment  配置部署信息
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  # repository: https://github.com/YaoJusheng/YaoJusheng.github.io.git
+  repository: git@github.com:YaoJusheng/YaoJusheng.github.io.git
+  branch: master
+
+# 站点建立时间
+since: 2020
