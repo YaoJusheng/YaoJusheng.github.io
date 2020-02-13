@@ -30,15 +30,14 @@
 ### 1.6. 部署配置： 
   - hexo deploy
 
-"""text
-    # Deployment
-	## Docs: https://hexo.io/docs/deployment.html
-	deploy:
-	  type: git
-	  repository: git@github.com:YaoJusheng/YaoJusheng.github.io.git
-	  branch: master
-"""
-
+```yaml
+# Deployment 
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repository: git@github.com:YaoJusheng/YaoJusheng.github.io.git
+  branch: master
+```
 
 
 ## 2. 部署deploy
