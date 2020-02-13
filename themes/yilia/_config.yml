@@ -2,24 +2,26 @@
 
 menu:
   主页: /
-  随笔: /tags/随笔/
+  随笔: /tags/随笔/index.html
+  归档: /archives/index.html
 
-# SubNav
+# SubNav  添加社交页面
 subnav:
-  github: "#"
-  weibo: "#"
-  rss: "#"
-  zhihu: "#"
+  github: https://github.com/YaoJusheng
+  # weibo: "#"
+  # rss: "#"
+  zhihu: https://www.zhihu.com/people/qing-kuang-shu-sheng-78-59
+  csdn: https://blog.csdn.net/weixin_41599858
   #qq: "#"
   #weixin: "#"
   #jianshu: "#"
   #douban: "#"
   #segmentfault: "#"
-  #bilibili: "#"
+  bilibili: https://www.bilibili.com/
   #acfun: "#"
-  #mail: "mailto:litten225@qq.com"
+  mail: "mailto:jusheng_yao@outlook.com"
   #facebook: "#"
-  #google: "#"
+  # google: "#"
   #twitter: "#"
   #linkedin: "#"
 
@@ -41,11 +43,11 @@ mathjax: false
 # 是否在新窗口打开链接
 open_in_new: false
 
-# 打赏
+# 打赏 (图片地址是在 source 目录下的，所以要在source下创建文件夹，然后把资源放进去)
 # 打赏type设定：0-关闭打赏； 1-文章对应的md文件里有reward:true属性，才有打赏； 2-所有文章均有打赏
 reward_type: 2
 # 打赏wording
-reward_wording: '谢谢你请我吃糖果'
+reward_wording: '坚持原创技术分享，您的支持将鼓励我继续创作！'
 # 支付宝二维码图片地址，跟你设置头像的方式一样。比如：/assets/img/alipay.jpg
 alipay: 
 # 微信二维码图片地址
@@ -62,13 +64,13 @@ toc_empty_wording: '目录，不存在的…'
 # 是否有快速回到顶部的按钮
 top: true
 
-# Miscellaneous
+# Miscellaneous  (前两个是设置百度和谷歌搜索的，favicon设置标签页图标的)
 baidu_analytics: ''
 google_analytics: ''
-favicon: /favicon.png
+favicon: /images/favicon.png
 
-#你的头像url
-avatar:
+# 头像url
+avatar: /img/avatar.jpg
 
 #是否开启分享
 share_jia: true
@@ -91,11 +93,33 @@ changyan_conf: false
 disqus: false
 
 #5、Gitment
-gitment_owner: false      #你的 GitHub ID
-gitment_repo: ''          #存储评论的 repo
+gitment_owner: YaoJusheng                     #你的 GitHub ID
+gitment_repo: 'YaoJusheng.github.io'          #存储评论的 repo
 gitment_oauth:
-  client_id: ''           #client ID
-  client_secret: ''       #client secret
+  client_id: '35890ce192840bd76bc6'           #client ID
+  client_secret: '18b465f1ea803824fe0aef032d74ce6262df3b6e'       #client secret
+
+#6、gitalk评论
+gitalk:
+  enable:  true
+  githubID:  YaoJusheng   
+  repo:  'YaoJusheng.github.io'
+  ClientID:  '35890ce192840bd76bc6'
+  ClientSecret:  '18b465f1ea803824fe0aef032d74ce6262df3b6e'
+  adminUser:  YaoJusheng
+  distractionFreeMode: true
+
+# Show Views/Visitors of the website/page with busuanzi.
+# Get more information on http://ibruce.info/2015/04/04/busuanzi
+# 阅读计数
+busuanzi_count:
+  enable: true
+  total_visitors: true
+  total_visitors_icon: user
+  total_views: true
+  total_views_icon: eye
+  post_views: true
+  post_views_icon: eye
 
 # 样式定制 - 一般不需要修改，除非有很强的定制欲望…
 style:
@@ -120,11 +144,21 @@ smart_menu:
   aboutme: '关于我'
 
 friends:
-  友情链接1: http://localhost:4000/
-  友情链接2: http://localhost:4000/
-  友情链接3: http://localhost:4000/
-  友情链接4: http://localhost:4000/
-  友情链接5: http://localhost:4000/
-  友情链接6: http://localhost:4000/
+  Baidu: https://www.baidu.com/
+  Google: https://www.google.com/
+  Bing: https://cn.bing.com/
+  Translate: https://translate.google.cn/
+  更多: '#'
 
+# Local search(本地搜索)
+# Dependencies: https://github.com/theme-next/hexo-generator-searchdb
+local_search:
+  enable: true
+
+# 代码高亮
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: true
+  tab_replace:
 aboutme: 很惭愧<br><br>只做了一点微小的工作<br>谢谢大家
