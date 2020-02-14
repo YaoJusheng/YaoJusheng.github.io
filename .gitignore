@@ -1,6 +1,6 @@
 *.log
 *.temp
-/.deploy_git
+
 /.idea
 /.vscode
 /__pycache__
