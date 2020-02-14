@@ -8,7 +8,14 @@ subtitle: ''          # 网站副标题
 description: '个人技术博客'       # 网站描述
 keywords: 前端博客, 后端博客, Python, PHP, Ruby, JavaScript
 author: Jusheng Yao   # 博主的名字
-language: en          # 网站使用的语言
+
+# 网站使用的语言
+# en           English                   英语
+# zh-Hans      Chinese (Simplified)     大陆简体
+# zh-Hant-HK   Chinese (Traditional)    港澳繁體
+# zh-Hant-TW   Chinese (Traditional)    台灣正體
+language: zh-Hans
+
 timezone: ''          # 网站时区。Hexo 默认使用您电脑的时区
 
 
