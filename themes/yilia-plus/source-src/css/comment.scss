@@ -1,14 +1,6 @@
-#disqus_thread,
-.cloud-tie-wrapper,
-#SOHUCS,
-#gitment-ctn {
-  padding: 0 30px !important;
-  min-height: 20px;
-}
-
-#giteement-ctn {
-  padding: 0 30px !important;
-  min-height: 20px;
+#disqus_thread, .duoshuo, .cloud-tie-wrapper, #SOHUCS, #gitment-ctn, #gitalk-container {
+    padding: 0 30px !important;
+    min-height: 20px;
 }
 
 #SOHUCS {
@@ -16,3 +8,5 @@
     border-bottom: 1px dashed #c8c8c8 !important;
   }
 }
+
+

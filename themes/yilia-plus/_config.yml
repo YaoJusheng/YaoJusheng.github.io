@@ -1,8 +1,10 @@
 ﻿# Header-菜单
 menu:
   主页: /
-  随笔: /tags/随笔/index.html
-  归档: /archives/index.html
+  标签: /tags
+  分类: /categories
+  随笔: /notes
+  归档: /archives
 
 # subNav-子导航
 subNav:
@@ -14,8 +16,8 @@ subNav:
   csdn: "https://blog.csdn.net/weixin_41599858"
   #rss: "#"
   zhihu: "https://www.zhihu.com/people/qing-kuang-shu-sheng-78-59"
-  #qq: "img/2434387555.jpg"
-  #weixin: "img/weixin_.png"
+  #qq: "img/*.jpg"
+  #weixin: "img/*.png"
   #weibo: "#"
   #douban: "#"
   #segmentfault: "#"
@@ -47,11 +49,14 @@ rss: /atom.xml
 # Content
 
 # 文章太长，截断按钮文字(在需要截断的行增加此标记：<!--more-->)
-excerpt_link: more
+# excerpt_link: more
+
 # 文章卡片右下角常驻链接，不需要请设置为false
 show_all_link: '展开全文'
 # 数学公式
 mathjax: false
+  # enable: true
+  # per_page: true
 
 # Open link in a new tab | 是否在新窗口打开链接
 open_in_new:
@@ -150,13 +155,13 @@ busuanzi:
 
 # 网易云音乐插件
 music:
-  enable: false
-  # 播放器尺寸类型(1：长尺寸、2：短尺寸)
+  enable: true
+  # 播放器尺寸类型(1：短尺寸、2：长尺寸)
   type: 2
-  #id: 1334445174  # 网易云分享的音乐ID(更换音乐请更改此配置项)
+  id: 27580009  # 网易云分享的音乐ID(更换音乐请更改此配置项)
   autoPlay: true  # 是否开启自动播放
   # 提示文本(关闭请设置为false)
-  text: '这似乎是首纯音乐，请尽情的欣赏它吧！'
+  text: '悠扬的旋律，为谁而敲响！'
 
 # 页面点击小红心
 clickLove:
@@ -165,7 +170,7 @@ clickLove:
 
 # GitHub Ribbons(https://github.blog/2008-12-19-github-ribbons/)
 github:
-  false(关闭请设置为false)
+  false   # (关闭请设置为false)
   # url: https://github.com/JoeyBling/hexo-theme-yilia-plus
 
 # Progress Bar | 页面加载进度条
@@ -175,7 +180,7 @@ github:
 #       loading-bar|mac-osx|minimal
 # color: black|blue|green|orange|pink|purple|red|silver|white|yellow|
 progressBar:
-  enable: false
+  enable: true
   type: 'minimal'  # Keep Quotes | 保留引号避免出错(某些type会导致样式重叠排版错误)
   color: blue
 
@@ -209,6 +214,17 @@ activate_power_mode:
 # https://github.com/MlgmXyysd/snow.js
 snow: true
 
+# https://github.com/hustcc/canvas-nest.js
+# 配置详见： https://github.com/hustcc/canvas-nest.js#configuration
+# 动态线条效果，会向鼠标集中
+canvas_nest:
+  enable: true
+  color: '255, 235, 59'        # color of lines, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
+  pointColor: '156,39,176'     # color of points, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
+  opacity: '0.8'               # the opacity of line (0~1), default: 0.5.
+  count: '99'                  # the number of lines, default: 99.
+  zIndex: '-1'                 # z-index property of the background, default: -1.
+
 # 看板娘动态模型插件
 ## https://github.com/JoeyBling/live2d-widget.js
 live2d:
@@ -238,8 +254,8 @@ style:
   gif:
     # 是否启用左侧边栏动态图效果
     enable: true
-    # 自定义背景图路径(默认可以不设置，提供默认背景图)
-    # path: /img/biubiubiu.gif
+    # 自定义背景图路径(默认可以不设置，提供默认背景图biubiubiu.gif)
+    path: /img/back-01.gif
   # 右滑板块背景
   slider: 'linear-gradient(200deg,#a0cfe4,#e8c37e)'
 
