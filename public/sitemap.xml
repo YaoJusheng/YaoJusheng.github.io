@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yaojusheng.github.io/2020/02/13/hello-world/</loc>
+    
+    <lastmod>2020-02-17T06:37:20.217Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yaojusheng.github.io/notes/index.html</loc>
     
     <lastmod>2020-02-15T14:23:57.574Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://yaojusheng.github.io/README.html</loc>
     
     <lastmod>2020-02-13T11:54:59.909Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yaojusheng.github.io/2020/02/13/hello-world/</loc>
-    
-    <lastmod>2020-02-10T08:02:24.730Z</lastmod>
     
   </url>
   

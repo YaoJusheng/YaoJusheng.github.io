@@ -63,11 +63,11 @@
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
-    <div class="left-col" q-class="show:isShow">
+    <div class="left-col" q-class="show:isShow"  style="background: url(http://q5ndkf89x.bkt.clouddn.com/images/background/36.jpg) no-repeat 100%;background-size:cover;opacity:0.8;filter:alpha(opacity=80);">
       
 
 
-<div class="overlay" style="background: #4d4d4d;background: url('/img/back-01.gif') no-repeat ;"></div>
+<div class="overlay" style="background: rgba(0,0,0,0.5);background: url('/img/back-02.gif') no-repeat ;"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
@@ -81,18 +81,24 @@
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/" target="_blank">主页</a></li>
+				<li><a href="/" >主页</a></li>
 			
-				<li><a href="/tags" target="_blank">标签</a></li>
+				<li><a href="/tags" >标签</a></li>
 			
-				<li><a href="/categories" target="_blank">分类</a></li>
+				<li><a href="/categories" >分类</a></li>
 			
-				<li><a href="/notes" target="_blank">随笔</a></li>
+				<li><a href="/notes" >随笔</a></li>
 			
-				<li><a href="/archives" target="_blank">归档</a></li>
+				<li><a href="/archives" >归档</a></li>
 			
 			</ul>
 		</nav>
+		
+		<nav style="font-size:13px; font-weight: bold;">
+			<span style="color:rgb(180,125,100)">总文章数: </span>
+			<span style="color:rgb(99,88,25)">1</span>
+		</nav>
+		
 		<nav class="header-smart-menu">
 			
 				
@@ -111,17 +117,17 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" href="https://github.com/YaoJusheng" title="GitHub" target="_blank"><i class="icon-github"></i></a>
+					<a class="github" href="https://github.com/YaoJusheng" target="_blank" rel="noopener" title="GitHub" ><i class="icon-github"></i></a>
 				
-					<a class="gitee" href="https://gitee.com/YaoJusheng" title="码云" target="_blank"><i class="icon-gitee"></i></a>
+					<a class="gitee" href="https://gitee.com/YaoJusheng" target="_blank" rel="noopener" title="码云" ><i class="icon-gitee"></i></a>
 				
-					<a class="csdn" href="https://blog.csdn.net/weixin_41599858" title="CSDN" target="_blank"><i class="icon-csdn"></i></a>
+					<a class="csdn" href="https://blog.csdn.net/weixin_41599858" target="_blank" rel="noopener" title="CSDN" ><i class="icon-csdn"></i></a>
 				
-					<a class="zhihu" href="https://www.zhihu.com/people/qing-kuang-shu-sheng-78-59" title="知乎" target="_blank"><i class="icon-zhihu"></i></a>
+					<a class="zhihu" href="https://www.zhihu.com/people/qing-kuang-shu-sheng-78-59" target="_blank" rel="noopener" title="知乎" ><i class="icon-zhihu"></i></a>
 				
-					<a class="bilibili" href="https://www.bilibili.com/" title="哔哩哔哩" target="_blank"><i class="icon-bilibili"></i></a>
+					<a class="bilibili" href="https://www.bilibili.com/" target="_blank" rel="noopener" title="哔哩哔哩" ><i class="icon-bilibili"></i></a>
 				
-					<a class="mail" href="mailto:1042576119@qq.com" title="NULL" target="_blank"><i class="icon-mail"></i></a>
+					<a class="mail" href="mailto:1042576119@qq.com" title="NULL" ><i class="icon-mail"></i></a>
 				
 			</div>
 		
@@ -142,11 +148,13 @@
 </div>
 
     </div>
-    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse" style="background: url(http://q5ndkf89x.bkt.clouddn.com/images/background/39.jpg) no-repeat 100%;background-size:cover;opacity:0.7;filter:alpha(opacity=70);">
+
       
       
 <nav id="mobile-nav">
-  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+  	<div class="overlay js-overlay" style="background: rgba(0,0,0,0.5)"></div>
 	<div class="btnctn js-mobile-btnctn">
   		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
 	</div>
@@ -440,13 +448,13 @@
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
-    	<div class="footer-left">
-    		&copy; 2020 <a href="http://YaoJusheng.github.io/" target="_blank">Jusheng Yao</a>
+    	<div class="footer-left" style="color: yellow">
+    		&copy; 2020 <a href="http://YaoJusheng.github.io/" target="_blank" style="color: pink">Jusheng Yao</a>
     	</div>
-      	<div class="footer-right">
+      	<div class="footer-right" style="color: pink">
 			
 			
-      		GitHub:<a href="https://github.com/JoeyBling/hexo-theme-yilia-plus" target="_blank">hexo-theme-yilia-plus</a> by Litten
+      		GitHub:<a style="color: green;font-weight: bolder" href="https://github.com/JoeyBling/hexo-theme-yilia-plus" target="_blank">hexo-theme-yilia-plus</a> by Litten
       	</div>
     </div>
   </div>
@@ -457,12 +465,12 @@
   
   
 	
-	<span id="busuanzi_container_site_pv" style="display:none">
-		本站总访问量<span id="busuanzi_value_site_pv"></span>次	
+	<span id="busuanzi_container_site_pv" style="display:none;color: gray">
+		本站总访问量 <span id="busuanzi_value_site_pv" style="color: pink;font-weight: bold"></span> 次	
 	        <span class="post-meta-divider" >|</span>
 	</span>
-  	<span id="busuanzi_container_site_uv" style='display:none'>
-  		本站访客数<span id="busuanzi_value_site_uv"></span>人
+  	<span id="busuanzi_container_site_uv" style='display:none;color: pink'>
+  		本站访客数 <span id="busuanzi_value_site_uv" style="color: gray;font-weight: bold"></span> 人
   	</span>
   
 </footer>
@@ -558,6 +566,10 @@
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -810,15 +822,15 @@
     });
   </script>
   
-  
+
   <!--动态线条背景-->
   
-    <script type="text/javascript" color="255, 235, 59" opacity="0.8" 
-        zIndex="-1" count="99" 
+    <script type="text/javascript" color="206, 187, 13" opacity="0.9" 
+        zIndex="-1" count="256" 
         src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
     </script>
   
-  
+
 </body>
 
 </html>

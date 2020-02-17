@@ -61,8 +61,8 @@ mathjax: false
 # Open link in a new tab | 是否在新窗口打开链接
 open_in_new:
   article: true  # 文章链接
-  menu: true   # 导航菜单
-  subNav: true  # 子菜单
+  menu: false   # 导航菜单
+  subNav: false  # 子菜单
 
 # 打赏
 # 打赏type设定：0-关闭打赏； 1-文章对应的md文件里有reward:true属性，才有打赏； 2-所有文章均有打赏
@@ -219,10 +219,10 @@ snow: true
 # 动态线条效果，会向鼠标集中
 canvas_nest:
   enable: true
-  color: '255, 235, 59'        # color of lines, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
-  pointColor: '156,39,176'     # color of points, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
-  opacity: '0.8'               # the opacity of line (0~1), default: 0.5.
-  count: '99'                  # the number of lines, default: 99.
+  color: '206, 187, 13'        # color of lines, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
+  pointColor: '249, 72, 137'     # color of points, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
+  opacity: '0.9'               # the opacity of line (0~1), default: 0.5.
+  count: '256'                  # the number of lines, default: 99.
   zIndex: '-1'                 # z-index property of the background, default: -1.
 
 # 看板娘动态模型插件
@@ -248,14 +248,27 @@ live2d:
 
 # 样式定制 - 一般不需要修改，除非有很强的定制欲望…
 style:
-  # 头像上面的背景颜色
+  # 头像上面的背景颜色 e.g. linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5))
   # header: '#D3D1DC'
-  header: '#4d4d4d'
+  header: 'rgba(0,0,0,0.5)' #设置背景透明度，不然头像上方是默认色
+  #左侧头像板块的背景颜色(IE兼容设置：filter:alpha(opacity=80);)
+  left_ground: 
+    enable: true
+    default: 'rgba(0,0,0,0.5)'
+    url: 'url(http://q5ndkf89x.bkt.clouddn.com/images/background/36.jpg) no-repeat 100%;background-size:cover;opacity:0.8;filter:alpha(opacity=80);'
+    # url: 'url(http://q5ndkf89x.bkt.clouddn.com/images/background/11.jpg) no-repeat 100%;background-size:cover;opacity:0.8;filter:alpha(opacity=80);'
+  # 左侧头像板块动态图效果
   gif:
-    # 是否启用左侧边栏动态图效果
+    # 是否启用
     enable: true
     # 自定义背景图路径(默认可以不设置，提供默认背景图biubiubiu.gif)
-    path: /img/back-01.gif
+    path: /img/back-02.gif
+  # 正文的背景颜色(IE兼容设置：opacity:0.8;filter:alpha(opacity=80);)
+  article_ground: 
+    enable: true
+    default: 'rgba(25, 25, 25, 0)'  #设置背景透明度
+    url: 'url(http://q5ndkf89x.bkt.clouddn.com/images/background/39.jpg) no-repeat 100%;background-size:cover;opacity:0.7;filter:alpha(opacity=70);'
+    # url: 'url(http://q5ndkf89x.bkt.clouddn.com/images/background/2.jpg) no-repeat 100%;background-size:cover;opacity:0.7;filter:alpha(opacity=70);'
   # 右滑板块背景
   slider: 'linear-gradient(200deg,#a0cfe4,#e8c37e)'
 

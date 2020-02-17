@@ -5,10 +5,12 @@
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
-    <div class="left-col" q-class="show:isShow">
+    <div class="left-col" q-class="show:isShow"  style="background: <%= theme.style && theme.style.left_ground.enable && theme.style.left_ground.url ? theme.style.left_ground.url : theme.style.left_ground.default %>">
       <%- partial('_partial/left-col', null, {cache: !config.relative_link}) %>
     </div>
-    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse" style="background: <%= theme.style && theme.style.article_ground.enable && theme.style.article_ground.url ? theme.style.article_ground.url : theme.style.article_ground.default %>">
+
       <% if (theme.github && theme.github.url){ %>
       <%# "GitHub Ribbons" %>
       <a class="forkMe" style="position:absolute;z-index:999;top:0;right:0.5em;" 
@@ -56,7 +58,7 @@
     });
   </script>
   <% } %>
-  
+
   <!--动态线条背景-->
   <% if (theme.canvas_nest.enable){ %>
     <script type="text/javascript" color="<%=theme.canvas_nest.color %>" opacity="<%=theme.canvas_nest.opacity %>" 
@@ -64,7 +66,7 @@
         src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
     </script>
   <% } %>
-  
+
 </body>
 
 </html>

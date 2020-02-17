@@ -21,6 +21,12 @@
 			<%}%>
 			</ul>
 		</nav>
+		
+		<nav style="font-size:13px; font-weight: bold;">
+			<span style="color:rgb(180,125,100)">总文章数: </span>
+			<span style="color:rgb(99,88,25)"><%=site.posts.length%></span>
+		</nav>
+		
 		<nav class="header-smart-menu">
 			<% for (var i in theme.smart_menu){ %>
 				<% if(theme.smart_menu[i]){ %>
