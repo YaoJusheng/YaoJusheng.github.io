@@ -2,7 +2,7 @@
   <div class="article-inner">
     <% if (post.link || post.title){ %>
       <header class="article-header">
-  <%- partial('post/title', {class_name: 'article-title'}) %>
+  <%- partial('post/title', {class_name: 'article-title-mf1'}) %>
   <% if (!post.noDate){ %>
   <%- partial('post/date', {class_name: 'archive-article-date', date_format: null}) %>
   <% } %>
@@ -161,6 +161,31 @@
       title: post.title,
       url: config.url+url_for(post.path)
     }) %>
+  <% } %>
+
+<% if (theme.valine && theme.valine.appid && theme.valine.appkey){ %>
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <%- partial('post/valine', {
+        key: post.slug,
+        title: post.title,
+        url: config.url+url_for(post.path)
+        }) %>
+    </section>
+  <% } %>
+
+<% if (theme.utterance && theme.utterance.enable){ %>
+    <section id="comments" class="comments">
+      <style>
+        .utterances{max-width: 100%;}
+      </style>
+        <script src="https://utteranc.es/client.js"
+			repo="<%= theme.utterance.repo %>"
+			issue-term="<%= theme.utterance.issue_term %>"
+			theme="<%= theme.utterance.theme %>"
+			crossorigin="anonymous"
+			async>
+        </script>
+    </section>
   <% } %>
   
 <% } %>

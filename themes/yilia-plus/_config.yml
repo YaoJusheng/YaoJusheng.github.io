@@ -15,13 +15,13 @@ subNav:
   #blog: "#"
   csdn: "https://blog.csdn.net/weixin_41599858"
   #rss: "#"
-  zhihu: "https://www.zhihu.com/people/qing-kuang-shu-sheng-78-59"
+  # zhihu: "https://www.zhihu.com/people/qing-kuang-shu-sheng-78-59"
   #qq: "img/*.jpg"
   #weixin: "img/*.png"
   #weibo: "#"
   #douban: "#"
   #segmentfault: "#"
-  bilibili: "https://www.bilibili.com/"
+  # bilibili: "https://www.bilibili.com/"
   #acfun: "#"
   mail: "mailto:1042576119@qq.com"
   #facebook: "#"
@@ -47,9 +47,10 @@ rss: /atom.xml
 # root: /
 
 # Content
-
 # 文章太长，截断按钮文字(在需要截断的行增加此标记：<!--more-->)
 # excerpt_link: more
+archive_yearly: true #按年存档
+fancybox: true
 
 # 文章卡片右下角常驻链接，不需要请设置为false
 show_all_link: '展开全文'
@@ -85,6 +86,22 @@ toc_empty_wording: '目录，不存在的…'
 # 是否有快速回到顶部的按钮
 top: true
 
+#是否开启分享
+socialShare: true
+#是否开启云标签
+tagcloud: true
+
+#是否开启捐赠
+donate: true
+#是否开启站内搜索
+search: true
+
+#是否开启最近通知
+recent: true
+recentContent: ''
+#是否开启微简历
+resume: true
+
 # Miscellaneous
 # 百度统计
 baidu_analytics: ''
@@ -99,9 +116,9 @@ avatar: /images/avatar.jpg
 # 是否开启分享
 share_jia: true
 
-# 评论：1、畅言；2、Disqus；3、Gitment；4、Giteement
-# 不需要使用某项，直接设置值为false，或注释掉
+# 评论： 1、畅言；2、Disqus；3、Gitment；4、Giteement ;5、gitalk ;6、valine ;7、utteranc
 # 具体请参考wiki：https://github.com/JoeyBling/hexo-theme-yilia-plus/wiki
+# 是否开启评论, 不需要使用某项，直接设置值为false，或注释掉
 
 # 1、畅言
 changyan_appid: false
@@ -112,13 +129,12 @@ disqus: false
 
 # 3、Gitment----基于GitHub的评论系统(关闭请设置gitment_owner为false)
 # 关于如何集成:https://www.jianshu.com/p/ac7658cc912f
-gitment_owner: false      #你的 GitHub ID
+gitment_owner: false      # 你的 GitHub ID  e.g. YaoJusheng
 # 是否使用官方js(false可以提升访问速度，本地修改过一部分的js，官方js可能会出现服务器不稳定，不太建议使用)
-gitment_remote: false
-gitment_repo: ''          #存储评论的 repo name(需要在Github创建)
+gitment_repo: 'YaoJusheng.github.io'          #存储评论的 repo name(需要在Github创建)
 gitment_oauth:
-  client_id: ''           #client ID
-  client_secret: ''       #client secret
+  client_id: '35890ce192840bd76bc6'           #client ID
+  client_secret: '18b465f1ea803824fe0aef032d74ce6262df3b6e'       #client secret
 
 # 4、Giteement----【国内用户建议使用这个，相对比较快】
 # 关于如何集成:https://www.jianshu.com/p/f5c4633524c7
@@ -127,25 +143,43 @@ giteement:
   enable: false  # 是否启用码云评论系统
   # 是否使用官方js(false可以提升访问速度)
   remote: false
-  redirect_uri: ''   # 应用回调地址(请和配置的第三方应用保持一致)
+  redirect_uri: https://yaojusheng.gitee.io/blog/   # 应用回调地址(请和配置的第三方应用保持一致)
   # 不能更改(网上开源项目`https://github.com/Rob--W/cors-anywhere`作者提供的专门用来跨域服务器的配置)
   oauth_uri: https://cors-anywhere.herokuapp.com/https://gitee.com/oauth/token
-  giteeID: ''  # 你的码云账号英文名
+  giteeID: yaojusheng  # 你的码云账号英文名
   # 存储评论的 repo name(需要在码云仓库创建公开仓库)
-  repo: ''
+  repo: blog
   gitment_oauth:
-    client_id: ''           #client ID
-    client_secret: ''       #client secret
+    client_id: '08574314fd7e0914b566851ee1949fa8e0e7b6538f9b6e2cb742103f6a26cfc9'           #client ID
+    client_secret: '7a058b4578762f4002ab6686e600693619778f435bff63a92325f846741290e3'       #client secret
 
 # 5、gitalk评论
 gitalk:
-  enable:  true
+  enable:  false
   githubID:  YaoJusheng   
-  repo:  'YaoJusheng.github.io'
+  repo:  'yaojusheng.gitee.io'
   ClientID:  '35890ce192840bd76bc6'
   ClientSecret:  '18b465f1ea803824fe0aef032d74ce6262df3b6e'
   adminUser:  YaoJusheng
   distractionFreeMode: true
+
+# 6、valine 评论系统，到leancloud进行注册
+# https://leancloud.cn/dashboard/login.html#/signup
+valine:
+ appid: 'oT30CtobWiSnNhMrBtXP9d0A-gzGzoHsz'  # Leancloud应用的appId
+ appkey: 'oVHGMlRjJJyTXPLmyrGKrWFu'          # Leancloud应用的appKey
+ verify: false      # 验证码
+ notify: true       # 评论回复提醒
+ avatar: wavatar        # 评论列表头像样式（https://valine.js.org/avatar）mm
+ placeholder: 有话要说？ # 评论框占位符
+
+# 7、utteranc评论： https://utteranc.es (参数配置详见主页) 替换 gitment、gitalk
+utterance:
+  enable: true
+  repo: 'yaojusheng.github.io'     #仓库名字,格式：你的用户ID/仓库名称，如：blog/utterance_repo
+  issue_term: 'title'            #映射配置
+  theme: 'github-light'          #主题
+
 
 # 访问量统计功能(不蒜子)
 busuanzi:
@@ -270,7 +304,7 @@ style:
     url: 'url(http://q5ndkf89x.bkt.clouddn.com/images/background/39.jpg) no-repeat 100%;background-size:cover;opacity:0.7;filter:alpha(opacity=70);'
     # url: 'url(http://q5ndkf89x.bkt.clouddn.com/images/background/2.jpg) no-repeat 100%;background-size:cover;opacity:0.7;filter:alpha(opacity=70);'
   # 右滑板块背景
-  slider: 'linear-gradient(200deg,#a0cfe4,#e8c37e)'
+  slider: 'linear-gradient(200deg,#ccc,#000)'
 
 # slider的设置
 slider:
@@ -293,6 +327,8 @@ friends:
   Google: https://www.google.com/
   Bing: https://cn.bing.com/
   Translate: https://translate.google.cn/
+  bilibili: https://www.bilibili.com/
+  知乎: https://www.zhihu.com/
   更多: '#'
 
 # 代码高亮
@@ -303,7 +339,7 @@ highlight:
   tab_replace:
 
 # 关于我
-aboutme: <div style="text-align:center"><span style="color:yellow;font-size:20px;">主要涉及技术：</span><br><br><div style="color:purple;">Python开发<br>PHP、前端开发<br>Ruby开发、Linux<br><br>联系QQ:870560379<br><br>很惭愧...<br>只做了一点微小的工作<br>谢谢大家!</div></div>
+aboutme: <div style="text-align:center"><span style="color:yellow;font-size:20px;">主要涉及技术：</span><br><br><div style="color:lightblue;">Python开发<br>PHP、前端开发<br>Ruby开发、Linux<br><br>联系QQ:870560379<br><br>很惭愧...<br>只做了一点微小的工作<br>谢谢大家!</div></div>
 
 # 页脚 Litten(此配置项已弃用)
 # 帮助我们让更多人可以更方便使用Hexo，请尽量不要修改此主题配置
@@ -319,5 +355,5 @@ copyright_type: 2
 # 版权声明自定义文本(关闭请设置为false)
 copyright_text: 
 
-# 网站成立年份(默认为 2020，若填入年份小于当前年份，则显示为 2018-2019 类似的格式)
+# 网站成立年份(默认为 2020，若填入年份小于当前年份，则显示为 2019-2020 类似的格式)
 since: 2020
