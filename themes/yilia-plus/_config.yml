@@ -244,9 +244,13 @@ activate_power_mode:
   # 是否开启摇动
   shake: false
 
-# 飘雪特效
+# 飘雪特效1
 # https://github.com/MlgmXyysd/snow.js
 snow: true
+# 雪花特效2
+snow2: true
+# 代码雨
+code_rain: true
 
 # https://github.com/hustcc/canvas-nest.js
 # 配置详见： https://github.com/hustcc/canvas-nest.js#configuration
