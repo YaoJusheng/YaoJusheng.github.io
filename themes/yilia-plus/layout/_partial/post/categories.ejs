@@ -1,0 +1,74 @@
+<article class="article article-type-post show">
+  <header class="article-header" style="border-bottom: 1px solid #ccc">
+  <h1 class="article-title" itemprop="name">
+    <%= page.title %>
+  </h1>
+  </header>
+
+  <% if (site.categories.length){ %>
+  <div class="category-all-page">
+    <h2>共计&nbsp;<%= site.categories.length %>&nbsp;个分类</h2>
+    <%- list_categories(site.categories, {
+      show_count: true,
+      class: 'category-list-item',
+      style: 'list',
+      depth: 2,
+      separator: ''
+    }) %>
+  </div>
+  <% } %>
+</article>
+
+<style>
+  .category-all-page {
+    margin: 30px 40px 30px 40px;
+    position: relative;
+    min-height: 70vh;
+  }
+  .category-all-page h2 {
+    margin: 20px 0;
+  }
+  .category-all-page .category-all-title {
+    text-align: center;
+  }
+  .category-all-page .category-all {
+    margin-top: 20px;
+  }
+  .category-all-page .category-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .category-all-page .category-list-item-list-item {
+    margin: 10px 15px;
+  }
+  .category-all-page .category-list-item-list-count {
+    color: $grey;
+  }
+  .category-all-page .category-list-item-list-count:before {
+    display: inline;
+    content: " (";
+  }
+  .category-all-page .category-list-item-list-count:after {
+    display: inline;
+    content: ") ";
+  }
+  .category-all-page .category-list-item {
+    margin: 10px 10px;
+  }
+  .category-all-page .category-list-count {
+    color: $grey;
+  }
+  .category-all-page .category-list-count:before {
+    display: inline;
+    content: " (";
+  }
+  .category-all-page .category-list-count:after {
+    display: inline;
+    content: ") ";
+  }
+  .category-all-page .category-list-child {
+    padding-left: 10px;
+  }
+
+</style>

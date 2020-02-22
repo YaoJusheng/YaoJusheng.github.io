@@ -1,13 +1,18 @@
 ---
 title: Hexo搭建个人博客：yilia主题配置(二) - 背景图片
 toc: true
-date: 2020-02-18 17:36:44
+top: 1
+order_by:
+  - top: 1
+  - date: -1
 tags:
-  - [Hexo]
-  - [yilia]
-  - [背景图片]
+  - yilia
+  - 背景图片
 categories:
-  - [网站]
+  - 网站
+  - Hexo
+abbrlink: 4235
+date: 2020-02-18 17:36:44
 ---
 本文主要讲述 `Hexo-yilia` 主题中，关于背景和图片的相关配置。与前面一样，使用主题： [hexo-theme-yilia-plus](https://github.com/JoeyBling/hexo-theme-yilia-plus)
 <!-- more -->

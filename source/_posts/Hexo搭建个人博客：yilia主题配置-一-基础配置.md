@@ -1,13 +1,18 @@
 ---
 title: Hexo搭建个人博客：yilia主题配置(一) - 基础配置
-date: 2020-02-17 17:40:05
 toc: true
-tags: 
-  - Hexo
+top: 1
+order_by:
+  - top: 1
+  - date: -1
+tags:
   - yilia
   - 基本配置
 categories:
   - 网站
+  - Hexo
+abbrlink: 31784
+date: 2020-02-17 17:40:05
 ---
 
 前两天搭建了一下个人博客，使用Hexo工具+GitHub/Gitee部署博客网站，这里简单记录一下搭建过程：

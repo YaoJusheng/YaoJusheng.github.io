@@ -1,13 +1,18 @@
 ---
 title: Hexo搭建个人博客：yilia主题配置(三) - 评论系统
 toc: true
-date: 2020-02-18 17:37:08
+top: 1
+order_by:
+  - top: 1
+  - date: -1
 tags:
-  - [Hexo]
-  - [yilia]
-  - [评论系统]
+  - yilia
+  - 评论系统
 categories:
-  - [网站]
+  - 网站
+  - Hexo
+abbrlink: 37394
+date: 2020-02-18 17:37:08
 ---
 本文主要是关于 `评论系统` 在 `hexo-yilia` 主题中的添加和配置。使用主题： [hexo-theme-yilia-plus](https://github.com/JoeyBling/hexo-theme-yilia-plus)
 <!-- more -->
@@ -124,7 +129,14 @@ gitalk:
 
 ## 3.Utterance配置
 
-### 3.1.修改主题配置文件 `_config.yml`
+### 3.1.授权Utterance应用能访问仓库的issues
+
+即安装 `Utterance` 应用，点击 [install utterances](https://github.com/apps/utterances)，选择需要安装的仓库。
+
+### 3.2.fork项目
+去 `GitHub` 上 fork [Utterance](https://github.com/utterance/utterances)项目，按照它的教程在 **`SITES.md`** 文件中注册你的博客网址，否则可能会配置失败。
+
+### 3.3.修改主题配置文件 `_config.yml`
 
 打开文件 `themes\yilia-plus\_config.yml` , 修改配置：
 ```yaml
@@ -136,7 +148,7 @@ utterance:
   theme: 'github-light'          #主题
 ```
 
-### 3.2.在文件 `article.ejs` 中添加配置
+### 3.4.在文件 `article.ejs` 中添加配置
 打开 `themes\yilia-plus\layout\_partial\article.ejs` 文件，添加：
 
 ```

@@ -49,7 +49,7 @@ rss: /atom.xml
 # Content
 # 文章太长，截断按钮文字(在需要截断的行增加此标记：<!--more-->)
 # excerpt_link: more
-archive_yearly: true #按年存档
+archive_yearly: true  #按年存档
 fancybox: true
 
 # 文章卡片右下角常驻链接，不需要请设置为false
@@ -58,6 +58,12 @@ show_all_link: '展开全文'
 mathjax: false
   # enable: true
   # per_page: true
+
+# 文章结束语
+end_message:
+  enable: true
+  default: 'The END'
+  text: '本文已结束，感谢阅读!'
 
 # Open link in a new tab | 是否在新窗口打开链接
 open_in_new:
@@ -176,10 +182,13 @@ valine:
 # 7、utteranc评论： https://utteranc.es (参数配置详见主页) 替换 gitment、gitalk
 utterance:
   enable: true
-  repo: 'yaojusheng.github.io'     #仓库名字,格式：你的用户ID/仓库名称，如：blog/utterance_repo
+  repo: 'yaojusheng/yaojusheng.github.io'     #仓库名字,格式：你的用户ID/仓库名称，如：blog/utterance_repo
   issue_term: 'title'            #映射配置
   theme: 'github-light'          #主题
 
+# Daovoice DaoCloud 在线沟通
+daovoice: true 
+daovoice_app_id: "6d0092ef"   # 6d0092ef/ eb35ef31
 
 # 访问量统计功能(不蒜子)
 busuanzi:
@@ -203,8 +212,8 @@ clickLove:
   enable: true
 
 # GitHub Ribbons(https://github.blog/2008-12-19-github-ribbons/)
-github:
-  false   # (关闭请设置为false)
+github: false   
+  # (关闭请设置为false)
   # url: https://github.com/JoeyBling/hexo-theme-yilia-plus
 
 # Progress Bar | 页面加载进度条
@@ -243,6 +252,9 @@ activate_power_mode:
   colorful: true
   # 是否开启摇动
   shake: false
+
+# 心知天气
+xinzhi_weather: true
 
 # 飘雪特效1
 # https://github.com/MlgmXyysd/snow.js
