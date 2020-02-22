@@ -158,7 +158,7 @@ npm install hexo-tag-aplayer --save
 
 - 这里用[网易云](https://music.163.com/)插件，打开一首歌，下方有 `生成外链` 提示，如：
 <div align="center">
-    <img src="/blog/images/wangyiyun/changyemanman-20-02-20.png" width="400px">
+    <img src="/images/wangyiyun/changyemanman-20-02-20.png" width="400px">
 </div>
 
 - 点击该链接，然后复制生成的HTML代码，配置时用。：

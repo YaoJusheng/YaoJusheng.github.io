@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Hexo搭建个人博客：yilia主题配置(五) - 其他配置</title>
-    <url>/blog/archives/915cb590.html</url>
+    <url>/archives/915cb590.html</url>
     <content><![CDATA[<p>本文主要讲述 <code>Hexo-yilia</code> 主题对于文章持久化及天气等插件的配置。</p>
 <a id="more"></a>
 
@@ -26,7 +26,7 @@
 <p>参考：<a href="https://blog.csdn.net/weixin_41287260/article/details/103049779" target="_blank" rel="noopener">hexo持久化配置</a></p>
 </blockquote>
 <h2 id="2-文章图片的导入"><a href="#2-文章图片的导入" class="headerlink" title="2.文章图片的导入"></a>2.文章图片的导入</h2><blockquote>
-<p>在hexo主题中，直接用markdown的语法：如 <img src="/blog/blog/archives/%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80" alt>，是不生效的</p>
+<p>在hexo主题中，直接用markdown的语法：如 <img src="/archives/%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80" alt>，是不生效的</p>
 </blockquote>
 <h3 id="方式一：上传七牛云-入门详情"><a href="#方式一：上传七牛云-入门详情" class="headerlink" title="方式一：上传七牛云 入门详情"></a>方式一：上传七牛云 <a href="https://support.qiniu.com/tickets/new/" target="_blank" rel="noopener">入门详情</a></h3><p>使用： 获取七牛云图片链接</p>
 <h3 id="方式二：使用插件："><a href="#方式二：使用插件：" class="headerlink" title="方式二：使用插件："></a>方式二：使用插件：</h3><ul>
@@ -55,7 +55,7 @@
 <h3 id="方式三：存放到根目录"><a href="#方式三：存放到根目录" class="headerlink" title="方式三：存放到根目录"></a>方式三：存放到根目录</h3><ul>
 <li>引用：</li>
 </ul>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">描述</span>](<span class="link">/&#123;root&#125;/&#123;图片目录&#125;/你的图片</span>)</span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- e.g. --&gt;</span></span></span><br><span class="line">![<span class="string">issue</span>](<span class="link">/blog/images/gitissue/issue.png</span>)</span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- 使用样式： --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">width</span>=<span class="string">"50%"</span> <span class="attr">height</span>=<span class="string">"50%"</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">描述</span>](<span class="link">/&#123;root&#125;/&#123;图片目录&#125;/你的图片</span>)</span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- e.g. --&gt;</span></span></span><br><span class="line">![<span class="string">issue</span>](<span class="link">/images/gitissue/issue.png</span>)</span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- 使用样式： --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">width</span>=<span class="string">"50%"</span> <span class="attr">height</span>=<span class="string">"50%"</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>参考：<a href="https://www.zhihu.com/question/23378396" target="_blank" rel="noopener">知乎提问</a></p>
@@ -72,7 +72,7 @@
 <h2 id="4-添加心知天气"><a href="#4-添加心知天气" class="headerlink" title="4.添加心知天气"></a>4.添加心知天气</h2><h3 id="4-1-注册账号，设置天气样式："><a href="#4-1-注册账号，设置天气样式：" class="headerlink" title="4.1.注册账号，设置天气样式："></a>4.1.注册账号，设置天气样式：</h3><ul>
 <li>进入<a href="https://www.seniverse.com/widgetv3" target="_blank" rel="noopener">官网</a>注册，选择样式：</li>
 </ul>
-<p><img src="/blog/images/weather/xinzhi-weather.png" alt="心知天气"></p>
+<p><img src="/images/weather/xinzhi-weather.png" alt="心知天气"></p>
 <ul>
 <li>点击生成代码，复制代码：</li>
 </ul>
@@ -119,17 +119,17 @@
 <p>参考：<a href="https://blog.csdn.net/weixin_30391339/article/details/98582169" target="_blank" rel="noopener">Yilia主题优化</a></p>
 </blockquote>
 <h2 id="7-添加在线聊天"><a href="#7-添加在线聊天" class="headerlink" title="7.添加在线聊天"></a>7.添加在线聊天</h2><h3 id="7-1-注册"><a href="#7-1-注册" class="headerlink" title="7.1.注册"></a>7.1.注册</h3><h4 id="去官网注册一个账号，复制我的邀请码eb35ef31，然后直接点击开始注册："><a href="#去官网注册一个账号，复制我的邀请码eb35ef31，然后直接点击开始注册：" class="headerlink" title="去官网注册一个账号，复制我的邀请码eb35ef31，然后直接点击开始注册："></a>去<a href="http://www.daovoice.io/" target="_blank" rel="noopener">官网</a>注册一个账号，复制我的邀请码<a href="http://dashboard.daovoice.io/get-started" target="_blank" rel="noopener">eb35ef31</a>，然后直接点击开始注册：</h4><div align="center">
-  <img src="/blog/images/daovoice/daovoice_register.png" width="50%">
+  <img src="/images/daovoice/daovoice_register.png" width="50%">
 </div>
 
 <h4 id="完成后，显示如下界面："><a href="#完成后，显示如下界面：" class="headerlink" title="完成后，显示如下界面："></a>完成后，显示如下界面：</h4><div align="center">
-  <img src="/blog/images/daovoice/daovoice_config.png" width="75%">
+  <img src="/images/daovoice/daovoice_config.png" width="75%">
 </div>
 
 <p>可以通过点击 <strong><code>点击接入</code></strong> ，或路径 <strong><code>[应用设置]</code></strong> -&gt; <strong><code>[安装到网站]</code></strong> 找到。</p>
 <h4 id="可以修改喜欢的样式"><a href="#可以修改喜欢的样式" class="headerlink" title="可以修改喜欢的样式"></a>可以修改喜欢的样式</h4><p>找到 <strong><code>[应用设置]</code></strong> -&gt; <strong><code>[聊天设置]</code></strong>，修改 :</p>
 <div align="center">
-  <img src="/blog/images/daovoice/daovoice_style.png" width="75%">
+  <img src="/images/daovoice/daovoice_style.png" width="75%">
 </div>
 
 <p>接下来有提示，复制框1、3中的代码到head文件中，放在 <code>&lt;/head&gt;</code> 标签之前。</p>
@@ -153,7 +153,7 @@
   </entry>
   <entry>
     <title>Hexo搭建个人博客：yilia主题配置(四) - 分类管理</title>
-    <url>/blog/archives/46241.html</url>
+    <url>/archives/46241.html</url>
     <content><![CDATA[<p>本文主要讲述 <code>Hexo-yilia</code> 主题对于文章的分类和标签方面的配置。</p>
 <a id="more"></a>
 
@@ -211,7 +211,7 @@
   </entry>
   <entry>
     <title>Hexo搭建个人博客：yilia主题配置(三) - 评论系统</title>
-    <url>/blog/archives/37394.html</url>
+    <url>/archives/37394.html</url>
     <content><![CDATA[<p>本文主要是关于 <code>评论系统</code> 在 <code>hexo-yilia</code> 主题中的添加和配置。使用主题： <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus" target="_blank" rel="noopener">hexo-theme-yilia-plus</a></p>
 <a id="more"></a>
 
@@ -230,7 +230,7 @@
 <br>
 <!-- ![OAuth](/images/gitissue/oauth.png) -->
 <div align="center">
-  <img src="/blog/images/gitissue/oauth.png" width="400px">
+  <img src="/images/gitissue/oauth.png" width="400px">
 </div>
 
 <p>注册成功后，会获取到 <code>Client ID/scerct</code> ，需要填入配置文件中。</p>
@@ -253,7 +253,7 @@
 <h2 id="3-Utterance配置"><a href="#3-Utterance配置" class="headerlink" title="3.Utterance配置"></a>3.Utterance配置</h2><h3 id="3-1-授权Utterance应用能访问仓库的issues"><a href="#3-1-授权Utterance应用能访问仓库的issues" class="headerlink" title="3.1.授权Utterance应用能访问仓库的issues"></a>3.1.授权Utterance应用能访问仓库的issues</h3><p>即安装 <code>Utterance</code> 应用，点击 <a href="https://github.com/apps/utterances" target="_blank" rel="noopener">install utterances</a>，选择需要安装的仓库。</p>
 <h3 id="3-2-fork项目"><a href="#3-2-fork项目" class="headerlink" title="3.2.fork项目"></a>3.2.fork项目</h3><p>去 <code>GitHub</code> 上 fork <a href="https://github.com/utterance/utterances" target="_blank" rel="noopener">Utterance</a>项目，按照它的教程在 <strong><code>SITES.md</code></strong> 文件中注册你的博客网址，否则可能会配置失败。</p>
 <h3 id="3-3-修改主题配置文件-config-yml"><a href="#3-3-修改主题配置文件-config-yml" class="headerlink" title="3.3.修改主题配置文件 _config.yml"></a>3.3.修改主题配置文件 <code>_config.yml</code></h3><p>打开文件 <code>themes\yilia-plus\_config.yml</code> , 修改配置：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># utteranc评论： https://utteranc.es (参数配置详见主页) 替换 gitment、gitalk</span></span><br><span class="line"><span class="attr">utterance:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">'yaojusheng.github.io'</span>     <span class="comment">#仓库名字,格式：你的用户ID/仓库名称，如：blog/utterance_repo</span></span><br><span class="line">  <span class="attr">issue_term:</span> <span class="string">'title'</span>            <span class="comment">#映射配置</span></span><br><span class="line">  <span class="attr">theme:</span> <span class="string">'github-light'</span>          <span class="comment">#主题</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># utteranc评论： https://utteranc.es (参数配置详见主页) 替换 gitment、gitalk</span></span><br><span class="line"><span class="attr">utterance:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">''</span>     <span class="comment">#仓库名字,格式：你的用户ID/仓库名称，如：blog/utterance_repo</span></span><br><span class="line">  <span class="attr">issue_term:</span> <span class="string">'title'</span>            <span class="comment">#映射配置</span></span><br><span class="line">  <span class="attr">theme:</span> <span class="string">'github-light'</span>          <span class="comment">#主题</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="3-4-在文件-article-ejs-中添加配置"><a href="#3-4-在文件-article-ejs-中添加配置" class="headerlink" title="3.4.在文件 article.ejs 中添加配置"></a>3.4.在文件 <code>article.ejs</code> 中添加配置</h3><p>打开 <code>themes\yilia-plus\layout\_partial\article.ejs</code> 文件，添加：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">theme.utterance</span> &amp;&amp; <span class="attr">theme.utterance.enable</span>)&#123; %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">id</span>=<span class="string">"comments"</span> <span class="attr">class</span>=<span class="string">"comments"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.utterances</span>&#123;<span class="attribute">max-width</span>: <span class="number">100%</span>;&#125;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://utteranc.es/client.js"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">repo</span>=<span class="string">"&lt;%= theme.utterance.repo %&gt;"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">issue-term</span>=<span class="string">"&lt;%= theme.utterance.issue_term %&gt;"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">theme</span>=<span class="string">"&lt;%= theme.utterance.theme %&gt;"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">async</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></span><br></pre></td></tr></table></figure>
@@ -301,7 +301,7 @@
   </entry>
   <entry>
     <title>Hexo搭建个人博客：yilia主题配置(二) - 背景图片</title>
-    <url>/blog/archives/4235.html</url>
+    <url>/archives/4235.html</url>
     <content><![CDATA[<p>本文主要讲述 <code>Hexo-yilia</code> 主题中，关于背景和图片的相关配置。与前面一样，使用主题： <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus" target="_blank" rel="noopener">hexo-theme-yilia-plus</a></p>
 <a id="more"></a>
 
@@ -360,7 +360,7 @@
 <ul>
 <li><p>这里用<a href="https://music.163.com/" target="_blank" rel="noopener">网易云</a>插件，打开一首歌，下方有 <code>生成外链</code> 提示，如：</p>
 <div align="center">
-  <img src="/blog/images/wangyiyun/changyemanman-20-02-20.png" width="400px">
+  <img src="/images/wangyiyun/changyemanman-20-02-20.png" width="400px">
 </div>
 </li>
 <li><p>点击该链接，然后复制生成的HTML代码，配置时用。：</p>
@@ -442,7 +442,7 @@
   </entry>
   <entry>
     <title>Hexo搭建个人博客：yilia主题配置(一) - 基础配置</title>
-    <url>/blog/archives/31784.html</url>
+    <url>/archives/31784.html</url>
     <content><![CDATA[<p>前两天搭建了一下个人博客，使用Hexo工具+GitHub/Gitee部署博客网站，这里简单记录一下搭建过程：</p>
 <a id="more"></a>
 
@@ -555,7 +555,7 @@
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/blog/archives/16107.html</url>
+    <url>/archives/16107.html</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <a id="more"></a>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>

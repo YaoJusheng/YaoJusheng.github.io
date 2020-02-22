@@ -35,7 +35,7 @@ date: 2020-02-18 17:37:08
 <br>
 <!-- ![OAuth](/images/gitissue/oauth.png) -->
 <div align='center'>
-  <img src="/blog/images/gitissue/oauth.png" width="400px" />
+  <img src="/images/gitissue/oauth.png" width="400px" />
 </div>
 
 注册成功后，会获取到 `Client ID/scerct` ，需要填入配置文件中。
@@ -143,7 +143,7 @@ gitalk:
 # utteranc评论： https://utteranc.es (参数配置详见主页) 替换 gitment、gitalk
 utterance:
   enable: true
-  repo: 'yaojusheng.github.io'     #仓库名字,格式：你的用户ID/仓库名称，如：blog/utterance_repo
+  repo: ''     #仓库名字,格式：你的用户ID/仓库名称，如：blog/utterance_repo
   issue_term: 'title'            #映射配置
   theme: 'github-light'          #主题
 ```
