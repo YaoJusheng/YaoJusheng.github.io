@@ -85,9 +85,16 @@ feed:
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://YaoJusheng.github.io
-root: /
-permalink: :year/:month/:day/:title/
+root: /blog/
+
+# url持久化
+# permalink: :year/:month/:day/:title/   # 原代码
+permalink: archives/:abbrlink.html
 permalink_defaults:
+abbrlink:
+  alg: crc32  # 算法：crc16(default) and crc32
+  rep: hex    # 进制：dec(default) and hex
+
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
   trailing_html: true # Set to false to remove trailing '.html' from permalinks
@@ -138,7 +145,18 @@ index_generator:
 # Category & Tag
 default_category: uncategorized
 category_map:
+  网站: site
+  小程序: miniprogram
+  开发工具: tools
 tag_map:
+  标签分类: kinds
+  基础: basic
+  Web框架: web_frame
+  数据库操作: sql_action
+  数据分析: ddata_analysis
+  爬虫: spider
+  自动化测试: auto_test
+  插件: plugins
 
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
