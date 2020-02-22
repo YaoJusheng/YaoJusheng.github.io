@@ -1582,7 +1582,7 @@ pre .css~* .id,pre .id {
 
 .archives .archive-article-title {
     font-size: 16px;
-    font-weight: bold;
+    font-weight: bold!important;
     /*color: #333;*/
     /*transition: color .3s*/
     background: transparent;
@@ -1973,10 +1973,14 @@ pre .css~* .id,pre .id {
     max-width: 100%
 }
 
+a.article-title {
+  color: #08c !important;
+}
+
 .article-inner h1.article-title,.article-title {
     color: #696969;
     margin-left: 0;
-    font-weight: 300;
+    font-weight: bold;
     line-height: 35px;
     margin-bottom: 20px;
     font-size: 26px;
@@ -2057,7 +2061,7 @@ pre .css~* .id,pre .id {
 
 .article-inner {
     /*border-color: #d1d1d1；*/
-    background-color: rgba(193, 194, 195,0.6);
+    background-color: rgba(193, 194, 195,0.6)!important;
 }
 
 .article-inner h1 {
