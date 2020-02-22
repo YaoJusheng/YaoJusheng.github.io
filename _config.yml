@@ -84,7 +84,7 @@ feed:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://YaoJusheng.github.io
+url: http://YaoJusheng.github.io/blog/
 root: /blog/
 
 # url持久化

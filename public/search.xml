@@ -26,7 +26,7 @@
 <p>参考：<a href="https://blog.csdn.net/weixin_41287260/article/details/103049779" target="_blank" rel="noopener">hexo持久化配置</a></p>
 </blockquote>
 <h2 id="2-文章图片的导入"><a href="#2-文章图片的导入" class="headerlink" title="2.文章图片的导入"></a>2.文章图片的导入</h2><blockquote>
-<p>在hexo主题中，直接用markdown的语法：如 <img src="/blog/archives/%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80" alt>，是不生效的</p>
+<p>在hexo主题中，直接用markdown的语法：如 <img src="/blog/blog/archives/%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80" alt>，是不生效的</p>
 </blockquote>
 <h3 id="方式一：上传七牛云-入门详情"><a href="#方式一：上传七牛云-入门详情" class="headerlink" title="方式一：上传七牛云 入门详情"></a>方式一：上传七牛云 <a href="https://support.qiniu.com/tickets/new/" target="_blank" rel="noopener">入门详情</a></h3><p>使用： 获取七牛云图片链接</p>
 <h3 id="方式二：使用插件："><a href="#方式二：使用插件：" class="headerlink" title="方式二：使用插件："></a>方式二：使用插件：</h3><ul>
