@@ -23,7 +23,7 @@ subNav:
   #segmentfault: "#"
   # bilibili: "https://www.bilibili.com/"
   #acfun: "#"
-  mail: "mailto:1042576119@qq.com"
+  mail: "mailto:jusheng_yao@outlook.com"
   #facebook: "#"
   #google: "#"
   #twitter: "#"
@@ -262,7 +262,7 @@ snow: true
 # 雪花特效2
 snow2: true
 # 代码雨
-code_rain: true
+code_rain: false
 
 # https://github.com/hustcc/canvas-nest.js
 # 配置详见： https://github.com/hustcc/canvas-nest.js#configuration
@@ -339,12 +339,55 @@ smart_menu:
 
 # 友情链接
 friends:
-  Baidu: https://www.baidu.com/
-  Google: https://www.google.com/
-  Bing: https://cn.bing.com/
-  Translate: https://translate.google.cn/
-  bilibili: https://www.bilibili.com/
-  知乎: https://www.zhihu.com/
+  Google搜索: 
+    url: https://www.google.com/
+    ico: /images/ico/google_favicon.ico
+    description: 最受欢迎的搜索引擎，国内使用可用代理或安装助手
+  Bing搜索: 
+    url: https://cn.bing.com/
+    ico: /images/ico/biying_favicon.ico
+    description: 必应搜索，一款好用的搜索引擎
+  Translate: 
+    url: https://translate.google.cn/
+    ico: /images/ico/fanyi_favicon.ico
+    description: 谷歌翻译
+  bilibili: 
+    url: https://www.bilibili.com/
+    ico: /images/ico/bili_favicon.ico
+    description: 技术视频网站
+  知乎: 
+    url: https://www.zhihu.com/
+    ico: /images/ico/zhihu_favicon.ico
+    description: 知识、技术交流平台
+  HTML在线转义: 
+    url: https://www.sojson.com/rehtml
+    ico: /images/ico/html_favicon.ico
+    description: 转义html代码
+  在线代码格式化: 
+    url: https://tool.oschina.net/codeformat/json
+    ico: /images/ico/format.ico
+    description: 可用于格式化一些JavaScript、css、html等代码的在线工具
+  IP地址转换: 
+    url: http://www.ab126.com/system/2859.html
+    ico: /images/ico/ip_favicon.ico
+    description: IP地址进制转换
+  百度字体编辑器: 
+    url: http://fontstore.baidu.com/static/editor/index.html
+    ico: /images/ico/font_favicon.ico
+    description: 可制作图形文字，减少字体体积
+  在线图片转ICO图标: 
+    url: http://www.zuohaotu.com/image-to-ico.aspx
+    ico: /images/ico/ico_favicon.ico
+    description: 可将png、jpg等图片转换成ico的在线工具
+  绘图draw: 
+    url: https://www.draw.io/
+    ico: /images/ico/draw_favicon.ico
+    description: 一款在线绘制流程图的网页工具
+  百度脑图: 
+    url: https://naotu.baidu.com/home
+    ico: /images/ico/naotu_favicon.ico
+    description: 一款可替代XMind的在线思维导图工具
+  
   更多: '#'
 
 # 代码高亮
