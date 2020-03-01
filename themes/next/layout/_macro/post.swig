@@ -209,7 +209,7 @@
                {% if theme.post_meta.item_text %}
                  <span class="post-meta-item-text">{{__('post.visitors')}}&#58;</span>
                {% endif %}
-                 <span class="leancloud-visitors-count"></span>
+                 <span class="leancloud-visitors-count"></span>℃
              </span>
           {% endif %}
 
@@ -340,6 +340,13 @@
       </div>
     {% endif %}
 
+    {### Article END Message ###}
+    <div>
+      {% if theme.page_end_tag and theme.page_end_tag.enable and not is_index %}
+        {% include 'passage-end-tag.swig' %}
+      {% endif %}
+    </div>
+
     {% if (theme.alipay or theme.wechatpay or theme.bitcoin) and not is_index %}
       <div>
         {% include 'reward.swig' %}
@@ -348,15 +355,17 @@
 
     {% if theme.post_copyright.enable and not is_index %}
       <div>
-        {% include 'post-copyright.swig' with { post: post } %}
+        {# include 'post-copyright.swig' with { post: post } #}
+        {% include 'my-copyright.swig' with { post: post } %}
       </div>
     {% endif %}
 
+    
     <footer class="post-footer">
       {% if post.tags and post.tags.length and not is_index %}
         <div class="post-tags">
           {% for tag in post.tags %}
-            <a href="{{ url_for(tag.path) }}" rel="tag"># {{ tag.name }}</a>
+            <a href="{{ url_for(tag.path) }}" rel="tag"><i class="fa fa-tag"></i> {{ tag.name }}</a>
           {% endfor %}
         </div>
       {% endif %}

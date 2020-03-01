@@ -1,5 +1,6 @@
 ---
 title: Hexo搭建个人博客：yilia主题配置(二) - 背景图片
+date: 2020-02-18 17:36:44
 toc: true
 top: 1
 order_by:
@@ -9,10 +10,9 @@ tags:
   - yilia
   - 背景图片
 categories:
-  - 网站
-  - Hexo
+  - [网站]
+  - [Hexo]
 abbrlink: 4235
-date: 2020-02-18 17:36:44
 ---
 本文主要讲述 `Hexo-yilia` 主题中，关于背景和图片的相关配置。与前面一样，使用主题： [hexo-theme-yilia-plus](https://github.com/JoeyBling/hexo-theme-yilia-plus)
 <!-- more -->
@@ -158,7 +158,7 @@ npm install hexo-tag-aplayer --save
 
 - 这里用[网易云](https://music.163.com/)插件，打开一首歌，下方有 `生成外链` 提示，如：
 <div align="center">
-    <img src="/images/wangyiyun/changyemanman-20-02-20.png" width="400px">
+    <img src="/blog/images/wangyiyun/changyemanman-20-02-20.png" width="400px">
 </div>
 
 - 点击该链接，然后复制生成的HTML代码，配置时用。：

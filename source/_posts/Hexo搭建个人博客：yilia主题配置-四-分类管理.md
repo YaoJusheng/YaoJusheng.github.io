@@ -10,8 +10,8 @@ tags:
   - yilia
   - 标签分类
 categories:
-  - 网站
-  - Hexo
+  - [网站]
+  - [Hexo]
 abbrlink: 46241
 ---
 
@@ -394,5 +394,6 @@ categories:
 ```
 
 接下来，和之前一样，加入css代码就行(可用过路径 `themes\yilia-plus\layout\_partial\css.ejs` 查看)。
+
 
 ---

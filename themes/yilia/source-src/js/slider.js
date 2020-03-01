@@ -70,7 +70,7 @@ function init() {
   				app.$set('isShow', true)
   				app.$set('isCtnShow', true)
   				setScrollZero()
-			}
+      }
 	    },
 	    filters: {
 	    	isFalse: (val) => {

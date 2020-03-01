@@ -16,8 +16,18 @@
 {% if theme.fancybox %}
   {% set js_vendors.fancybox  = 'fancybox/source/jquery.fancybox.pack.js?v=2.1.5' %}
 {% endif %}
-{% if theme.canvas_nest %}
+
+{# 动态线条效果 #}
+{% if theme.canvas_nest && theme.canvas_nest.enable  %}
   {% set js_vendors.canvas_nest  = 'canvas-nest/canvas-nest.min.js' %}
+  <script 
+    type="text/javascript" 
+    color="{{ theme.canvas_nest.color }}" 
+    opacity="{{ theme.canvas_nest.opacity }}" 
+    zIndex="{{ theme.canvas_nest.zIndex }}" 
+    count="{{ theme.canvas_nest.count }}" 
+    src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js" >
+  </script>
 {% endif %}
 
 {% if theme.three_waves %}

@@ -20,7 +20,7 @@ module.exports = {
     mobile: ["babel-polyfill", "./source-src/js/mobile.js"]
   },
   output: {
-    path: "./source",
+    path: __dirname + "./source",
     publicPath: "./",
     filename: "[name].[chunkhash:6].js"
   },
@@ -73,7 +73,15 @@ module.exports = {
       minify: minifyHTML,
       template: './source-src/css.ejs',
       filename: '../layout/_partial/css.ejs'
-    })
+    }),
+    // new webpack.LoaderOptionsPlugin({
+    //   options: {
+    //     // context: __dirname,
+    //     postcss: function () {
+    //       return [autoprefixer];
+    //     },
+    //   }
+    // })
   ],
   watch: true
 }

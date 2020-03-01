@@ -3931,12 +3931,6 @@ a.pswp__share--download:hover {
 
 
 /*标签页面样式*/
-.category-count {
-  text-align:center;
-  line-height:3;
-  font-size:18px;
-  font-weight: 700;
-}
 .category-list {
   text-align:center;
   padding:20px
@@ -3972,15 +3966,19 @@ a.pswp__share--download:hover {
   right:0;
   bottom:0;
   height:2px;
-  background:#08c;
+  background:rgb(72, 166, 212);
   -webkit-transition:width .3s ease;
   transition:width .3s ease
+}
+
+.tag-cloud-tags a {
+  color: #3c79ac !important;
 }
 
 .tag-cloud-tags a:hover {
   /* border-bottom: 2px solid green; */
   font-style: italic;
-  /* color: #22323a; */
+  color: #555 !important;
   font-size: 24px !important;
   text-decoration: none;
 }

@@ -49,7 +49,7 @@
             {% if config.archive_dir != '/' and site.posts.length > 0 %}
               <div class="site-state-item site-state-posts">
               {% if theme.menu.archives %}
-                <a href="{{ url_for(theme.menu.archives).split('||')[0] | trim }}">
+                <a href="{{ url_for(theme.menu.archives.split('||')[0]) | trim }}">
               {% else %}
                 <a href="{{ url_for(config.archive_dir) }}">
               {% endif %}
@@ -126,9 +126,18 @@
                 {{ theme.links_title }}
               </div>
               <ul class="links-of-blogroll-list">
-                {% for name, link in theme.links %}
+
+                {% for item in theme.links %}
+                  
                   <li class="links-of-blogroll-item">
-                    <a href="{{ link }}" title="{{ name }}" target="_blank">{{ name }}</a>
+                    <a href="{{ item.url }}" {% if item.description %} title="{{ item.description }}" {% endif %}  target="_blank">
+                      {% if item.ico %}
+                        <img src="{{ config.root }}{{ item.ico }}" class="links-item-img">&emsp;
+                      {% else %}
+                        <i class="icon-link icon"></i>
+                      {% endif %}
+                      {{ item.name }}
+                    </a>
                   </li>
                 {% endfor %}
               </ul>

@@ -1,5 +1,6 @@
 ---
 title: Hexo搭建个人博客：yilia主题配置(一) - 基础配置
+date: 2020-02-17 17:40:05
 toc: true
 top: 1
 order_by:
@@ -9,10 +10,9 @@ tags:
   - yilia
   - 基本配置
 categories:
-  - 网站
-  - Hexo
+  - [网站]
+  - [Hexo]
 abbrlink: 31784
-date: 2020-02-17 17:40:05
 ---
 
 前两天搭建了一下个人博客，使用Hexo工具+GitHub/Gitee部署博客网站，这里简单记录一下搭建过程：
@@ -144,7 +144,6 @@ weixin: /img/weixin.png
 </nav>
 ```
 
-
 ## 7.新建标签和分类
 
 > 在 `git bash` 或者 `cmd` 命令行，输入以下命令:
@@ -181,7 +180,6 @@ categories:
     字数：<%= wordcount(post.content) %>字 | 预计阅读时长：<%= min2read(post.content) %>分钟
 </div>
 ```
-
 
 ## 9.不蒜子统计-统计访问量
 

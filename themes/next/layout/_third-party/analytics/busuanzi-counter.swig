@@ -1,7 +1,8 @@
 {% if theme.busuanzi_count.enable %}
 <div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
+{# 网站统计
   {% if theme.busuanzi_count.site_uv %}
     <span class="site-uv">
       {{ theme.busuanzi_count.site_uv_header }}
@@ -17,5 +18,8 @@
       {{ theme.busuanzi_count.site_pv_footer }}
     </span>
   {% endif %}
+
+#}
+
 </div>
 {% endif %}

@@ -24,7 +24,10 @@
 		
 		<nav style="font-size:13px; font-weight: bold;">
 			<span style="color:rgb(180,125,100)">总文章数: </span>
-			<span style="color:rgb(99,88,25)"><%=site.posts.length%></span>
+      <span style="color:rgb(99,88,25)"><%=site.posts.length%></span>
+      <strong style="color:rgb(26, 73, 92)">|</strong>
+      <span style="color:rgb(117, 122, 128)">总字数: </span>
+      <span class="post-count" style="color:rgb(51, 108, 122)"><%= totalcount(site, '0,0.0a') %></span>
 		</nav>
 		
 		<nav class="header-smart-menu">

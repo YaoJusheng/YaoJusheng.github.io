@@ -90,7 +90,14 @@
         <ul class="search-ul">
           <% for (var i in theme.friends){ %>
             <li class="search-li">
-              <a href="<%- url_for(theme.friends[i]) %>" target="_blank" class="search-title"><i class="icon-quo-left icon"></i><%= i %></a>
+              <a href="<%- url_for(theme.friends[i].url) %>" target="_blank" class="search-title" <% if (theme.friends[i].description){ %> title="<%= theme.friends[i].description %>"<% } %>>
+                <% if (theme.friends[i].ico){ %>
+                  <img src="<%- url_for(theme.friends[i].ico) %>">&emsp;
+                <% } else { %>
+                  <i class="icon-link icon"></i>
+                <% } %>
+                <%= i %>
+              </a>
             </li>
           <% } %>
         </ul>
@@ -100,6 +107,7 @@
 
     <%if(hasAboutme){%>
     	<section class="tools-section tools-section-me" q-show="aboutme">
+        <%# "fix.js about me 转义html" %>
   	  	<%if(theme.aboutme){%>
   	  		<div class="aboutme-wrap" id="js-aboutme"><%=theme.aboutme%></div>
   	  	<%}%>

@@ -28,7 +28,7 @@ override: false
 # Then need to rename & redefine they on any other names, otherwise icons from Next will rewrite your custom icons in Hexo.
 favicon:
   small: /images/favicon-16x16-next.png
-  medium: /images/favicon-32x32-next.png
+  medium: /images/site-icon/svg/MrYao02.svg  # 网站图标
   apple_touch_icon: /images/apple-touch-icon-next.png
   safari_pinned_tab: /images/logo.svg
   #android_manifest: /images/manifest.json
@@ -40,7 +40,8 @@ keywords: "Hexo, NexT"
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
 # Set rss to specific value if you have burned your feed already.
-rss:
+# RSS订阅(关于如何配置启用:https://www.jianshu.com/p/2aaac7a19736)
+rss: /atom.xml
 
 footer:
   # Specify the date when the site was setup.
@@ -81,7 +82,6 @@ seo: false
 # subtitle: Subtitle
 index_with_subtitle: false
 
-
 # ---------------------------------------------------------------
 # Menu Settings
 # ---------------------------------------------------------------
@@ -92,18 +92,25 @@ index_with_subtitle: false
 # Value before `||` delimeter is the target link.
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, question icon will be loaded.
 menu:
-  home: / || home
-  #about: /about/ || user
-  #tags: /tags/ || tags
-  #categories: /categories/ || th
-  archives: /archives/ || archive
-  #schedule: /schedule/ || calendar
-  #sitemap: /sitemap.xml || sitemap
-  #commonweal: /404/ || heartbeat
+  home: /||home
+  # about: /about/||user
+  tags: /tags/||tags
+  categories: /categories/||th
+  notes: /notes/||book
+  archives: /archives/||archive
+  # schedule: /schedule/||calendar
+  sitemap: /sitemap.xml||sitemap
+  commonweal: /404.html||heartbeat
 
 # Enable/Disable menu icons.
 menu_icons:
   enable: true
+  # Icon Mapping.
+  home: home
+  about: user
+  categories: th
+  tags: tags
+  archives: archive
 
 
 # ---------------------------------------------------------------
@@ -111,10 +118,10 @@ menu_icons:
 # ---------------------------------------------------------------
 
 # Schemes
-scheme: Muse
-#scheme: Mist
-#scheme: Pisces
-#scheme: Gemini
+# scheme: Muse
+# scheme: Mist
+# scheme: Pisces
+scheme: Gemini
 
 
 # ---------------------------------------------------------------
@@ -126,9 +133,11 @@ scheme: Muse
 # Key is the link label showing to end users.
 # Value before `||` delimeter is the target permalink.
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
-#social:
-  #GitHub: https://github.com/yourname || github
-  #E-Mail: mailto:yourname@gmail.com || envelope
+social:
+  GitHub: https://github.com/YaoJusheng || github
+  Gitee: https://gitee.com/YaoJusheng || github-alt  # 码云
+  CSDN: https://blog.csdn.net/weixin_41599858 || mortar-board
+  E-Mail: mailto:jusheng_yao@outlook.com || envelope
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter
   #FB Page: https://www.facebook.com/yourname || facebook
@@ -148,20 +157,64 @@ links_icon: link
 links_title: Links
 links_layout: block
 #links_layout: inline
-#links:
-  #Title: http://example.com/
+links:
+  Google搜索: 
+    name: Google搜索
+    url: https://www.google.com/
+    ico: images/ico/google_favicon.ico
+    description: 最受欢迎的搜索引擎，国内使用可用代理或安装助手
+  Bing搜索: 
+    name: Bing搜索
+    url: https://cn.bing.com/
+    ico: images/ico/biying_favicon.ico
+    description: 必应搜索，一款好用的搜索引擎
+  Translate: 
+    name: Translate
+    url: https://translate.google.cn/
+    ico: images/ico/fanyi_favicon.ico
+    description: 谷歌翻译
+  bilibili: 
+    name: bilibili
+    url: https://www.bilibili.com/
+    ico: images/ico/bili_favicon.ico
+    description: 技术视频网站
+  知乎: 
+    name: 知乎
+    url: https://www.zhihu.com/
+    ico: images/ico/zhihu_favicon.ico
+    description: 知识、技术交流平台
+  在线工具: 
+    name: 在线工具
+    url: https://tool.lu/
+    ico: images/ico/onlinetool.ico
+    description: 全面多样化的开发、站长类工具
+  百度字体编辑器: 
+    name: 百度字体编辑器
+    url: http://fontstore.baidu.com/static/editor/index.html
+    ico: images/ico/font_favicon.ico
+    description: 可制作图形文字，减少字体体积
+  绘图draw: 
+    name: 绘图draw
+    url: https://www.draw.io/
+    ico: images/ico/draw_favicon.ico
+    description: 一款在线绘制流程图的网页工具
+  百度脑图: 
+    name: 百度脑图
+    url: https://naotu.baidu.com/home
+    ico: images/ico/naotu_favicon.ico
+    description: 一款可替代XMind的在线思维导图工具
 
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.gif
 # in site  directory(source/uploads): /uploads/avatar.gif
-#avatar: /images/avatar.gif
+avatar: /images/avatar.jpg
 
 # Table Of Contents in the Sidebar
 toc:
   enable: true
 
   # Automatically add list number to toc.
-  number: true
+  number: false
 
   # If true, all words will placed on next lines if header width longer then sidebar width.
   wrap: false
@@ -194,7 +247,7 @@ sidebar:
   b2t: false
 
   # Scroll percent label in b2t button.
-  scrollpercent: false
+  scrollpercent: true
 
   # Enable sidebar on narrow view (only for Muse | Mist).
   onmobile: false
@@ -230,9 +283,9 @@ post_meta:
 # Dependencies: https://github.com/willin/hexo-wordcount
 post_wordcount:
   item_text: true
-  wordcount: false
-  min2read: false
-  totalcount: false
+  wordcount: true
+  min2read: true
+  totalcount: true
   separated_meta: true
 
 # Wechat Subscriber
@@ -242,17 +295,20 @@ post_wordcount:
   #description: ex. subscribe to my blog by scanning my public wechat account
 
 # Reward
-#reward_comment: Donate comment here
-#wechatpay: /images/wechatpay.jpg
-#alipay: /images/alipay.jpg
-#bitcoin: /images/bitcoin.png
+reward_comment: Donate comment here
+wechatpay: /images/wechat.png
+alipay: /images/alipay.jpg
+# bitcoin: /images/bitcoin.png
 
 # Declare license on posts
 post_copyright:
-  enable: false
-  license: CC BY-NC-SA 3.0
-  license_url: https://creativecommons.org/licenses/by-nc-sa/3.0/
+  enable: true
+  license: Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
+  license_url: https://creativecommons.org/licenses/by-nc-nd/4.0/
 
+# 文章末尾添加“本文结束”标记
+page_end_tag:
+  enable: true
 
 # ---------------------------------------------------------------
 # Misc Theme Settings
@@ -273,11 +329,11 @@ custom_logo:
   enabled: false
   image:
 
-# Code Highlight theme
+# Code Highlight theme  - 设置代码高亮主题
 # Available value:
 #    normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: normal
+highlight_theme: night bright
 
 
 # ---------------------------------------------------------------
@@ -378,13 +434,13 @@ changyan:
 # You can get your appid and appkey from https://leancloud.cn
 # more info please open https://valine.js.org
 valine:
-  enable: false
-  appid:  # your leancloud application appid
-  appkey:  # your leancloud application appkey
-  notify: false # mail notifier , https://github.com/xCss/Valine/wiki
-  verify: false # Verification code
-  placeholder: Just go go # comment box placeholder
-  avatar: mm # gravatar style
+  enable: true
+  appid: oT30CtobWiSnNhMrBtXP9d0A-gzGzoHsz  # your leancloud application appid
+  appkey: oVHGMlRjJJyTXPLmyrGKrWFu  # your leancloud application appkey
+  notify: false  # 评论回复提醒 mail notifier , https://github.com/xCss/Valine/wiki
+  verify: false  # 验证码 Verification code
+  placeholder: 有话要说？ # 评论框占位符 comment box placeholder
+  avatar: mm # 评论列表头像样式 gravatar style
   guest_info: nick,mail,link # custom comment header
   pageSize: 10 # pagination size
 
@@ -401,16 +457,16 @@ valine:
 # Introduction: https://imsun.net/posts/gitment-introduction/
 # You can get your Github ID from https://api.github.com/users/<Github username>
 gitment:
-  enable: false
+  enable: true
   mint: true # RECOMMEND, A mint on Gitment, to support count, language and proxy_gateway
   count: true # Show comments count in post meta area
   lazy: false # Comments lazy loading with a button
   cleanly: false # Hide 'Powered by ...' on footer, and more
-  language: # Force language, or auto switch by theme
-  github_user: # MUST HAVE, Your Github ID
-  github_repo: # MUST HAVE, The repo you use to store Gitment comments
-  client_id: # MUST HAVE, Github client id for the Gitment
-  client_secret: # EITHER this or proxy_gateway, Github access secret token for the Gitment
+  language:  # Force language, or auto switch by theme
+  github_user: yaojusheng  # MUST HAVE, Your Github ID
+  github_repo: YaoJusheng.github.io # MUST HAVE, The repo you use to store Gitment comments
+  client_id: 35890ce192840bd76bc6 # MUST HAVE, Github client id for the Gitment
+  client_secret: 18b465f1ea803824fe0aef032d74ce6262df3b6e # EITHER this or proxy_gateway, Github access secret token for the Gitment
   proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect
   redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled
 
@@ -528,12 +584,19 @@ rating:
   color:  fc6423
 # ---------------------------------------------------------------
 
+
+# Daovoice DaoCloud 在线沟通
+daovoice: true
+daovoice_app_id: "6d0092ef"   # 6d0092ef/ eb35ef31  # 我们注册获取的id
+
+
 # Show number of visitors to each article.
 # You can visit https://leancloud.cn get AppID and AppKey.
+# 热度（文章阅读次数）
 leancloud_visitors:
-  enable: false
-  app_id: #<app_id>
-  app_key: #<app_key>
+  enable: true
+  app_id: oT30CtobWiSnNhMrBtXP9d0A-gzGzoHsz #<app_id>
+  app_key: oVHGMlRjJJyTXPLmyrGKrWFu #<app_key>
 
 # Another tool to show number of visitors to each article.
 # visit https://console.firebase.google.com/u/0/ to get apiKey and projectId
@@ -549,7 +612,7 @@ firestore:
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/
 busuanzi_count:
   # count values only if the other configs are false
-  enable: false
+  enable: true
   # custom uv span for the whole site
   site_uv: true
   site_uv_header: <i class="fa fa-user"></i>
@@ -559,10 +622,52 @@ busuanzi_count:
   site_pv_header: <i class="fa fa-eye"></i>
   site_pv_footer:
   # custom pv span for one page only
-  page_pv: true
+  page_pv: false
   page_pv_header: <i class="fa fa-file-o"></i>
   page_pv_footer:
 
+
+# 字数统计和阅读时长(网站底部/文章内)
+symbols_count_time:
+  separated_meta: true   # 显示属性名称,设为false后只显示图标和统计数字,不显示属性的文字
+  item_text_post: true   # 显示属性名称,设为false后只显示图标和统计数字,不显示属性的文字
+  item_text_total: true  # 底部footer是否显示字数统计属性文字(如站点总字数,站点阅读时长 ≈ 1 分钟)
+  awl: 4     # 计算字数的一个设置,没设置过
+  wpm: 275   # 一分钟阅读的字数 
+
+# 宠物插件(参考：https://github.com/xiazeyu/live2d-widget-models)
+# Live2D
+## https://github.com/EYHN/hexo-helper-live2d
+live2d: false
+  # enable: true
+  # enable: false
+  # scriptFrom: local # 默认
+  # pluginRootPath: live2dw/ # 插件在站点上的根目录(相对路径)
+  # pluginJsPath: lib/ # 脚本文件相对与插件根目录路径
+  # pluginModelPath: assets/ # 模型文件相对与插件根目录路径
+  # scriptFrom: jsdelivr # jsdelivr CDN
+  # scriptFrom: unpkg # unpkg CDN
+  # scriptFrom: https://cdn.jsdelivr.net/npm/live2d-widget@3.x/lib/L2Dwidget.min.js # 你的自定义 url
+  # tagMode: false # 标签模式, 是否仅替换 live2d tag标签而非插入到所有页面中
+  # debug: false # 调试, 是否在控制台输出日志
+  # model:
+  #   use: live2d-widget-model-wanko # npm-module package name
+    # use: wanko # 博客根目录/live2d_models/ 下的目录名
+    # use: ./wives/wanko # 相对于博客根目录的路径
+    # use: https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json # 你的自定义 url
+  # display:
+  #   position: right
+  #   width: 150
+  #   height: 300
+  # mobile:
+  #   show: true # 手机中是否展示
+
+
+# 底部红心
+icon:
+  name: heart      #如果name的值为heart表示引用fontawesome网站上的心形图标
+  animated: true     #如果想用动态图标应该将animated的值设为true
+  color: "#ff0000"     #图标的色--用16进制数  
 
 # Tencent analytics ID
 # tencent_analytics:
@@ -604,7 +709,7 @@ algolia_search:
 # Local search
 # Dependencies: https://github.com/flashlab/hexo-generator-search
 local_search:
-  enable: false
+  enable: true
   # if auto, trigger search by changing input
   # if manual, trigger search by pressing enter key or search button
   trigger: auto
@@ -619,7 +724,7 @@ local_search:
 # External URL with BASE64 encrypt & decrypt.
 # Usage: {% exturl text url "title" %}
 # Alias: {% extlink text url "title" %}
-exturl: false
+exturl: true
 
 # Note tag (bs-callout).
 note:
@@ -695,7 +800,22 @@ pace: false
 pace_theme: pace-theme-minimal
 
 # Canvas-nest
-canvas_nest: false
+# --------------------------------------------------------------
+# background settings
+# --------------------------------------------------------------
+# add canvas-nest effect
+# see detail from https://github.com/hustcc/canvas-nest.js
+# 动态线条效果，会向鼠标集中
+canvas_nest:
+  enable: true
+  color: '0,0,255'        # color of lines, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
+  pointColor: '249, 72, 137'     # color of points, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
+  opacity: '0.8'               # the opacity of line (0~1), default: 0.5.
+  count: '99'                  # the number of lines, default: 99.
+  zIndex: '-2'                 # z-index property of the background, default: -1. 底层
+
+
+# canvas_nest: false
 
 # three_waves
 three_waves: false
@@ -712,7 +832,7 @@ canvas_sphere: false
 # alpha: The transparency of the ribbon.
 # zIndex: The display level of the ribbon.
 canvas_ribbon:
-  enable: false
+  enable: true
   size: 300
   alpha: 0.6
   zIndex: -1
@@ -803,6 +923,13 @@ vendors:
   # https://github.com/revir/need-more-share2
   needMoreShare2:
 
+codeblock:
+  border_radius:
+  # Add copy button on codeblock
+  copy_button:
+    enable: true
+    # Show text copy result
+    show_result: true
 
 # Assets
 css: css

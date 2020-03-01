@@ -1,5 +1,6 @@
 ---
 title: Hexo搭建个人博客：yilia主题配置(三) - 评论系统
+date: 2020-02-18 17:37:08
 toc: true
 top: 1
 order_by:
@@ -9,10 +10,9 @@ tags:
   - yilia
   - 评论系统
 categories:
-  - 网站
-  - Hexo
+  - [网站]
+  - [Hexo]
 abbrlink: 37394
-date: 2020-02-18 17:37:08
 ---
 本文主要是关于 `评论系统` 在 `hexo-yilia` 主题中的添加和配置。使用主题： [hexo-theme-yilia-plus](https://github.com/JoeyBling/hexo-theme-yilia-plus)
 <!-- more -->
@@ -33,9 +33,9 @@ date: 2020-02-18 17:37:08
 > 首先要注册 [OAuth Application](https://github.com/settings/applications/new) 当别人评论你的文章时，会需要它是授权。
 
 <br>
-<!-- ![OAuth](/images/gitissue/oauth.png) -->
+<!-- ![OAuth](/blog/images/gitissue/oauth.png) -->
 <div align='center'>
-  <img src="/images/gitissue/oauth.png" width="400px" />
+  <img src="/blog/images/gitissue/oauth.png" width="400px" />
 </div>
 
 注册成功后，会获取到 `Client ID/scerct` ，需要填入配置文件中。

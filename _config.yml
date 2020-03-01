@@ -19,69 +19,6 @@ language: zh-Hans
 timezone: ''          # 网站时区。Hexo 默认使用您电脑的时区
 
 
-# ==================================== 主题配置相关 (此处备份) ====================================
-# 侧边栏头像设置
-# 将头像放置主题目录下的 source/uploads/ （新建uploads目录若不存在） 配置为：
-# avatar: /uploads/avatar.png
-# 放置在 source/images/ 目录下, 配置为：
-# avatar: /images/avatar.jpg
-# 完整的互联网 URI
-avatar: 
-   url: https://avatars0.githubusercontent.com/u/42117749?s=40&v=4
-
-# 开启侧边栏社交链接
-# Social links
-social:
-  GitHub: https://github.com/YaoJusheng
-  CSDN: https://blog.csdn.net/weixin_41599858
-  Zhihu: https://www.zhihu.com/people/qing-kuang-shu-sheng-78-59
-  Weibo: 
-  # 等等
-
-social_icons:
-  enable: true
-  # Icon Mappings.
-  GitHub: github
-  CSDN: csdn
-  ZhiHu: zhihu
-  Weibo: weibo
-
-# 本地搜索
-search:
-  path: search.xml
-  field: post
-  format: html
-  limit: 10000
-
-# 开启打赏功能
-reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
-wechatpay:              # 你的微信收款码链接
-alipay:                 # 你的支付宝收款码链接
-
-# 开启友情链接
-links_title: Links
-links:
-  Baidu: https://www.baidu.com/
-  Google: https://www.google.com/
-  Bing: https://cn.bing.com/
-  Translate: https://translate.google.cn/
-
-# 开启订阅微信公众号
-wechat_subscriber:
-  enabled: true
-  qcode:             # e.g. /uploads/wechat-qcode.jpg
-  description: 欢迎您扫一扫上面的微信公众号，订阅我的博客！
-
-# 设置RSS
-feed:
-  type: rss2
-  path: rss2.html
-  limit: 5
-  hub:
-  content: 'true'
-
-# =================================== The End （后续添加） ==========================================
-
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://YaoJusheng.github.io/
@@ -186,7 +123,7 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 # theme: landscape
-theme: yilia-plus  # yilia
+theme: next  # landscape | yilia | yilia-plus | next
 
 # 新增内容
 jsonContent:

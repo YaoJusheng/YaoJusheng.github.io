@@ -1,5 +1,9 @@
 <% var defaultBg = '#4d4d4d'; %>
-<div class="overlay" style="background: <%= theme.style && theme.style.header ? theme.style.header : defaultBg %>"></div>
+
+<% var defaultBgImg = '/img/biubiubiu.gif'; %>
+<% var overlayBgImg= theme.style.gif && theme.style.gif.enable && theme.style.gif.path ? theme.style.gif.path : defaultBgImg; %>
+<div class="overlay" style="background: <%= theme.style && theme.style.header ? theme.style.header : defaultBg %>;<% if (theme.style.gif && theme.style.gif.enable){ %>background: url('<%- url_for(overlayBgImg) %>') no-repeat ;<%}%>"></div>
+
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="<%=theme.root%>" class="profilepic">
@@ -18,20 +22,66 @@
 				<li><a href="<%- url_for(theme.menu[i]) %>"><%= i %></a></li>
 	        <%}%>
 			</ul>
+    </nav>
+    
+    <nav style="font-size:13px; font-weight: bold;">
+			<span style="color:rgb(180, 173, 170)">总文章数: </span>
+      <span style="color:rgb(131, 126, 98)"><%=site.posts.length%></span> |
+      <span style="color:rgb(117, 122, 128)">总字数: </span>
+      <span class="post-count" style="color:rgb(51, 108, 122)"><%= totalcount(site, '0,0.0a') %></span>
+      <br>
 		</nav>
+
 		<nav class="header-smart-menu">
     		<% for (var i in theme.smart_menu){ %>
     			<% if(theme.smart_menu[i]){ %>
     			<a q-on="click: openSlider(e, '<%-i%>')" href="javascript:void(0)"><%= theme.smart_menu[i] %></a>
     			<% } %>
-            <%}%>
+        <%}%>
 		</nav>
 		<nav class="header-nav">
 			<div class="social">
-				<% for (var i in theme.subnav){ %>
-					<a class="<%= i %>" target="_blank" href="<%- url_for(theme.subnav[i]) %>" title="<%= i %>"><i class="icon-<%= i %>"></i></a>
-		        <%}%>
-			</div>
-		</nav>
-	</header>		
+        <% for (var i in theme.subnav){ %>
+          <a class="<%= i %>" target="_blank" href="<%- url_for(theme.subnav[i]) %>" title="<%= i %>"><i class="icon-<%= i %>"></i></a>
+		    <%}%>
+      </div>
+
+      <% if (theme.music && theme.music.enable){ %>
+        <%# "网易云音乐插件" %>
+        <%# "bottom:20px; left:auto;position:absolute;  width:85%" %>
+        <% var defaultHeight = theme.music.type == 1 ? '32' : '66'; %>
+        <% var defaultIframeHeight = theme.music.type == 1 ? '52' : '86'; %>
+        <div class="plugin-music">
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="240" height="<%=defaultIframeHeight%>" src="//music.163.com/outchain/player?type=2&id=<%=theme.music.id||27580009%>&auto=<%=theme.music.autoPlay?1:0%>&height=<%=defaultHeight%>"></iframe>
+        </div>
+        <% if (theme.music.text || theme.music.text == null){ %>
+          <% var musicText = ( theme.music.text == null || theme.music.text == true ) ? "悠扬的旋律，为谁而敲响！" : theme.music.text; %>
+          <p style="font-size: 12px;opacity:0.6;color:lightyellow"><%-musicText%><p>
+        <% } %>
+      <% } %>
+
+    </nav>
+    
+    <%# "心知天气插件" %>
+		<% if(theme.xinzhi_weather){ %>
+			<div id="tp-weather-widget"></div>
+		  <script>
+		    (function(a,h,g,f,e,d,c,b){b=function(){d=h.createElement(g);c=h.getElementsByTagName(g)[0];d.src=e;d.charset="utf-8";d.async=1;c.parentNode.insertBefore(d,c)};a["SeniverseWeatherWidgetObject"]=f;a[f]||(a[f]=function(){(a[f].q=a[f].q||[]).push(arguments)});a[f].l=+new Date();if(a.attachEvent){a.attachEvent("onload",b)}else{a.addEventListener("load",b,false)}}(window,document,"script","SeniverseWeatherWidget","//cdn.sencdn.com/widget2/static/js/bundle.js?t="+parseInt((new Date().getTime() / 100000000).toString(),10)));
+		    window.SeniverseWeatherWidget('show', {
+		      flavor: "bubble",
+		      location: "WTSQQYHVQ973",
+		      geolocation: true,
+		      language: "zh-Hans",
+		      unit: "c",
+		      theme: "auto",
+		      token: "31a8562e-ae28-47fe-860d-d4e01b0867c2",
+		      hover: "enabled",
+		      container: "tp-weather-widget"
+		    })
+		  </script>
+    <% } %>
+
+  </header>		
+  
+  
 </div>

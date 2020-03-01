@@ -10,8 +10,8 @@ tags:
   - yilia
   - 插件
 categories:
-  - 网站
-  - Hexo
+  - [网站]
+  - [Hexo]
 abbrlink: 915cb590
 ---
 本文主要讲述 `Hexo-yilia` 主题对于文章持久化及天气等插件的配置。
@@ -163,7 +163,7 @@ post_asset_folder: true
 ```markdown
 ![描述](/{root}/{图片目录}/你的图片)
 <!-- e.g. -->
-![issue](/images/gitissue/issue.png)
+![issue](/blog/images/gitissue/issue.png)
 <!-- 使用样式： -->
 <img src="" width="50%" height="50%">
 ```
@@ -205,7 +205,7 @@ post_asset_folder: true
 
 - 进入[官网](https://www.seniverse.com/widgetv3)注册，选择样式：
 
-![心知天气](/images/weather/xinzhi-weather.png)
+![心知天气](/blog/images/weather/xinzhi-weather.png)
 
 - 点击生成代码，复制代码：
 
@@ -305,29 +305,69 @@ baidu_push: true
 
 ## 6.添加版权声明
 
-- 在 `layout/_partial/head.ejs` 或 `layout/_partial/aricle.ejs` 中合适位置，添加：
+### 6.1.方式一：修改 `aricle.ejs` 文件
+
+在 `layout/_partial/aricle.ejs` 中合适位置，添加：
 
 ```
-<% if (((theme.copyright_type === 2) || (theme.copyright_type === 1 && post.copyright)) && !index){ %>
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          <%= config.author%>
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="<%- yilia_plus_full_url(post.path) %>" title="<%= post.title %>" target="_blank"><%- yilia_plus_full_url(post.path) %></a>
-        </li>
-        <% if (theme.copyright_text || theme.copyright_text == null){ %>
-        <li>
-          <strong>版权声明： </strong>
-          <% var defaultCopyrightText = '本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！'; %>
-          <%- ( theme.copyright_text == null || theme.copyright_text == true ) ? defaultCopyrightText : theme.copyright_text %>
-        </li>
+<%
+  var sUrl = url.replace(/index\.html$/, '');
+  sUrl = /^(http:|https:)\/\//.test(sUrl) ? sUrl : 'https:' + sUrl;
+%>
+
+<%# "版权说明" %>
+<% if (((theme.copyright.copyright_type === 2) || (theme.copyright.copyright_type === 1 && post.copyright)) && !index){ %>
+<div class="declare"> 
+  <ul class="post-copyright">
+    <li>
+      <strong>本文作者: </strong>
+      <%= config.author%>
+    </li>
+    <li>
+      <strong>本文链接: </strong>
+      <%= sUrl%>
+    </li>
+
+    <% if (theme.copyright_text || theme.copyright_text == null){ %>
+    <li>
+      <span><strong>版权声明: </strong></span>
+      <% if (theme.copyright.copyright_text == null || theme.copyright.copyright_text == true){ %>
+        <span>
+          本博客所有文章除特别声明外，均采用 
+          <a rel="license" href="<%= theme.copyright.licensee_url%>" title="<%= theme.copyright.licensee_alias %>"><%= theme.copyright.licensee_name%></a>
+          进行许可。转载请注明出处！
+        </span>
+        <% if(theme.copyright.licensee_img != undefined){ %>
+          <span>
+            <a rel="license" href="<%= theme.copyright.licensee_url%>">
+              <img alt="知识共享许可协议" style="border-width:0" src="<%- config.root %><%= theme.copyright.licensee_img %>"/>
+            </a>
+          </span>
         <% } %>
-      </ul>
-    </div>
+      
+      <% } else { %>
+        <%= theme.copyright.copyright_text %>
+      <% } %>
+    </li>
+    <% } %>
+  </ul>
+
+</div>
+<% } else {%>
+  <div class="declare" hidden="hidden"></div>
+<% } %>
+```
+
+### 6.2.方式二：新建 `declare.ejs` 文件
+
+- 在目录 `themes\yilia-plus\layout\_partial\post` 下，新建 `declare.ejs` 文件，存放上面的代码
+
+- 在 `layout/_partial/aricle.ejs` 中合适位置，添加：
+
+```html
+<%# "版权说明" %>
+<% if (theme.copyright) {%>
+  <%- partial('post/declare') %>
 <% } %>
 ```
 
@@ -344,38 +384,48 @@ baidu_push: true
 }
 ```
 
-- 添加 `copyright_type` 属性
+### 6.3.添加 `copyright` 属性
 
 打开主题配置文件 `_config.yml`，添加：
 ```yaml
 # 版权声明
-# type：0-关闭版权声明； 1-存在copyright:true属性的文章，显示版权声明； 2-所有文章均有版权声明
-copyright_type: 0
+# 版权声明type设定：0-关闭版权声明； 1-文章对应的md文件里有copyright: true属性，才有版权声明； 2-所有文章均有版权声明
+copyright:
+  copyright_type: 2
+  licensee_url: https://creativecommons.org/licenses/by-nc-sa/4.0/        #当前应用的版权协议地址。
+  licensee_name: 'CC BY-NC-SA 4.0'                                        #版权协议的名称
+  licensee_alias: '知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议'       # alias别名
+  # https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png
+  licensee_img: /images/copyright.png                            #版权协议的Logo (/images/copyright.png)
+  # 版权声明自定义文本(关闭请设置为false)
+  copyright_text: 
 ```
-> 参考：[Yilia主题优化](https://blog.csdn.net/weixin_30391339/article/details/98582169)
+> 参考：
+> [Yilia主题优化](https://blog.csdn.net/weixin_30391339/article/details/98582169)
+> [Yilia版权声明](https://blog.csdn.net/weixin_41287260/article/details/103050336)
 
 ## 7.添加在线聊天
 
 ### 7.1.注册
 
-#### 去[官网](http://www.daovoice.io/)注册一个账号，复制我的邀请码[eb35ef31](http://dashboard.daovoice.io/get-started)，然后直接点击开始注册：
+- 去[官网](http://www.daovoice.io/)注册一个账号，复制我的邀请码[eb35ef31](http://dashboard.daovoice.io/get-started)，然后直接点击开始注册：
 
 <div align="center">
-  <img src="/images/daovoice/daovoice_register.png" width="50%">
+  <img src="/blog/images/daovoice/daovoice_register.png" width="50%">
 </div>
 
-#### 完成后，显示如下界面：
+- 完成后，显示如下界面：
 <div align="center">
-  <img src="/images/daovoice/daovoice_config.png" width="75%">
+  <img src="/blog/images/daovoice/daovoice_config.png" width="75%">
 </div>
 
 可以通过点击 **`点击接入`** ，或路径 **`[应用设置]`** -> **`[安装到网站]`** 找到。
 
-#### 可以修改喜欢的样式
+- 可以修改喜欢的样式
 
 找到 **`[应用设置]`** -> **`[聊天设置]`**，修改 :
 <div align="center">
-  <img src="/images/daovoice/daovoice_style.png" width="75%">
+  <img src="/blog/images/daovoice/daovoice_style.png" width="75%">
 </div>
 
 接下来有提示，复制框1、3中的代码到head文件中，放在 `</head>` 标签之前。

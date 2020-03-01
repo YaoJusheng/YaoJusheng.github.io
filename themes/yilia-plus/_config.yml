@@ -79,7 +79,7 @@ reward_wording: 'Thinks for your support!'
 # 支付宝二维码图片地址，跟你设置头像的方式一样。比如：/assets/img/alipay.jpg
 alipay: /img/alipay.jpg
 # 微信二维码图片地址
-weixin: /img/weixin.png
+weixin: /img/wechat.png
 
 # 目录
 # 目录设定：0-不显示目录； 1-文章对应的md文件里有toc:true属性，才有目录； 2-所有文章均显示目录
@@ -108,13 +108,13 @@ recentContent: ''
 #是否开启微简历
 resume: true
 
-# Miscellaneous
+# Miscellaneous (前两个是设置百度和谷歌搜索的，favicon设置标签页图标的)
 # 百度统计
 baidu_analytics: ''
 google_analytics: ''
 
 # 网站图标
-favicon: /img/favicon.ico
+favicon: /images/site-icon/ico/MrYao.ico
 
 # 你的头像url
 avatar: /images/avatar.jpg  
@@ -122,27 +122,32 @@ avatar: /images/avatar.jpg
 # 是否开启分享
 share_jia: true
 
-# 评论： 1、畅言；2、Disqus；3、Gitment；4、Giteement ;5、gitalk ;6、valine ;7、utteranc
+# 评论： 1、多说；2、网易云跟帖；3、畅言；4、Disqus；5、Gitment；6、Giteement ;7、gitalk ;8、valine ;9、utteranc
 # 具体请参考wiki：https://github.com/JoeyBling/hexo-theme-yilia-plus/wiki
 # 是否开启评论, 不需要使用某项，直接设置值为false，或注释掉
+# 1、多说
+duoshuo: false
 
-# 1、畅言
+# 2、网易云跟帖
+wangyiyun: false
+
+# 3、畅言
 changyan_appid: false
 changyan_conf: false
 
-# 2、Disqus 在hexo根目录的config里也有disqus_shortname字段，优先使用yilia-plus的
+# 4、Disqus 在hexo根目录的config里也有disqus_shortname字段，优先使用yilia-plus的
 disqus: false
 
-# 3、Gitment----基于GitHub的评论系统(关闭请设置gitment_owner为false)
+# 5、Gitment----基于GitHub的评论系统(关闭请设置gitment_owner为false)
 # 关于如何集成:https://www.jianshu.com/p/ac7658cc912f
 gitment_owner: false      # 你的 GitHub ID  e.g. YaoJusheng
 # 是否使用官方js(false可以提升访问速度，本地修改过一部分的js，官方js可能会出现服务器不稳定，不太建议使用)
-gitment_repo: 'YaoJusheng.github.io'          #存储评论的 repo name(需要在Github创建)
+gitment_repo: 'yaojusheng.github.io'          #存储评论的 repo name(需要在Github创建)
 gitment_oauth:
   client_id: '35890ce192840bd76bc6'           #client ID
   client_secret: '18b465f1ea803824fe0aef032d74ce6262df3b6e'       #client secret
 
-# 4、Giteement----【国内用户建议使用这个，相对比较快】
+# 6、Giteement----【国内用户建议使用这个，相对比较快】
 # 关于如何集成:https://www.jianshu.com/p/f5c4633524c7
 # 基于码云的评论系统(https://gitee.com/zhousiwei/giteement)
 giteement:
@@ -159,17 +164,17 @@ giteement:
     client_id: '08574314fd7e0914b566851ee1949fa8e0e7b6538f9b6e2cb742103f6a26cfc9'           #client ID
     client_secret: '7a058b4578762f4002ab6686e600693619778f435bff63a92325f846741290e3'       #client secret
 
-# 5、gitalk评论
+# 7、gitalk评论
 gitalk:
   enable:  false
   githubID:  YaoJusheng   
-  repo:  'yaojusheng.gitee.io'
+  repo:  'yaojusheng.github.io'
   ClientID:  '35890ce192840bd76bc6'
   ClientSecret:  '18b465f1ea803824fe0aef032d74ce6262df3b6e'
   adminUser:  YaoJusheng
   distractionFreeMode: true
 
-# 6、valine 评论系统，到leancloud进行注册
+# 8、valine 评论系统，到leancloud进行注册
 # https://leancloud.cn/dashboard/login.html#/signup
 valine:
  appid: 'oT30CtobWiSnNhMrBtXP9d0A-gzGzoHsz'  # Leancloud应用的appId
@@ -179,7 +184,7 @@ valine:
  avatar: wavatar        # 评论列表头像样式（https://valine.js.org/avatar）mm
  placeholder: 有话要说？ # 评论框占位符
 
-# 7、utteranc评论： https://utteranc.es (参数配置详见主页) 替换 gitment、gitalk
+# 9、utteranc评论： https://utteranc.es (参数配置详见主页) 替换 gitment、gitalk
 utterance:
   enable: true
   repo: 'yaojusheng/yaojusheng.github.io'     #仓库名字,格式：你的用户ID/仓库名称，如：blog/utterance_repo
@@ -359,26 +364,14 @@ friends:
     url: https://www.zhihu.com/
     ico: /images/ico/zhihu_favicon.ico
     description: 知识、技术交流平台
-  HTML在线转义: 
-    url: https://www.sojson.com/rehtml
-    ico: /images/ico/html_favicon.ico
-    description: 转义html代码
-  在线代码格式化: 
-    url: https://tool.oschina.net/codeformat/json
-    ico: /images/ico/format.ico
-    description: 可用于格式化一些JavaScript、css、html等代码的在线工具
-  IP地址转换: 
-    url: http://www.ab126.com/system/2859.html
-    ico: /images/ico/ip_favicon.ico
-    description: IP地址进制转换
+  在线工具: 
+    url: https://tool.lu/
+    ico: /images/ico/onlinetool.ico
+    description: 全面多样化的开发、站长类工具
   百度字体编辑器: 
     url: http://fontstore.baidu.com/static/editor/index.html
     ico: /images/ico/font_favicon.ico
     description: 可制作图形文字，减少字体体积
-  在线图片转ICO图标: 
-    url: http://www.zuohaotu.com/image-to-ico.aspx
-    ico: /images/ico/ico_favicon.ico
-    description: 可将png、jpg等图片转换成ico的在线工具
   绘图draw: 
     url: https://www.draw.io/
     ico: /images/ico/draw_favicon.ico
@@ -410,9 +403,15 @@ baidu_push: false
 
 # 版权声明
 # 版权声明type设定：0-关闭版权声明； 1-文章对应的md文件里有copyright: true属性，才有版权声明； 2-所有文章均有版权声明
-copyright_type: 2
-# 版权声明自定义文本(关闭请设置为false)
-copyright_text: 
+copyright:
+  copyright_type: 2
+  licensee_url: https://creativecommons.org/licenses/by-nc-sa/4.0/        #当前应用的版权协议地址。
+  licensee_name: 'CC BY-NC-SA 4.0'                                        #版权协议的名称
+  licensee_alias: '知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议'       # alias别名
+  # https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png
+  licensee_img: /images/copyright.png    #版权协议的Logo (/images/copyright.png)
+  # 版权声明自定义文本(关闭请设置为false)
+  copyright_text: 
 
 # 网站成立年份(默认为 2020，若填入年份小于当前年份，则显示为 2019-2020 类似的格式)
 since: 2020

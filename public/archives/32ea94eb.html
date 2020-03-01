@@ -1,0 +1,1888 @@
+﻿<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/site-icon/svg/MrYao02.svg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="next,基本配置," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Mr Yao 的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="网上关于搭建个人博客网站所用主题，yilia和next两款比较多，这里记录一下next5.1.4相关的一些配置。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo搭建个人博客：Next主题-相关配置">
+<meta property="og:url" content="http://yaojusheng.github.io/archives/32ea94eb.html">
+<meta property="og:site_name" content="Mr Yao 的博客">
+<meta property="og:description" content="网上关于搭建个人博客网站所用主题，yilia和next两款比较多，这里记录一下next5.1.4相关的一些配置。">
+<meta property="article:published_time" content="2020-02-25T09:37:37.000Z">
+<meta property="article:modified_time" content="2020-03-01T13:49:27.913Z">
+<meta property="article:author" content="Jusheng Yao">
+<meta property="article:tag" content="next">
+<meta property="article:tag" content="基本配置">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://YaoJusheng.github.io/archives/32ea94eb.html"/>
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "6d0092ef"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+  <title>Hexo搭建个人博客：Next主题-相关配置 | Mr Yao 的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    
+    <div class="top-scroll-bar"></div>
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr Yao 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-notes">
+          <a href="/notes/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            notes
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://YaoJusheng.github.io/archives/32ea94eb.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jusheng Yao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr Yao 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Hexo搭建个人博客：Next主题-相关配置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-25T17:37:37+08:00">
+                2020-02-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/site/" itemprop="url" rel="index">
+                    <span itemprop="name">网站</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/archives/32ea94eb.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/archives/32ea94eb.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/archives/32ea94eb.html" class="leancloud_visitors" data-flag-title="Hexo搭建个人博客：Next主题-相关配置">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>℃
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>网上关于搭建个人博客网站所用主题，yilia和next两款比较多，这里记录一下next5.1.4相关的一些配置。</p>
+<a id="more"></a>
+
+<h2 id="1-页面显示问题"><a href="#1-页面显示问题" class="headerlink" title="1.页面显示问题"></a>1.页面显示问题</h2><h3 id="1-1-subnav链接错误"><a href="#1-1-subnav链接错误" class="headerlink" title="1.1.subnav链接错误"></a>1.1.subnav链接错误</h3><p>修改主题配置文件后，运行时，出现 <code>subnav子导航</code> 链接中多了 <code>%20</code> 这样的字样，这是主题内置字符串切割时出现错误，可以修改配置，将空格去掉，如：</p>
+<p>将</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">home</span></span><br><span class="line">  <span class="comment"># about: /about/ || user</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">tags</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">th</span></span><br></pre></td></tr></table></figure>
+
+<p>改为：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/||home</span></span><br><span class="line">  <span class="comment"># about: /about/||user</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/||tags</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/||th</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-站点概览中的链接错误"><a href="#1-2-站点概览中的链接错误" class="headerlink" title="1.2.站点概览中的链接错误"></a>1.2.站点概览中的链接错误</h3><p>在 <code>themes\hexo-theme-next\layout_macro</code> 中，打开 <code>sidebar.swig</code> 文件，找到 <code>&lt;div class=&quot;site-state-item site-state-posts&quot;&gt;</code>，</p>
+<p>将:</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123; url_for(theme.menu.archives).split('||')[0] | trim &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>改为：</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123; url_for(theme.menu.archives.split('||')[0]) | trim &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参考：<a href="https://blog.csdn.net/fullbug/article/details/103844424" target="_blank" rel="noopener">导航栏链接URL乱码问题</a></p>
+</blockquote>
+<h2 id="2-添加阅读进度"><a href="#2-添加阅读进度" class="headerlink" title="2.添加阅读进度"></a>2.添加阅读进度</h2><h3 id="2-1-向上返回按钮加上阅读进度"><a href="#2-1-向上返回按钮加上阅读进度" class="headerlink" title="2.1.向上返回按钮加上阅读进度"></a>2.1.向上返回按钮加上阅读进度</h3><p>在主题配置文件中，找到 <code>scrollpercent</code> ，更新：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">scrollpercent:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-网页顶部添加阅读进度条"><a href="#2-2-网页顶部添加阅读进度条" class="headerlink" title="2.2.网页顶部添加阅读进度条"></a>2.2.网页顶部添加阅读进度条</h3><h4 id="2-2-1-新建文件-custom-reading-js"><a href="#2-2-1-新建文件-custom-reading-js" class="headerlink" title="2.2.1.新建文件 custom_reading.js"></a>2.2.1.新建文件 <code>custom_reading.js</code></h4><p>在 <code>themes\next\source\js\src</code> 中，新建文件 <code>custom_reading.js</code>，添加内容：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  $(<span class="built_in">window</span>).scroll(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">".top-scroll-bar"</span>).attr(<span class="string">"style"</span>, <span class="string">"width: "</span> + ($(<span class="keyword">this</span>).scrollTop() / ($(<span class="built_in">document</span>).height() - $(<span class="keyword">this</span>).height()) * <span class="number">100</span>) + <span class="string">"%; display: block;"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="2-2-2-更新-commons-swig"><a href="#2-2-2-更新-commons-swig" class="headerlink" title="2.2.2.更新 commons.swig"></a>2.2.2.更新 <code>commons.swig</code></h4><p>打开 <code>themes\next\layout\_scripts\commons.swig</code>，在 <code>js_commons</code> 中添加：</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">'src/custom_reading.js</span>'</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-3-修改-header-swig"><a href="#2-2-3-修改-header-swig" class="headerlink" title="2.2.3.修改 header.swig"></a>2.2.3.修改 <code>header.swig</code></h4><p>打开 <code>themes\next\layout\_partials\header.swig</code>，在 <code>&lt;div class=&quot;custom-logo-site-title&quot;&gt;</code> 上面，添加：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="comment"># 顶部阅读进度条 #&#125;</span></span><br><span class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"top-scroll-bar"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-4-修改样式"><a href="#2-2-4-修改样式" class="headerlink" title="2.2.4.修改样式"></a>2.2.4.修改样式</h4><p>打开 <code>themes\next\source\css\_custom\custom.styl</code>，添加：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.top-scroll-bar</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">9999</span>;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">2px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#6d6d6d</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-修改友链样式"><a href="#3-修改友链样式" class="headerlink" title="3.修改友链样式"></a>3.修改友链样式</h2><p>原格式是 <code>title+link</code> ，现加上图标和描述，方式自定义。</p>
+<h3 id="3-1-修改主题配置文件"><a href="#3-1-修改主题配置文件" class="headerlink" title="3.1.修改主题配置文件"></a>3.1.修改主题配置文件</h3><p>如：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">links:</span></span><br><span class="line">  <span class="string">Google搜索:</span> </span><br><span class="line">    <span class="attr">name:</span> <span class="string">Google搜索</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">https://www.google.com/</span></span><br><span class="line">    <span class="attr">ico:</span> <span class="string">/images/ico/google.ico</span></span><br><span class="line">    <span class="attr">description:</span> <span class="string">最受欢迎的搜索引擎，国内使用可用代理或安装助手</span></span><br><span class="line">  <span class="string">Bing搜索:</span> </span><br><span class="line">    <span class="attr">name:</span> <span class="string">Bing搜索</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">https://cn.bing.com/</span></span><br><span class="line">    <span class="attr">ico:</span> <span class="string">/images/ico/biying.ico</span></span><br><span class="line">    <span class="attr">description:</span> <span class="string">必应搜索，一款好用的搜索引擎</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-修改-sidebar-swig"><a href="#3-2-修改-sidebar-swig" class="headerlink" title="3.2.修改 sidebar.swig"></a>3.2.修改 <code>sidebar.swig</code></h3><p>打开文件 <code>themes\next\layout\_macro\sidebar.swig</code>，找到 <code>&lt;ul class=&quot;links-of-blogroll-list&quot;&gt;</code>，在下面修改：</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> item <span class="keyword">in</span> theme.links %&#125;</span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"links-of-blogroll-item"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123; item.url &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> </span></span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> item.description %&#125;</span><span class="xml"><span class="tag"> <span class="attr">title</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123; item.description &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> </span></span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span><span class="xml"><span class="tag">  <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span></span></span><br><span class="line"><span class="xml">      </span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> item.ico %&#125;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123; config.root &#125;&#125;</span><span class="xml"><span class="tag"><span class="string"></span></span></span><span class="template-variable">&#123;&#123; item.ico &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">class</span>=<span class="string">"links-item-img"</span>&gt;</span><span class="symbol">&amp;emsp;</span></span></span><br><span class="line"><span class="xml">      </span><span class="template-tag">&#123;% <span class="name"><span class="name">else</span></span> %&#125;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"icon-link icon"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></span><br><span class="line"><span class="xml">      </span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span></span><br><span class="line"><span class="xml">      </span><span class="template-variable">&#123;&#123; item.name &#125;&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-页面背景设置"><a href="#4-页面背景设置" class="headerlink" title="4.页面背景设置"></a>4.页面背景设置</h2><p>打开文件 <code>themes/next/source/css/_custom/custom.styl</code>，添加：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改背景图片</span></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>:url(https://source.unsplash.com/random/<span class="number">1600</span>x900?wallpapers);</span><br><span class="line">  <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">  <span class="attribute">background-attachment</span>:fixed;</span><br><span class="line">  <span class="attribute">background-position</span>:<span class="number">50%</span> <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改主体透明度</span></span><br><span class="line"><span class="selector-class">.main-inner</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.8</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改菜单栏透明度</span></span><br><span class="line"><span class="selector-class">.header-inner</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.8</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考：<a href="https://blog.diqigan.cn/posts/add-background-picture-for-next.html" target="_blank" rel="noopener">next添加背景图片</a></p>
+</blockquote>
+<h2 id="5-加入代码块复制功能"><a href="#5-加入代码块复制功能" class="headerlink" title="5.加入代码块复制功能"></a>5.加入代码块复制功能</h2><h3 id="5-1-添加-copy-code-swig-文件"><a href="#5-1-添加-copy-code-swig-文件" class="headerlink" title="5.1.添加 copy-code.swig 文件"></a>5.1.添加 <code>copy-code.swig</code> 文件</h3><p>在 <code>themes/next/layout/_third-party/</code> 下，新建 <code>copy-code.swig</code> 文件，内容如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if theme.codeblock.copy_button.enable %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-class">.copy-btn</span> &#123;</span></span><br><span class="line">      display: inline-block;</span><br><span class="line">      padding: 6px 12px;</span><br><span class="line">      font-size: 13px;</span><br><span class="line">      font-weight: 700;</span><br><span class="line">      line-height: 20px;</span><br><span class="line"><span class="css">      <span class="selector-tag">color</span>: <span class="selector-id">#333</span>;</span></span><br><span class="line">      white-space: nowrap;</span><br><span class="line">      vertical-align: middle;</span><br><span class="line">      cursor: pointer;</span><br><span class="line"><span class="css">      <span class="selector-tag">background-color</span>: <span class="selector-id">#eee</span>;</span></span><br><span class="line"><span class="css">      <span class="selector-tag">background-image</span>: <span class="selector-tag">linear-gradient</span>(<span class="selector-id">#fcfcfc</span>, <span class="selector-id">#eee</span>);</span></span><br><span class="line"><span class="css">      <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#d5d5d5</span>;</span></span><br><span class="line">      border-radius: 3px;</span><br><span class="line">      user-select: none;</span><br><span class="line">      outline: 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-class">.highlight-wrap</span> <span class="selector-class">.copy-btn</span> &#123;</span></span><br><span class="line"><span class="css">      <span class="selector-tag">transition</span>: <span class="selector-tag">opacity</span> <span class="selector-class">.3s</span> <span class="selector-tag">ease-in-out</span>;</span></span><br><span class="line">      opacity: 0;</span><br><span class="line">      padding: 2px 6px;</span><br><span class="line">      position: absolute;</span><br><span class="line">      right: 4px;</span><br><span class="line">      top: 8px;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-class">.highlight-wrap</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.copy-btn</span>,</span></span><br><span class="line"><span class="css">    <span class="selector-class">.highlight-wrap</span> <span class="selector-class">.copy-btn</span><span class="selector-pseudo">:focus</span> &#123;</span></span><br><span class="line">      opacity: 1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-class">.highlight-wrap</span> &#123;</span></span><br><span class="line">      position: relative;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    $(<span class="string">'.highlight'</span>).each(<span class="function"><span class="keyword">function</span> (<span class="params">i, e</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">var</span> $wrap = $(<span class="string">'&lt;div&gt;'</span>).addClass(<span class="string">'highlight-wrap'</span>)</span></span><br><span class="line"><span class="javascript">      $(e).after($wrap)</span></span><br><span class="line"><span class="javascript">      $wrap.append($(<span class="string">'&lt;button&gt;'</span>).addClass(<span class="string">'copy-btn'</span>).append(<span class="string">'&#123;&#123;__("post.copy_button")&#125;&#125;'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> code = $(<span class="keyword">this</span>).parent().find(<span class="string">'.code'</span>).find(<span class="string">'.line'</span>).map(<span class="function"><span class="keyword">function</span> (<span class="params">i, e</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">return</span> $(e).text()</span></span><br><span class="line"><span class="actionscript">        &#125;).toArray().join(<span class="string">'\n'</span>)</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> ta = <span class="built_in">document</span>.createElement(<span class="string">'textarea'</span>)</span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.body.appendChild(ta)</span></span><br><span class="line"><span class="actionscript">        ta.style.position = <span class="string">'absolute'</span></span></span><br><span class="line"><span class="actionscript">        ta.style.top = <span class="string">'0px'</span></span></span><br><span class="line"><span class="actionscript">        ta.style.left = <span class="string">'0px'</span></span></span><br><span class="line">        ta.value = code</span><br><span class="line">        ta.select()</span><br><span class="line">        ta.focus()</span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> result = <span class="built_in">document</span>.execCommand(<span class="string">'copy'</span>)</span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.body.removeChild(ta)</span></span><br><span class="line">        &#123;% if theme.codeblock.copy_button.show_result %&#125;</span><br><span class="line"><span class="javascript">          <span class="keyword">if</span>(result)$(<span class="keyword">this</span>).text(<span class="string">'&#123;&#123;__("post.copy_success")&#125;&#125;'</span>)</span></span><br><span class="line"><span class="javascript">          <span class="keyword">else</span> $(<span class="keyword">this</span>).text(<span class="string">'&#123;&#123;__("post.copy_failure")&#125;&#125;'</span>)</span></span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line"><span class="javascript">        $(<span class="keyword">this</span>).blur()</span></span><br><span class="line"><span class="actionscript">      &#125;)).on(<span class="string">'mouseleave'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(e)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> $b = $(<span class="keyword">this</span>).find(<span class="string">'.copy-btn'</span>)</span></span><br><span class="line"><span class="actionscript">        setTimeout(<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">          $b.text(<span class="string">'&#123;&#123;__("post.copy_button")&#125;&#125;'</span>)</span></span><br><span class="line">        &#125;, 300)</span><br><span class="line">      &#125;).append(e)</span><br><span class="line">    &#125;)</span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-编辑-layout-swig-文件"><a href="#5-2-编辑-layout-swig-文件" class="headerlink" title="5.2.编辑 _layout.swig 文件"></a>5.2.编辑 <code>_layout.swig</code> 文件</h3><p>返回上一层，在layout文件夹下，修改 _layout.swig，在 <code>&lt;/body&gt;</code> 上面，加上：</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">include</span></span> '_third-party/copy-code.swig' %&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3-添加复制按钮显示的文字"><a href="#5-3-添加复制按钮显示的文字" class="headerlink" title="5.3.添加复制按钮显示的文字"></a>5.3.添加复制按钮显示的文字</h3><p>在 <code>themes/next/languages/</code> 目录下，找到 <code>在zh-CN.yml</code> 或 <code>在zh-Hans.yml</code> 文件中的 <code>post</code> 节点，向其中添加：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">copy_button:</span> <span class="string">复制</span></span><br><span class="line"><span class="attr">copy_success:</span> <span class="string">复制成功</span></span><br><span class="line"><span class="attr">copy_failure:</span> <span class="string">复制失败</span></span><br></pre></td></tr></table></figure>
+
+<p>在 <code>en.yml</code> 文件中同一节点位置，添加：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">copy_button:</span> <span class="string">Copy</span></span><br><span class="line"><span class="attr">copy_success:</span> <span class="string">success</span></span><br><span class="line"><span class="attr">copy_failure:</span> <span class="string">Copy</span> <span class="string">failed</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-4-修改主题配置文件"><a href="#5-4-修改主题配置文件" class="headerlink" title="5.4.修改主题配置文件"></a>5.4.修改主题配置文件</h3><p>更新 <code>themes/next/_config.yml</code>，添加：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="attr">border_radius:</span></span><br><span class="line">  <span class="comment"># Add copy button on codeblock</span></span><br><span class="line">  <span class="attr">copy_button:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># Show text copy result</span></span><br><span class="line">    <span class="attr">show_result:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参考：<a href="https://qiming.info/Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E5%8A%A0%E5%85%A5%E4%BB%A3%E7%A0%81%E5%9D%97%E5%A4%8D%E5%88%B6%E5%8A%9F%E8%83%BD/" target="_blank" rel="noopener">next主题代码块复制</a></p>
+</blockquote>
+<h2 id="6-修改版权信息"><a href="#6-修改版权信息" class="headerlink" title="6.修改版权信息"></a>6.修改版权信息</h2><h3 id="6-1-修改主题配置文件"><a href="#6-1-修改主题配置文件" class="headerlink" title="6.1.修改主题配置文件"></a>6.1.修改主题配置文件</h3><p>改为：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">post_copyright:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">license:</span> <span class="string">Attribution-NonCommercial-NoDerivatives</span> <span class="number">4.0</span> <span class="string">International</span> <span class="string">(CC</span> <span class="string">BY-NC-ND</span> <span class="number">4.0</span><span class="string">)</span></span><br><span class="line">  <span class="attr">license_url:</span> <span class="string">https://creativecommons.org/licenses/by-nc-nd/4.0/</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-新建-my-copyright-swig-文件"><a href="#6-2-新建-my-copyright-swig-文件" class="headerlink" title="6.2.新建 my-copyright.swig 文件"></a>6.2.新建 <code>my-copyright.swig</code> 文件</h3><p>在目录 <code>themes\next\layout\_macro</code> 下，新建文件 <code>my-copyright.swig</code>，添加内容：</p>
+<figure class="highlight twig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"my_post_copyright"</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">  </span></span><br><span class="line"><span class="xml">  </span><span class="comment">&#123;# JS库 sweetalert 可修改路径 #&#125;</span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/sweetalert/dist/sweetalert.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>本文标题:<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123; url_for(page.path) &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span><span class="template-variable">&#123;&#123; page.title &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>文章作者:<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/"</span> <span class="attr">title</span>=<span class="string">"访问 </span></span></span><span class="template-variable">&#123;&#123; theme.author &#125;&#125;</span><span class="xml"><span class="tag"><span class="string"> 的个人博客"</span>&gt;</span></span><span class="template-variable">&#123;&#123; theme.author &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>发布时间:<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><span class="template-variable">&#123;&#123; page.<span class="name">date</span>.format("YYYY年MM月DD日 - HH:mm") &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>最后更新:<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><span class="template-variable">&#123;&#123; page.updated.format("YYYY年MM月DD日 - HH:mm") &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>原始链接:<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123; url_for(page.path) &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">title</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123; page.title &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span><span class="template-variable">&#123;&#123; page.permalink &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"copy-path"</span>  <span class="attr">title</span>=<span class="string">"点击复制文章链接"</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-clipboard"</span> <span class="attr">data-clipboard-text</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123; page.permalink &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>  <span class="attr">aria-label</span>=<span class="string">"复制成功！"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>版权声明:<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml">    本博客所有文章除特别声明外，均采用 </span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">rel</span>=<span class="string">"license"</span> <span class="attr">href</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123; theme.post_copyright.license_url &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">title</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123; theme.post_copyright.license &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-creative-commons"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>BY-NC-SA <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">    许可协议。转载请注明出处!</span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span>  </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span> </span></span><br><span class="line"><span class="xml">    var clipboard = new Clipboard('.fa-clipboard');</span></span><br><span class="line"><span class="xml">      $(".fa-clipboard").click(function()&#123;</span></span><br><span class="line"><span class="xml">      clipboard.on('success', function()&#123;</span></span><br><span class="line"><span class="xml">        swal(&#123;   </span></span><br><span class="line"><span class="xml">          title: "",   </span></span><br><span class="line"><span class="xml">          text: '复制成功',</span></span><br><span class="line"><span class="xml">          icon: "success", </span></span><br><span class="line"><span class="xml">          showConfirmButton: true</span></span><br><span class="line"><span class="xml">          &#125;);</span></span><br><span class="line"><span class="xml">        &#125;);</span></span><br><span class="line"><span class="xml">    &#125;);  </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-3-引入版权插件"><a href="#6-3-引入版权插件" class="headerlink" title="6.3.引入版权插件"></a>6.3.引入版权插件</h3><p>打开文件 <code>themes\next\layout\_macro\post.swig</code>，</p>
+<p>找到:</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> theme.post_copyright.enable and not is_index %&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>将：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="keyword">include</span> '<span class="keyword">post</span>-<span class="keyword">copyright</span>.swig' with &#123; <span class="keyword">post</span>: <span class="keyword">post</span> &#125; %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改成：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="keyword">include</span> <span class="symbol">'my</span>-copyright.swig' <span class="keyword">with</span> &#123; post: post &#125; %&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-修改网站统计显示"><a href="#7-修改网站统计显示" class="headerlink" title="7.修改网站统计显示"></a>7.修改网站统计显示</h2><h3 id="7-1-修改-footer-swig-文件"><a href="#7-1-修改-footer-swig-文件" class="headerlink" title="7.1.修改 footer.swig 文件"></a>7.1.修改 <code>footer.swig</code> 文件</h3><p>修改文件 <code>themes\next\layout\_partials\footer.swig</code>，后面添加：</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line"><span class="xml">  </span><span class="comment">&#123;# 访问统计 #&#125;</span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"powered-by"</span> <span class="attr">style</span>=<span class="string">'color: gray'</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-user-md"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_site_uv"</span>&gt;</span></span></span><br><span class="line"><span class="xml">      本站总访客数:<span class="symbol">&amp;nbsp;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_uv"</span> <span class="attr">style</span>=<span class="string">'color: silver'</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="symbol">&amp;nbsp;</span>人<span class="symbol">&amp;nbsp;</span>| </span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-eye"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_site_pv"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="symbol">&amp;nbsp;</span>本站总访问量:<span class="symbol">&amp;nbsp;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_pv"</span> <span class="attr">style</span>=<span class="string">'color: silver'</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="symbol">&amp;nbsp;</span>次</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line"><span class="xml">  </span><span class="comment">&#123;# 建站时间 #&#125;</span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"timeDate"</span> <span class="attr">class</span>=<span class="string">"color: lightblue;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>  </span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"times"</span> <span class="attr">class</span>=<span class="string">"color: lightgreen;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#123;# 建站时间 #&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">  var now = new Date(); </span></span><br><span class="line"><span class="xml">  function createtime() &#123; </span></span><br><span class="line"><span class="xml">      var grt= new Date("02/12/2020 18:00:00"); </span></span><br><span class="line"><span class="xml">      now.setTime(now.getTime()+250); </span></span><br><span class="line"><span class="xml">      days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); </span></span><br><span class="line"><span class="xml">      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); </span></span><br><span class="line"><span class="xml">      if(String(hnum).length ==1 )&#123;hnum = "0" + hnum;&#125; minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); </span></span><br><span class="line"><span class="xml">      mnum = Math.floor(minutes); if(String(mnum).length ==1 )&#123;mnum = "0" + mnum;&#125; </span></span><br><span class="line"><span class="xml">      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); </span></span><br><span class="line"><span class="xml">      snum = Math.round(seconds); if(String(snum).length ==1 )&#123;snum = "0" + snum;&#125; </span></span><br><span class="line"><span class="xml">      document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; </span></span><br><span class="line"><span class="xml">      document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; </span></span><br><span class="line"><span class="xml">  &#125; </span></span><br><span class="line"><span class="xml">  setInterval("createtime()",250);</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-2-修改主题配置文件"><a href="#7-2-修改主题配置文件" class="headerlink" title="7.2.修改主题配置文件"></a>7.2.修改主题配置文件</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">busuanzi_count:</span></span><br><span class="line">  <span class="comment"># count values only if the other configs are false</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># custom uv span for the whole site</span></span><br><span class="line">  <span class="attr">site_uv:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">site_uv_header:</span> <span class="string">&lt;i</span> <span class="string">class="fa</span> <span class="string">fa-user"&gt;&lt;/i&gt;</span></span><br><span class="line">  <span class="attr">site_uv_footer:</span></span><br><span class="line">  <span class="comment"># custom pv span for the whole site</span></span><br><span class="line">  <span class="attr">site_pv:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">site_pv_header:</span> <span class="string">&lt;i</span> <span class="string">class="fa</span> <span class="string">fa-eye"&gt;&lt;/i&gt;</span></span><br><span class="line">  <span class="attr">site_pv_footer:</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="8-流动线条和页面点击效果"><a href="#8-流动线条和页面点击效果" class="headerlink" title="8.流动线条和页面点击效果"></a>8.流动线条和页面点击效果</h2><h3 id="8-1-红心效果"><a href="#8-1-红心效果" class="headerlink" title="8.1.红心效果"></a>8.1.红心效果</h3><p>在 <code>themes\next\layout\_layout.swig</code> 文件中，末尾添加：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">! <span class="function"><span class="keyword">function</span> <span class="params">(e, t, a)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">  <span class="function"><span class="keyword">function</span> <span class="title">n</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">    c(<span class="string">".heart&#123;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);&#125;.heart:after,.heart:before&#123;content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;&#125;.heart:after&#123;top: -5px;&#125;.heart:before&#123;left: -5px;&#125;"</span>), o(), r()</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">  <span class="function"><span class="keyword">function</span> <span class="title">r</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">for</span> (<span class="keyword">var</span> e = <span class="number">0</span>; e &lt; d.length; e++) d[e].alpha &lt;= <span class="number">0</span> ? (t.body.removeChild(d[e].el), d.splice(e, <span class="number">1</span>)) : (d[e].y--, d[e].scale += <span class="number">.004</span>, d[e].alpha -= <span class="number">.013</span>, d[e].el.style.cssText = <span class="string">"left:"</span> + d[e].x + <span class="string">"px;top:"</span> + d[e].y + <span class="string">"px;opacity:"</span> + d[e].alpha + <span class="string">";transform:scale("</span> + d[e].scale + <span class="string">","</span> + d[e].scale + <span class="string">") rotate(45deg);background:"</span> + d[e].color + <span class="string">";z-index:99999"</span>);</span></span><br><span class="line">    requestAnimationFrame(r)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">  <span class="function"><span class="keyword">function</span> <span class="title">o</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> t = <span class="string">"function"</span> == <span class="keyword">typeof</span> e.onclick &amp;&amp; e.onclick;</span></span><br><span class="line"><span class="actionscript">    e.onclick = <span class="function"><span class="keyword">function</span> <span class="params">(e)</span> </span>&#123;</span></span><br><span class="line">      t &amp;&amp; t(), i(e)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">  <span class="function"><span class="keyword">function</span> <span class="title">i</span><span class="params">(e)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> a = t.createElement(<span class="string">"div"</span>);</span></span><br><span class="line"><span class="actionscript">    a.className = <span class="string">"heart"</span>, d.push(&#123;</span></span><br><span class="line">      el: a,</span><br><span class="line">      x: e.clientX - 5,</span><br><span class="line">      y: e.clientY - 5,</span><br><span class="line">      scale: 1,</span><br><span class="line">      alpha: 1,</span><br><span class="line">      color: s()</span><br><span class="line">    &#125;), t.body.appendChild(a)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">  <span class="function"><span class="keyword">function</span> <span class="title">c</span><span class="params">(e)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> a = t.createElement(<span class="string">"style"</span>);</span></span><br><span class="line"><span class="actionscript">    a.type = <span class="string">"text/css"</span>;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">try</span> &#123;</span></span><br><span class="line">      a.appendChild(t.createTextNode(e))</span><br><span class="line"><span class="actionscript">    &#125; <span class="keyword">catch</span> (t) &#123;</span></span><br><span class="line">      a.styleSheet.cssText = e</span><br><span class="line">    &#125;</span><br><span class="line"><span class="actionscript">    t.getElementsByTagName(<span class="string">"head"</span>)[<span class="number">0</span>].appendChild(a)</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">  <span class="function"><span class="keyword">function</span> <span class="title">s</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> <span class="string">"rgb("</span> + ~~(<span class="number">255</span> * <span class="built_in">Math</span>.random()) + <span class="string">","</span> + ~~(<span class="number">255</span> * <span class="built_in">Math</span>.random()) + <span class="string">","</span> + ~~(<span class="number">255</span> * <span class="built_in">Math</span>.random()) + <span class="string">")"</span></span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> d = [];</span></span><br><span class="line"><span class="actionscript">  e.requestAnimationFrame = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || <span class="function"><span class="keyword">function</span> <span class="params">(e)</span> </span>&#123;</span></span><br><span class="line">      setTimeout(e, 1e3 / 60)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;(), n()</span><br><span class="line"><span class="javascript">&#125;(<span class="built_in">window</span>, <span class="built_in">document</span>);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="8-2-流动线条"><a href="#8-2-流动线条" class="headerlink" title="8.2.流动线条"></a>8.2.流动线条</h3><p>在主题配置文件中，修改：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 动态线条效果，会向鼠标集中</span></span><br><span class="line"><span class="attr">canvas_nest:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">color:</span> <span class="string">'0,0,255'</span>        <span class="comment"># color of lines, default: '0,0,0'; RGB values: (R,G,B).(<span class="doctag">note:</span> use ',' to separate.)</span></span><br><span class="line">  <span class="attr">pointColor:</span> <span class="string">'249, 72, 137'</span>     <span class="comment"># color of points, default: '0,0,0'; RGB values: (R,G,B).(<span class="doctag">note:</span> use ',' to separate.)</span></span><br><span class="line">  <span class="attr">opacity:</span> <span class="string">'0.8'</span>               <span class="comment"># the opacity of line (0~1), default: 0.5.</span></span><br><span class="line">  <span class="attr">count:</span> <span class="string">'99'</span>                  <span class="comment"># the number of lines, default: 99.</span></span><br><span class="line">  <span class="attr">zIndex:</span> <span class="string">'-2'</span>                 <span class="comment"># z-index property of the background, default: -1. 底层</span></span><br></pre></td></tr></table></figure>
+
+<p>在文件 <code>themes\next\layout\_scripts\vendors.swig</code> 中添加：</p>
+<figure class="highlight twig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#123;# 动态线条效果 #&#125;</span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="keyword">if</span></span> theme.canvas_nest &amp;&amp; theme.canvas_nest.enable  %&#125;</span></span><br><span class="line"><span class="xml">  </span><span class="template-tag">&#123;% <span class="name"><span class="keyword">set</span></span> js_vendors.canvas_nest  = 'canvas-nest/canvas-nest.<span class="name">min</span>.js' %&#125;</span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">script</span> </span></span></span><br><span class="line"><span class="xml">    type="text/javascript" </span></span><br><span class="line"><span class="xml">    color="</span><span class="template-variable">&#123;&#123; theme.canvas_nest.color &#125;&#125;</span><span class="xml">" </span></span><br><span class="line"><span class="xml">    opacity="</span><span class="template-variable">&#123;&#123; theme.canvas_nest.opacity &#125;&#125;</span><span class="xml">" </span></span><br><span class="line"><span class="xml">    zIndex="</span><span class="template-variable">&#123;&#123; theme.canvas_nest.zIndex &#125;&#125;</span><span class="xml">" </span></span><br><span class="line"><span class="xml">    count="</span><span class="template-variable">&#123;&#123; theme.canvas_nest.count &#125;&#125;</span><span class="xml">" </span></span><br><span class="line"><span class="xml">    src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js" &gt;</span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="keyword">endif</span></span> %&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+    <div>
+      
+        
+  <div style="text-align:center;color: red;font-size:14px;">-------------   本文已结束  <i class="fa fa-paw"></i>  感谢您的阅读！   -------------</div>
+
+
+      
+    </div>
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="//images/wechat.png" alt="Jusheng Yao 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="//images/alipay.jpg" alt="Jusheng Yao 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+        <div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/archives/32ea94eb.html">Hexo搭建个人博客：Next主题-相关配置</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Jusheng Yao 的个人博客">Jusheng Yao</a></p>
+  <p><span>发布时间:</span>2020年02月25日 - 17:37</p>
+  <p><span>最后更新:</span>2020年03月01日 - 21:49</p>
+  <p><span>原始链接:</span><a href="/archives/32ea94eb.html" title="Hexo搭建个人博客：Next主题-相关配置">http://yaojusheng.github.io/archives/32ea94eb.html</a>
+    <span class="copy-path"  title="点击复制文章链接">
+      <i class="fa fa-clipboard" data-clipboard-text="http://yaojusheng.github.io/archives/32ea94eb.html"  aria-label="复制成功！"></i>
+    </span>
+  </p>
+  <p>
+    <span>版权声明:</span>
+    本博客所有文章除特别声明外，均采用 
+    <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">
+    <i class="fa fa-creative-commons"></i>BY-NC-SA </a>
+    许可协议。转载请注明出处!
+  </p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+      </div>
+    
+
+    
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/next/" rel="tag"><i class="fa fa-tag"></i> next</a>
+          
+            <a href="/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/" rel="tag"><i class="fa fa-tag"></i> 基本配置</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/archives/ccdc2da1.html" rel="next" title="Hexo搭建个人博客：yilia主题配置(七) - 自定义Subnav图标">
+                <i class="fa fa-chevron-left"></i> Hexo搭建个人博客：yilia主题配置(七) - 自定义Subnav图标
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Jusheng Yao" />
+            
+              <p class="site-author-name" itemprop="name">Jusheng Yao</p>
+              <p class="site-description motion-element" itemprop="description">个人技术博客</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/YaoJusheng" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/YaoJusheng" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-github-alt"></i>Gitee</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_41599858" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-mortar-board"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jusheng_yao@outlook.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+
+                
+                  
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.google.com/"  title="最受欢迎的搜索引擎，国内使用可用代理或安装助手"   target="_blank">
+                      
+                        <img src="/images/ico/google_favicon.ico" class="links-item-img">&emsp;
+                      
+                      Google搜索
+                    </a>
+                  </li>
+                
+                  
+                  <li class="links-of-blogroll-item">
+                    <a href="https://cn.bing.com/"  title="必应搜索，一款好用的搜索引擎"   target="_blank">
+                      
+                        <img src="/images/ico/biying_favicon.ico" class="links-item-img">&emsp;
+                      
+                      Bing搜索
+                    </a>
+                  </li>
+                
+                  
+                  <li class="links-of-blogroll-item">
+                    <a href="https://translate.google.cn/"  title="谷歌翻译"   target="_blank">
+                      
+                        <img src="/images/ico/fanyi_favicon.ico" class="links-item-img">&emsp;
+                      
+                      Translate
+                    </a>
+                  </li>
+                
+                  
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bilibili.com/"  title="技术视频网站"   target="_blank">
+                      
+                        <img src="/images/ico/bili_favicon.ico" class="links-item-img">&emsp;
+                      
+                      bilibili
+                    </a>
+                  </li>
+                
+                  
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.zhihu.com/"  title="知识、技术交流平台"   target="_blank">
+                      
+                        <img src="/images/ico/zhihu_favicon.ico" class="links-item-img">&emsp;
+                      
+                      知乎
+                    </a>
+                  </li>
+                
+                  
+                  <li class="links-of-blogroll-item">
+                    <a href="https://tool.lu/"  title="全面多样化的开发、站长类工具"   target="_blank">
+                      
+                        <img src="/images/ico/onlinetool.ico" class="links-item-img">&emsp;
+                      
+                      在线工具
+                    </a>
+                  </li>
+                
+                  
+                  <li class="links-of-blogroll-item">
+                    <a href="http://fontstore.baidu.com/static/editor/index.html"  title="可制作图形文字，减少字体体积"   target="_blank">
+                      
+                        <img src="/images/ico/font_favicon.ico" class="links-item-img">&emsp;
+                      
+                      百度字体编辑器
+                    </a>
+                  </li>
+                
+                  
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.draw.io/"  title="一款在线绘制流程图的网页工具"   target="_blank">
+                      
+                        <img src="/images/ico/draw_favicon.ico" class="links-item-img">&emsp;
+                      
+                      绘图draw
+                    </a>
+                  </li>
+                
+                  
+                  <li class="links-of-blogroll-item">
+                    <a href="https://naotu.baidu.com/home"  title="一款可替代XMind的在线思维导图工具"   target="_blank">
+                      
+                        <img src="/images/ico/naotu_favicon.ico" class="links-item-img">&emsp;
+                      
+                      百度脑图
+                    </a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-页面显示问题"><span class="nav-text">1.页面显示问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-subnav链接错误"><span class="nav-text">1.1.subnav链接错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-站点概览中的链接错误"><span class="nav-text">1.2.站点概览中的链接错误</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-添加阅读进度"><span class="nav-text">2.添加阅读进度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-向上返回按钮加上阅读进度"><span class="nav-text">2.1.向上返回按钮加上阅读进度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-网页顶部添加阅读进度条"><span class="nav-text">2.2.网页顶部添加阅读进度条</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-新建文件-custom-reading-js"><span class="nav-text">2.2.1.新建文件 custom_reading.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-更新-commons-swig"><span class="nav-text">2.2.2.更新 commons.swig</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3-修改-header-swig"><span class="nav-text">2.2.3.修改 header.swig</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-4-修改样式"><span class="nav-text">2.2.4.修改样式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-修改友链样式"><span class="nav-text">3.修改友链样式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-修改主题配置文件"><span class="nav-text">3.1.修改主题配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-修改-sidebar-swig"><span class="nav-text">3.2.修改 sidebar.swig</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-页面背景设置"><span class="nav-text">4.页面背景设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-加入代码块复制功能"><span class="nav-text">5.加入代码块复制功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-添加-copy-code-swig-文件"><span class="nav-text">5.1.添加 copy-code.swig 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-编辑-layout-swig-文件"><span class="nav-text">5.2.编辑 _layout.swig 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-添加复制按钮显示的文字"><span class="nav-text">5.3.添加复制按钮显示的文字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-修改主题配置文件"><span class="nav-text">5.4.修改主题配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-修改版权信息"><span class="nav-text">6.修改版权信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-修改主题配置文件"><span class="nav-text">6.1.修改主题配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-新建-my-copyright-swig-文件"><span class="nav-text">6.2.新建 my-copyright.swig 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-引入版权插件"><span class="nav-text">6.3.引入版权插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-修改网站统计显示"><span class="nav-text">7.修改网站统计显示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-修改-footer-swig-文件"><span class="nav-text">7.1.修改 footer.swig 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-修改主题配置文件"><span class="nav-text">7.2.修改主题配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-流动线条和页面点击效果"><span class="nav-text">8.流动线条和页面点击效果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-红心效果"><span class="nav-text">8.1.红心效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-流动线条"><span class="nav-text">8.2.流动线条</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jusheng Yao</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+<br>
+  
+  <div class="powered-by" style='color: gray'>
+    <i class="fa fa-user-md"></i>
+    <span id="busuanzi_container_site_uv">
+      本站总访客数:&nbsp;<span id="busuanzi_value_site_uv" style='color: silver'></span>&nbsp;人&nbsp;| 
+    </span>
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_container_site_pv">
+        &nbsp;本站总访问量:&nbsp;<span id="busuanzi_value_site_pv" style='color: silver'></span>&nbsp;次
+    </span>
+  </div>
+
+<br>
+  
+  <div>
+    <span id="timeDate" class="color: lightblue;"></span>  
+    <span id="times" class="color: lightgreen;"></span>
+  </div>
+
+</div>
+
+
+<script>
+  var now = new Date(); 
+  function createtime() { 
+      var grt= new Date("02/12/2020 18:00:00"); 
+      now.setTime(now.getTime()+250); 
+      days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+      if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+      mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+      snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+      document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+      document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+  } 
+  setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script 
+    type="text/javascript" 
+    color="0,0,255" 
+    opacity="0.8" 
+    zIndex="-2" 
+    count="99" 
+    src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js" >
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/custom_reading.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'yaojusheng',
+            repo: 'YaoJusheng.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '18b465f1ea803824fe0aef032d74ce6262df3b6e',
+            
+                client_id: '35890ce192840bd76bc6'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'oT30CtobWiSnNhMrBtXP9d0A-gzGzoHsz',
+        appKey: 'oVHGMlRjJJyTXPLmyrGKrWFu',
+        placeholder: '有话要说？',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("oT30CtobWiSnNhMrBtXP9d0A-gzGzoHsz", "oVHGMlRjJJyTXPLmyrGKrWFu");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.4"></script>
+
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    // 复制  == <i class="fa fa-clipboard"></i>
+    // 复制成功  == <i class="fa fa-check"></i>
+    // 复制失败  == <i class="fa fa-times"></i>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+</body>
+</html>
+
+
+
+<script>
+! function (e, t, a) {
+  function n() {
+    c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), o(), r()
+  }
+
+  function r() {
+    for (var e = 0; e < d.length; e++) d[e].alpha <= 0 ? (t.body.removeChild(d[e].el), d.splice(e, 1)) : (d[e].y--, d[e].scale += .004, d[e].alpha -= .013, d[e].el.style.cssText = "left:" + d[e].x + "px;top:" + d[e].y + "px;opacity:" + d[e].alpha + ";transform:scale(" + d[e].scale + "," + d[e].scale + ") rotate(45deg);background:" + d[e].color + ";z-index:99999");
+    requestAnimationFrame(r)
+  }
+
+  function o() {
+    var t = "function" == typeof e.onclick && e.onclick;
+    e.onclick = function (e) {
+      t && t(), i(e)
+    }
+  }
+
+  function i(e) {
+    var a = t.createElement("div");
+    a.className = "heart", d.push({
+      el: a,
+      x: e.clientX - 5,
+      y: e.clientY - 5,
+      scale: 1,
+      alpha: 1,
+      color: s()
+    }), t.body.appendChild(a)
+  }
+
+  function c(e) {
+    var a = t.createElement("style");
+    a.type = "text/css";
+    try {
+      a.appendChild(t.createTextNode(e))
+    } catch (t) {
+      a.styleSheet.cssText = e
+    }
+    t.getElementsByTagName("head")[0].appendChild(a)
+  }
+
+  function s() {
+    return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+  }
+  var d = [];
+  e.requestAnimationFrame = function () {
+    return e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+      setTimeout(e, 1e3 / 60)
+    }
+  }(), n()
+}(window, document);
+</script>
+

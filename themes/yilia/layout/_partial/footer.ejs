@@ -9,12 +9,21 @@
       	</div>
     </div>
   </div>
-  # PV方式，单个用户连续点击 n 篇，记录 n 次记录值
-  <span id="busuanzi_container_site_pv">    本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
 
-  # UV方式，单个用户连续点击 n 篇，记录 1 次记录值
-  <span id="busuanzi_container_site_uv">  本站访客数<span id="busuanzi_value_site_uv"></span>人次</span>
-  
-  # 使用 pv 记录方式，每访问一次，记录一次
-  <span id="busuanzi_container_page_pv">  本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+
+  <% if (theme.busuanzi && theme.busuanzi.enable){ %>
+    <script src="<%- url_for('lib/busuanzi.pure.js') %>"></script>
+    <%# "<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>" %>
+    <% } %>
+    <% if (theme.busuanzi && theme.busuanzi.enable && theme.busuanzi.total_visitors){ %>
+    <%# "不蒜子统计" %>
+    <span id="busuanzi_container_site_pv" style="display:none;color: rgb(3, 12, 61)">
+      本站总访问量 <span id="busuanzi_value_site_pv" style="color: rgb(128, 128, 128);font-weight: bold"></span> 次	
+            <span class="post-meta-divider" >|</span>
+    </span>
+    <span id="busuanzi_container_site_uv" style='display:none;color: rgb(3, 12, 61)'>
+      本站访客数 <span id="busuanzi_value_site_uv" style="color: gray;font-weight: bold"></span> 人
+    </span>
+  <% } %>
+
 </footer>
