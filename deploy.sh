@@ -16,6 +16,6 @@ current_date=`date "+%Y-%m-%d %H:%M:%S"`
 git commit -m "Blog updated: $current_date"
 
 sleep 2
-git push origin mysite
+git push origin blog
 
 echo "=====>Finish!<====="
