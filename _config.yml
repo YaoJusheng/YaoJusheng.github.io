@@ -1,0 +1,190 @@
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site 网站
+title: Mr Yao 的博客           # 网站标题
+subtitle: ''          # 网站副标题
+description: '个人技术博客'       # 网站描述
+keywords: 前端博客, 后端博客, Python, PHP, Ruby, JavaScript
+author: Jusheng Yao   # 博主的名字
+
+# 网站使用的语言
+# en           English                   英语
+# zh-Hans      Chinese (Simplified)     大陆简体
+# zh-Hant-HK   Chinese (Traditional)    港澳繁體
+# zh-Hant-TW   Chinese (Traditional)    台灣正體
+language: zh-Hans
+
+timezone: ''          # 网站时区。Hexo 默认使用您电脑的时区
+
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://YaoJusheng.github.io
+root: /
+
+# url持久化
+# permalink: :year/:month/:day/:title/   # 原代码
+permalink: archives/:abbrlink.html
+permalink_defaults:
+abbrlink:
+  alg: crc32  # 算法：crc16(default) and crc32
+  rep: hex    # 进制：dec(default) and hex
+
+# 网站搜索
+algolia:
+  applicationID: 2Z9M5GO3BS # applicationID
+  apiKey: 640cd38c21e14a012ef1735cf4e47453
+  indexName: 'github_search'
+  chunkSize: 5000
+
+pretty_urls:
+  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+
+# 设置RSS
+plugins: 
+  hexo-generator-feed
+  hexo-generator-sitemap
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content: false
+  order_by: -date
+
+# 字数统计和阅读时长(网站底部/文章内) - next 配置 - 弃用，自定义
+symbols_count_time:
+  #文章内是否显示
+  symbols: true  # 文章字数
+  time: true    # 阅读时长
+  # 网页底部是否显示
+  total_symbols: true  # 所有文章总字数
+  total_time: true  # 所有文章阅读中时长
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link:
+  enable: true # Open external links in new tab
+  field: site # Apply to the whole site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+# 文章图片路径转换
+post_asset_folder: true
+relative_link: false
+future: true
+
+# 代码高亮
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: true
+  tab_replace: ''
+  wrap: true
+  hljs: false
+
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+
+# Category & Tag
+default_category: uncategorized
+category_map:
+  # 网站: site
+  # 小程序: miniprogram
+  # 开发工具: tools
+tag_map:
+  # 标签分类: kinds
+  # 基础: basic
+  # Web框架: web_frame
+  # 数据库操作: sql_action
+  # 数据分析: ddata_analysis
+  # 爬虫: spider
+  # 自动化测试: auto_test
+  # 插件: plugins
+
+# Metadata elements
+## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
+meta_generator: true
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+## Use post's date for updated date unless set in front-matter
+use_date_for_updated: false
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 10
+pagination_dir: page
+
+# Include / Exclude file(s)
+## include:/exclude: options only apply to the 'source/' folder
+include:
+exclude:
+ignore:
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+# theme: landscape
+theme: next  # landscape | yilia | yilia-plus | next
+
+# 新增内容
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true
+
+# Deployment  配置部署信息
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  # repository: https://github.com/YaoJusheng/YaoJusheng.github.io.git
+  repository: git@github.com:YaoJusheng/YaoJusheng.github.io.git
+  branch: master
+
+# 配置sitemap以及配置keyWords(方便我们提交到各大搜索引擎)
+sitemap:
+    path: sitemap.xml
+
+# skip_render: README.md
+# 站点建立时间
+since: 2020
