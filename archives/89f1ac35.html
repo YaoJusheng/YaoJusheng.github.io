@@ -33,21 +33,17 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"yaojusheng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"2Z9M5GO3BS","apiKey":"640cd38c21e14a012ef1735cf4e47453","indexName":"github_search","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
-  <meta name="description" content="个人技术博客">
+  <meta name="description" content="创建相册等页面的的大体思路：1.本地存储图片，直接引用；2.使用GitHub存储相册；3.使用七牛云存储相册 …">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo搭建个人博客：yilia主题配置(六) - 相册视频">
+<meta property="og:title" content="Hexo搭建个人博客：yilia主题配置(六) - 添加相册">
 <meta property="og:url" content="http://yaojusheng.github.io/archives/89f1ac35.html">
 <meta property="og:site_name" content="Mr Yao 的博客">
-<meta property="og:description" content="个人技术博客">
+<meta property="og:description" content="创建相册等页面的的大体思路：1.本地存储图片，直接引用；2.使用GitHub存储相册；3.使用七牛云存储相册 …">
 <meta property="article:published_time" content="2020-02-24T06:29:27.000Z">
-<meta property="article:modified_time" content="2020-02-24T07:37:49.110Z">
+<meta property="article:modified_time" content="2020-03-08T15:02:26.777Z">
 <meta property="article:author" content="Jusheng Yao">
-<meta property="article:tag" content="前端博客">
-<meta property="article:tag" content=" 后端博客">
-<meta property="article:tag" content=" Python">
-<meta property="article:tag" content=" PHP">
-<meta property="article:tag" content=" Ruby">
-<meta property="article:tag" content=" JavaScript">
+<meta property="article:tag" content="yilia">
+<meta property="article:tag" content="相册视频">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yaojusheng.github.io/archives/89f1ac35.html">
@@ -62,7 +58,7 @@
   };
 </script>
 
-  <title>Hexo搭建个人博客：yilia主题配置(六) - 相册视频 | Mr Yao 的博客</title>
+  <title>Hexo搭建个人博客：yilia主题配置(六) - 添加相册 | Mr Yao 的博客</title>
   
 
 
@@ -235,7 +231,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hexo搭建个人博客：yilia主题配置(六) - 相册视频
+          Hexo搭建个人博客：yilia主题配置(六) - 添加相册
         </h1>
 
         <div class="post-meta">
@@ -246,6 +242,19 @@
               <span class="post-meta-item-text">发表于</span>
 
               <time title="创建时间：2020-02-24 14:29:27" itemprop="dateCreated datePublished" datetime="2020-02-24T14:29:27+08:00">2020-02-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%AB%99/" itemprop="url" rel="index"><span itemprop="name">网站</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+                </span>
             </span>
 
           
@@ -275,7 +284,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>938</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -294,7 +303,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <p>创建相册等页面的的大体思路：1.本地存储图片，直接引用；2.使用GitHub存储相册；3.使用七牛云存储相册 …</p>
+<a id="more"></a>
+
+<blockquote>
+<p>本文主要讲述关于GitHub存储相册的大概思路</p>
+</blockquote>
+<p>网上大体思路都差不多，之前找了一个别人的相册代码仓，修改了一下其中的脚本，可以参考：<a href="https://github.com/YaoJusheng/blog_photos" target="_blank" rel="noopener">相册脚本</a>，也可以到网上去搜其他的，下载到本地。</p>
+<h2 id="1-创建相册仓库"><a href="#1-创建相册仓库" class="headerlink" title="1.创建相册仓库"></a>1.创建相册仓库</h2><p>到GitHub上或者码云，新建仓库，取名随意。</p>
+<h2 id="2-本地关联"><a href="#2-本地关联" class="headerlink" title="2.本地关联"></a>2.本地关联</h2><p>初始化仓库，关联刚创的远程仓库，将之前下载的demo复制过来，几个重要的文件：*.py，js、css文件，empty.png，以及json文件。<br>创建两个空目录，<code>min_photos</code>、<code>photos</code>，用来存放照片，本地操作时，将照片按照时间日期的方式命名（e.g.: 2018-06-08_描述.png），<br>然后放到 <code>photos</code> 目录中。</p>
+<h2 id="3-生成图片信息"><a href="#3-生成图片信息" class="headerlink" title="3.生成图片信息"></a>3.生成图片信息</h2><p>修改 <code>ins.js</code> ，找到 <code>var minSrc</code> 和 <code>var src</code> 这两个变量，修改成自己的GitHub地址：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> minSrc = <span class="string">'https://raw.githubusercontent.com/&#123;Github ID&#125;/&#123;repo&#125;/&#123;branch&#125;/min_photos/'</span> + data.link[i];</span><br><span class="line"><span class="keyword">var</span> src = <span class="string">'https://raw.githubusercontent.com/&#123;Github ID&#125;/&#123;repo&#125;/&#123;branch&#125;/photos/'</span> + data.link[i];</span><br></pre></td></tr></table></figure>
+
+<p>运行脚本 <code>tool.py</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python tool.py</span><br></pre></td></tr></table></figure>
+<p>生成 <code>data.json</code> 文件，这就是图片信息文件。</p>
+<h2 id="4-创建页面"><a href="#4-创建页面" class="headerlink" title="4.创建页面"></a>4.创建页面</h2><h3 id="4-1-生成相册页面"><a href="#4-1-生成相册页面" class="headerlink" title="4.1.生成相册页面"></a>4.1.生成相册页面</h3><p>cmd或bash窗口，输入命令：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new<span class="built_in"> page </span><span class="string">'photos'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-主题文件修改"><a href="#4-2-主题文件修改" class="headerlink" title="4.2.主题文件修改"></a>4.2.主题文件修改</h3><p>在menu菜单，添加：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">相册:</span> <span class="string">/photos</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-放置页面配置文件"><a href="#4-3-放置页面配置文件" class="headerlink" title="4.3.放置页面配置文件"></a>4.3.放置页面配置文件</h3><ul>
+<li>将js、css以及json文件放到 <code>source/photos</code> 目录下；</li>
+<li>在 <code>source</code> 目录下，依次创建 <code>assets/img</code> 目录，将 <code>empty.png</code> 放置到该目录下；<blockquote>
+<p>Tips: 注意根目录的root配置，如果root不是根路径 <code>/</code>，则ins.js要相应更改，避免 <code>empty.png</code> 文件找不到。</p>
+</blockquote>
+</li>
+</ul>
+
     </div>
 
     
@@ -339,11 +376,11 @@
   
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/archives/89f1ac35.html">Hexo搭建个人博客：yilia主题配置(六) - 相册视频</a></p>
+  <p><span>本文标题:</span><a href="/archives/89f1ac35.html">Hexo搭建个人博客：yilia主题配置(六) - 添加相册</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Jusheng Yao 的个人博客">Jusheng Yao</a></p>
   <p><span>发布时间:</span>2020年02月24日 - 14:29</p>
-  <p><span>最后更新:</span>2020年02月24日 - 15:37</p>
-  <p><span>原始链接:</span><a href="/archives/89f1ac35.html" title="Hexo搭建个人博客：yilia主题配置(六) - 相册视频">http://yaojusheng.github.io/archives/89f1ac35.html</a>
+  <p><span>最后更新:</span>2020年03月08日 - 23:02</p>
+  <p><span>原始链接:</span><a href="/archives/89f1ac35.html" title="Hexo搭建个人博客：yilia主题配置(六) - 添加相册">http://yaojusheng.github.io/archives/89f1ac35.html</a>
     <span class="copy-path"  title="点击复制文章链接">
       <i class="fa fa-clipboard" data-clipboard-text="http://yaojusheng.github.io/archives/89f1ac35.html"  aria-label="复制成功！"></i>
     </span>
@@ -392,6 +429,11 @@
 
 
       <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/yilia/" rel="tag"><i class="fa fa-tag"></i> yilia</a>
+              <a href="/tags/%E7%9B%B8%E5%86%8C%E8%A7%86%E9%A2%91/" rel="tag"><i class="fa fa-tag"></i> 相册视频</a>
+          </div>
 
         
 
@@ -466,6 +508,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-创建相册仓库"><span class="nav-text">1.创建相册仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-本地关联"><span class="nav-text">2.本地关联</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-生成图片信息"><span class="nav-text">3.生成图片信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-创建页面"><span class="nav-text">4.创建页面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-生成相册页面"><span class="nav-text">4.1.生成相册页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-主题文件修改"><span class="nav-text">4.2.主题文件修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-放置页面配置文件"><span class="nav-text">4.3.放置页面配置文件</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -494,7 +537,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -606,13 +649,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">65k</span>
+    <span title="站点总字数">66k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">59 分钟</span>
+    <span title="站点阅读时长">1:01</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
@@ -706,6 +749,15 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 
