@@ -243,17 +243,27 @@
   </entry>
   
   <entry>
-    <title>Hexo搭建个人博客：yilia主题配置(六) - 相册视频</title>
+    <title>Hexo搭建个人博客：yilia主题配置(六) - 添加相册</title>
     <link href="http://yaojusheng.github.io/archives/89f1ac35.html"/>
     <id>http://yaojusheng.github.io/archives/89f1ac35.html</id>
     <published>2020-02-24T06:29:27.000Z</published>
-    <updated>2020-02-24T07:37:49.110Z</updated>
+    <updated>2020-03-08T15:02:26.777Z</updated>
     
     <summary type="html">
+    
+      &lt;p&gt;创建相册等页面的的大体思路：1.本地存储图片，直接引用；2.使用GitHub存储相册；3.使用七牛云存储相册 …&lt;/p&gt;
     
     </summary>
     
     
+      <category term="网站" scheme="http://YaoJusheng.github.io/categories/%E7%BD%91%E7%AB%99/"/>
+    
+      <category term="Hexo" scheme="http://YaoJusheng.github.io/categories/Hexo/"/>
+    
+    
+      <category term="yilia" scheme="http://YaoJusheng.github.io/tags/yilia/"/>
+    
+      <category term="相册视频" scheme="http://YaoJusheng.github.io/tags/%E7%9B%B8%E5%86%8C%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
