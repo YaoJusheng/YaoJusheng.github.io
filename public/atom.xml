@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yaojusheng.github.io/"/>
-  <updated>2020-03-09T15:28:06.182Z</updated>
+  <updated>2020-03-09T15:38:27.602Z</updated>
   <id>http://yaojusheng.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo搭建个人博客：Next主题-相关配置</title>
+    <link href="http://yaojusheng.github.io/archives/32ea94eb.html"/>
+    <id>http://yaojusheng.github.io/archives/32ea94eb.html</id>
+    <published>2020-02-28T09:37:37.000Z</published>
+    <updated>2020-03-09T15:38:27.602Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;网上关于搭建个人博客网站所用主题，yilia和next两款比较多，这里记录一下next5.1.4相关的一些配置。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="网站" scheme="http://YaoJusheng.github.io/categories/%E7%BD%91%E7%AB%99/"/>
+    
+      <category term="Hexo" scheme="http://YaoJusheng.github.io/categories/Hexo/"/>
+    
+    
+      <category term="next" scheme="http://YaoJusheng.github.io/tags/next/"/>
+    
+      <category term="基本配置" scheme="http://YaoJusheng.github.io/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/"/>
+    
+  </entry>
   
   <entry>
     <title>【工具】（七）：win10常用工具整理！！！</title>
@@ -88,31 +113,6 @@
     
     
       <category term="Docker" scheme="http://YaoJusheng.github.io/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo搭建个人博客：Next主题-相关配置</title>
-    <link href="http://yaojusheng.github.io/archives/32ea94eb.html"/>
-    <id>http://yaojusheng.github.io/archives/32ea94eb.html</id>
-    <published>2020-02-25T09:37:37.000Z</published>
-    <updated>2020-03-03T15:33:15.619Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;网上关于搭建个人博客网站所用主题，yilia和next两款比较多，这里记录一下next5.1.4相关的一些配置。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="网站" scheme="http://YaoJusheng.github.io/categories/%E7%BD%91%E7%AB%99/"/>
-    
-      <category term="Hexo" scheme="http://YaoJusheng.github.io/categories/Hexo/"/>
-    
-    
-      <category term="基本配置" scheme="http://YaoJusheng.github.io/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/"/>
-    
-      <category term="next" scheme="http://YaoJusheng.github.io/tags/next/"/>
     
   </entry>
   
@@ -386,9 +386,9 @@
       <category term="Hexo" scheme="http://YaoJusheng.github.io/categories/Hexo/"/>
     
     
-      <category term="yilia" scheme="http://YaoJusheng.github.io/tags/yilia/"/>
-    
       <category term="基本配置" scheme="http://YaoJusheng.github.io/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="yilia" scheme="http://YaoJusheng.github.io/tags/yilia/"/>
     
   </entry>
   
