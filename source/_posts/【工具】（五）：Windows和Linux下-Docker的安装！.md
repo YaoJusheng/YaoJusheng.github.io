@@ -100,22 +100,22 @@ docker version
 3.开启并运行Hyper-V工具
 
  1. 打开Windows功能
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191002194426300.png)
+![](https://img-blog.csdnimg.cn/20191002194426300.png)
  2. 勾选Hyper-V，点击确定
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191002194713777.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20191002194713777.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70)
  3. 等待一会儿，提示重启，点击重启
  4. 重启完成后，到Windows管理工具，找到Hyper-V管理器，运行。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191002195238496.png)
+![](https://img-blog.csdnimg.cn/20191002195238496.png)
     看到如下界面：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191002195747654.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20191002195747654.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70)
 > 因为我的电脑已经安装了docker，所以有 DockerDesktopVM 显示，下面开始真正的安装。
 
 4.安装Docker for Windows
 > 官网下载：[Docker Desktop](https://hub.docker.com/editions/community/docker-ce-desktop-windows)
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191002200604156.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/201910022007050.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191002200304371.png)
+![](https://img-blog.csdnimg.cn/20191002200604156.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/201910022007050.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20191002200304371.png)
 
 5.点击运行 `Docker for Windows Installer.exe`
 > 该过程中可能需要你关闭电脑的杀毒软件，以完成安装。
@@ -127,7 +127,7 @@ docker version
 ```bash
 docker version  # 查看版本
 ```
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191002204927448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20191002204927448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70)
 到此，docker的安装也就完成了。下面开始玩转我们的docker吧！
 
 

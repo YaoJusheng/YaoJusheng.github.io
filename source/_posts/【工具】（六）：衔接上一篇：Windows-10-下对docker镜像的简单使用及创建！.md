@@ -90,9 +90,9 @@ docker history image_name
 > 第一种方式比较简单，相当于拉取一个基础镜像，再进行修改，这里主要说一下第二种方式：Dockerfile创建
 
 这里以python为例，在一个空白目录中，建立一个文本文件，并命名为 `Dockerfile`：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191003132432479.png)
+![](https://img-blog.csdnimg.cn/20191003132432479.png)
 Dockerfile 的内容为：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20191003132956811.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20191003132956811.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70)
 以上是我的配置，这里可以根据需要，进行修改，保存。
 
 该目录下打开DOS窗口，输入：
