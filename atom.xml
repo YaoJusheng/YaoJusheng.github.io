@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yaojusheng.github.io/"/>
-  <updated>2020-03-09T15:38:27.602Z</updated>
+  <updated>2020-03-10T15:26:33.130Z</updated>
   <id>http://yaojusheng.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SQL（一）：关于MySQL8.0版本：用户、密码和权限的问题！</title>
+    <link href="http://yaojusheng.github.io/archives/5ad10cde.html"/>
+    <id>http://yaojusheng.github.io/archives/5ad10cde.html</id>
+    <published>2020-03-10T15:11:37.000Z</published>
+    <updated>2020-03-10T15:26:33.130Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;由于前段时间重装了系统，最近放假，正好有时间重新搭建一下开发环境，当然很多工具都装了最新版，MySQL也不例外。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;以前的MySQL装的是5.6或5.7的，用起来倒是没什么需要特殊说明的地方。&lt;br&gt;现在换了8.0，虽然功能强大了一些，但有些地方还是需要注意。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="MySQL" scheme="http://YaoJusheng.github.io/categories/MySQL/"/>
+    
+    
+      <category term="mysql" scheme="http://YaoJusheng.github.io/tags/mysql/"/>
+    
+      <category term="用户密码" scheme="http://YaoJusheng.github.io/tags/%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo搭建个人博客：Next主题-相关配置</title>
@@ -35,9 +63,9 @@
       <category term="Hexo" scheme="http://YaoJusheng.github.io/categories/Hexo/"/>
     
     
-      <category term="基本配置" scheme="http://YaoJusheng.github.io/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/"/>
-    
       <category term="next" scheme="http://YaoJusheng.github.io/tags/next/"/>
+    
+      <category term="基本配置" scheme="http://YaoJusheng.github.io/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/"/>
     
   </entry>
   
@@ -46,12 +74,12 @@
     <link href="http://yaojusheng.github.io/archives/b4695b9b.html"/>
     <id>http://yaojusheng.github.io/archives/b4695b9b.html</id>
     <published>2020-02-27T06:44:28.000Z</published>
-    <updated>2020-03-09T15:28:06.182Z</updated>
+    <updated>2020-03-10T15:06:31.236Z</updated>
     
     <summary type="html">
     
       &lt;blockquote&gt;
-&lt;p&gt;如题，本文主要为博主对电脑上安装的一些软件，所做的整理，当做备份用吧。&lt;/p&gt;
+&lt;p&gt;如题，本文主要为博主对电脑上安装的一些软件，所做的备份整理。&lt;/p&gt;
 &lt;/blockquote&gt;
     
     </summary>
@@ -71,7 +99,7 @@
     <link href="http://yaojusheng.github.io/archives/ffda6757.html"/>
     <id>http://yaojusheng.github.io/archives/ffda6757.html</id>
     <published>2020-02-26T05:45:16.000Z</published>
-    <updated>2020-03-09T15:27:40.376Z</updated>
+    <updated>2020-03-10T15:25:16.062Z</updated>
     
     <summary type="html">
     
@@ -96,7 +124,7 @@
     <link href="http://yaojusheng.github.io/archives/ef94d4d4.html"/>
     <id>http://yaojusheng.github.io/archives/ef94d4d4.html</id>
     <published>2020-02-26T05:30:16.000Z</published>
-    <updated>2020-03-09T15:27:09.794Z</updated>
+    <updated>2020-03-10T15:25:16.060Z</updated>
     
     <summary type="html">
     
@@ -172,7 +200,7 @@
     <link href="http://yaojusheng.github.io/archives/b27922f9.html"/>
     <id>http://yaojusheng.github.io/archives/b27922f9.html</id>
     <published>2020-02-25T03:30:16.000Z</published>
-    <updated>2020-03-09T15:25:30.736Z</updated>
+    <updated>2020-03-10T15:25:16.059Z</updated>
     
     <summary type="html">
     
@@ -211,9 +239,9 @@
       <category term="Sublime" scheme="http://YaoJusheng.github.io/categories/Sublime/"/>
     
     
-      <category term="Boxy" scheme="http://YaoJusheng.github.io/tags/Boxy/"/>
-    
       <category term="插件" scheme="http://YaoJusheng.github.io/tags/%E6%8F%92%E4%BB%B6/"/>
+    
+      <category term="Boxy" scheme="http://YaoJusheng.github.io/tags/Boxy/"/>
     
   </entry>
   
@@ -347,7 +375,7 @@
     <link href="http://yaojusheng.github.io/archives/4235.html"/>
     <id>http://yaojusheng.github.io/archives/4235.html</id>
     <published>2020-02-18T09:36:44.000Z</published>
-    <updated>2020-03-01T13:50:25.635Z</updated>
+    <updated>2020-03-10T15:44:24.079Z</updated>
     
     <summary type="html">
     
@@ -386,9 +414,9 @@
       <category term="Hexo" scheme="http://YaoJusheng.github.io/categories/Hexo/"/>
     
     
-      <category term="yilia" scheme="http://YaoJusheng.github.io/tags/yilia/"/>
-    
       <category term="基本配置" scheme="http://YaoJusheng.github.io/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="yilia" scheme="http://YaoJusheng.github.io/tags/yilia/"/>
     
   </entry>
   

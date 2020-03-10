@@ -1,6 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>SQL（一）：关于MySQL8.0版本：用户、密码和权限的问题！</title>
+    <url>/archives/5ad10cde.html</url>
+    <content><![CDATA[<blockquote>
+<p>由于前段时间重装了系统，最近放假，正好有时间重新搭建一下开发环境，当然很多工具都装了最新版，MySQL也不例外。</p>
+</blockquote>
+<p>以前的MySQL装的是5.6或5.7的，用起来倒是没什么需要特殊说明的地方。<br>现在换了8.0，虽然功能强大了一些，但有些地方还是需要注意。</p>
+<a id="more"></a>
+
+<p>安装的话，可以参考一下这篇博客：<a href="https://blog.csdn.net/qq_33236248/article/details/80046448" target="_blank" rel="noopener">MySQL8的安装</a></p>
+<blockquote>
+<p>以下是记录的一些问题和解决方法</p>
+</blockquote>
+<h2 id="一、服务启动失败"><a href="#一、服务启动失败" class="headerlink" title="一、服务启动失败"></a>一、服务启动失败</h2><h3 id="1-1-输入：net-start-mysql，提示服务名无效"><a href="#1-1-输入：net-start-mysql，提示服务名无效" class="headerlink" title="1.1. 输入：net start mysql，提示服务名无效"></a>1.1. 输入：<code>net start mysql</code>，提示服务名无效</h3><ul>
+<li>可到 <code>C:\Program Files\MySQL\MySQL Server 8.0\bin</code> 目录下；</li>
+<li>打开DOS窗口，输入：<code>mysqld --install</code>  ；</li>
+<li>再次输入：<code>net start mysql</code>。</li>
+</ul>
+<h3 id="1-2-输入：net-start-mysql-后，提示：MSQL服务无法启动。服务没有报告任何错误"><a href="#1-2-输入：net-start-mysql-后，提示：MSQL服务无法启动。服务没有报告任何错误" class="headerlink" title="1.2. 输入：net start mysql 后，提示：MSQL服务无法启动。服务没有报告任何错误"></a>1.2. 输入：<code>net start mysql</code> 后，提示：MSQL服务无法启动。服务没有报告任何错误</h3><ul>
+<li>输入： <code>mysqld --console</code>，看看错误信息，通过错误信息，去查找解决方法；</li>
+<li>如果错误信息是<code>Table &#39;mysql.plugin&#39; doesn&#39;t exist</code>, 如果没有解决办法，可以试着重新安装服务或初始化MySQL。</li>
+</ul>
+<p><strong>建议先看看my.ini文件中的配置</strong>：<br><img src="https://img-blog.csdnimg.cn/20191005145124662.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt="my.ini"></p>
+<blockquote>
+<p>这会对你有所帮助</p>
+</blockquote>
+<h2 id="二、忘记用户名密码"><a href="#二、忘记用户名密码" class="headerlink" title="二、忘记用户名密码"></a>二、忘记用户名密码</h2><blockquote>
+<p>如果隔段时间不用的话，可能就会出现这样的问题，因为博主的用户名密码都比较长，更容易忘，痛定思痛，决定改成最常用的123…</p>
+</blockquote>
+<p><strong>正常情况下，可以这样做：</strong></p>
+<ul>
+<li><p>跳过权限表</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysqld –skip-grant-tables</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>密码置空</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">UPDATE user SET authentication_string=<span class="string">''</span> WHERE user=<span class="string">'root'</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>8.0 无法这样用</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="处理"><a href="#处理" class="headerlink" title="处理"></a>处理</h3><h4 id="方式一：利用-–init-file参数"><a href="#方式一：利用-–init-file参数" class="headerlink" title="方式一：利用 –init-file参数"></a>方式一：利用 –init-file参数</h4><ol>
+<li>停止MySQL服务<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># dos窗口，输入命令：</span></span><br><span class="line">net stop mysql   <span class="comment"># 或者 Ctrl+Alt+delete，打开任务管理器，找到服务中的MySQL80项，右键选择停止</span></span><br></pre></td></tr></table></figure></li>
+<li>在MySQL目录下，新建一个文件，如reset_password.txt:<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 目录：C:\ProgramData\MySQL\MySQL Server 8.0</span></span><br><span class="line"><span class="comment"># 文件内容输入：</span></span><br><span class="line">ALTER USER <span class="string">'root'</span>@<span class="string">'localhost'</span> IDENTIFIED BY <span class="string">'123456'</span>;  <span class="comment"># 根据个人需要修改</span></span><br></pre></td></tr></table></figure></li>
+<li>打开dos窗口<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 执行以下命令，关闭dos窗口</span></span><br><span class="line">mysqld --init-file=C:\ProgramData\MySQL\MySQL Server 8.0\reset_password.txt --console   <span class="comment"># 可以自己修改</span></span><br></pre></td></tr></table></figure></li>
+<li>启动服务<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">net start mysql  <span class="comment"># 或者去任务管理器中开启</span></span><br></pre></td></tr></table></figure></li>
+<li>最后输入修改的用户密码登录<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -uroot -p123456  <span class="comment"># 以实际为准</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="方式二：越过权限表"><a href="#方式二：越过权限表" class="headerlink" title="方式二：越过权限表"></a>方式二：越过权限表</h4><ol>
+<li>停止服务：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">net stop mysql</span><br></pre></td></tr></table></figure></li>
+<li>管理员方式打开DOS窗口：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql --shared-memory --skip-grant-tables datadir=<span class="string">"C:/ProgramData/MySQL/MySQL Server 8.0/Data"</span></span><br></pre></td></tr></table></figure></li>
+<li>再开一个命令行窗口，直接登陆mysql:<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql [-uroot -p]</span><br><span class="line"><span class="comment"># 清空密码</span></span><br><span class="line">use mysql;</span><br><span class="line">update user <span class="built_in">set</span> authentication_string=<span class="string">''</span> <span class="built_in">where</span> user=<span class="string">'root'</span>;</span><br></pre></td></tr></table></figure></li>
+<li>关闭之前的窗口，重启服务：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">net start mysql</span><br></pre></td></tr></table></figure></li>
+<li>无密码登录，修改密码：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -uroot -p</span><br><span class="line"><span class="comment"># 修改</span></span><br><span class="line">use mysql;</span><br><span class="line">alter user root@localhost identified by <span class="string">'123456'</span>;</span><br></pre></td></tr></table></figure></li>
+<li>密码登录，查看：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -uroot -p123456</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="三、API接口无法连接数据库"><a href="#三、API接口无法连接数据库" class="headerlink" title="三、API接口无法连接数据库"></a>三、API接口无法连接数据库</h2><blockquote>
+<p>昨天测试了一下，php连接数据库，发现连接失败。而本地打开数据库是可以的。</p>
+</blockquote>
+<h3 id="3-1-SQLSTATE-HY000-2054-The-server-requested-authentication-method-unknown-to-the-client。"><a href="#3-1-SQLSTATE-HY000-2054-The-server-requested-authentication-method-unknown-to-the-client。" class="headerlink" title="3.1. SQLSTATE[HY000] [2054] The server requested authentication method unknown to the client。"></a>3.1. SQLSTATE[HY000] [2054] The server requested authentication method unknown to the client。</h3><p>这应该是身份验证插件的问题，<br>于是通过phpinfo() 查看了一下php版本信息：<br><img src="https://img-blog.csdnimg.cn/20191005150746851.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt="php版本信息"><br>对比MySQL8.0信息：<br><img src="https://img-blog.csdnimg.cn/20191005150858615.png" alt="MySQL8.0信息"></p>
+<blockquote>
+<p>显然身份验证插件不匹配，php7.3.4居然还没支持sha2的，没办法，只能在数据库中改为php支持的了，如：mysql_native_password 。</p>
+</blockquote>
+<p>修改之：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">CREATE USER <span class="string">'test'</span>@<span class="string">'localhost'</span> IDENTIFIED WITH mysql_native_password BY <span class="string">'password'</span>;</span><br></pre></td></tr></table></figure>
+<p>或者更新一下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ALTER USER <span class="string">'root'</span>@<span class="string">'localhost'</span> IDENTIFIED WITH mysql_native_password BY <span class="string">'password'</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当然也可以去my.ini 文件中，将 <code>default_authentication_plugin=caching_sha2_password</code> 中的sha2插件改掉。</p>
+</blockquote>
+<h2 id="四、权限修改"><a href="#四、权限修改" class="headerlink" title="四、权限修改"></a>四、权限修改</h2><p><strong>在连接数据库时，出现以下错误</strong>：</p>
+<blockquote>
+<p>SQLSTATE[HY000] [1044] Access denied for user ‘XXX’@’localhost’ to database ‘tests’.</p>
+</blockquote>
+<p>大概能猜到，应该是权限的问题，接下来，修改权限：</p>
+<h3 id="4-1-添加用户"><a href="#4-1-添加用户" class="headerlink" title="4.1. 添加用户"></a>4.1. 添加用户</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">CREATE USER <span class="string">'username'</span>@<span class="string">'localhost'</span> IDENTIFIED [WITH mysql_native_password] BY <span class="string">'password'</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-更新密码"><a href="#4-2-更新密码" class="headerlink" title="4.2. 更新密码"></a>4.2. 更新密码</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ALTER USER <span class="string">'username'</span>@<span class="string">'localhost'</span> IDENTIFIED [WITH mysql_native_password] BY <span class="string">'new_password'</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-授予-更改权限"><a href="#4-3-授予-更改权限" class="headerlink" title="4.3. 授予/更改权限"></a>4.3. 授予/更改权限</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">GRANT ALL ON *.* TO username@localhost WITH GRANT OPTION;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-4-查看用户信息"><a href="#4-4-查看用户信息" class="headerlink" title="4.4. 查看用户信息"></a>4.4. 查看用户信息</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 表结构</span></span><br><span class="line">desc user;</span><br><span class="line"><span class="comment"># 用户信息</span></span><br><span class="line">select User,Host,authentication_string from user;</span><br><span class="line"><span class="comment"># 查看权限</span></span><br><span class="line">show grants <span class="keyword">for</span> username@localhost;</span><br></pre></td></tr></table></figure>
+
+<p>解决！</p>
+<hr>
+<p>以后遇到再补充！</p>
+<blockquote>
+<p>原文地址： CSDN博客 - <a href="https://blog.csdn.net/weixin_41599858/article/details/102138938" target="_blank" rel="noopener">关于MySQL8.0版本：用户、密码和权限的问题！</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>数据库</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>用户密码</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo搭建个人博客：Next主题-相关配置</title>
     <url>/archives/32ea94eb.html</url>
     <content><![CDATA[<p>网上关于搭建个人博客网站所用主题，yilia和next两款比较多，这里记录一下next5.1.4相关的一些配置。</p>
@@ -129,15 +232,15 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>基本配置</tag>
         <tag>next</tag>
+        <tag>基本配置</tag>
       </tags>
   </entry>
   <entry>
     <title>【工具】（七）：win10常用工具整理！！！</title>
     <url>/archives/b4695b9b.html</url>
     <content><![CDATA[<blockquote>
-<p>如题，本文主要为博主对电脑上安装的一些软件，所做的整理，当做备份用吧。</p>
+<p>如题，本文主要为博主对电脑上安装的一些软件，所做的备份整理。</p>
 </blockquote>
 <a id="more"></a>
 <h1 id="一、分类"><a href="#一、分类" class="headerlink" title="一、分类"></a>一、分类</h1><ul>
@@ -379,7 +482,7 @@
 <h2 id="2-开始创建image"><a href="#2-开始创建image" class="headerlink" title="2.开始创建image"></a>2.开始创建image</h2><blockquote>
 <p>第一种方式比较简单，相当于拉取一个基础镜像，再进行修改，这里主要说一下第二种方式：Dockerfile创建</p>
 </blockquote>
-<p>这里以python为例，在一个空白目录中，建立一个文本文件，并命名为 <code>Dockerfile</code>：<br><img src="https://img-blog.csdnimg.cn/20191003132432479.png" alt="在这里插入图片描述"><br>Dockerfile 的内容为：<br><img src="https://img-blog.csdnimg.cn/20191003132956811.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>以上是我的配置，这里可以根据需要，进行修改，保存。</p>
+<p>这里以python为例，在一个空白目录中，建立一个文本文件，并命名为 <code>Dockerfile</code>：<br><img src="https://img-blog.csdnimg.cn/20191003132432479.png" alt><br>Dockerfile 的内容为：<br><img src="https://img-blog.csdnimg.cn/20191003132956811.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt><br>以上是我的配置，这里可以根据需要，进行修改，保存。</p>
 <p>该目录下打开DOS窗口，输入：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 根据实际情况，修改image_name 和 tag</span></span><br><span class="line">docker build -t `image_name`:`tag` .</span><br></pre></td></tr></table></figure>
 
@@ -481,10 +584,10 @@
 </blockquote>
 <p>3.开启并运行Hyper-V工具</p>
 <ol>
-<li>打开Windows功能<br><img src="https://img-blog.csdnimg.cn/20191002194426300.png" alt="在这里插入图片描述"></li>
-<li>勾选Hyper-V，点击确定<br><img src="https://img-blog.csdnimg.cn/20191002194713777.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>打开Windows功能<br><img src="https://img-blog.csdnimg.cn/20191002194426300.png" alt></li>
+<li>勾选Hyper-V，点击确定<br><img src="https://img-blog.csdnimg.cn/20191002194713777.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt></li>
 <li>等待一会儿，提示重启，点击重启</li>
-<li>重启完成后，到Windows管理工具，找到Hyper-V管理器，运行。<br><img src="https://img-blog.csdnimg.cn/20191002195238496.png" alt="在这里插入图片描述"><br>看到如下界面：<br><img src="https://img-blog.csdnimg.cn/20191002195747654.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><blockquote>
+<li>重启完成后，到Windows管理工具，找到Hyper-V管理器，运行。<br><img src="https://img-blog.csdnimg.cn/20191002195238496.png" alt><br>看到如下界面：<br><img src="https://img-blog.csdnimg.cn/20191002195747654.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt><blockquote>
 <p>因为我的电脑已经安装了docker，所以有 DockerDesktopVM 显示，下面开始真正的安装。</p>
 </blockquote>
 </li>
@@ -493,7 +596,7 @@
 <blockquote>
 <p>官网下载：<a href="https://hub.docker.com/editions/community/docker-ce-desktop-windows" target="_blank" rel="noopener">Docker Desktop</a></p>
 </blockquote>
-<p><img src="https://img-blog.csdnimg.cn/20191002200604156.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/201910022007050.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191002200304371.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20191002200604156.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt><br><img src="https://img-blog.csdnimg.cn/201910022007050.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt><br><img src="https://img-blog.csdnimg.cn/20191002200304371.png" alt></p>
 <p>5.点击运行 <code>Docker for Windows Installer.exe</code></p>
 <blockquote>
 <p>该过程中可能需要你关闭电脑的杀毒软件，以完成安装。<br>安装结束会有重启提示，点击确定就行。<br>因为博主已经安装过了，就不在这里演示了。</p>
@@ -503,7 +606,7 @@
 <p><code>Win + R</code> 输入 cmd，打开dos窗口，输入：</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker version  <span class="comment"># 查看版本</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/20191002204927448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>到此，docker的安装也就完成了。下面开始玩转我们的docker吧！</p>
+<p><img src="https://img-blog.csdnimg.cn/20191002204927448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt><br>到此，docker的安装也就完成了。下面开始玩转我们的docker吧！</p>
 <hr>
 <p>使用参考：<a href="https://doc.yonyoucloud.com/doc/chinese_docker/userguide/dockerrepos.html" target="_blank" rel="noopener">Docker使用</a>、<a href="https://www.jianshu.com/p/a23539a519b7" target="_blank" rel="noopener">Docker基本命令-简书</a>、<a href="https://yeasy.gitbooks.io/docker_practice/image/build.html" target="_blank" rel="noopener">构建Docker镜像</a></p>
 <blockquote>
@@ -803,11 +906,11 @@
 <h2 id="2-Boxy-Theme"><a href="#2-Boxy-Theme" class="headerlink" title="2.Boxy Theme"></a>2.<a href="https://packagecontrol.io/packages/Boxy%20Theme" target="_blank" rel="noopener">Boxy Theme</a></h2><blockquote>
 <p>这是一款相当舒适的主题插件，现在可能package control install 安装不了了，需要自己手动下载安装，不会的话可以参照我之前写的 <a href="https://blog.csdn.net/weixin_41599858/article/details/100942288" target="_blank" rel="noopener">安装boxy插件的博客</a></p>
 </blockquote>
-<p>安装完成后，可以选择想要的效果：<br><img src="https://img-blog.csdnimg.cn/2019092214073999.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>安装完成后，可以选择想要的效果：<br><img src="https://img-blog.csdnimg.cn/2019092214073999.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt></p>
 <h2 id="3-AutoFileName"><a href="#3-AutoFileName" class="headerlink" title="3.AutoFileName"></a>3.<a href="https://packagecontrol.io/packages/AutoFileName" target="_blank" rel="noopener">AutoFileName</a></h2><blockquote>
 <p>这是一款可以自动识别补全文件路径的插件，可以为开发提供高效的辅助。</p>
 </blockquote>
-<p>效果图如下：<br><img src="https://img-blog.csdnimg.cn/20190928133142551.gif" alt="在这里插入图片描述"></p>
+<p>效果图如下：<br><img src="https://img-blog.csdnimg.cn/20190928133142551.gif" alt></p>
 <h2 id="4-SublimeLinter"><a href="#4-SublimeLinter" class="headerlink" title="4.SublimeLinter"></a>4.<a href="https://packagecontrol.io/packages/SublimeLinter" target="_blank" rel="noopener">SublimeLinter</a></h2><blockquote>
 <p>语法检查插件。</p>
 </blockquote>
@@ -828,30 +931,30 @@
 <h2 id="7-FileDiffs"><a href="#7-FileDiffs" class="headerlink" title="7.FileDiffs"></a>7.<a href="https://packagecontrol.io/packages/FileDiffs" target="_blank" rel="noopener">FileDiffs</a></h2><blockquote>
 <p>文件差异对比插件，有点类似Beyong差异比对软件和gitkraken代码冲突展示的作用。</p>
 </blockquote>
-<p>效果如下：<br><img src="https://img-blog.csdnimg.cn/20190928142837100.gif" alt="在这里插入图片描述"></p>
+<p>效果如下：<br><img src="https://img-blog.csdnimg.cn/20190928142837100.gif" alt></p>
 <h2 id="8-ColorPicker"><a href="#8-ColorPicker" class="headerlink" title="8.ColorPicker"></a>8.<a href="https://packagecontrol.io/packages/ColorPicker" target="_blank" rel="noopener">ColorPicker</a></h2><blockquote>
 <p>ColorPicker提供了一个颜色面板，可以调色，选择不同颜色，在前端样式中，可以起到很好的辅助效果（快捷键：<code>Ctrl + Shift + C</code>）。</p>
 </blockquote>
-<p>画面展示：<br><img src="https://img-blog.csdnimg.cn/20190928153745856.gif" alt="在这里插入图片描述"></p>
+<p>画面展示：<br><img src="https://img-blog.csdnimg.cn/20190928153745856.gif" alt></p>
 <h2 id="9-HTML-CSS-JS-Prettify"><a href="#9-HTML-CSS-JS-Prettify" class="headerlink" title="9.HTML-CSS-JS Prettify"></a>9.<a href="https://packagecontrol.io/packages/HTML-CSS-JS%20Prettify" target="_blank" rel="noopener">HTML-CSS-JS Prettify</a></h2><blockquote>
 <p>代码个格式化插件，一般对于HTML、css、JavaScript文件，如果有大量代码，不想手动调格式的话，可以按下<code>Ctrl + Shift + h</code> 一键格式化。</p>
 </blockquote>
-<p>效果如下：<br><img src="https://img-blog.csdnimg.cn/20190928161506969.gif" alt="在这里插入图片描述"></p>
+<p>效果如下：<br><img src="https://img-blog.csdnimg.cn/20190928161506969.gif" alt></p>
 <h2 id="10-Emmet"><a href="#10-Emmet" class="headerlink" title="10.Emmet"></a>10.<a href="https://packagecontrol.io/packages/Emmet" target="_blank" rel="noopener">Emmet</a></h2><blockquote>
 <p>前端神器，可以快速批量生成代码。</p>
 </blockquote>
-<p>使用效果如下：<br><img src="https://img-blog.csdnimg.cn/20190928154658908.gif" alt="在这里插入图片描述"></p>
+<p>使用效果如下：<br><img src="https://img-blog.csdnimg.cn/20190928154658908.gif" alt></p>
 <h2 id="11-BracketHighlighter"><a href="#11-BracketHighlighter" class="headerlink" title="11.BracketHighlighter"></a>11.<a href="https://packagecontrol.io/packages/BracketHighlighter" target="_blank" rel="noopener">BracketHighlighter</a></h2><blockquote>
 <p>匹配标签/括号等符号，然后高亮显示，例如：{ }、[ ]、” “ 等符号的对应高亮显示，方便区分代码片段，类似vscode的中的Bracket Pair Colorizer插件。</p>
 </blockquote>
-<p>图示如下：<br><img src="https://img-blog.csdnimg.cn/20190928170700116.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_12,color_FFFFFF,t_70" alt="在这里插入图片描述"> </p>
+<p>图示如下：<br><img src="https://img-blog.csdnimg.cn/20190928170700116.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_12,color_FFFFFF,t_70" alt> </p>
 <h2 id="12-Markdown-Editing"><a href="#12-Markdown-Editing" class="headerlink" title="12.Markdown Editing"></a>12.<a href="https://packagecontrol.io/packages/MarkdownEditing" target="_blank" rel="noopener">Markdown Editing</a></h2><blockquote>
 <p>Markdown 编辑时的语法高亮插件，可以配合 <code>Markdown Preview</code> 插件，在浏览器预览。</p>
 </blockquote>
 <h2 id="13-SublimeREPL"><a href="#13-SublimeREPL" class="headerlink" title="13.SublimeREPL"></a>13.<a href="https://packagecontrol.io/packages/SublimeREPL" target="_blank" rel="noopener">SublimeREPL</a></h2><blockquote>
 <p>可以让使用者在Sublime Text 里面运行解释器，<br>如：python/PHP/ruby/shell 等等</p>
 </blockquote>
-<p>展示效果如下：<br><img src="https://img-blog.csdnimg.cn/20190928182211517.gif" alt="在这里插入图片描述"></p>
+<p>展示效果如下：<br><img src="https://img-blog.csdnimg.cn/20190928182211517.gif" alt></p>
 <h2 id="14-Open-In-Browser"><a href="#14-Open-In-Browser" class="headerlink" title="14.Open In Browser"></a>14.<a href="https://packagecontrol.io/packages/Open%20In%20Browser" target="_blank" rel="noopener">Open In Browser</a></h2><blockquote>
 <p>在浏览器打开，主要对前端 HTML 文件进行预览和效果显示。</p>
 </blockquote>
@@ -946,8 +1049,8 @@
         <category>Sublime</category>
       </categories>
       <tags>
-        <tag>Boxy</tag>
         <tag>插件</tag>
+        <tag>Boxy</tag>
       </tags>
   </entry>
   <entry>
@@ -1466,14 +1569,14 @@
 <ul>
 <li><p>这里用<a href="https://music.163.com/" target="_blank" rel="noopener">网易云</a>插件，打开一首歌，下方有 <code>生成外链</code> 提示，如：</p>
 <div align="center">
-  <img src="/blog/images/wangyiyun/changyemanman-20-02-20.png" width="400px">
+  <img src="/images/wangyiyun/changyemanman-20-02-20.png" width="400px">
 </div>
 </li>
 <li><p>点击该链接，然后复制生成的HTML代码，配置时用。：</p>
 </li>
 </ul>
 <div align="center">
-    <img src="/blog/images/wangyiyun/changyemanman-link-20-02-20.png" width="450px">
+    <img src="/images/wangyiyun/changyemanman-link-20-02-20.png" width="450px">
 </div>
 
 <ul>
@@ -1653,8 +1756,8 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>yilia</tag>
         <tag>基本配置</tag>
+        <tag>yilia</tag>
       </tags>
   </entry>
   <entry>
