@@ -1,6 +1,451 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>PHP（三）- 匿名函数、命名空间以及类与对象的学习！</title>
+    <url>/archives/25de20b7.html</url>
+    <content><![CDATA[<blockquote>
+<p>本篇博客来自博主在<a href="https://www.php.cn/blog/detail/15677.html" target="_blank" rel="noopener">php中文网</a>上写的一篇，移至CSDN作为记录。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="1-匿名函数"><a href="#1-匿名函数" class="headerlink" title="1.匿名函数"></a>1.匿名函数</h1><h2 id="1-1-解释："><a href="#1-1-解释：" class="headerlink" title="1.1.解释："></a>1.1.解释：</h2><ul>
+<li>匿名函数也叫闭包函数，即不指定函数名；</li>
+<li>匿名函数不能直接调用，需要先将匿名函数赋值给一个变量，然后由变量来调用；</li>
+<li>因为是赋值给一个变量，末尾要加“;”，这也是与普通函数的区别之一。</li>
+</ul>
+<h2 id="1-2-优点："><a href="#1-2-优点：" class="headerlink" title="1.2.优点："></a>1.2.优点：</h2><ul>
+<li>因为匿名，开发者不需要花费心思，去想一个见名知意又简单名字来表示；</li>
+<li>只在调用时，临时创建，用完立即释放，不像其他函数那样即便未调用也占内存空间；</li>
+</ul>
+<h2 id="1-3-应用场景："><a href="#1-3-应用场景：" class="headerlink" title="1.3.应用场景："></a>1.3.应用场景：</h2><ul>
+<li><p>作为值，参与计算</p>
+</li>
+<li><p>作为函数回调</p>
+</li>
+<li><p>闭包</p>
+</li>
+</ul>
+<h2 id="1-4-简单演示："><a href="#1-4-简单演示：" class="headerlink" title="1.4.简单演示："></a>1.4.简单演示：</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// 场景1：作为值</span></span><br><span class="line">$sum = <span class="function"><span class="keyword">function</span> <span class="params">($a, $b)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> $a + $b;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 按值调用</span></span><br><span class="line"><span class="keyword">echo</span> $sum(<span class="number">66</span>, <span class="number">99</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;hr&gt;"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 场景2：作为 回调用</span></span><br><span class="line">$arr = [<span class="number">3</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">9</span>];</span><br><span class="line">usort($arr, <span class="function"><span class="keyword">function</span> <span class="params">($a, $b)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> $b - $a;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span> . print_r($arr, <span class="keyword">true</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 场景3：闭包</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">demo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 父作用域中的变量</span></span><br><span class="line">  $email = <span class="string">'alfred@outlook.com'</span>;</span><br><span class="line">  <span class="comment">// func: 匿名子函数</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span> <span class="title">use</span> <span class="params">($email)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> $email;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> demo()();</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="2-命名空间"><a href="#2-命名空间" class="headerlink" title="2.命名空间"></a>2.命名空间</h1><h2 id="2-1-解释："><a href="#2-1-解释：" class="headerlink" title="2.1.解释："></a>2.1.解释：</h2><ul>
+<li>命名空间是一种封装事物的方法；</li>
+<li>在程序语言中开辟一段代码空间，不同空间的对象名相互独立，互不冲突；</li>
+<li>第一个命名空间前不能有任何代码，一般，命名空间定义为脚本第一行代码；</li>
+<li>调用不同空间内类或方法需写明命名空间；</li>
+</ul>
+<h2 id="2-2-作用："><a href="#2-2-作用：" class="headerlink" title="2.2.作用："></a>2.2.作用：</h2><ul>
+<li>避免开发者在项目中定义的类名、函数名或变量出现重复冲突；</li>
+<li>为很长的标识符名称 创建一个别名 ，提高源代码的可读性；</li>
+</ul>
+<h2 id="2-3-演示："><a href="#2-3-演示：" class="headerlink" title="2.3.演示："></a>2.3.演示：</h2><p><strong>语法：</strong></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// 写法一</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">blue</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写法二</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">green</span>&#123;</span><br><span class="line">  <span class="title">class</span> <span class="title">Test</span></span><br><span class="line">  &#123;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>简单使用</strong></p>
+<p>在func.php文件中写入：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">_demo_01</span>;</span><br><span class="line"><span class="comment">// 匿名函数与闭包</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 命名函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">($a, $b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> $a + $b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在 transfer.php文件中写入：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">_demo_02</span>; <span class="comment">// 命名空间必须是脚本的第一行代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果引入同名函数，程序会报错，</span></span><br><span class="line"><span class="comment">// 解决方法，使用 命名空间</span></span><br><span class="line"><span class="keyword">include</span> <span class="keyword">__DIR__</span> . <span class="string">'./func.php'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">($a, $b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> $a + $b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// \ 表示全局空间</span></span><br><span class="line"><span class="keyword">echo</span> <span class="keyword">namespace</span>\<span class="title">sum</span>(20, 66);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 访问另一个空间的函数</span></span><br><span class="line"><span class="keyword">echo</span> \_demo_01\sum(<span class="number">88</span>, <span class="number">99</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="3-类与对象"><a href="#3-类与对象" class="headerlink" title="3.类与对象"></a>3.类与对象</h1><h2 id="3-1-解释："><a href="#3-1-解释：" class="headerlink" title="3.1.解释："></a>3.1.解释：</h2><ol>
+<li><p>对象：一切事物皆对象，对象是用来描述客观事物的一个实体。</p>
+</li>
+<li><p>类：类是把具有相似特性的对象归纳到一个抽象类中，即一组相同属性和行为的对象的集合。</p>
+</li>
+<li><p>类和对象的关系如下：<br>类是相似对象的统一描述，类就是对象的一个模板；<br>先有类，再有对象；<br>类是对象的抽象；<br>对象是类的实例。</p>
+</li>
+</ol>
+<h2 id="3-2-使用："><a href="#3-2-使用：" class="headerlink" title="3.2.使用："></a>3.2.使用：</h2><ol>
+<li><p>在php中，通过关键字class来创建和声明一个类（其他语言基本类似），</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="comment">//成员属性和方法</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 属性：变量</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">// 方法：函数 </span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用new 关键字 实列化 类</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$obj = <span class="keyword">new</span> People();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>演示：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// 类的声明</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">	<span class="comment">// ...成员属性和方法</span></span><br><span class="line">	<span class="comment">// 属性：变量</span></span><br><span class="line">	<span class="keyword">public</span> $name = <span class="string">'alfred'</span>;</span><br><span class="line">	<span class="comment">// 方法：函数</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">sleep</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"&#123;$this-&gt;name&#125; is going to sleep...&lt;br/&gt;"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实列化 new</span></span><br><span class="line">$obj = <span class="keyword">new</span> People();</span><br><span class="line"></span><br><span class="line">var_dump($obj);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'name = '</span> . $obj-&gt;name . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line">$obj-&gt;sleep();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<blockquote>
+<p>CSDN博客 - <a href="https://blog.csdn.net/weixin_41599858/article/details/102539902" target="_blank" rel="noopener">PHP（三）- 匿名函数、命名空间以及类与对象的学习！</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>类与对象</tag>
+        <tag>匿名函数</tag>
+        <tag>命名空间</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHP（二）- 前后端交互！</title>
+    <url>/archives/29af8599.html</url>
+    <content><![CDATA[<blockquote>
+<p><strong>html与php混编:</strong></p>
+</blockquote>
+<a id="more"></a>
+<ul>
+<li>如果想让web服务器能自动转发这些请求, 文档的扩展名就不能是.html, 必须是.php</li>
+<li>遇到一个<?php ?>就转发一个cgi请求, 不管这些标签出现在当前文档的什么地方</li>
+<li>用户最终看到的,仍然是一个html文档, php代码中的内容不会被泄漏的</li>
+</ul>
+<h1 id="http请求类型"><a href="#http请求类型" class="headerlink" title="http请求类型"></a>http请求类型</h1><blockquote>
+<p>最常用的就是GET和POST二种请求类型</p>
+</blockquote>
+<h2 id="1、GET-请求"><a href="#1、GET-请求" class="headerlink" title="1、GET 请求"></a>1、GET 请求</h2><ul>
+<li>请求参数以键值对的方式,附加到url地址上,称为查询字符串,用?号与当前脚本分隔 ;</li>
+<li>url格式:index.php?name=peter&amp;age=30 ;</li>
+<li>受url长度限制, GET方式传递的数据也是有限制的;</li>
+<li>服务器端脚本使用预定义变量数组 $_GET 进行接收.</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">		&lt;title&gt;get&lt;/title&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;form action=<span class="string">""</span> method=<span class="string">"get"</span>&gt;</span><br><span class="line">			&lt;label <span class="keyword">for</span>=<span class="string">"email"</span>&gt;邮箱:&lt;/label&gt;</span><br><span class="line">			&lt;input type=<span class="string">"email"</span> id=<span class="string">"email"</span> name=<span class="string">"email"</span> value=<span class="string">""</span>&gt;</span><br><span class="line">			&lt;label <span class="keyword">for</span>=<span class="string">"password"</span>&gt;密码:&lt;/label&gt;</span><br><span class="line">			&lt;input type=<span class="string">"password"</span> id=<span class="string">"password"</span> name=<span class="string">"password"</span> value=<span class="string">""</span>&gt;</span><br><span class="line">			&lt;br/&gt;</span><br><span class="line"></span><br><span class="line">			&lt;!--将用户输入的内容动态添加到value字段中, 创建具有粘性的表单--&gt;</span><br><span class="line">			&lt;label <span class="keyword">for</span>=<span class="string">"email"</span>&gt;邮箱:&lt;/label&gt;</span><br><span class="line">			&lt;input type=<span class="string">"email"</span> id=<span class="string">"email"</span> name=<span class="string">"email"</span> value=<span class="string">"&lt;?php echo isset($_GET['email']) ? $_GET['email'] : ''; ?&gt;"</span>&gt;</span><br><span class="line">			&lt;label <span class="keyword">for</span>=<span class="string">"password"</span>&gt;密码:&lt;/label&gt;</span><br><span class="line">			&lt;input type=<span class="string">"password"</span> id=<span class="string">"password"</span> name=<span class="string">"password"</span> value=<span class="string">"&lt;?php echo isset($_GET['password']) ? $_GET['password'] : '';?&gt;"</span>&gt;</span><br><span class="line">			&lt;br/&gt;</span><br><span class="line"></span><br><span class="line">			&lt;!--简易写法--&gt;</span><br><span class="line">			&lt;label <span class="keyword">for</span>=<span class="string">"email"</span>&gt;邮箱:&lt;/label&gt;</span><br><span class="line">			&lt;input type=<span class="string">"email"</span> id=<span class="string">"email"</span> name=<span class="string">"email"</span> value=<span class="string">"&lt;?php echo $_GET['email'] ?? ''; ?&gt;"</span>&gt;</span><br><span class="line">			&lt;label <span class="keyword">for</span>=<span class="string">"password"</span>&gt;密码:&lt;/label&gt;</span><br><span class="line">			&lt;input type=<span class="string">"password"</span> id=<span class="string">"password"</span> name=<span class="string">"password"</span> value=<span class="string">"&lt;?php echo $_GET['password'] ?? ''; ?&gt;"</span>&gt;</span><br><span class="line"></span><br><span class="line">			&lt;button&gt;登录&lt;/button&gt;</span><br><span class="line">		&lt;/form&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="comment">// 获取通过url发送的变量参数, php通过超全局变量$_GET获取</span></span><br><span class="line">	<span class="comment">// $_GET是一个数组,键名就是get参数名</span></span><br><span class="line">	<span class="comment">// 键名=&gt;变量名, 值=&gt;变量值</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// print_r()格式化打印输出一个数组</span></span><br><span class="line">	print_r($_GET);</span><br><span class="line">	<span class="keyword">echo</span> $_GET[<span class="string">'email'</span>];</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 获取变量之前要进行判断,用isset()</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">isset</span>($_GET[<span class="string">'email'</span>])) &#123;</span><br><span class="line">		<span class="keyword">echo</span> $_GET[<span class="string">'email'</span>];</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">// 给个默认值</span></span><br><span class="line">		$_GET[<span class="string">'email'</span>] = <span class="string">''</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 与js类似,可以用三元运算符进行简化</span></span><br><span class="line">	<span class="keyword">echo</span> <span class="keyword">isset</span>($_GET[<span class="string">'email'</span>]) ? $_GET[<span class="string">'email'</span>] : <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 使用&lt;pre&gt;标签,在网页中可以实现格式化输出</span></span><br><span class="line">	<span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</span><br><span class="line">	print_r($_GET);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2、POST-请求"><a href="#2、POST-请求" class="headerlink" title="2、POST 请求"></a>2、POST 请求</h2><ul>
+<li>请求参数放在header请求头中发送, url地址看不到请求参数,适合敏感信息;</li>
+<li>通常是通过表单提交并, 用来更新服务器上的信息;</li>
+<li>适合发送大量的数据到服务器端, 长度受到配置文件限制,但比GET要大得多;</li>
+<li>服务器端脚本使用预定义变量数组 $_POST 进行接收.</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">		&lt;title&gt;post&lt;/title&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;form action=<span class="string">""</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">			&lt;label <span class="keyword">for</span>=<span class="string">"email"</span>&gt;邮箱:&lt;/label&gt;</span><br><span class="line">			&lt;!--将用户输入的内容动态添加到value字段中, 创建具有粘性的表单--&gt;</span><br><span class="line">			&lt;input type=<span class="string">"email"</span> id=<span class="string">"email"</span> name=<span class="string">"email"</span> value=<span class="string">"&lt;?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?&gt;"</span>&gt;</span><br><span class="line">			&lt;label <span class="keyword">for</span>=<span class="string">"password"</span>&gt;密码:&lt;/label&gt;</span><br><span class="line">			&lt;input type=<span class="string">"password"</span> id=<span class="string">"password"</span> name=<span class="string">"password"</span> value=<span class="string">"&lt;?php echo isset($_POST['email']) ? $_POST['email'] : '';?&gt;"</span>&gt;</span><br><span class="line"></span><br><span class="line">			&lt;button&gt;登录&lt;/button&gt;</span><br><span class="line">		&lt;/form&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="comment">// POST请求, 参数不是通过URL传递, 而是通过请求头</span></span><br><span class="line">	<span class="comment">// 获取通过url发送的变量参数, php通过超全局变量$_POST获取</span></span><br><span class="line">	<span class="comment">// $_POST是一个数组,键名就是POST参数名</span></span><br><span class="line">	<span class="comment">// 键名=&gt;变量名, 值=&gt;变量值</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// print_r()格式化打印输出一个数组</span></span><br><span class="line">	print_r($_POST);</span><br><span class="line">	<span class="keyword">echo</span> $_POST[<span class="string">'email'</span>];</span><br><span class="line">	<span class="comment">// 获取变量之前要进行判断,用isset()</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">isset</span>($_POST[<span class="string">'email'</span>])) &#123;</span><br><span class="line">		<span class="keyword">echo</span> $_POST[<span class="string">'email'</span>];</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;  <span class="comment">// 给个默认值</span></span><br><span class="line">		$_POST[<span class="string">'email'</span>] = <span class="string">''</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 与js类似,可以用三元运算符进行简化</span></span><br><span class="line">	<span class="keyword">echo</span> <span class="keyword">isset</span>($_POST[<span class="string">'email'</span>]) ? $_POST[<span class="string">'email'</span>] : <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 使用&lt;pre&gt;标签,在网页中可以实现格式化输出</span></span><br><span class="line">	<span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</span><br><span class="line">	print_r($_POST);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>详细资料，可参考：<a href="https://www.php.cn/" target="_blank" rel="noopener">php中文网</a></p>
+</blockquote>
+<blockquote>
+<p>CSDN博客 - <a href="https://blog.csdn.net/weixin_41599858/article/details/102539707" target="_blank" rel="noopener">PHP（二）- 前后端交互！</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>前后端交互</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHP（一）- 关于数组的创建和遍历！</title>
+    <url>/archives/c5d93983.html</url>
+    <content><![CDATA[<blockquote>
+<p>本篇博客源自博主在<a href="https://www.php.cn/blog/detail/15494.html" target="_blank" rel="noopener">PHP中文网</a>上写的原文</p>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="PHP数组基本知识"><a href="#PHP数组基本知识" class="headerlink" title="PHP数组基本知识"></a>PHP数组基本知识</h1><h2 id="1-创建"><a href="#1-创建" class="headerlink" title="1.创建"></a>1.创建</h2><h3 id="1-1-索引数组"><a href="#1-1-索引数组" class="headerlink" title="1.1.索引数组"></a>1.1.索引数组</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// 创建索引数组</span></span><br><span class="line">$movies = [<span class="string">'少年派'</span>, <span class="string">'带着爸爸去留学'</span>, <span class="string">'亲爱的, 热爱的'</span>];</span><br><span class="line">print_r($movies);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-关联数组"><a href="#1-2-关联数组" class="headerlink" title="1.2.关联数组"></a>1.2.关联数组</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  $arr = <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">'name1'</span> =&gt; <span class="string">'欧阳克'</span>,</span><br><span class="line">        <span class="string">'age1'</span>  =&gt; <span class="number">18</span>,</span><br><span class="line">        <span class="string">'name2'</span> =&gt; <span class="string">'黄蓉'</span>,</span><br><span class="line">        <span class="string">'age2'</span>  =&gt; <span class="number">16</span>,</span><br><span class="line">        <span class="string">'name3'</span> =&gt; <span class="string">'郭靖'</span>,</span><br><span class="line">        <span class="string">'age3'</span>  =&gt; <span class="number">22</span>,</span><br><span class="line">  );</span><br><span class="line">  var_dump($arr);</span><br><span class="line">  print_r($arr);</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-二维数组"><a href="#1-3-二维数组" class="headerlink" title="1.3.二维数组"></a>1.3.二维数组</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="comment">// 二维数组：索引数组</span></span><br><span class="line">  $arr1 = [</span><br><span class="line">	[</span><br><span class="line">	  <span class="string">'红楼梦'</span>,</span><br><span class="line">	  <span class="string">'水浒传'</span>,</span><br><span class="line">	],</span><br><span class="line">	[</span><br><span class="line">	  <span class="string">'三国演义'</span>,</span><br><span class="line">	  <span class="string">'西游记'</span>,</span><br><span class="line">	],</span><br><span class="line">  ];</span><br><span class="line">  print_r($arr1);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 二维数组：第一层索引数组，第二层关联数组</span></span><br><span class="line">  $arr2 = [</span><br><span class="line">      [</span><br><span class="line">	 <span class="string">'red'</span> =&gt; <span class="string">'红楼梦'</span>,</span><br><span class="line">	 <span class="string">'water'</span> =&gt; <span class="string">'水浒传'</span>,</span><br><span class="line">	],</span><br><span class="line">      [</span><br><span class="line">	 <span class="string">'three'</span> =&gt; <span class="string">'三国演义'</span>,</span><br><span class="line">	 <span class="string">'western'</span> =&gt; <span class="string">'西游记'</span>,</span><br><span class="line">	],</span><br><span class="line">  ];</span><br><span class="line">  print_r($arr2);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 二维数组：关联数组</span></span><br><span class="line">  $arr3 = [</span><br><span class="line">	<span class="string">'one'</span> =&gt; [</span><br><span class="line">		<span class="string">'red'</span> =&gt; <span class="string">'红楼梦'</span>,</span><br><span class="line">		<span class="string">'water'</span> =&gt; <span class="string">'水浒传'</span>,</span><br><span class="line">	],</span><br><span class="line">	<span class="string">'two'</span> =&gt; [</span><br><span class="line">		<span class="string">'three'</span> =&gt; <span class="string">'三国演义'</span>,</span><br><span class="line">		<span class="string">'western'</span> =&gt; <span class="string">'西游记'</span>,</span><br><span class="line">	],</span><br><span class="line">  ];</span><br><span class="line">  print_r($arr3);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 混写数组：一维数组 和 二维数组 混写</span></span><br><span class="line">  <span class="comment">// 二维数组 为其中 一维数组 的 值</span></span><br><span class="line">  $arr4 = [</span><br><span class="line">	<span class="string">'red'</span> =&gt; <span class="string">'红楼梦'</span>,</span><br><span class="line">	<span class="string">'water'</span> =&gt; <span class="string">'水浒传'</span>,</span><br><span class="line">	<span class="string">'two'</span> =&gt; [</span><br><span class="line">		<span class="string">'three'</span> =&gt; <span class="string">'三国演义'</span>,</span><br><span class="line">		<span class="string">'western'</span> =&gt; <span class="string">'西游记'</span>,</span><br><span class="line">	],</span><br><span class="line">  ];</span><br><span class="line">  print_r($arr4);</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-数组的循环遍历"><a href="#2-数组的循环遍历" class="headerlink" title="2.数组的循环遍历"></a>2.数组的循环遍历</h2><h3 id="2-1-一维数组"><a href="#2-1-一维数组" class="headerlink" title="2.1.一维数组"></a>2.1.一维数组</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// 1.数组 循环 混写</span></span><br><span class="line"><span class="comment">// var_dump() 函数可以输出结构（类型和值）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 一维数组：数值数组（索引数组）</span></span><br><span class="line">$arr = [<span class="string">'欧阳'</span>, <span class="string">'司马'</span>, <span class="string">'诸葛'</span>, <span class="string">'西门'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($arr <span class="keyword">as</span> $key =&gt; $value) &#123;</span><br><span class="line">  <span class="comment"># . 为连接符，表示一个字符串</span></span><br><span class="line">  <span class="comment"># , 逗号，表示多个字符串</span></span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"$key"</span> . <span class="string">":"</span> . <span class="string">"$value"</span> . <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;hr&gt;"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 一维数组：关联数组（索引自定义）</span></span><br><span class="line">$arr2 = [</span><br><span class="line">  <span class="string">'o'</span> =&gt; <span class="string">'欧阳'</span>,</span><br><span class="line">  <span class="string">'s'</span> =&gt; <span class="string">'司马'</span>,</span><br><span class="line">  <span class="string">'z'</span> =&gt; <span class="string">'诸葛'</span>,</span><br><span class="line">  <span class="string">'x'</span> =&gt; <span class="string">'西门'</span>,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($arr2 <span class="keyword">as</span> $key =&gt; $value) &#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"$key"</span> . <span class="string">":"</span> . <span class="string">"$value"</span> . <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;hr&gt;"</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-二维数组"><a href="#2-2-二维数组" class="headerlink" title="2.2.二维数组"></a>2.2.二维数组</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// 二维数组：索引数组</span></span><br><span class="line">$arr3 = [</span><br><span class="line">	[</span><br><span class="line">	  <span class="string">'红楼梦'</span>,</span><br><span class="line">	  <span class="string">'水浒传'</span>,</span><br><span class="line">	],</span><br><span class="line">	[</span><br><span class="line">	  <span class="string">'三国演义'</span>,</span><br><span class="line">	  <span class="string">'西游记'</span>,</span><br><span class="line">	],</span><br><span class="line">];</span><br><span class="line"><span class="comment">// 第一层</span></span><br><span class="line"><span class="keyword">foreach</span> ($arr3 <span class="keyword">as</span> $key1 =&gt; $value1) &#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"index1: $key1&lt;br&gt;value1: "</span>;</span><br><span class="line">  var_dump($value1);</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 第二层</span></span><br><span class="line">  <span class="keyword">foreach</span> ($value1 <span class="keyword">as</span> $key2 =&gt; $value2) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"index2: $key2"</span> . <span class="string">":"</span> . <span class="string">"value2: $value2"</span> . <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;hr&gt;"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 二维数组：第一层索引数组，第二层关联数组</span></span><br><span class="line">$arr4 = [</span><br><span class="line">	[</span><br><span class="line">	  <span class="string">'red'</span> =&gt; <span class="string">'红楼梦'</span>,</span><br><span class="line">	  <span class="string">'water'</span> =&gt; <span class="string">'水浒传'</span>,</span><br><span class="line">	],</span><br><span class="line">	[</span><br><span class="line">	  <span class="string">'three'</span> =&gt; <span class="string">'三国演义'</span>,</span><br><span class="line">	  <span class="string">'western'</span> =&gt; <span class="string">'西游记'</span>,</span><br><span class="line">	],</span><br><span class="line">];</span><br><span class="line"><span class="comment">// 第一层</span></span><br><span class="line"><span class="keyword">foreach</span> ($arr4 <span class="keyword">as</span> $key1 =&gt; $value1) &#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"index1: $key1&lt;br&gt;value1: "</span>;</span><br><span class="line">  var_dump($value1);</span><br><span class="line">   <span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 第二层</span></span><br><span class="line">    <span class="keyword">foreach</span> ($value1 <span class="keyword">as</span> $key2 =&gt; $value2) &#123;</span><br><span class="line">	 <span class="keyword">echo</span> <span class="string">"index2: $key2"</span> . <span class="string">":"</span> . <span class="string">"value2: $value2"</span> . <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;hr&gt;"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 二维数组：关联数组</span></span><br><span class="line">$arr5 = [</span><br><span class="line">	<span class="string">'one'</span> =&gt; [</span><br><span class="line">	  <span class="string">'red'</span> =&gt; <span class="string">'红楼梦'</span>,</span><br><span class="line">	  <span class="string">'water'</span> =&gt; <span class="string">'水浒传'</span>,</span><br><span class="line">	],</span><br><span class="line">	<span class="string">'two'</span> =&gt; [</span><br><span class="line">	  <span class="string">'three'</span> =&gt; <span class="string">'三国演义'</span>,</span><br><span class="line">	  <span class="string">'western'</span> =&gt; <span class="string">'西游记'</span>,</span><br><span class="line">	],</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一层</span></span><br><span class="line"><span class="keyword">foreach</span> ($arr5 <span class="keyword">as</span> $key1 =&gt; $value1) &#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"index1: $key1&lt;br&gt;value1: "</span>;</span><br><span class="line">  var_dump($value1);</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 第二层</span></span><br><span class="line">  <span class="keyword">foreach</span> ($value1 <span class="keyword">as</span> $key2 =&gt; $value2) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"index2: $key2"</span> . <span class="string">":"</span> . <span class="string">"value2: $value2"</span> . <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;hr&gt;"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 混写数组：一维数组 和 二维数组 混写</span></span><br><span class="line"><span class="comment">// 二维数组 为其中 一维数组 的 值</span></span><br><span class="line">$arr6 = [</span><br><span class="line">	<span class="string">'red'</span> =&gt; <span class="string">'红楼梦'</span>,</span><br><span class="line">	<span class="string">'water'</span> =&gt; <span class="string">'水浒传'</span>,</span><br><span class="line">	<span class="string">'two'</span> =&gt; [</span><br><span class="line">	  <span class="string">'three'</span> =&gt; <span class="string">'三国演义'</span>,</span><br><span class="line">	  <span class="string">'western'</span> =&gt; <span class="string">'西游记'</span>,</span><br><span class="line">	],</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($arr6 <span class="keyword">as</span> $key1 =&gt; $value1) &#123;</span><br><span class="line">  <span class="comment"># 添加判断</span></span><br><span class="line">  <span class="keyword">if</span> (is_array($value1)) &#123;</span><br><span class="line">    <span class="keyword">foreach</span> ($value1 <span class="keyword">as</span> $key2 =&gt; $value2) &#123;</span><br><span class="line">      <span class="comment"># code...</span></span><br><span class="line">      <span class="keyword">echo</span> <span class="string">"index2: $key2"</span> . <span class="string">":"</span> . <span class="string">"value2: $value2"</span> . <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"index1: $key1"</span> . <span class="string">":"</span> . <span class="string">"value1: $value1"</span> . <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;hr&gt;"</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-三维数组"><a href="#2-3-三维数组" class="headerlink" title="2.3.三维数组"></a>2.3.三维数组</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// 三维数组的遍历</span></span><br><span class="line">$arr7 = [</span><br><span class="line">	<span class="string">'影视'</span> =&gt; [</span><br><span class="line">		<span class="string">'动漫'</span> =&gt; [</span><br><span class="line">			<span class="string">'热血'</span> =&gt; <span class="string">'火影忍者'</span>,</span><br><span class="line">			<span class="string">'暴力'</span> =&gt; <span class="string">'龙珠Z'</span>,</span><br><span class="line">			<span class="string">'科幻'</span> =&gt; <span class="string">'绝命响应'</span>,</span><br><span class="line">			<span class="string">'玄幻'</span> =&gt; <span class="string">'斗罗大陆'</span>,</span><br><span class="line">			<span class="string">'修仙'</span> =&gt; <span class="string">'西行纪'</span>,</span><br><span class="line">			<span class="string">'校园'</span> =&gt; <span class="string">'网球王子'</span>,</span><br><span class="line">		],</span><br><span class="line">		<span class="string">'电影'</span> =&gt; [</span><br><span class="line">			<span class="string">'动作'</span> =&gt; <span class="string">'战狼'</span>,</span><br><span class="line">			<span class="string">'喜剧'</span> =&gt; <span class="string">'港囧'</span>,</span><br><span class="line">			<span class="string">'科幻'</span> =&gt; <span class="string">'流浪地球'</span>,</span><br><span class="line">			<span class="string">'战争'</span> =&gt; <span class="string">'空天猎'</span>,</span><br><span class="line">			<span class="string">'惊悚'</span> =&gt; <span class="string">'午夜整容室'</span>,</span><br><span class="line">			<span class="string">'冒险'</span> =&gt; <span class="string">'机器之血'</span>,</span><br><span class="line">		],</span><br><span class="line">		<span class="string">'剧集'</span> =&gt; [</span><br><span class="line">			<span class="string">'玄幻'</span> =&gt; <span class="string">'将夜'</span>,</span><br><span class="line">			<span class="string">'喜剧'</span> =&gt; <span class="string">'医馆笑传'</span>,</span><br><span class="line">			<span class="string">'科幻'</span> =&gt; <span class="string">'闪电侠'</span>,</span><br><span class="line">			<span class="string">'诡战'</span> =&gt; <span class="string">'和平饭店'</span>,</span><br><span class="line">			<span class="string">'都市'</span> =&gt; <span class="string">'人间至味是清欢'</span>,</span><br><span class="line">			<span class="string">'校园'</span> =&gt; <span class="string">'小欢喜'</span>,</span><br><span class="line">		],</span><br><span class="line">	],</span><br><span class="line">	<span class="string">'书籍'</span> =&gt; [</span><br><span class="line">		<span class="string">'小说'</span> =&gt; [</span><br><span class="line">			<span class="string">'都市'</span> =&gt; <span class="string">'贴身保镖'</span>,</span><br><span class="line">			<span class="string">'末世'</span> =&gt; <span class="string">'末世之无上王座'</span>,</span><br><span class="line">			<span class="string">'网游'</span> =&gt; <span class="string">'灵恸'</span>,</span><br><span class="line">			<span class="string">'玄幻'</span> =&gt; <span class="string">'斗破苍穹'</span>,</span><br><span class="line">			<span class="string">'修仙'</span> =&gt; <span class="string">'凡人修仙传'</span>,</span><br><span class="line">			<span class="string">'同人'</span> =&gt; <span class="string">'火影之最强卡卡西'</span>,</span><br><span class="line">		],</span><br><span class="line">		<span class="string">'名著'</span> =&gt; [</span><br><span class="line">			<span class="string">'中国'</span> =&gt; <span class="string">'三国演义'</span>,</span><br><span class="line">			<span class="string">'法国'</span> =&gt; <span class="string">'悲惨世界'</span>,</span><br><span class="line">			<span class="string">'俄国'</span> =&gt; <span class="string">'战争与和平'</span>,</span><br><span class="line">			<span class="string">'澳大利亚'</span> =&gt; <span class="string">'荆棘鸟'</span>,</span><br><span class="line">		],</span><br><span class="line">	],</span><br><span class="line"></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($arr7 <span class="keyword">as</span> $key1 =&gt; $value1) &#123;</span><br><span class="line">	<span class="comment"># 添加判断</span></span><br><span class="line">	<span class="keyword">if</span> (is_array($value1)) &#123;</span><br><span class="line">		<span class="keyword">foreach</span> ($value1 <span class="keyword">as</span> $key2 =&gt; $value2) &#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="keyword">isset</span>($value2)) &#123;</span><br><span class="line">				<span class="keyword">foreach</span> ($value2 <span class="keyword">as</span> $key3 =&gt; $value3) &#123;</span><br><span class="line">					<span class="keyword">echo</span> <span class="string">"index3: $key3"</span> . <span class="string">":"</span> . <span class="string">"value3: $value3"</span> . <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">echo</span> <span class="string">"&lt;hr&gt;"</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">echo</span> <span class="string">"index2: $key2"</span> . <span class="string">":"</span> . <span class="string">"value2: $value2"</span> . <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"index1: $key1"</span> . <span class="string">":"</span> . <span class="string">"value1: $value1"</span> . <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;hr&gt;"</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<blockquote>
+<p>CSDN博客 - <a href="https://blog.csdn.net/weixin_41599858/article/details/102539549" target="_blank" rel="noopener">PHP（一）- 关于数组的创建和遍历！</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>web前端（一）：HTML标签常用整理！</title>
+    <url>/archives/895d0918.html</url>
+    <content><![CDATA[<blockquote>
+<p>如题，本文主要描述博主对之前前端学习中HTML5标签的一些整理。</p>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="一、基本分类"><a href="#一、基本分类" class="headerlink" title="一、基本分类"></a>一、基本分类</h1><p>HTML4中，元素被分成两大类: inline(内联元素)与block(块级元素)。</p>
+<p><strong>1. 块级元素</strong></p>
+<ul>
+<li>每个块级元素独占一行，</li>
+<li>可以直接控制宽度、高度以及盒子模型的相关css属性，</li>
+<li>默认情况下，其宽度为父级元素内容的宽度，</li>
+<li>默认情况下，其高度为本身内容的高度。</li>
+<li>常用的块级元素有：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;div&gt;</code></td>
+<td>常用块级元素，多用于布局</td>
+</tr>
+<tr>
+<td><code>&lt;h1&gt;...&lt;h6&gt;</code></td>
+<td>一到六级标题</td>
+</tr>
+<tr>
+<td><code>&lt;ol&gt;、&lt;ul&gt;、&lt;li&gt;</code></td>
+<td>有序列表、无序列表、列表项</td>
+</tr>
+<tr>
+<td><code>&lt;dl&gt;、&lt;dt&gt;、&lt;dd&gt;</code></td>
+<td>自定义列表、定义术语（列表项）、定义项目描述</td>
+</tr>
+<tr>
+<td><code>&lt;table&gt;</code></td>
+<td>表格</td>
+</tr>
+<tr>
+<td><code>&lt;p&gt;</code></td>
+<td>段落，也称行内元素</td>
+</tr>
+<tr>
+<td><code>&lt;address&gt;</code></td>
+<td>定义文档作者或拥有者的联系信息</td>
+</tr>
+<tr>
+<td><code>&lt;form&gt;</code></td>
+<td>HTML 表单</td>
+</tr>
+<tr>
+<td><code>&lt;hr&gt;</code></td>
+<td>水平分隔线</td>
+</tr>
+<tr>
+<td><code>&lt;nav&gt;</code></td>
+<td>导航</td>
+</tr>
+<tr>
+<td><code>&lt;aside&gt;</code></td>
+<td>侧边栏</td>
+</tr>
+<tr>
+<td><code>&lt;menu&gt;</code></td>
+<td>菜单列表</td>
+</tr>
+<tr>
+<td><code>&lt;article&gt;</code></td>
+<td>文章</td>
+</tr>
+<tr>
+<td><code>&lt;dialog&gt;</code></td>
+<td>对话窗口</td>
+</tr>
+<tr>
+<td><code>&lt;header&gt;、&lt;footer&gt;</code></td>
+<td>页眉、页脚</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<p><strong>2. 内联元素</strong></p>
+<ul>
+<li>本身属性为<code>display:inline</code>的元素，即和相邻的内联元素在同一行，</li>
+<li>宽高、内外边距（垂直属性）不可改变，</li>
+<li>宽高是由内容本身的大小决定的（文字、图片等）</li>
+<li>常用的内联元素有：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;a&gt;、&lt;b&gt;</code></td>
+<td>锚点、加粗</td>
+</tr>
+<tr>
+<td><code>&lt;span&gt;</code></td>
+<td>常用的内联容器，定义文本内区块</td>
+</tr>
+<tr>
+<td><code>&lt;br&gt;</code></td>
+<td>换行</td>
+</tr>
+<tr>
+<td><code>&lt;i&gt;</code></td>
+<td>定义斜体字</td>
+</tr>
+<tr>
+<td><code>&lt;em&gt;</code></td>
+<td>定义强调文本</td>
+</tr>
+<tr>
+<td><code>&lt;strong&gt;</code></td>
+<td>加粗强调</td>
+</tr>
+<tr>
+<td><code>&lt;label&gt;</code></td>
+<td>定义 input 元素的标注</td>
+</tr>
+<tr>
+<td><code>&lt;cite&gt;</code></td>
+<td>定义引用</td>
+</tr>
+<tr>
+<td><code>&lt;code&gt;</code></td>
+<td>定义计算机代码文本，可以和<code>&lt;pre&gt;</code>连用</td>
+</tr>
+<tr>
+<td><code>&lt;img&gt;</code></td>
+<td>图片</td>
+</tr>
+<tr>
+<td><code>&lt;input&gt;</code></td>
+<td>输入框</td>
+</tr>
+<tr>
+<td><code>&lt;select&gt;</code></td>
+<td>下拉列表</td>
+</tr>
+<tr>
+<td><code>&lt;sub&gt;、&lt;sup&gt;</code></td>
+<td>定义下标文本、上标文本</td>
+</tr>
+<tr>
+<td><code>&lt;textarea&gt;</code></td>
+<td>文本域</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>HTML5中，元素主要分为7类：Metadata（元数据元素）、Flow（流式元素）、Sectioning（章节元素）、Heading（标题元素）、Phrasing（段落元素）、Embedded（嵌入元素）、Interactive（交互元素）。<br><strong>具体描述，可见：<a href="http://chenhaizhou.github.io/2016/01/19/html-element-class.html" target="_blank" rel="noopener">HTML5元素分类与内容模型</a></strong>。</p>
+</blockquote>
+<h1 id="二、HTML5新增特性"><a href="#二、HTML5新增特性" class="headerlink" title="二、HTML5新增特性"></a>二、HTML5新增特性</h1><blockquote>
+<p>相对于HTML4，新增了语义化更好的标签元素和API。</p>
+</blockquote>
+<p><strong>1. 这里列举其中几个常用的标签：</strong></p>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;article&gt;</code></td>
+<td>文章</td>
+</tr>
+<tr>
+<td><code>&lt;aside&gt;</code></td>
+<td>侧边栏</td>
+</tr>
+<tr>
+<td><code>&lt;nav&gt;</code></td>
+<td>导航组</td>
+</tr>
+<tr>
+<td><code>&lt;video&gt;</code></td>
+<td>定义视频</td>
+</tr>
+<tr>
+<td><code>&lt;audio&gt;</code></td>
+<td>定义音频</td>
+</tr>
+<tr>
+<td><code>&lt;canvas&gt;</code></td>
+<td>定义图形，比如图表和其他图像，该标签是基于js的绘图api</td>
+</tr>
+<tr>
+<td><code>&lt;svg&gt;</code></td>
+<td>定义使用 SVG 的图像绘制， XML 格式定义图形</td>
+</tr>
+<tr>
+<td><code>&lt;progress&gt;</code></td>
+<td>状态标签（任务过程：安装、加载）</td>
+</tr>
+<tr>
+<td><code>&lt;menu&gt;</code></td>
+<td>菜单列表</td>
+</tr>
+<tr>
+<td><code>&lt;time&gt;</code></td>
+<td>定义日期/时间</td>
+</tr>
+<tr>
+<td><code>&lt;ruby&gt;</code></td>
+<td>ruby注释</td>
+</tr>
+<tr>
+<td><code>&lt;dialog&gt;</code></td>
+<td>定义对话框或窗口</td>
+</tr>
+<tr>
+<td><code>&lt;details&gt;</code></td>
+<td>定义用户可查看或隐藏的额外细节</td>
+</tr>
+<tr>
+<td><code>&lt;datalist&gt;</code></td>
+<td>定义输入控件的预定义选项</td>
+</tr>
+<tr>
+<td><code>&lt;keygen&gt;</code></td>
+<td>定义表单里一个生产的键值，加密信息传送</td>
+</tr>
+<tr>
+<td><code>&lt;output&gt;</code></td>
+<td>定义计算结果</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<p><strong>2. 新增的API有：</strong></p>
+<ul>
+<li>上面提的<code>&lt;canvas&gt;</code> 和 <code>&lt;svg&gt;</code>，一个是基于js的绘图api，一个是使用 XML 格式定义矢量图形api，各有千秋。</li>
+<li>Geolocation（地理定位）：用于获得用户的地理位置的api，<code>getCurrentPosition()</code>方法用于检测是否支持定位，<code>showPosition()</code> 函数获得并显示经度和纬度。</li>
+<li>Drag/Drop（拖放）： 把 <code>draggable</code> 属性设置为 ‘true’，表示设置元素拖放，具体操作参考api中的方法。</li>
+<li>web存储：<code>localStorage</code>、<code>sessionStorage</code> 。</li>
+<li>应用程序缓存：通过给<code>&lt;html&gt;</code> 标签中添加 <code>manifest</code>属性，启用应用程序缓存，<code>manifest</code> 文件的建议文件扩展名为<code>&quot;.appcache&quot;</code>。</li>
+<li>WebSockets：要连接远程主机，只需新建一个WebSocket实例，提供希望连接的对端URL。</li>
+</ul>
+<blockquote>
+<p>更多，可见：<a href="https://www.w3school.com.cn/html/html5_new_elements.asp" target="_blank" rel="noopener">W3school -  HTML5 新元素</a></p>
+</blockquote>
+<h1 id="三、部分标签使用"><a href="#三、部分标签使用" class="headerlink" title="三、部分标签使用"></a>三、部分标签使用</h1><p><strong>1. 列表</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 1.无序列表 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>购物车<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1.苹果<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>2.香蕉<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>3.蓝莓<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 2.有序列表 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>饮料<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>1.牛奶<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>2.橙汁<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>3.奶茶<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 3.定义列表 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>php<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dd</span>&gt;</span>全球通用服务器端编程语言<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dd</span>&gt;</span>全球最广泛的开源关系型数据库系统<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>Laravel<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dd</span>&gt;</span>全球最广泛的开源PHP开发框架<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>显示：<br><img src="https://img-blog.csdnimg.cn/20191006172539531.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt></p>
+<p><strong>2. 表格</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>表格<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">"1"</span> <span class="attr">width</span>=<span class="string">"500"</span> <span class="attr">cellspacing</span>=<span class="string">"0"</span> <span class="attr">cellpadding</span>=<span class="string">"5"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 1标题 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">caption</span>&gt;</span><span class="tag">&lt;<span class="name">h2</span>&gt;</span>购物车<span class="tag">&lt;/<span class="name">h2</span>&gt;</span><span class="tag">&lt;/<span class="name">caption</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 2表头 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span> <span class="attr">bgcolor</span>=<span class="string">"bluegreen"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>编号<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>名称<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>单价<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>数量<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>金额<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">th</span>&gt;</span>付款人<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 3.主体 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>电脑<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>10000<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>10000<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span> <span class="attr">rowspan</span>=<span class="string">"4"</span> <span class="attr">align</span>=<span class="string">"center"</span>&gt;</span>Alfred<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>手机<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>2000<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>4000<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>3<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>鼠标<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>300<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>3<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>900<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 4.底部 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">"3"</span> <span class="attr">align</span>=<span class="string">"center"</span>&gt;</span>合计<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>6<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">td</span>&gt;</span>14900<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>显示：<br><img src="https://img-blog.csdnimg.cn/20191006173042725.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt></p>
+<p><strong>3. 表单控件</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>表单和表单控件<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>用户注册<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"login.php"</span> <span class="attr">method</span>=<span class="string">"POST"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 1表单分组 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span> <span class="attr">style</span>=<span class="string">"border: none;background-color: rgba(22, 73, 167, 0.671);"</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 2分组名称 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">legend</span>&gt;</span>基本信息<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"username"</span>&gt;</span>账号：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">id</span>=<span class="string">"username"</span> <span class="attr">placeholder</span>=<span class="string">"不能超过8个字符"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"password"</span>&gt;</span>密码：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">id</span>=<span class="string">"password"</span> <span class="attr">placeholder</span>=<span class="string">"必须在6-12位之间"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"email"</span>&gt;</span>邮箱：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span> <span class="attr">name</span>=<span class="string">"email"</span> <span class="attr">id</span>=<span class="string">"email"</span> <span class="attr">placeholder</span>=<span class="string">"example@email.com"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"age"</span>&gt;</span>年龄：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">id</span>=<span class="string">"age"</span> <span class="attr">min</span>=<span class="string">"16"</span> <span class="attr">max</span>=<span class="string">"80"</span> <span class="attr">width</span>=<span class="string">"500"</span> <span class="attr">placeholder</span>=<span class="string">"范围：16-80"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">legend</span>&gt;</span>兴趣爱好<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">""</span>&gt;</span>课程：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 下拉列表 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">id</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">          <span class="comment">&lt;!-- 分组 --&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>请选择<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;<span class="name">optgroup</span> <span class="attr">label</span>=<span class="string">"前端"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>HTML5<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>CSS3<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span> <span class="attr">selected</span>&gt;</span>JavaScript<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">optgroup</span>&gt;</span></span><br><span class="line">          </span><br><span class="line">          <span class="tag">&lt;<span class="name">optgroup</span> <span class="attr">label</span>=<span class="string">"后端"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>PHP<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>Laravel<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">optgroup</span>&gt;</span></span><br><span class="line">          </span><br><span class="line">        <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">""</span>&gt;</span>爱好：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 复选框 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"hobby[]"</span> <span class="attr">value</span>=<span class="string">"game"</span> <span class="attr">id</span>=<span class="string">"game"</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"game"</span>&gt;</span>玩游戏<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"hobby[]"</span> <span class="attr">value</span>=<span class="string">"programme"</span> <span class="attr">id</span>=<span class="string">"programme"</span> <span class="attr">checked</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"programme"</span>&gt;</span>编程<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"hobby[]"</span> <span class="attr">value</span>=<span class="string">"moves"</span> <span class="attr">id</span>=<span class="string">"moves"</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"moves"</span>&gt;</span>影视<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">""</span>&gt;</span>性别：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 单选框 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"gender"</span> <span class="attr">id</span>=<span class="string">"male"</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"male"</span>&gt;</span>男生<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"gender"</span> <span class="attr">id</span>=<span class="string">"female"</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"female"</span>&gt;</span>女生<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"gender"</span> <span class="attr">id</span>=<span class="string">"secret"</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"secret"</span>&gt;</span>保密<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">legend</span>&gt;</span>按钮操作<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 常用按钮 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"reset"</span> <span class="attr">name</span>=<span class="string">"reset"</span> <span class="attr">value</span>=<span class="string">"重置"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button "</span> <span class="attr">name</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"按钮"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">""</span>&gt;</span>注册<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 上传提交  --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">id</span>=<span class="string">""</span> <span class="attr">multiple</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"image"</span> <span class="attr">src</span>=<span class="string">"submit.gif"</span> <span class="attr">alt</span>=<span class="string">"提交"</span> <span class="attr">height</span>=<span class="string">"50"</span> <span class="attr">width</span>=<span class="string">"auto"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">value</span>=<span class="string">"china"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 文本域 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">id</span>=<span class="string">""</span> <span class="attr">cols</span>=<span class="string">"100"</span> <span class="attr">rows</span>=<span class="string">"10"</span> <span class="attr">style</span>=<span class="string">"resize: both"</span>&gt;</span></span><br><span class="line">          <span class="comment">&lt;!-- 新增表单属性 --&gt;</span></span><br><span class="line">          1.placeholder：设置提示信息或默认值；</span><br><span class="line">          2.autofocus：自动获取输入焦点；</span><br><span class="line">            e.g.  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">id</span>=<span class="string">"username"</span> <span class="attr">autofocus</span>&gt;</span></span><br><span class="line">          3.required：设置字段为必填项；</span><br><span class="line">            e.g.  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">id</span>=<span class="string">"username"</span> <span class="attr">required</span>&gt;</span></span><br><span class="line">          4.pattern：正则表达式验证，更加精准的控制用户的输入；</span><br><span class="line">            e.g.  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">id</span>=<span class="string">"username"</span> <span class="attr">pattern</span>=<span class="string">"[A-Z]&#123;6&#125;"</span>&gt;</span></span><br><span class="line">          5.list：list属性值必须与input的id值一致，实现dataliist列表与控件绑定；</span><br><span class="line">          6.width和height：（宽高）只要设置其中一个即可，另一个等比缩放；</span><br><span class="line">            e.g.  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"image"</span> <span class="attr">scr</span>=<span class="string">"img.jpg"</span> <span class="attr">width</span>=<span class="string">"50"</span> <span class="attr">alt</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line">          7.min、max和step：区间和步长设置；</span><br><span class="line">            e.g.  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">name</span>=<span class="string">"salary"</span> <span class="attr">min</span>=<span class="string">"10000"</span> <span class="attr">max</span>=<span class="string">"50000"</span> <span class="attr">step</span>=<span class="string">"500"</span>&gt;</span></span><br><span class="line">          8.novalidate：提交时放弃数据验证（交给服务器验证）；</span><br><span class="line">            e.g.  <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">novalidate</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">          <span class="comment">&lt;!-- 新增表单类型 --&gt;</span></span><br><span class="line">          1.number：仅限数值型数据；</span><br><span class="line">            e.g.  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">id</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">          2.date：仅限日期类型数据；</span><br><span class="line">            e.g.  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"date"</span> <span class="attr">min</span>=<span class="string">"2017-02-18"</span> <span class="attr">max</span>=<span class="string">"2019-09-01"</span> <span class="attr">value</span>=<span class="string">"2018-10-01"</span>&gt;</span></span><br><span class="line">          3.time：仅限时间型数据，只允许设置小时区间，分钟供参考；</span><br><span class="line">            e.g.  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"time"</span> <span class="attr">min</span>=<span class="string">"10:10"</span> <span class="attr">max</span>=<span class="string">"22:00"</span> <span class="attr">value</span>=<span class="string">"21:00"</span>&gt;</span></span><br><span class="line">          以上都是输入时验证；</span><br><span class="line">          4.email：仅限于电邮地址类型；</span><br><span class="line">            e.g.  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">id</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">          5.search：有内容时，会显示一个取消图标；</span><br><span class="line">          6.url：仅限以http:// 或 https:// 开头的url地址；</span><br><span class="line">          以上类型，提交时验证；</span><br><span class="line">          7.color：通过系统调色板来获取颜色，返回16进制颜色值；</span><br><span class="line">            e.g.  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"color"</span> <span class="attr">name</span>=<span class="string">"color"</span> <span class="attr">id</span>=<span class="string">"color"</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn"</span>&gt;</span>获取颜色值<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"color-value"</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">                    <span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>).onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                      <span class="built_in">document</span>.getElementById(<span class="string">"color-value"</span>).value = <span class="built_in">document</span>.getElementById(<span class="string">"color"</span>).value;</span></span><br><span class="line">                    &#125;</span><br><span class="line">                  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">          </span><br><span class="line">        <span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 搜索框 + datalist --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"search"</span>&gt;</span>搜索：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"search"</span> <span class="attr">id</span>=<span class="string">"search"</span> <span class="attr">list</span>=<span class="string">"keyword"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">datalist</span> <span class="attr">id</span>=<span class="string">"keyword"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"html"</span>&gt;</span>html<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"css3"</span>&gt;</span>css3<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"javascript"</span>&gt;</span>javascript<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"vue"</span>&gt;</span>vue<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"bootstrap"</span>&gt;</span>bootstrap<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"php"</span>&gt;</span>php<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"python"</span>&gt;</span>python<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"ruby"</span>&gt;</span>ruby<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">datalist</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 音视频标签 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">legend</span>&gt;</span>音视频标签<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 1.视频 --&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 相关属性：</span></span><br><span class="line"><span class="comment">        controls：设置可控；</span></span><br><span class="line"><span class="comment">        autoplay：自动播放（与preload预加载属性相互排斥）；</span></span><br><span class="line"><span class="comment">        muted：静音；</span></span><br><span class="line"><span class="comment">        poster：自定义海报； --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">"http://upos-hz-mirrorcosu.acgvideo.com/upgcxcode/54/67/119866754/119866754-1-6.mp4?e=ig8euxZM2rNcNbRM7WdVhoM17wUVhwdEto8g5X10ugNcXBB_&amp;deadline=1570364892&amp;gen=playurl&amp;nbs=1&amp;oi=2045622435&amp;os=cosu&amp;platform=html5&amp;trid=8c09fdc066c2410a8b74f4bd9451d90a&amp;uipk=5&amp;upsig=8cf6c9ef4fe4bfaf6b61ba5354096f34&amp;uparams=e,deadline,gen,nbs,oi,os,platform,trid,uipk&amp;mid=0"</span> <span class="attr">width</span>=<span class="string">"360"</span> <span class="attr">controls</span> <span class="attr">poster</span>=<span class="string">"http://www.laststand.cn/uploads/allimg/180911/4-1P911144R4551.jpg"</span>&gt;</span>街舞<span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment">&lt;!-- 2.音频 --&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 相关属性：</span></span><br><span class="line"><span class="comment">        controls：设置可控制；</span></span><br><span class="line"><span class="comment">        autoplay：自动播放（与preload预加载属性相互排斥）；</span></span><br><span class="line"><span class="comment">        muted：静音；</span></span><br><span class="line"><span class="comment">        loop：循环播放 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">audio</span> <span class="attr">src</span>=<span class="string">"http://music.163.com/song/media/outer/url?id=29004400.mp3"</span> <span class="attr">controls</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>显示：<br><img src="https://img-blog.csdnimg.cn/20191006183242952.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt><br><img src="https://img-blog.csdnimg.cn/2019100618330129.png" alt><br><img src="https://img-blog.csdnimg.cn/2019100618332546.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt><br><img src="https://img-blog.csdnimg.cn/20191006183344691.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt></p>
+<hr>
+<p>结束！</p>
+<blockquote>
+<p>原文地址： CSDN博客 - <a href="https://blog.csdn.net/weixin_41599858/article/details/102230925" target="_blank" rel="noopener">Web前端（一） - HTML标签常用整理！</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SQL（一）：关于MySQL8.0版本：用户、密码和权限的问题！</title>
     <url>/archives/5ad10cde.html</url>
     <content><![CDATA[<blockquote>
@@ -232,8 +677,8 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>next</tag>
         <tag>基本配置</tag>
+        <tag>next</tag>
       </tags>
   </entry>
   <entry>
@@ -1228,7 +1673,7 @@
 <h3 id="方式三：存放到根目录"><a href="#方式三：存放到根目录" class="headerlink" title="方式三：存放到根目录"></a>方式三：存放到根目录</h3><ul>
 <li>引用：</li>
 </ul>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">描述</span>](<span class="link">/&#123;root&#125;/&#123;图片目录&#125;/你的图片</span>)</span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- e.g. --&gt;</span></span></span><br><span class="line">![<span class="string">issue</span>](<span class="link">/blog/images/gitissue/issue.png</span>)</span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- 使用样式： --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">width</span>=<span class="string">"50%"</span> <span class="attr">height</span>=<span class="string">"50%"</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">描述</span>](<span class="link">/&#123;root&#125;/&#123;图片目录&#125;/你的图片</span>)</span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- e.g. --&gt;</span></span></span><br><span class="line">![<span class="string">issue</span>](<span class="link">/images/gitissue/issue.png</span>)</span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- 使用样式： --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">width</span>=<span class="string">"50%"</span> <span class="attr">height</span>=<span class="string">"50%"</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>参考：<a href="https://www.zhihu.com/question/23378396" target="_blank" rel="noopener">知乎提问</a></p>
@@ -1245,7 +1690,7 @@
 <h2 id="4-添加心知天气"><a href="#4-添加心知天气" class="headerlink" title="4.添加心知天气"></a>4.添加心知天气</h2><h3 id="4-1-注册账号，设置天气样式："><a href="#4-1-注册账号，设置天气样式：" class="headerlink" title="4.1.注册账号，设置天气样式："></a>4.1.注册账号，设置天气样式：</h3><ul>
 <li>进入<a href="https://www.seniverse.com/widgetv3" target="_blank" rel="noopener">官网</a>注册，选择样式：</li>
 </ul>
-<p><img src="/blog/images/weather/xinzhi-weather.png" alt="心知天气"></p>
+<p><img src="/images/weather/xinzhi-weather.png" alt="心知天气"></p>
 <ul>
 <li>点击生成代码，复制代码：</li>
 </ul>
@@ -1298,12 +1743,12 @@
 <li>去<a href="http://www.daovoice.io/" target="_blank" rel="noopener">官网</a>注册一个账号，复制我的邀请码<a href="http://dashboard.daovoice.io/get-started" target="_blank" rel="noopener">eb35ef31</a>，然后直接点击开始注册：</li>
 </ul>
 <div align="center">
-  <img src="/blog/images/daovoice/daovoice_register.png" width="50%">
+  <img src="/images/daovoice/daovoice_register.png" width="50%">
 </div>
 
 <ul>
 <li>完成后，显示如下界面：<div align="center">
-<img src="/blog/images/daovoice/daovoice_config.png" width="75%">
+<img src="/images/daovoice/daovoice_config.png" width="75%">
 </div>
 
 </li>
@@ -1314,7 +1759,7 @@
 </ul>
 <p>找到 <strong><code>[应用设置]</code></strong> -&gt; <strong><code>[聊天设置]</code></strong>，修改 :</p>
 <div align="center">
-  <img src="/blog/images/daovoice/daovoice_style.png" width="75%">
+  <img src="/images/daovoice/daovoice_style.png" width="75%">
 </div>
 
 <p>接下来有提示，复制框1、3中的代码到head文件中，放在 <code>&lt;/head&gt;</code> 标签之前。</p>
@@ -1437,9 +1882,9 @@
 <p>首先要注册 <a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">OAuth Application</a> 当别人评论你的文章时，会需要它是授权。</p>
 </blockquote>
 <br>
-<!-- ![OAuth](/blog/images/gitissue/oauth.png) -->
+<!-- ![OAuth](/images/gitissue/oauth.png) -->
 <div align="center">
-  <img src="/blog/images/gitissue/oauth.png" width="400px">
+  <img src="/images/gitissue/oauth.png" width="400px">
 </div>
 
 <p>注册成功后，会获取到 <code>Client ID/scerct</code> ，需要填入配置文件中。</p>
@@ -1756,8 +2201,8 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>基本配置</tag>
         <tag>yilia</tag>
+        <tag>基本配置</tag>
       </tags>
   </entry>
   <entry>

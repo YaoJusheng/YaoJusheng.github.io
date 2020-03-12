@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yaojusheng.github.io/"/>
-  <updated>2020-03-10T15:26:33.130Z</updated>
+  <updated>2020-03-12T13:20:38.804Z</updated>
   <id>http://yaojusheng.github.io/</id>
   
   <author>
@@ -15,6 +15,110 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PHP（三）- 匿名函数、命名空间以及类与对象的学习！</title>
+    <link href="http://yaojusheng.github.io/archives/25de20b7.html"/>
+    <id>http://yaojusheng.github.io/archives/25de20b7.html</id>
+    <published>2020-03-12T13:16:37.000Z</published>
+    <updated>2020-03-12T13:20:38.804Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;本篇博客来自博主在&lt;a href=&quot;https://www.php.cn/blog/detail/15677.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;php中文网&lt;/a&gt;上写的一篇，移至CSDN作为记录。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="PHP" scheme="http://YaoJusheng.github.io/categories/PHP/"/>
+    
+    
+      <category term="类与对象" scheme="http://YaoJusheng.github.io/tags/%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1/"/>
+    
+      <category term="匿名函数" scheme="http://YaoJusheng.github.io/tags/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0/"/>
+    
+      <category term="命名空间" scheme="http://YaoJusheng.github.io/tags/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP（二）- 前后端交互！</title>
+    <link href="http://yaojusheng.github.io/archives/29af8599.html"/>
+    <id>http://yaojusheng.github.io/archives/29af8599.html</id>
+    <published>2020-03-12T13:09:54.000Z</published>
+    <updated>2020-03-12T13:14:26.179Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;html与php混编:&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="PHP" scheme="http://YaoJusheng.github.io/categories/PHP/"/>
+    
+    
+      <category term="前后端交互" scheme="http://YaoJusheng.github.io/tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP（一）- 关于数组的创建和遍历！</title>
+    <link href="http://yaojusheng.github.io/archives/c5d93983.html"/>
+    <id>http://yaojusheng.github.io/archives/c5d93983.html</id>
+    <published>2020-03-12T12:57:01.000Z</published>
+    <updated>2020-03-12T13:11:30.441Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;本篇博客源自博主在&lt;a href=&quot;https://www.php.cn/blog/detail/15494.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PHP中文网&lt;/a&gt;上写的原文&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="PHP" scheme="http://YaoJusheng.github.io/categories/PHP/"/>
+    
+    
+      <category term="数组" scheme="http://YaoJusheng.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>web前端（一）：HTML标签常用整理！</title>
+    <link href="http://yaojusheng.github.io/archives/895d0918.html"/>
+    <id>http://yaojusheng.github.io/archives/895d0918.html</id>
+    <published>2020-03-11T14:14:51.000Z</published>
+    <updated>2020-03-12T12:50:19.592Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;如题，本文主要描述博主对之前前端学习中HTML5标签的一些整理。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="前端" scheme="http://YaoJusheng.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="HTML" scheme="http://YaoJusheng.github.io/tags/HTML/"/>
+    
+  </entry>
   
   <entry>
     <title>SQL（一）：关于MySQL8.0版本：用户、密码和权限的问题！</title>
@@ -63,9 +167,9 @@
       <category term="Hexo" scheme="http://YaoJusheng.github.io/categories/Hexo/"/>
     
     
-      <category term="next" scheme="http://YaoJusheng.github.io/tags/next/"/>
-    
       <category term="基本配置" scheme="http://YaoJusheng.github.io/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="next" scheme="http://YaoJusheng.github.io/tags/next/"/>
     
   </entry>
   
@@ -300,7 +404,7 @@
     <link href="http://yaojusheng.github.io/archives/915cb590.html"/>
     <id>http://yaojusheng.github.io/archives/915cb590.html</id>
     <published>2020-02-21T07:59:48.000Z</published>
-    <updated>2020-03-01T13:50:36.497Z</updated>
+    <updated>2020-03-11T12:16:18.863Z</updated>
     
     <summary type="html">
     
@@ -350,7 +454,7 @@
     <link href="http://yaojusheng.github.io/archives/37394.html"/>
     <id>http://yaojusheng.github.io/archives/37394.html</id>
     <published>2020-02-18T09:37:08.000Z</published>
-    <updated>2020-03-01T13:50:07.979Z</updated>
+    <updated>2020-03-11T12:16:18.863Z</updated>
     
     <summary type="html">
     
@@ -414,32 +518,9 @@
       <category term="Hexo" scheme="http://YaoJusheng.github.io/categories/Hexo/"/>
     
     
-      <category term="基本配置" scheme="http://YaoJusheng.github.io/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/"/>
-    
       <category term="yilia" scheme="http://YaoJusheng.github.io/tags/yilia/"/>
     
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://yaojusheng.github.io/archives/16107.html"/>
-    <id>http://yaojusheng.github.io/archives/16107.html</id>
-    <published>2020-02-12T09:37:37.000Z</published>
-    <updated>2020-03-02T13:05:59.073Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="网站" scheme="http://YaoJusheng.github.io/categories/%E7%BD%91%E7%AB%99/"/>
-    
-      <category term="Hexo" scheme="http://YaoJusheng.github.io/categories/Hexo/"/>
-    
-    
-      <category term="hello world" scheme="http://YaoJusheng.github.io/tags/hello-world/"/>
+      <category term="基本配置" scheme="http://YaoJusheng.github.io/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/"/>
     
   </entry>
   
