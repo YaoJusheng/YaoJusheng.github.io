@@ -163,7 +163,7 @@ post_asset_folder: true
 ```markdown
 ![描述](/{root}/{图片目录}/你的图片)
 <!-- e.g. -->
-![issue](/blog/images/gitissue/issue.png)
+![issue](/images/gitissue/issue.png)
 <!-- 使用样式： -->
 <img src="" width="50%" height="50%">
 ```
@@ -205,7 +205,7 @@ post_asset_folder: true
 
 - 进入[官网](https://www.seniverse.com/widgetv3)注册，选择样式：
 
-![心知天气](/blog/images/weather/xinzhi-weather.png)
+![心知天气](/images/weather/xinzhi-weather.png)
 
 - 点击生成代码，复制代码：
 
@@ -411,12 +411,12 @@ copyright:
 - 去[官网](http://www.daovoice.io/)注册一个账号，复制我的邀请码[eb35ef31](http://dashboard.daovoice.io/get-started)，然后直接点击开始注册：
 
 <div align="center">
-  <img src="/blog/images/daovoice/daovoice_register.png" width="50%">
+  <img src="/images/daovoice/daovoice_register.png" width="50%">
 </div>
 
 - 完成后，显示如下界面：
 <div align="center">
-  <img src="/blog/images/daovoice/daovoice_config.png" width="75%">
+  <img src="/images/daovoice/daovoice_config.png" width="75%">
 </div>
 
 可以通过点击 **`点击接入`** ，或路径 **`[应用设置]`** -> **`[安装到网站]`** 找到。
@@ -425,7 +425,7 @@ copyright:
 
 找到 **`[应用设置]`** -> **`[聊天设置]`**，修改 :
 <div align="center">
-  <img src="/blog/images/daovoice/daovoice_style.png" width="75%">
+  <img src="/images/daovoice/daovoice_style.png" width="75%">
 </div>
 
 接下来有提示，复制框1、3中的代码到head文件中，放在 `</head>` 标签之前。

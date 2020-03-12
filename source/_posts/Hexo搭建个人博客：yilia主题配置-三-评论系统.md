@@ -33,9 +33,9 @@ abbrlink: 37394
 > 首先要注册 [OAuth Application](https://github.com/settings/applications/new) 当别人评论你的文章时，会需要它是授权。
 
 <br>
-<!-- ![OAuth](/blog/images/gitissue/oauth.png) -->
+<!-- ![OAuth](/images/gitissue/oauth.png) -->
 <div align='center'>
-  <img src="/blog/images/gitissue/oauth.png" width="400px" />
+  <img src="/images/gitissue/oauth.png" width="400px" />
 </div>
 
 注册成功后，会获取到 `Client ID/scerct` ，需要填入配置文件中。
