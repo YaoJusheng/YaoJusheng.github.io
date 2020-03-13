@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yaojusheng.github.io/"/>
-  <updated>2020-03-12T13:20:38.804Z</updated>
+  <updated>2020-03-13T14:34:39.807Z</updated>
   <id>http://yaojusheng.github.io/</id>
   
   <author>
@@ -17,16 +17,291 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>PHP（三）- 匿名函数、命名空间以及类与对象的学习！</title>
-    <link href="http://yaojusheng.github.io/archives/25de20b7.html"/>
-    <id>http://yaojusheng.github.io/archives/25de20b7.html</id>
-    <published>2020-03-12T13:16:37.000Z</published>
-    <updated>2020-03-12T13:20:38.804Z</updated>
+    <title>Python（七）- 连接MongoDB数据库以及CURD操作！</title>
+    <link href="http://yaojusheng.github.io/archives/db519792.html"/>
+    <id>http://yaojusheng.github.io/archives/db519792.html</id>
+    <published>2020-03-13T14:11:29.000Z</published>
+    <updated>2020-03-13T14:34:39.807Z</updated>
     
     <summary type="html">
     
       &lt;blockquote&gt;
-&lt;p&gt;本篇博客来自博主在&lt;a href=&quot;https://www.php.cn/blog/detail/15677.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;php中文网&lt;/a&gt;上写的一篇，移至CSDN作为记录。&lt;/p&gt;
+&lt;p&gt;本文介绍python中对MongoDB数据库操作的两个模块：&lt;code&gt;pymongo&lt;/code&gt;    和 &lt;code&gt;mongoengine&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
+    
+    
+      <category term="CURD" scheme="http://YaoJusheng.github.io/tags/CURD/"/>
+    
+      <category term="MongoDB" scheme="http://YaoJusheng.github.io/tags/MongoDB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python（六）- 连接MySQL数据库以及CURD操作！</title>
+    <link href="http://yaojusheng.github.io/archives/17f677f9.html"/>
+    <id>http://yaojusheng.github.io/archives/17f677f9.html</id>
+    <published>2020-03-13T14:07:49.000Z</published>
+    <updated>2020-03-13T14:34:25.151Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;本文介绍python中对MySQL数据库操作的几个模块&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
+    
+    
+      <category term="MySQL" scheme="http://YaoJusheng.github.io/tags/MySQL/"/>
+    
+      <category term="CURD" scheme="http://YaoJusheng.github.io/tags/CURD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python（五）- 连接sqlite3以及CURD操作！</title>
+    <link href="http://yaojusheng.github.io/archives/5e26e967.html"/>
+    <id>http://yaojusheng.github.io/archives/5e26e967.html</id>
+    <published>2020-03-13T14:02:59.000Z</published>
+    <updated>2020-03-13T14:34:06.539Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;本文主要描述使用python连接sqlite数据库，并进行简单的CURD操作&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
+    
+    
+      <category term="CURD" scheme="http://YaoJusheng.github.io/tags/CURD/"/>
+    
+      <category term="SQLite" scheme="http://YaoJusheng.github.io/tags/SQLite/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python（四）- 数据类型及常用的操作！</title>
+    <link href="http://yaojusheng.github.io/archives/2fc509ab.html"/>
+    <id>http://yaojusheng.github.io/archives/2fc509ab.html</id>
+    <published>2020-03-13T13:53:24.000Z</published>
+    <updated>2020-03-13T14:02:21.901Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;所有语言的开端都绕不开数据类型，作为面向对象语言，Python之所以深受欢迎，同样离不开其丰富的数据类型&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
+    
+    
+      <category term="数据类型" scheme="http://YaoJusheng.github.io/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
+    
+      <category term="基本操作" scheme="http://YaoJusheng.github.io/tags/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python（三）- 交互式编程：jupyter的安装、使用以及出现的部分问题！</title>
+    <link href="http://yaojusheng.github.io/archives/441b84e2.html"/>
+    <id>http://yaojusheng.github.io/archives/441b84e2.html</id>
+    <published>2020-03-13T13:49:06.000Z</published>
+    <updated>2020-03-13T13:55:20.941Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;如题，本次主要聊聊关于交互式编程在Python中的应用。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
+    
+    
+      <category term="交互式编程" scheme="http://YaoJusheng.github.io/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="jupyter" scheme="http://YaoJusheng.github.io/tags/jupyter/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python（二）- 虚拟环境管理：pyenv、virtualwnv、virtualenvwrapper的安装</title>
+    <link href="http://yaojusheng.github.io/archives/9ceab481.html"/>
+    <id>http://yaojusheng.github.io/archives/9ceab481.html</id>
+    <published>2020-03-13T13:44:31.000Z</published>
+    <updated>2020-03-13T13:47:23.517Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;python 中使用虚拟环境&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
+    
+    
+      <category term="虚拟环境" scheme="http://YaoJusheng.github.io/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python（一）- 安装与升级！</title>
+    <link href="http://yaojusheng.github.io/archives/3b7f3111.html"/>
+    <id>http://yaojusheng.github.io/archives/3b7f3111.html</id>
+    <published>2020-03-13T13:32:51.000Z</published>
+    <updated>2020-03-13T13:41:51.237Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;由于重装了系统，一些工具都要重新安装，正好，准备做一点记录。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;这里是Python的开始…&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
+    
+    
+      <category term="环境搭建" scheme="http://YaoJusheng.github.io/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP（六）- 抽象类的继承与MySQL接口CURD操作的实现！</title>
+    <link href="http://yaojusheng.github.io/archives/f1afa15c.html"/>
+    <id>http://yaojusheng.github.io/archives/f1afa15c.html</id>
+    <published>2020-03-13T13:25:42.000Z</published>
+    <updated>2020-03-13T14:33:30.678Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;本篇博客移值自博主在PHP中文网上写的原文，这里做个记录&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="PHP" scheme="http://YaoJusheng.github.io/categories/PHP/"/>
+    
+    
+      <category term="类继承" scheme="http://YaoJusheng.github.io/tags/%E7%B1%BB%E7%BB%A7%E6%89%BF/"/>
+    
+      <category term="MySQL" scheme="http://YaoJusheng.github.io/tags/MySQL/"/>
+    
+      <category term="CURD" scheme="http://YaoJusheng.github.io/tags/CURD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP（五）- 类属性与类方法的重载以及回调执行方法！</title>
+    <link href="http://yaojusheng.github.io/archives/7d71ab32.html"/>
+    <id>http://yaojusheng.github.io/archives/7d71ab32.html</id>
+    <published>2020-03-13T13:20:45.000Z</published>
+    <updated>2020-03-13T13:22:17.552Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;本篇博客移值自博主在PHP中文网上写的原文，这里做个记录&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="PHP" scheme="http://YaoJusheng.github.io/categories/PHP/"/>
+    
+    
+      <category term="类属性" scheme="http://YaoJusheng.github.io/tags/%E7%B1%BB%E5%B1%9E%E6%80%A7/"/>
+    
+      <category term="方法重载" scheme="http://YaoJusheng.github.io/tags/%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP（四）- 子类与类成员访问限制符的使用场景！</title>
+    <link href="http://yaojusheng.github.io/archives/a06e8925.html"/>
+    <id>http://yaojusheng.github.io/archives/a06e8925.html</id>
+    <published>2020-03-13T13:14:15.000Z</published>
+    <updated>2020-03-13T13:28:21.805Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;本篇博客源自博主在PHP中文网上写的原文，这里做个记录&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="PHP" scheme="http://YaoJusheng.github.io/categories/PHP/"/>
+    
+    
+      <category term="访问限制符" scheme="http://YaoJusheng.github.io/tags/%E8%AE%BF%E9%97%AE%E9%99%90%E5%88%B6%E7%AC%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP（三）- 匿名函数、命名空间以及类与对象的学习！</title>
+    <link href="http://yaojusheng.github.io/archives/25de20b7.html"/>
+    <id>http://yaojusheng.github.io/archives/25de20b7.html</id>
+    <published>2020-03-12T13:16:37.000Z</published>
+    <updated>2020-03-13T13:30:58.545Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;本篇博客来自博主在&lt;a href=&quot;https://www.php.cn/blog/detail/15677.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;php中文网&lt;/a&gt;上写的一篇，这里做个记录。&lt;/p&gt;
 &lt;/blockquote&gt;
     
     </summary>
@@ -125,7 +400,7 @@
     <link href="http://yaojusheng.github.io/archives/5ad10cde.html"/>
     <id>http://yaojusheng.github.io/archives/5ad10cde.html</id>
     <published>2020-03-10T15:11:37.000Z</published>
-    <updated>2020-03-10T15:26:33.130Z</updated>
+    <updated>2020-03-13T14:35:46.324Z</updated>
     
     <summary type="html">
     
@@ -139,10 +414,8 @@
     
       <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
-      <category term="MySQL" scheme="http://YaoJusheng.github.io/categories/MySQL/"/>
     
-    
-      <category term="mysql" scheme="http://YaoJusheng.github.io/tags/mysql/"/>
+      <category term="MySQL" scheme="http://YaoJusheng.github.io/tags/MySQL/"/>
     
       <category term="用户密码" scheme="http://YaoJusheng.github.io/tags/%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81/"/>
     
@@ -269,258 +542,6 @@
     
     
       <category term="插件" scheme="http://YaoJusheng.github.io/tags/%E6%8F%92%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【工具】（三）：关于VS Code修改插件位置问题</title>
-    <link href="http://yaojusheng.github.io/archives/eabdca65.html"/>
-    <id>http://yaojusheng.github.io/archives/eabdca65.html</id>
-    <published>2020-02-25T04:00:16.000Z</published>
-    <updated>2020-03-09T15:26:08.140Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;由于VSCode插件默认存放位置在C盘下，个人不是很喜欢，因为太过吃C盘内存，位置不易记住，不方便管理，&lt;/p&gt;
-&lt;p&gt;（ps：这些都是借口，博主控制欲极强！）&lt;/p&gt;
-&lt;div&gt;
-    &lt;img src=&quot;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9xcS55aDMxLmNvbS90cC9xdy8yMDEzMDYwNTEyMjUwMzI0NTQuZ2lm&quot;&gt;
-&lt;/div&gt;
-    
-    </summary>
-    
-    
-      <category term="工具" scheme="http://YaoJusheng.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="VSCode" scheme="http://YaoJusheng.github.io/categories/VSCode/"/>
-    
-    
-      <category term="插件" scheme="http://YaoJusheng.github.io/tags/%E6%8F%92%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【工具】（二）：关于sublime使用的一些插件推荐！！！</title>
-    <link href="http://yaojusheng.github.io/archives/b27922f9.html"/>
-    <id>http://yaojusheng.github.io/archives/b27922f9.html</id>
-    <published>2020-02-25T03:30:16.000Z</published>
-    <updated>2020-03-10T15:25:16.059Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Sublime Text 3 插件推荐!&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="工具" scheme="http://YaoJusheng.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="Sublime" scheme="http://YaoJusheng.github.io/categories/Sublime/"/>
-    
-    
-      <category term="插件" scheme="http://YaoJusheng.github.io/tags/%E6%8F%92%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【工具】（一）：关于Sublime Text 3，主题插件Boxy Theme安装问题，已解决！</title>
-    <link href="http://yaojusheng.github.io/archives/f81089b2.html"/>
-    <id>http://yaojusheng.github.io/archives/f81089b2.html</id>
-    <published>2020-02-25T02:02:10.000Z</published>
-    <updated>2020-03-09T15:24:52.451Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;由于sublime更新后，新版下架了Boxy主题（ps：这应该是最舒服的一款主题样式了），&lt;/p&gt;
-&lt;p&gt;&lt;del&gt;原链接失效：&lt;a href=&quot;https://github.com/ihodev/sublime-boxy&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/ihodev/sublime-boxy&lt;/a&gt;&lt;/del&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;这真是不幸的消息！网上找了好久，终于解决了。。。&lt;/strong&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="工具" scheme="http://YaoJusheng.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="Sublime" scheme="http://YaoJusheng.github.io/categories/Sublime/"/>
-    
-    
-      <category term="插件" scheme="http://YaoJusheng.github.io/tags/%E6%8F%92%E4%BB%B6/"/>
-    
-      <category term="Boxy" scheme="http://YaoJusheng.github.io/tags/Boxy/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo搭建个人博客：yilia主题配置(七) - 自定义Subnav图标</title>
-    <link href="http://yaojusheng.github.io/archives/ccdc2da1.html"/>
-    <id>http://yaojusheng.github.io/archives/ccdc2da1.html</id>
-    <published>2020-02-24T06:52:35.000Z</published>
-    <updated>2020-03-01T13:49:56.503Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;yilia是一款非常不错的博客主题，它满足几乎大多数博主对个人博客网站的要求，主题作者推崇简约模式，设计的界面非常nice！&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="网站" scheme="http://YaoJusheng.github.io/categories/%E7%BD%91%E7%AB%99/"/>
-    
-      <category term="Hexo" scheme="http://YaoJusheng.github.io/categories/Hexo/"/>
-    
-    
-      <category term="yilia" scheme="http://YaoJusheng.github.io/tags/yilia/"/>
-    
-      <category term="Subnav图标" scheme="http://YaoJusheng.github.io/tags/Subnav%E5%9B%BE%E6%A0%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo搭建个人博客：yilia主题配置(六) - 添加相册</title>
-    <link href="http://yaojusheng.github.io/archives/89f1ac35.html"/>
-    <id>http://yaojusheng.github.io/archives/89f1ac35.html</id>
-    <published>2020-02-24T06:29:27.000Z</published>
-    <updated>2020-03-08T15:02:26.777Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;创建相册等页面的的大体思路：1.本地存储图片，直接引用；2.使用GitHub存储相册；3.使用七牛云存储相册 …&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="网站" scheme="http://YaoJusheng.github.io/categories/%E7%BD%91%E7%AB%99/"/>
-    
-      <category term="Hexo" scheme="http://YaoJusheng.github.io/categories/Hexo/"/>
-    
-    
-      <category term="yilia" scheme="http://YaoJusheng.github.io/tags/yilia/"/>
-    
-      <category term="相册视频" scheme="http://YaoJusheng.github.io/tags/%E7%9B%B8%E5%86%8C%E8%A7%86%E9%A2%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo搭建个人博客：yilia主题配置(五) - 其他配置</title>
-    <link href="http://yaojusheng.github.io/archives/915cb590.html"/>
-    <id>http://yaojusheng.github.io/archives/915cb590.html</id>
-    <published>2020-02-21T07:59:48.000Z</published>
-    <updated>2020-03-11T12:16:18.863Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文主要讲述 &lt;code&gt;Hexo-yilia&lt;/code&gt; 主题对于文章持久化及天气等插件的配置。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="网站" scheme="http://YaoJusheng.github.io/categories/%E7%BD%91%E7%AB%99/"/>
-    
-      <category term="Hexo" scheme="http://YaoJusheng.github.io/categories/Hexo/"/>
-    
-    
-      <category term="yilia" scheme="http://YaoJusheng.github.io/tags/yilia/"/>
-    
-      <category term="插件" scheme="http://YaoJusheng.github.io/tags/%E6%8F%92%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo搭建个人博客：yilia主题配置(四) - 分类管理</title>
-    <link href="http://yaojusheng.github.io/archives/46241.html"/>
-    <id>http://yaojusheng.github.io/archives/46241.html</id>
-    <published>2020-02-20T11:23:43.000Z</published>
-    <updated>2020-03-01T13:50:50.867Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文主要讲述 &lt;code&gt;Hexo-yilia&lt;/code&gt; 主题对于文章的分类和标签方面的配置。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="网站" scheme="http://YaoJusheng.github.io/categories/%E7%BD%91%E7%AB%99/"/>
-    
-      <category term="Hexo" scheme="http://YaoJusheng.github.io/categories/Hexo/"/>
-    
-    
-      <category term="yilia" scheme="http://YaoJusheng.github.io/tags/yilia/"/>
-    
-      <category term="标签分类" scheme="http://YaoJusheng.github.io/tags/%E6%A0%87%E7%AD%BE%E5%88%86%E7%B1%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo搭建个人博客：yilia主题配置(三) - 评论系统</title>
-    <link href="http://yaojusheng.github.io/archives/37394.html"/>
-    <id>http://yaojusheng.github.io/archives/37394.html</id>
-    <published>2020-02-18T09:37:08.000Z</published>
-    <updated>2020-03-11T12:16:18.863Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文主要是关于 &lt;code&gt;评论系统&lt;/code&gt; 在 &lt;code&gt;hexo-yilia&lt;/code&gt; 主题中的添加和配置。使用主题： &lt;a href=&quot;https://github.com/JoeyBling/hexo-theme-yilia-plus&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;hexo-theme-yilia-plus&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="网站" scheme="http://YaoJusheng.github.io/categories/%E7%BD%91%E7%AB%99/"/>
-    
-      <category term="Hexo" scheme="http://YaoJusheng.github.io/categories/Hexo/"/>
-    
-    
-      <category term="yilia" scheme="http://YaoJusheng.github.io/tags/yilia/"/>
-    
-      <category term="评论系统" scheme="http://YaoJusheng.github.io/tags/%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo搭建个人博客：yilia主题配置(二) - 背景图片</title>
-    <link href="http://yaojusheng.github.io/archives/4235.html"/>
-    <id>http://yaojusheng.github.io/archives/4235.html</id>
-    <published>2020-02-18T09:36:44.000Z</published>
-    <updated>2020-03-10T15:44:24.079Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文主要讲述 &lt;code&gt;Hexo-yilia&lt;/code&gt; 主题中，关于背景和图片的相关配置。与前面一样，使用主题： &lt;a href=&quot;https://github.com/JoeyBling/hexo-theme-yilia-plus&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;hexo-theme-yilia-plus&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="网站" scheme="http://YaoJusheng.github.io/categories/%E7%BD%91%E7%AB%99/"/>
-    
-      <category term="Hexo" scheme="http://YaoJusheng.github.io/categories/Hexo/"/>
-    
-    
-      <category term="yilia" scheme="http://YaoJusheng.github.io/tags/yilia/"/>
-    
-      <category term="背景图片" scheme="http://YaoJusheng.github.io/tags/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo搭建个人博客：yilia主题配置(一) - 基础配置</title>
-    <link href="http://yaojusheng.github.io/archives/31784.html"/>
-    <id>http://yaojusheng.github.io/archives/31784.html</id>
-    <published>2020-02-17T09:40:05.000Z</published>
-    <updated>2020-03-01T13:49:41.615Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;前两天搭建了一下个人博客，使用Hexo工具+GitHub/Gitee部署博客网站，这里简单记录一下搭建过程：&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="网站" scheme="http://YaoJusheng.github.io/categories/%E7%BD%91%E7%AB%99/"/>
-    
-      <category term="Hexo" scheme="http://YaoJusheng.github.io/categories/Hexo/"/>
-    
-    
-      <category term="基本配置" scheme="http://YaoJusheng.github.io/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/"/>
-    
-      <category term="yilia" scheme="http://YaoJusheng.github.io/tags/yilia/"/>
     
   </entry>
   
