@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#aaaa">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/site-icon/svg/MrYao02.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#aaaa">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "6d0092ef"
+    });
+  daovoice('update');
+  </script>
+
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yaojusheng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"2Z9M5GO3BS","apiKey":"640cd38c21e14a012ef1735cf4e47453","indexName":"github_search","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+  <meta name="description" content="本篇博客移值自博主在PHP中文网上写的原文，这里做个记录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP（六）- 抽象类的继承与MySQL接口CURD操作的实现！">
+<meta property="og:url" content="http://yaojusheng.github.io/archives/f1afa15c.html">
+<meta property="og:site_name" content="Mr Yao 的博客">
+<meta property="og:description" content="本篇博客移值自博主在PHP中文网上写的原文，这里做个记录">
+<meta property="article:published_time" content="2020-03-13T13:25:42.000Z">
+<meta property="article:modified_time" content="2020-03-13T14:33:30.678Z">
+<meta property="article:author" content="Jusheng Yao">
+<meta property="article:tag" content="类继承">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="CURD">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yaojusheng.github.io/archives/f1afa15c.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>PHP（六）- 抽象类的继承与MySQL接口CURD操作的实现！ | Mr Yao 的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Mr Yao 的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr Yao 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-notes">
+
+    <a href="/notes/" rel="section"><i class="fa fa-fw fa-book"></i>notes</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/yaojusheng/hexo-theme-next" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yaojusheng.github.io/archives/f1afa15c.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Jusheng Yao">
+      <meta itemprop="description" content="个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr Yao 的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PHP（六）- 抽象类的继承与MySQL接口CURD操作的实现！
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-13 21:25:42" itemprop="dateCreated datePublished" datetime="2020-03-13T21:25:42+08:00">2020-03-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/archives/f1afa15c.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/archives/f1afa15c.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>本篇博客移值自博主在PHP中文网上写的原文，这里做个记录</p>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="1-抽象类继承"><a href="#1-抽象类继承" class="headerlink" title="1.抽象类继承"></a>1.抽象类继承</h1><h2 id="1-1-抽象类特点"><a href="#1-1-抽象类特点" class="headerlink" title="1.1. 抽象类特点"></a>1.1. 抽象类特点</h2><ol>
+<li>抽象类不能实例化;</li>
+<li>抽象类中定义的抽象方法必须在子类中实现;</li>
+<li>如果子类定义了构造函数，父类的构造函数不会被调用，如果需要，构造函数中要写 <code>parent::__construct()</code>。</li>
+</ol>
+<h2 id="1-2-演示"><a href="#1-2-演示" class="headerlink" title="1.2. 演示"></a>1.2. 演示</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@authors</span> Alfred (jusheng_yao<span class="doctag">@outlook</span>.com)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>    2019-10-13 19:01:49</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 抽象类</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 抽象属性</span></span><br><span class="line">	<span class="keyword">protected</span> $name;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($name = <span class="string">'Alfred'</span>)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">$this</span>-&gt;name = $name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">$this</span>-&gt;name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 签名, 抽象方法</span></span><br><span class="line">	<span class="keyword">abstract</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setName</span><span class="params">($value)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">extends</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">	<span class="comment">//构造方法不会继承</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">parent</span>::__construct($name);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//抽象类中定义的抽象方法必须在子类中实现</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setName</span><span class="params">($value)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">$this</span>-&gt;name = $value;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$person = <span class="keyword">new</span> Person(<span class="string">'轻狂书生'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'网游中的一个重要角色是： '</span> . $person-&gt;getName() . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"></span><br><span class="line">$person-&gt;setName(<span class="string">"残雪飞戈"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'Alfred 的QQ网名是： '</span> . $person-&gt;getName() . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="2-数据库接口"><a href="#2-数据库接口" class="headerlink" title="2.数据库接口"></a>2.数据库接口</h1><ul>
+<li>接口放置空方法;</li>
+<li>DB类实现具体逻辑，如:<ul>
+<li>增删改查、</li>
+<li>条件、</li>
+<li>限制、</li>
+<li>字段域、</li>
+<li>默认数据库参数属性等等</li>
+</ul>
+</li>
+</ul>
+<p><strong>实例演示：</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@authors</span> Alfred (jusheng_yao<span class="doctag">@outlook</span>.com)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>    2019-10-13 20:53:31</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口，类的模板</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MySQL</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 增加数据</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span><span class="params">($data)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 读取数据</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">read</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 更新数据</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">($data, $where)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 删除数据</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">delete</span><span class="params">($where)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类，接口的实现</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * mysql CURD操作</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SQLAction</span> <span class="keyword">implements</span> <span class="title">MySQL</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 数据库连接参数</span></span><br><span class="line">	<span class="keyword">protected</span> $settings = [</span><br><span class="line">		<span class="string">'type'</span> =&gt; <span class="string">'mysql'</span>,</span><br><span class="line">		<span class="string">'host'</span> =&gt; <span class="string">'localhost'</span>,</span><br><span class="line">		<span class="string">'dbname'</span> =&gt; <span class="string">'tests'</span>,</span><br><span class="line">		<span class="string">'username'</span> =&gt; <span class="string">'root'</span>,</span><br><span class="line">		<span class="string">'password'</span> =&gt; <span class="string">'123456'</span>,</span><br><span class="line">	];</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 数据库的连接对象</span></span><br><span class="line">	<span class="keyword">protected</span> $pdo = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 数据表</span></span><br><span class="line">	<span class="keyword">protected</span> $table;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 字段</span></span><br><span class="line">	<span class="keyword">public</span> $field = <span class="string">'*'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 条件</span></span><br><span class="line">	<span class="keyword">public</span> $where;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 数量</span></span><br><span class="line">	<span class="keyword">public</span> $limit;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 构造方法: 连接数据库,并设置默认的数据表名称</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($dsn, $user, $password, $table = <span class="string">'staff'</span>)</span> </span>&#123;</span><br><span class="line">		$default_dsn = <span class="string">"&#123;$this-&gt;settings['type']&#125;:host=&#123;$this-&gt;settings['host']&#125;;dbname=&#123;$this-&gt;settings['dbname']&#125;"</span>;</span><br><span class="line">		$dsn = <span class="keyword">empty</span>($dsn) ? $default_dsn : $dsn;</span><br><span class="line">		$user = <span class="keyword">empty</span>($user) ? <span class="keyword">$this</span>-&gt;settings[<span class="string">'username'</span>] : $user;</span><br><span class="line">		$password = <span class="keyword">empty</span>($password) ? <span class="keyword">$this</span>-&gt;settings[<span class="string">'password'</span>] : $password;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">$this</span>-&gt;pdo = <span class="keyword">new</span> PDO($dsn, $user, $password);</span><br><span class="line">		<span class="keyword">$this</span>-&gt;table = $table;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 增加数据</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span><span class="params">($data)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 字段列表</span></span><br><span class="line">		$fields = <span class="string">' (name, age, sex,position, mobile, hiredate) '</span>;</span><br><span class="line">		<span class="comment">// 值列表</span></span><br><span class="line">		$values = <span class="string">' (:name, :age, :sex, :position, :mobile, :hiredate) '</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 创建SQL - INSERT INTO TABLE FIELDS VALUES (...)</span></span><br><span class="line">		$sql = <span class="string">'INSERT INTO '</span> . <span class="keyword">$this</span>-&gt;table . $fields . <span class="string">' VALUES '</span> . $values;</span><br><span class="line">		<span class="keyword">echo</span> $sql . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"></span><br><span class="line">		$stmt = <span class="keyword">$this</span>-&gt;pdo-&gt;prepare($sql);</span><br><span class="line">		$stmt-&gt;execute($data);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> [</span><br><span class="line">			<span class="string">'count'</span> =&gt; $stmt-&gt;rowCount(),</span><br><span class="line">			<span class="string">'id'</span> =&gt; <span class="keyword">$this</span>-&gt;pdo-&gt;lastInsertId(),</span><br><span class="line">		];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 读取数据</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">read</span><span class="params">($fields = <span class="string">'*'</span>, $where = <span class="string">''</span>, $limit = <span class="string">'0, 5'</span>)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 设置字段</span></span><br><span class="line">		<span class="keyword">$this</span>-&gt;field = <span class="keyword">empty</span>($fields) ? (<span class="keyword">empty</span>(<span class="keyword">$this</span>-&gt;field) ? <span class="string">'*'</span> : <span class="keyword">$this</span>-&gt;field) : $fields;</span><br><span class="line">		<span class="comment">//设置条件</span></span><br><span class="line">		<span class="keyword">$this</span>-&gt;where = <span class="keyword">empty</span>($where) ? (<span class="keyword">empty</span>(<span class="keyword">$this</span>-&gt;where) ? <span class="string">''</span> : <span class="keyword">$this</span>-&gt;where) : <span class="string">' WHERE '</span> . $where;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 设置显示数量</span></span><br><span class="line">		<span class="keyword">$this</span>-&gt;limit = $limit === <span class="string">'0, 5'</span> ? (<span class="keyword">empty</span>(<span class="keyword">$this</span>-&gt;limit) ? <span class="string">' LIMIT '</span> . $limit : <span class="keyword">$this</span>-&gt;limit) : $limit;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 创建SQL - SELECT FIELDS FROM TABLE WHERE (...) LIMIT ...</span></span><br><span class="line">		$sql = <span class="string">'SELECT '</span> . <span class="keyword">$this</span>-&gt;field . <span class="string">' FROM '</span> . <span class="keyword">$this</span>-&gt;table . <span class="keyword">$this</span>-&gt;where . <span class="keyword">$this</span>-&gt;limit;</span><br><span class="line">		<span class="keyword">echo</span> $sql . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"></span><br><span class="line">		$stmt = <span class="keyword">$this</span>-&gt;pdo-&gt;prepare($sql);</span><br><span class="line">		$stmt-&gt;execute();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> $stmt-&gt;fetchAll(\PDO::FETCH_ASSOC);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 更新数据</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">($data, $where)</span> </span>&#123;</span><br><span class="line">		$keyArr = array_keys($data);</span><br><span class="line">		$set = <span class="string">''</span>;</span><br><span class="line">		<span class="keyword">foreach</span> ($keyArr <span class="keyword">as</span> $value) &#123;</span><br><span class="line">			$set .= $value . <span class="string">' = :'</span> . $value . <span class="string">', '</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		$set = rtrim($set, <span class="string">', '</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 设置条件</span></span><br><span class="line">		<span class="keyword">$this</span>-&gt;where = <span class="keyword">empty</span>($where) ? (<span class="keyword">empty</span>(<span class="keyword">$this</span>-&gt;where) ? <span class="string">''</span> : <span class="keyword">$this</span>-&gt;where) : <span class="string">' WHERE '</span> . $where;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 创建SQL - UPDATE TABLE SET ... WHERE (...)</span></span><br><span class="line">		$sql = <span class="string">'UPDATE '</span> . <span class="keyword">$this</span>-&gt;table . <span class="string">' SET '</span> . $set . <span class="keyword">$this</span>-&gt;where;</span><br><span class="line">		<span class="keyword">echo</span> $sql . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"></span><br><span class="line">		$stmt = <span class="keyword">$this</span>-&gt;pdo-&gt;prepare($sql);</span><br><span class="line">		$stmt-&gt;execute($data);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> $stmt-&gt;rowCount();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 删除数据</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">delete</span><span class="params">($where)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 设置条件</span></span><br><span class="line">		<span class="keyword">$this</span>-&gt;where = <span class="keyword">empty</span>($where) ? (<span class="keyword">empty</span>(<span class="keyword">$this</span>-&gt;where) ? <span class="string">''</span> : <span class="keyword">$this</span>-&gt;where) : <span class="string">' WHERE '</span> . $where;</span><br><span class="line">		<span class="comment">// 创建SQL - DELETE FROM TABLE WHERE (...)</span></span><br><span class="line">		$sql = <span class="string">'DELETE FROM '</span> . <span class="keyword">$this</span>-&gt;table . <span class="keyword">$this</span>-&gt;where;</span><br><span class="line">		<span class="keyword">echo</span> $sql . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"></span><br><span class="line">		$stmt = <span class="keyword">$this</span>-&gt;pdo-&gt;prepare($sql);</span><br><span class="line">		$stmt-&gt;execute();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> $stmt-&gt;rowCount();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// fields字段域</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">field</span><span class="params">($fields = <span class="string">'*'</span>)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">$this</span>-&gt;field = <span class="keyword">empty</span>($fields) ? <span class="string">'*'</span> : $fields;</span><br><span class="line">		<span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;field . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">$this</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// where条件</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">where</span><span class="params">($where = <span class="string">''</span>)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">$this</span>-&gt;where = <span class="keyword">empty</span>($where) ? $where : <span class="string">' WHERE '</span> . $where;</span><br><span class="line">		<span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;where . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">$this</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// limit 数量限制</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">limit</span><span class="params">($limit)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">$this</span>-&gt;limit = <span class="keyword">empty</span>($limit) ? $limit : <span class="string">' LIMIT '</span> . $limit;</span><br><span class="line">		<span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;limit . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">$this</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 客户端的代码</span></span><br><span class="line">$dsn = <span class="string">'mysql:host=127.0.0.1;dbname=tests'</span>;</span><br><span class="line">$user = <span class="string">'root'</span>;</span><br><span class="line">$password = <span class="string">'123456'</span>;</span><br><span class="line">$db = <span class="keyword">new</span> SQLAction($dsn, $user, $password);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历1</span></span><br><span class="line"><span class="keyword">foreach</span> ($db-&gt;read() <span class="keyword">as</span> $item) &#123;</span><br><span class="line">	print_r($item);</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'field: '</span> . $db-&gt;field . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'where: '</span> . $db-&gt;where . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'limit: '</span> . $db-&gt;limit . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历2</span></span><br><span class="line">$db-&gt;field(<span class="string">'staff_id,name,position,mobile'</span>)</span><br><span class="line">	-&gt;where(<span class="string">'staff_id &gt; 2'</span>)</span><br><span class="line">	-&gt;limit(<span class="number">8</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($db-&gt;read() <span class="keyword">as</span> $item) &#123;</span><br><span class="line">	print_r($item);</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'field: '</span> . $db-&gt;field . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'where: '</span> . $db-&gt;where . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'limit: '</span> . $db-&gt;limit . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新增</span></span><br><span class="line">$data = [</span><br><span class="line">	<span class="string">'name'</span> =&gt; <span class="string">'郭靖'</span>,</span><br><span class="line">	<span class="string">'age'</span> =&gt; <span class="number">29</span>,</span><br><span class="line">	<span class="string">'sex'</span> =&gt; <span class="number">1</span>,</span><br><span class="line">	<span class="string">'position'</span> =&gt; <span class="string">'金刀驸马'</span>,</span><br><span class="line">	<span class="string">'mobile'</span> =&gt; <span class="string">'1389998899'</span>,</span><br><span class="line">	<span class="string">'hiredate'</span> =&gt; time(),</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">$res = $db-&gt;create($data);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'成功的新增了: '</span> . $res[<span class="string">'count'</span>] . <span class="string">' 条记录,新增的记录的主键ID是: '</span> . $res[<span class="string">'id'</span>] . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'field: '</span> . $db-&gt;field . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'where: '</span> . $db-&gt;where . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'limit: '</span> . $db-&gt;limit . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更新</span></span><br><span class="line"><span class="comment">// $data = [</span></span><br><span class="line"><span class="comment">//    'age' =&gt; 40,</span></span><br><span class="line"><span class="comment">//    'position' =&gt; '抗金英雄'</span></span><br><span class="line"><span class="comment">// ];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// $where = 'staff_id = 11';</span></span><br><span class="line"><span class="comment">// echo '成功的更新了: ' . $db-&gt;update($data, $where) . ' 条记录' . '&lt;br&gt;';</span></span><br><span class="line"><span class="comment">// echo 'field: ' . $db-&gt;field . '&lt;br&gt;';</span></span><br><span class="line"><span class="comment">// echo 'where: ' . $db-&gt;where . '&lt;br&gt;';</span></span><br><span class="line"><span class="comment">// echo 'limit: ' . $db-&gt;limit . '&lt;br&gt;';</span></span><br><span class="line"><span class="comment">// echo '&lt;hr&gt;';</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除</span></span><br><span class="line"><span class="comment">// $where = 'staff_id = 11';</span></span><br><span class="line"><span class="comment">// echo '成功的删除了: ' . $db-&gt;delete($where) . ' 条记录' . '&lt;br&gt;';</span></span><br><span class="line"><span class="comment">// echo 'field: ' . $db-&gt;field . '&lt;br&gt;';</span></span><br><span class="line"><span class="comment">// echo 'where: ' . $db-&gt;where . '&lt;br&gt;';</span></span><br><span class="line"><span class="comment">// echo 'limit: ' . $db-&gt;limit . '&lt;br&gt;';</span></span><br><span class="line"><span class="comment">// echo '&lt;hr&gt;';</span></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    
+    <div>
+      
+        <div style="text-align:center;color: red;font-size:14px;">
+          -------------   本文已结束  <i class="fa fa-paw"></i>  感谢您的阅读！  -------------
+        </div>
+      
+    </div>
+        <div class="reward-container">
+  <div>Donate comment here.</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Jusheng Yao 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Jusheng Yao 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      
+      
+      <div>
+        <div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/archives/f1afa15c.html">PHP（六）- 抽象类的继承与MySQL接口CURD操作的实现！</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Jusheng Yao 的个人博客">Jusheng Yao</a></p>
+  <p><span>发布时间:</span>2020年03月13日 - 21:25</p>
+  <p><span>最后更新:</span>2020年03月13日 - 22:33</p>
+  <p><span>原始链接:</span><a href="/archives/f1afa15c.html" title="PHP（六）- 抽象类的继承与MySQL接口CURD操作的实现！">http://yaojusheng.github.io/archives/f1afa15c.html</a>
+    <span class="copy-path"  title="点击复制文章链接">
+      <i class="fa fa-clipboard" data-clipboard-text="http://yaojusheng.github.io/archives/f1afa15c.html"  aria-label="复制成功！"></i>
+    </span>
+  </p>
+  <p>
+    <span>版权声明:</span>
+    本博客所有文章除特别声明外，均采用 
+    <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">
+    <i class="fa fa-creative-commons"></i>BY-NC-SA </a>
+    许可协议。转载请注明出处!
+  </p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+      </div>
+      
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/atom.xml">
+                <span class="icon">
+                  <i class="fa fa-rss"></i>
+                </span>
+
+                <span class="label">RSS</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%B1%BB%E7%BB%A7%E6%89%BF/" rel="tag"><i class="fa fa-tag"></i> 类继承</a>
+              <a href="/tags/MySQL/" rel="tag"><i class="fa fa-tag"></i> MySQL</a>
+              <a href="/tags/CURD/" rel="tag"><i class="fa fa-tag"></i> CURD</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/7d71ab32.html" rel="prev" title="PHP（五）- 类属性与类方法的重载以及回调执行方法！">
+      <i class="fa fa-chevron-left"></i> PHP（五）- 类属性与类方法的重载以及回调执行方法！
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/3b7f3111.html" rel="next" title="Python（一）- 安装与升级！">
+      Python（一）- 安装与升级！ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    
+    <div class="my-tag-cloud">
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <h3 class="widget-title">Tag Cloud</h3>
+          <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width:100%">
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Boxy/" rel="tag">Boxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CURD/" rel="tag">CURD</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Subnav%E5%9B%BE%E6%A0%87/" rel="tag">Subnav图标</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello-world/" rel="tag">hello world</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jupyter/" rel="tag">jupyter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/next/" rel="tag">next</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/" rel="tag">yilia</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="tag">交互式编程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92/" rel="tag">前后端交互</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0/" rel="tag">匿名函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" rel="tag">命名空间</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" rel="tag">基本操作</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/" rel="tag">基本配置</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" rel="tag">常用工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD/" rel="tag">方法重载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%87%E7%AD%BE%E5%88%86%E7%B1%BB/" rel="tag">标签分类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="tag">环境搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81/" rel="tag">用户密码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%B8%E5%86%8C%E8%A7%86%E9%A2%91/" rel="tag">相册视频</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1/" rel="tag">类与对象</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%B1%9E%E6%80%A7/" rel="tag">类属性</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E7%BB%A7%E6%89%BF/" rel="tag">类继承</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/" rel="tag">背景图片</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" rel="tag">虚拟环境</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BF%E9%97%AE%E9%99%90%E5%88%B6%E7%AC%A6/" rel="tag">访问限制符</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" rel="tag">评论系统</a><span class="tag-list-count">1</span></li></ul>
+            </canvas>
+          </div>
+        </div>
+      
+    </div>
+
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-抽象类继承"><span class="nav-text">1.抽象类继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-抽象类特点"><span class="nav-text">1.1. 抽象类特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-演示"><span class="nav-text">1.2. 演示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-数据库接口"><span class="nav-text">2.数据库接口</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jusheng Yao"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Jusheng Yao</p>
+  <div class="site-description" itemprop="description">个人技术博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/YaoJusheng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;YaoJusheng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/YaoJusheng" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;YaoJusheng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github-alt"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_41599858" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_41599858" rel="noopener" target="_blank"><i class="fa fa-fw fa-mortar-board"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:jusheng_yao@outlook.com" title="E-Mail → mailto:jusheng_yao@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.google.com/" title="最受欢迎的搜索引擎，国内使用可用代理或安装助手"  target="_blank">
+              <img src="/images/ico/google_favicon.ico" class="links-item-img">&emsp;
+            Google搜索
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://cn.bing.com/" title="必应搜索，一款好用的搜索引擎"  target="_blank">
+              <img src="/images/ico/biying_favicon.ico" class="links-item-img">&emsp;
+            Bing搜索
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://translate.google.cn/" title="谷歌翻译"  target="_blank">
+              <img src="/images/ico/fanyi_favicon.ico" class="links-item-img">&emsp;
+            Translate
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.bilibili.com/" title="技术视频网站"  target="_blank">
+              <img src="/images/ico/bili_favicon.ico" class="links-item-img">&emsp;
+            bilibili
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhihu.com/" title="知识、技术交流平台"  target="_blank">
+              <img src="/images/ico/zhihu_favicon.ico" class="links-item-img">&emsp;
+            知乎
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://tool.lu/" title="全面多样化的开发、站长类工具"  target="_blank">
+              <img src="/images/ico/onlinetool.ico" class="links-item-img">&emsp;
+            在线工具
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://fontstore.baidu.com/static/editor/index.html" title="可制作图形文字，减少字体体积"  target="_blank">
+              <img src="/images/ico/font_favicon.ico" class="links-item-img">&emsp;
+            百度字体编辑器
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.draw.io/" title="一款在线绘制流程图的网页工具"  target="_blank">
+              <img src="/images/ico/draw_favicon.ico" class="links-item-img">&emsp;
+            绘图draw
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://naotu.baidu.com/home" title="一款可替代XMind的在线思维导图工具"  target="_blank">
+              <img src="/images/ico/naotu_favicon.ico" class="links-item-img">&emsp;
+            百度脑图
+          </a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jusheng Yao</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">127k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:56</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 — <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+  <br>
+  
+  <div class="powered-by" style='color: gray'>
+    <i class="fa fa-user-md"></i>
+    <span id="busuanzi_container_site_uv">
+      本站总访客数:&nbsp;<span id="busuanzi_value_site_uv" style='color: silver'></span>&nbsp;人&nbsp;| 
+    </span>
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_container_site_pv">
+        &nbsp;本站总访问量:&nbsp;<span id="busuanzi_value_site_pv" style='color: silver'></span>&nbsp;次
+    </span>
+  </div>
+
+  <br>
+  
+  <div>
+    <span id="timeDate" class="color: lightblue;"></span>  
+    <span id="times" class="color: lightgreen;"></span>
+  </div>
+
+
+
+<script>
+  var now = new Date(); 
+  function createtime() { 
+      var grt= new Date("02/12/2020 18:00:00"); 
+      now.setTime(now.getTime()+250); 
+      days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+      if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+      mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+      snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+      document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+      document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+  } 
+  setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='0,0,255' opacity='0.8' zIndex='-2' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'oT30CtobWiSnNhMrBtXP9d0A-gzGzoHsz',
+      appKey     : 'oVHGMlRjJJyTXPLmyrGKrWFu',
+      placeholder: "有话要说？",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+
+  
+  
+    <script type="text/javascript" src="/js/clicklove.js"></script>
+  
+
+</body>
+</html>

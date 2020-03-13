@@ -6,11 +6,10 @@ order_by:
   - top: 1
   - date: -1
 tags:
-  - mysql
+  - MySQL
   - 用户密码
 categories:
-  - - 数据库
-  - - MySQL
+  - [数据库]
 abbrlink: 5ad10cde
 date: 2020-03-10 23:11:37
 ---

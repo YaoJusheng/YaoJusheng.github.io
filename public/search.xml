@@ -1,10 +1,908 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Python（七）- 连接MongoDB数据库以及CURD操作！</title>
+    <url>/archives/db519792.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文介绍python中对MongoDB数据库操作的两个模块：<code>pymongo</code>    和 <code>mongoengine</code></p>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><blockquote>
+<p>以下内容参考：<a href="https://www.runoob.com/mongodb/mongodb-intro.html" target="_blank" rel="noopener">菜鸟教程</a></p>
+</blockquote>
+<p>MongoDB 是由C++语言编写的，是一个基于分布式文件存储的开源数据库系统，是当前noSql数据库产品中最热门的一种，在高负载的情况下，添加更多的节点，可以保证服务器性能。<br>MongoDB为WEB应用提供可扩展的高性能数据存储解决方案。<br>MongoDB 将数据存储为一个文档，数据结构由键值(key=&gt;value)对组成。MongoDB 文档类似于 JSON 对象。字段值可以包含其他文档，数组及文档数组。</p>
+<h1 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h1><p>安装比较简单，可以参考：<a href="https://www.jianshu.com/p/9e5bc16c48c3" target="_blank" rel="noopener">MongoDB安装教程</a></p>
+<h1 id="三、使用"><a href="#三、使用" class="headerlink" title="三、使用"></a>三、使用</h1><blockquote>
+<p>这里以两个小样例的形式，介绍pymongo和mongoengine的使用</p>
+</blockquote>
+<p><strong>数据库配置：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># baseConfig.py</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据库配置</span></span><br><span class="line">DATABASE = &#123;</span><br><span class="line">    <span class="string">'mongodb'</span>: &#123;</span><br><span class="line">        <span class="string">'username'</span>: <span class="string">'admin'</span>,</span><br><span class="line">        <span class="string">'password'</span>: <span class="string">'123456'</span>,</span><br><span class="line">        <span class="string">'host'</span>: <span class="string">'localhost'</span>,</span><br><span class="line">        <span class="string">'port'</span>: <span class="number">27017</span>,</span><br><span class="line">        <span class="string">'db'</span>: <span class="string">'test'</span>,</span><br><span class="line">        <span class="string">'authentication_source'</span>: <span class="string">'admin'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-pymongo"><a href="#1-pymongo" class="headerlink" title="1. pymongo"></a>1. pymongo</h2><blockquote>
+<p>python中常见的操作mongodb的模块</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 以下为mongodb的简单操作类</span></span><br><span class="line"><span class="keyword">from</span> pymongo <span class="keyword">import</span> MongoClient</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> baseConfig <span class="keyword">import</span> DATABASE</span><br><span class="line"></span><br><span class="line">DB_CONF = DATABASE[<span class="string">'mongodb'</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">singleton</span><span class="params">(cls)</span>:</span></span><br><span class="line">    <span class="string">"""单例模式"""</span></span><br><span class="line">    _instance = &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_slt</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> cls <span class="keyword">not</span> <span class="keyword">in</span> _instance:</span><br><span class="line">            _instance[cls] = cls(*args, **kwargs)</span><br><span class="line">        <span class="keyword">return</span> _instance[cls]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> _slt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@singleton</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MongoHandler</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""创建MongoDB处理类"""</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, **kwargs)</span>:</span></span><br><span class="line">        print(kwargs)</span><br><span class="line">        self.db_name = kwargs[<span class="string">'name'</span>] <span class="keyword">or</span> <span class="string">'test_db'</span></span><br><span class="line">        client = MongoClient()</span><br><span class="line">        self.db = client[self.db_name]  <span class="comment"># 或者这样指定： db = client.test</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">drop</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            self.db.command(<span class="string">"dropDatabase"</span>)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            print(<span class="string">"Delete DATABASE &#123;0&#125; failed! due to the reason of '&#123;1&#125;'"</span>.format(self.db_name, e))</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">collection</span><span class="params">(self, cl)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.db[cl]  <span class="comment"># 或者这样指定：cols = db.cl</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert_one_record</span><span class="params">(self, col, record: dict)</span>:</span></span><br><span class="line">    	<span class="string">"""</span></span><br><span class="line"><span class="string">    	可以直接用得到的结合调用库方法，</span></span><br><span class="line"><span class="string">    	这里限定类型，做演示用，</span></span><br><span class="line"><span class="string">    	以下方法类似，根据业务需要改写</span></span><br><span class="line"><span class="string">    	"""</span></span><br><span class="line">        result = col.insert_one(record)</span><br><span class="line">        print(result)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert_many_records</span><span class="params">(self, col, records: list)</span>:</span></span><br><span class="line">        result = col.insert_many(records)</span><br><span class="line">        print(result)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">find_one_record</span><span class="params">(self, col, condition: dict)</span>:</span></span><br><span class="line">        result = col.find_one(condition)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">find_records</span><span class="params">(self, col, condition: dict)</span>:</span></span><br><span class="line">        results = col.find(condition)</span><br><span class="line">        <span class="keyword">return</span> results</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update_one_record</span><span class="params">(self, col, condition: dict, data: dict)</span>:</span></span><br><span class="line">        result = col.update_one(condition, data)</span><br><span class="line">        print(<span class="string">'影响修改条数：'</span>, result.matched_count, result.modified_count)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update_records</span><span class="params">(self, col, condition: dict, data: dict)</span>:</span></span><br><span class="line">        result = col.update_many(condition, data)</span><br><span class="line">        print(<span class="string">'影响修改条数：'</span>, result.matched_count, result.modified_count)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delete_one_record</span><span class="params">(self, col, condition: dict)</span>:</span></span><br><span class="line">        result = col.delete_one(&#123;<span class="string">'name'</span>: <span class="string">'Kevin'</span>&#125;)</span><br><span class="line">        <span class="comment"># print(result)</span></span><br><span class="line">        <span class="keyword">return</span> result.deleted_count</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delete_records</span><span class="params">(self, col, condition: dict)</span>:</span></span><br><span class="line">        <span class="comment"># result = col.remove(&#123;'name': 'Kevin'&#125;)   # 删除所有符合条件的记录，官方推荐delete_one和delete_many</span></span><br><span class="line">        result = col.delete_many(condition)</span><br><span class="line">        <span class="comment"># print(result.deleted_count)</span></span><br><span class="line">        <span class="keyword">return</span> result.deleted_count</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 测试</span></span><br><span class="line"></span><br><span class="line">DBHandler = MongoHandler(**DB_CONF)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">code_test</span><span class="params">()</span>:</span></span><br><span class="line">    db = DBHandler</span><br><span class="line">    <span class="comment"># 获取集合</span></span><br><span class="line">    col = db.collection(<span class="string">'test_col'</span>)</span><br><span class="line">    <span class="comment"># 插入数据</span></span><br><span class="line">    stu = &#123;</span><br><span class="line">        <span class="string">'id'</span>: <span class="string">'20190101'</span>,</span><br><span class="line">        <span class="string">'name'</span>: <span class="string">'Amy'</span>,</span><br><span class="line">        <span class="string">'age'</span>: <span class="number">20</span>,</span><br><span class="line">        <span class="string">'gender'</span>: <span class="string">'female'</span></span><br><span class="line">    &#125;</span><br><span class="line">    print(<span class="string">"------- 开始插入数据 --------"</span>)</span><br><span class="line">    db.insert_one_record(col, stu)  <span class="comment"># 单条插入</span></span><br><span class="line">    stu_list = [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">'id'</span>: <span class="string">'20190102'</span>,</span><br><span class="line">            <span class="string">'name'</span>: <span class="string">'Jordan'</span>,</span><br><span class="line">            <span class="string">'age'</span>: <span class="number">20</span>,</span><br><span class="line">            <span class="string">'gender'</span>: <span class="string">'male'</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">'id'</span>: <span class="string">'20190203'</span>,</span><br><span class="line">            <span class="string">'name'</span>: <span class="string">'Mike'</span>,</span><br><span class="line">            <span class="string">'age'</span>: <span class="number">21</span>,</span><br><span class="line">            <span class="string">'gender'</span>: <span class="string">'male'</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">    db.insert_many_records(col, stu_list)  <span class="comment"># 多条插入</span></span><br><span class="line">    print(<span class="string">"------------ end ------------"</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 查询</span></span><br><span class="line">    condition1 = &#123;<span class="string">'name'</span>: <span class="string">'Mike'</span>&#125;</span><br><span class="line">    condition2 = &#123;<span class="string">'name'</span>: &#123;<span class="string">'$regex'</span>: <span class="string">'^M.*'</span>&#125;&#125;</span><br><span class="line">    condition2 = &#123;&#125;</span><br><span class="line">    print(<span class="string">"------- 开始查询数据 --------"</span>)</span><br><span class="line">    res1 = db.find_one_record(col, condition1)</span><br><span class="line">    print(<span class="string">'select res1: '</span>, type(res1), res1)</span><br><span class="line">    res2 = db.find_records(col, condition2)</span><br><span class="line">    <span class="keyword">for</span> r <span class="keyword">in</span> res2:</span><br><span class="line">        print(<span class="string">'select res2: '</span>, type(r), r)</span><br><span class="line">    print(<span class="string">"------------ end ------------"</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 更新</span></span><br><span class="line">    <span class="comment"># condition3 = &#123;'gender': 'male'&#125;</span></span><br><span class="line">    <span class="comment"># condition4 = &#123;'age': &#123;'$gt': 20&#125;&#125;</span></span><br><span class="line">    <span class="comment"># data1 = &#123;'$set': &#123;'age': 21&#125;&#125;</span></span><br><span class="line">    <span class="comment"># data2 = &#123;'$inc': &#123;'age': 1&#125;&#125;</span></span><br><span class="line">    print(<span class="string">"------- 开始更新数据 --------"</span>)</span><br><span class="line">    <span class="comment"># res3 = db.update_one_record(col, condition3, data1)</span></span><br><span class="line">    <span class="comment"># print('update res3: ', res3)</span></span><br><span class="line">    <span class="comment"># res4 = db.update_records(col, condition4, data2)</span></span><br><span class="line">    <span class="comment"># print('update res4: ', res4)</span></span><br><span class="line">    print(<span class="string">"------------ end ------------"</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 删除</span></span><br><span class="line">    <span class="comment"># condition5 = &#123;'name': 'Kevin'&#125;</span></span><br><span class="line">    <span class="comment"># condition6 = &#123;'age': &#123;'$lt': 25&#125;&#125;</span></span><br><span class="line">    print(<span class="string">"------- 开始删除数据 --------"</span>)</span><br><span class="line">    <span class="comment"># res5 = db.delete_one_record(col, condition5)</span></span><br><span class="line">    <span class="comment"># print("删除条数：", res5)</span></span><br><span class="line">    <span class="comment"># res6 = db.delete_records(col, condition6)</span></span><br><span class="line">    <span class="comment"># print("删除条数：", res6)</span></span><br><span class="line">    print(<span class="string">"------------ end ------------"</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>查询数据库，可见：</strong><br><img src="https://img-blog.csdnimg.cn/20191109155037753.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt></p>
+<h2 id="2-mongoengine"><a href="#2-mongoengine" class="headerlink" title="2. mongoengine"></a>2. mongoengine</h2><blockquote>
+<p>python中的操作MongoDB的对象文档映射器（ODM），类似MySQL的对象关系映射器（ORM）</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 简单使用</span></span><br><span class="line"><span class="keyword">import</span> mongoengine</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> baseConfig <span class="keyword">import</span> DATABASE</span><br><span class="line"></span><br><span class="line">DB_CONF = DATABASE[<span class="string">'mongodb'</span>]</span><br><span class="line"><span class="comment"># 连接数据库</span></span><br><span class="line">MONGO_CONNECT_ENGINE = mongoengine.connect(**DB_CONF)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义分类文档:</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(mongoengine.Document)</span>:</span></span><br><span class="line">    <span class="string">"""继承Document类, 为普通文档"""</span></span><br><span class="line">    name = mongoengine.StringField(max_length=<span class="number">30</span>, required=<span class="literal">True</span>)</span><br><span class="line">    age = mongoengine.IntField(default=<span class="number">0</span>, required=<span class="literal">True</span>)</span><br><span class="line">    date = mongoengine.DateTimeField(default=datetime.now(), required=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert_doc</span><span class="params">()</span>:</span></span><br><span class="line">    cate = User(name=<span class="string">"Linux"</span>, age=<span class="number">20</span>)  <span class="comment"># 如果required为True则必须赋予初始值,如果有default,赋予初始值则使用默认值</span></span><br><span class="line">    cate.save()  <span class="comment"># 保存到数据库</span></span><br><span class="line">    </span><br><span class="line">    User(name=<span class="string">"Python"</span>, age=<span class="number">3</span>).save()</span><br><span class="line">    User(name=<span class="string">"HTML"</span>, age=<span class="number">3</span>).save()</span><br><span class="line">    User(name=<span class="string">"Javascript"</span>, age=<span class="number">3</span>).save()</span><br><span class="line">    User(name=<span class="string">"CSS"</span>, age=<span class="number">3</span>).save()</span><br><span class="line">    User(name=<span class="string">"Ruby"</span>, age=<span class="number">2</span>).save()</span><br><span class="line">    User(name=<span class="string">"PHP"</span>, age=<span class="number">1</span>).save()</span><br><span class="line">    User(name=<span class="string">"test"</span>, age=<span class="number">3</span>).save()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_doc</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 返回集合里的所有文档对象的列表</span></span><br><span class="line">    users = User.objects.all()</span><br><span class="line">    <span class="keyword">for</span> u <span class="keyword">in</span> users:</span><br><span class="line">        print(<span class="string">"name:"</span>, u.name, <span class="string">",age:"</span>, u.age)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 返回所有符合查询条件的结果的文档对象列表</span></span><br><span class="line">    user = User.objects(name=<span class="string">"Python"</span>)</span><br><span class="line">    print(user)</span><br><span class="line">    </span><br><span class="line">    user_search = User.objects(age__gte=<span class="number">10</span>, age__lt=<span class="number">33</span>).order_by(<span class="string">'name'</span>)</span><br><span class="line">    <span class="keyword">for</span> u <span class="keyword">in</span> user_search:</span><br><span class="line">        print(<span class="string">"name:"</span>, u.name, <span class="string">",age:"</span>, u.age)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_doc</span><span class="params">()</span>:</span></span><br><span class="line">    User.objects(name=<span class="string">"Ruby"</span>).update(inc__age=<span class="number">1</span>)</span><br><span class="line">    tmp = User.objects(name=<span class="string">"Ruby"</span>)</span><br><span class="line">    <span class="keyword">for</span> u <span class="keyword">in</span> tmp:</span><br><span class="line">        print(<span class="string">"name:"</span>, u.name, <span class="string">",age:"</span>, u.age)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete_doc</span><span class="params">()</span>:</span></span><br><span class="line">    user_list = User.objects(name=<span class="string">'test'</span>)</span><br><span class="line">    <span class="keyword">for</span> user <span class="keyword">in</span> user_list:</span><br><span class="line">        user.delete()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">code_test</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 添加记录</span></span><br><span class="line">    insert_doc()</span><br><span class="line">    <span class="comment"># 查询</span></span><br><span class="line">    <span class="comment"># select_doc()</span></span><br><span class="line">    <span class="comment"># 更新</span></span><br><span class="line">    <span class="comment"># update_doc()</span></span><br><span class="line">    <span class="comment"># 删除</span></span><br><span class="line">    <span class="comment"># delete_doc()</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    code_test()</span><br></pre></td></tr></table></figure>
+
+<p><strong>查询数据库，可见：</strong><br><img src="https://img-blog.csdnimg.cn/20191109155217419.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt></p>
+<hr>
+<p>结束！</p>
+<blockquote>
+<p>原文地址： CSDN博客 - <a href="https://blog.csdn.net/weixin_41599858/article/details/102987366" target="_blank" rel="noopener">Python（七）- 连接MongoDB数据库以及CURD操作！</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>数据库</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>CURD</tag>
+        <tag>MongoDB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python（六）- 连接MySQL数据库以及CURD操作！</title>
+    <url>/archives/17f677f9.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文介绍python中对MySQL数据库操作的几个模块</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>MySQL是一个轻量级的关系型数据库管理系统，由于性能高、成本低、可靠性好，已经成为最流行的开源数据库，广泛应用于中小型网络</p>
+<h2 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h2><p>具体安装步骤可以参考：<a href="https://blog.csdn.net/zhouzezhou/article/details/52446608" target="_blank" rel="noopener">Windows安装MySQL</a></p>
+<h2 id="三、使用"><a href="#三、使用" class="headerlink" title="三、使用"></a>三、使用</h2><blockquote>
+<p>这里主要举例，介绍几种python操作MySQL的模块：MySQLdb、pymysql、sqlalchemy、peewee。</p>
+</blockquote>
+<p><strong>数据库配置：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># baseConfig.py</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据库配置</span></span><br><span class="line">DATABASE = &#123;</span><br><span class="line">    <span class="string">'mysql'</span>: &#123;</span><br><span class="line">        <span class="string">'username'</span>: <span class="string">'alfred'</span>,</span><br><span class="line">        <span class="string">'password'</span>: <span class="string">'123456'</span>,</span><br><span class="line">        <span class="string">'host'</span>: <span class="string">'localhost'</span>,</span><br><span class="line">        <span class="string">'port'</span>: <span class="number">3306</span>,</span><br><span class="line">        <span class="string">'name'</span>: <span class="string">'tests'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="1-MySQLdb"><a href="#1-MySQLdb" class="headerlink" title="1. MySQLdb"></a>1. MySQLdb</h3><blockquote>
+<p>基于C库来写的mysql连接库，这个使用比较简单，对于增删改查操作，多用原生sql语句，可以根据需要而定制。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> baseConfig <span class="keyword">import</span> DATABASE</span><br><span class="line"></span><br><span class="line">DB_CONF = DATABASE[<span class="string">'mysql'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># ----------------- MySQLdb ----------------</span></span><br><span class="line"><span class="keyword">import</span> MySQLdb</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SQLTool_V1</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""使用MySQLdb"""</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, **kwargs)</span>:</span></span><br><span class="line">       </span><br><span class="line">        self.db = MySQLdb.connect(</span><br><span class="line">            host=kwargs[<span class="string">"host"</span>] <span class="keyword">or</span> <span class="string">'127.0.0.1'</span>,  <span class="comment"># 主机名</span></span><br><span class="line">            port=kwargs[<span class="string">"port"</span>] <span class="keyword">or</span> <span class="number">3306</span>,  <span class="comment"># 端口号</span></span><br><span class="line">            user=kwargs[<span class="string">"username"</span>] <span class="keyword">or</span> <span class="string">'alfred'</span>,  <span class="comment"># 用户名</span></span><br><span class="line">            passwd=kwargs[<span class="string">"password"</span>] <span class="keyword">or</span> <span class="string">'123456'</span>,  <span class="comment"># 密码</span></span><br><span class="line">            db=kwargs[<span class="string">"name"</span>] <span class="keyword">or</span> <span class="string">'tests'</span>)  <span class="comment"># 数据库名称</span></span><br><span class="line">        <span class="comment"># 查询前，必须先获取游标</span></span><br><span class="line">        self.cur = self.db.cursor()</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span><span class="params">(self, table)</span>:</span></span><br><span class="line">        <span class="comment"># 执行的都是原生SQL语句</span></span><br><span class="line">        self.cur.execute(<span class="string">f"SELECT * FROM <span class="subst">&#123;table&#125;</span>"</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> self.cur.fetchall():</span><br><span class="line">            print(row)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.cur.close()</span><br><span class="line">        self.db.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sql_v1 = SQLTool_V1(**DB_CONF)</span><br><span class="line"></span><br><span class="line">sql_v1.select(<span class="string">'user'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-pymysql"><a href="#2-pymysql" class="headerlink" title="2. pymysql"></a>2. pymysql</h3><blockquote>
+<p>pymysql 是纯python写的主流连接库，使用也比较简单</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SQLTool_V2</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""使用pymysql"""</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, **kwargs)</span>:</span></span><br><span class="line">        self.conn = pymysql.connect(</span><br><span class="line">            host=kwargs[<span class="string">"host"</span>] <span class="keyword">or</span> <span class="string">'127.0.0.1'</span>,  <span class="comment"># 主机名</span></span><br><span class="line">            port=kwargs[<span class="string">"port"</span>] <span class="keyword">or</span> <span class="number">3306</span>,  <span class="comment"># 端口号</span></span><br><span class="line">            user=kwargs[<span class="string">"username"</span>] <span class="keyword">or</span> <span class="string">'alfred'</span>,  <span class="comment"># 用户名</span></span><br><span class="line">            passwd=kwargs[<span class="string">"password"</span>] <span class="keyword">or</span> <span class="string">'123456'</span>,  <span class="comment"># 密码</span></span><br><span class="line">            db=kwargs[<span class="string">"name"</span>] <span class="keyword">or</span> <span class="string">'tests'</span>)  <span class="comment"># 数据库名称</span></span><br><span class="line">        self.cur = self.conn.cursor()</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span><span class="params">(self, table)</span>:</span></span><br><span class="line">        self.cur.execute(<span class="string">f"SELECT * FROM <span class="subst">&#123;table&#125;</span>"</span>)</span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> self.cur:</span><br><span class="line">            print(r)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.cur.close()</span><br><span class="line">        self.conn.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sql_v2 = SQLTool_V2(**DB_CONF)</span><br><span class="line"></span><br><span class="line">sql_v2.select(<span class="string">'user'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-sqlalchemy"><a href="#3-sqlalchemy" class="headerlink" title="3. sqlalchemy"></a>3. sqlalchemy</h3><blockquote>
+<p>主要特点：既支持原生 SQL，又支持 ORM </p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> baseConfig <span class="keyword">import</span> DATABASE</span><br><span class="line"></span><br><span class="line">DB_CONF = DATABASE[<span class="string">'mysql'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># ----------------- sqlalchemy ----------------</span></span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine, MetaData, Table, Column, Integer, String, ForeignKey, CHAR, BOOLEAN, VARCHAR, \</span><br><span class="line">    DateTime</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个连接引擎, 显示每条执行的 SQL 语句(echo=True)</span></span><br><span class="line">engine = create_engine(<span class="string">"mysql+pymysql://&#123;username&#125;:&#123;password&#125;@&#123;host&#125;:&#123;port&#125;/&#123;name&#125;"</span>.format(**DB_CONF), echo=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ******** 方式一: 元数据 ********</span></span><br><span class="line"><span class="comment"># 创建元数据</span></span><br><span class="line">metadata = MetaData(engine)  <span class="comment"># Base.metadata.bind = engine</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加表结构 - Table()方法用来创建表</span></span><br><span class="line"><span class="comment"># 第一个参数为表名，第二是存入元数据，使用Column()方法设置表字段</span></span><br><span class="line">customer = Table(<span class="string">'customer'</span>, metadata,</span><br><span class="line">                 Column(<span class="string">'id'</span>, Integer, primary_key=<span class="literal">True</span>),</span><br><span class="line">                 Column(<span class="string">'name'</span>, String(<span class="number">20</span>)),</span><br><span class="line">                 Column(<span class="string">'fullname'</span>, String(<span class="number">40</span>)),</span><br><span class="line">                 )</span><br><span class="line">address_table = Table(<span class="string">'address'</span>, metadata,</span><br><span class="line">                      Column(<span class="string">'id'</span>, Integer, primary_key=<span class="literal">True</span>),</span><br><span class="line">                      Column(<span class="string">'customer_id'</span>, <span class="literal">None</span>, ForeignKey(<span class="string">'customer.id'</span>)),</span><br><span class="line">                      Column(<span class="string">'email'</span>, String(<span class="number">128</span>), nullable=<span class="literal">False</span>)</span><br><span class="line">                      )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行创建</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">execute_create</span><span class="params">()</span>:</span></span><br><span class="line">    metadata.create_all()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ******** 方式二: Base 基类 ********</span></span><br><span class="line"><span class="comment"># 创建对象的基类</span></span><br><span class="line">Base = declarative_base()</span><br><span class="line">Base.metadata.bind = engine</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(Base)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'person'</span></span><br><span class="line">    id = Column(Integer, primary_key=<span class="literal">True</span>)</span><br><span class="line">    name = Column(<span class="string">'name'</span>, String(<span class="number">250</span>))</span><br><span class="line">    cname = Column(<span class="string">'cname'</span>, CHAR(<span class="number">30</span>), nullable=<span class="literal">True</span>)</span><br><span class="line">    age = Column(<span class="string">'age'</span>, Integer)</span><br><span class="line">    position = Column(<span class="string">'position'</span>, VARCHAR(<span class="number">20</span>))</span><br><span class="line">    address = Column(<span class="string">'address'</span>, VARCHAR(<span class="number">50</span>), nullable=<span class="literal">True</span>)</span><br><span class="line">    creatime = Column(<span class="string">'creatime'</span>, DateTime, default=datetime.datetime.now)</span><br><span class="line">    flag = Column(<span class="string">'flag'</span>, BOOLEAN, default=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建数据库会话类</span></span><br><span class="line">DBSession = sessionmaker(bind=engine)</span><br><span class="line"><span class="comment"># 使用session对数据库进行操作</span></span><br><span class="line">session = DBSession()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_table</span><span class="params">()</span>:</span></span><br><span class="line">    Base.metadata.create_all()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">session_select</span><span class="params">()</span>:</span></span><br><span class="line">    query_1 = session.execute(<span class="string">'select * from user'</span>)  <span class="comment"># sql 查询</span></span><br><span class="line">    res1 = query_1.fetchall()  <span class="comment"># 获取所有的结果fetchone()取得结果的第一行</span></span><br><span class="line">    print(<span class="string">'sql查询 res1: '</span>, res1)</span><br><span class="line">    print(<span class="string">'=============================================='</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># res2 = session.query(Person).all()</span></span><br><span class="line">    <span class="comment"># print('query 查询 res2: ',res2)</span></span><br><span class="line">    <span class="comment"># session.close()  # 关闭连接</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">session_add</span><span class="params">(data, table=None)</span>:</span></span><br><span class="line">    table = Person <span class="keyword">if</span> table <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">else</span> table</span><br><span class="line">    <span class="keyword">for</span> dic <span class="keyword">in</span> data:</span><br><span class="line">        p_stu = table(**dic)</span><br><span class="line">        session.add(p_stu)</span><br><span class="line">        session.commit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">session_update_v1</span><span class="params">(table: str, data: dict, where=<span class="string">''</span>)</span>:</span></span><br><span class="line">    flag = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        data = data.items()</span><br><span class="line">        func = <span class="keyword">lambda</span> x: <span class="string">' = '</span>.join(x)</span><br><span class="line">        field_info = <span class="string">','</span>.join(list(map(func, data)))</span><br><span class="line">        where = <span class="string">' WHERE '</span> + where <span class="keyword">if</span> where <span class="keyword">else</span> <span class="string">''</span></span><br><span class="line">        sql_update = <span class="string">'''UPDATE &#123;0&#125; SET &#123;1&#125; &#123;2&#125;'''</span>.format(table, field_info, where)</span><br><span class="line">        session.execute(sql_update)</span><br><span class="line">        session.commit()</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line">        flag = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> flag</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">session_update_v2</span><span class="params">()</span>:</span></span><br><span class="line">    row = session.query(Person).filter_by(name=<span class="string">'alfred001'</span>).update(&#123;Person.name: <span class="string">'xxx'</span>,Person.cname: <span class="string">'superman'</span>&#125;)</span><br><span class="line">    session.commit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">session_delete</span><span class="params">()</span>:</span></span><br><span class="line">    row = session.query(Person).filter_by(name=<span class="string">'sum'</span>)[<span class="number">0</span>]  <span class="comment"># first</span></span><br><span class="line">    print(row)</span><br><span class="line">    session.delete(row)</span><br><span class="line">    session.commit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">session_drop</span><span class="params">()</span>:</span></span><br><span class="line">    Base.metadata.drop_all()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">code_test</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 方式一：创建</span></span><br><span class="line">    <span class="comment"># execute_create()</span></span><br><span class="line">    <span class="comment"># 方式二：创建</span></span><br><span class="line">    <span class="comment"># create_table()</span></span><br><span class="line">    <span class="comment"># 查询</span></span><br><span class="line">    <span class="comment"># session_select()</span></span><br><span class="line">    <span class="comment"># 插入数据</span></span><br><span class="line">    data = [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">'name'</span>: <span class="string">'alfred'</span>,</span><br><span class="line">            <span class="string">'age'</span>: <span class="string">'28'</span>,</span><br><span class="line">            <span class="string">'position'</span>: <span class="string">'python'</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">'name'</span>: <span class="string">'xxx'</span>,</span><br><span class="line">            <span class="string">'age'</span>: <span class="string">'28'</span>,</span><br><span class="line">            <span class="string">'position'</span>: <span class="string">'php'</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">'name'</span>: <span class="string">'sum'</span>,</span><br><span class="line">            <span class="string">'age'</span>: <span class="string">'26'</span>,</span><br><span class="line">            <span class="string">'position'</span>: <span class="string">'ruby'</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">    <span class="comment"># session_add(data)</span></span><br><span class="line">    <span class="comment"># 更新数据(更新时，注意用转义字符)</span></span><br><span class="line">    data2 = &#123;</span><br><span class="line">        <span class="string">'name'</span>: <span class="string">'\'alfred001\''</span>,</span><br><span class="line">        <span class="string">'age'</span>: <span class="string">'28'</span>,</span><br><span class="line">        <span class="string">'position'</span>: <span class="string">'\'php+web\''</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># session_update_v1('person', data2, 'id=2')</span></span><br><span class="line">    <span class="comment"># session_update_v2()</span></span><br><span class="line">    <span class="comment"># 删除数据</span></span><br><span class="line">    <span class="comment"># session_delete()</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    code_test()</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-peewee"><a href="#4-peewee" class="headerlink" title="4. peewee"></a>4. peewee</h3><blockquote>
+<p>比较流行的ORM框架，安装：pip install peewee</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> baseConfig <span class="keyword">import</span> DATABASE</span><br><span class="line"></span><br><span class="line">DB_CONF = DATABASE[<span class="string">'mysql'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># ----------------- peewee ----------------</span></span><br><span class="line"><span class="keyword">import</span> peewee</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">peewee_db = peewee.MySQLDatabase(database=<span class="string">'tests'</span>, user=<span class="string">'alfred'</span>, passwd=<span class="string">'123456'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Author</span><span class="params">(peewee.Model)</span>:</span></span><br><span class="line">    LV_1 = <span class="number">0</span></span><br><span class="line">    LV_2 = <span class="number">1</span></span><br><span class="line">    LV_3 = <span class="number">2</span></span><br><span class="line">    LV_4 = <span class="number">3</span></span><br><span class="line">    EDUCATION_LEVEL = (</span><br><span class="line">        (LV_1, <span class="string">'高中'</span>),</span><br><span class="line">        (LV_2, <span class="string">'大专'</span>),</span><br><span class="line">        (LV_3, <span class="string">'本科'</span>),</span><br><span class="line">        (LV_4, <span class="string">'研究生'</span>),</span><br><span class="line">    )</span><br><span class="line">    pen_name = peewee.CharField(unique=<span class="literal">True</span>, null=<span class="literal">False</span>)</span><br><span class="line">    age = peewee.IntegerField()</span><br><span class="line">    education = peewee.CharField(choices=EDUCATION_LEVEL, default=LV_3)</span><br><span class="line">    created_date = peewee.DateTimeField(default=datetime.datetime.now, null=<span class="literal">True</span>)</span><br><span class="line">    is_active = peewee.BooleanField(default=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        database = peewee_db</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(peewee.Model)</span>:</span></span><br><span class="line">    author = peewee.ForeignKeyField(Author, related_name=<span class="string">'books'</span>)</span><br><span class="line">    title = peewee.CharField(<span class="number">50</span>, unique=<span class="literal">True</span>)</span><br><span class="line">    content = peewee.TextField()</span><br><span class="line">    is_active = peewee.BooleanField(default=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        database = peewee_db</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">peewee_create_table</span><span class="params">()</span>:</span></span><br><span class="line">    flag = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        Author.create_table()</span><br><span class="line">        Book.create_table()</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line">        flag = <span class="literal">False</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> flag</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">peewee_insert</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 1 - ok</span></span><br><span class="line">    <span class="comment"># author = Author.create(pen_name="alfred001", age=28)</span></span><br><span class="line">    <span class="comment"># Book.create(author=author, title='python is strong', content='xxxxoooo')</span></span><br><span class="line">    <span class="comment"># 2 - ok</span></span><br><span class="line">    <span class="comment"># p = Author(pen_name="飘散随风", age=25)</span></span><br><span class="line">    <span class="comment"># p.save()</span></span><br><span class="line">    <span class="comment"># 3 - ok</span></span><br><span class="line">    Author.insert(pen_name=<span class="string">'Mickey'</span>, age=<span class="number">27</span>).execute()  <span class="comment"># 返回主键</span></span><br><span class="line">    data = [</span><br><span class="line">        &#123;<span class="string">'author_id'</span>: <span class="number">2</span>, <span class="string">'title'</span>: <span class="string">'踏星'</span>, <span class="string">'content'</span>: <span class="string">'xxx'</span>&#125;,</span><br><span class="line">        &#123;<span class="string">'author_id'</span>: <span class="number">3</span>, <span class="string">'title'</span>: <span class="string">'三国'</span>, <span class="string">'content'</span>: <span class="string">'***'</span>&#125;]</span><br><span class="line">    query = Book.insert_many(data)  <span class="comment"># 插入了多个</span></span><br><span class="line">    query.execute()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">peewee_update</span><span class="params">()</span>:</span></span><br><span class="line">    author=Author.get(Author.pen_name.startswith(<span class="string">'alfred'</span>))</span><br><span class="line">    print(author)</span><br><span class="line">    <span class="comment"># query = (Book</span></span><br><span class="line">    <span class="comment">#          .update(title='python is powerful', content='Really powerful')</span></span><br><span class="line">    <span class="comment">#          # .where(Book.author==author)</span></span><br><span class="line">    <span class="comment">#          )</span></span><br><span class="line">    <span class="comment"># query.execute()  # 元子操作</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">peewee_select</span><span class="params">()</span>:</span></span><br><span class="line">    author = Author.get(id=<span class="number">1</span>)  <span class="comment"># get()方法只能查询一条，且是唯一的一条数据</span></span><br><span class="line">    print(author)</span><br><span class="line">    print(author.pen_name)</span><br><span class="line">    print(author.education)</span><br><span class="line">    <span class="keyword">for</span> book <span class="keyword">in</span> Book.filter(title=<span class="string">"踏星"</span>):</span><br><span class="line">        print(book.author.pen_name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">peewee_delete</span><span class="params">()</span>:</span></span><br><span class="line">    author = Author.get(education=Author.LV_1)</span><br><span class="line">    query = Book.delete().where(Book.author == author)</span><br><span class="line">    query.execute()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">code_test</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 建表</span></span><br><span class="line">    <span class="comment"># peewee_create_table()  # ok</span></span><br><span class="line">    <span class="comment"># 增加数据（插入）</span></span><br><span class="line">    <span class="comment"># peewee_insert()  # ok</span></span><br><span class="line">    <span class="comment"># 更新</span></span><br><span class="line">    <span class="comment"># peewee_update()  # ok</span></span><br><span class="line">    <span class="comment"># 查询</span></span><br><span class="line">    <span class="comment"># peewee_select()  # ok</span></span><br><span class="line">    <span class="comment"># 删除数据</span></span><br><span class="line">    peewee_delete()  <span class="comment"># ok</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    code_test()</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p>结束</p>
+<blockquote>
+<p>原文地址： CSDN博客 - <a href="https://blog.csdn.net/weixin_41599858/article/details/102945404" target="_blank" rel="noopener">Python（六）- 连接MySQL数据库以及CURD操作！</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>数据库</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>CURD</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python（五）- 连接sqlite3以及CURD操作！</title>
+    <url>/archives/5e26e967.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文主要描述使用python连接sqlite数据库，并进行简单的CURD操作</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p><strong>SQLite</strong>是一种C语言的嵌入式的数据库，它实现了一个 小型， 快速， 自包含， 高可靠性， 功能齐全的 SQL数据库引擎，它是一个零配置的数据库，我们不需要在系统中配置。SQLite 直接访问其存储文件。</p>
+<h2 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h2><p>安装比较简单，<br>具体的安装步骤，可以参考这篇博客：<a href="https://www.cnblogs.com/xcsn/p/6050878.html" target="_blank" rel="noopener">Windows 上如何安装Sqlite</a></p>
+<h2 id="三、使用"><a href="#三、使用" class="headerlink" title="三、使用"></a>三、使用</h2><blockquote>
+<p>这里主要展示利用python中的api去连接和操作sqlite</p>
+</blockquote>
+<p>首先，操作关系数据库，需要连接到数据库，一个数据库连接称为Connection；<br>之后，打开游标，称之为Cursor，通过Cursor执行SQL语句；<br>最后，获得执行结果。</p>
+<h3 id="1-简单使用"><a href="#1-简单使用" class="headerlink" title="1. 简单使用"></a>1. 简单使用</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 导入api模块</span></span><br><span class="line"><span class="keyword">import</span> sqlite3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建连接</span></span><br><span class="line">conn = sqlite3.connect(<span class="string">'test.db'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个Cursor游标</span></span><br><span class="line">cursor = conn.cursor()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行sql语句</span></span><br><span class="line">cursor.execute(<span class="string">'CREATE TABLE USER (ID INT PRIMARY KEY, NAME VARCHAR(50) NOT NULL, AGE INT NOT NULL)'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交事务</span></span><br><span class="line">conn.commit() </span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭Connection</span></span><br><span class="line">conn.close()</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-自定义操作类"><a href="#2-自定义操作类" class="headerlink" title="2. 自定义操作类"></a>2. 自定义操作类</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sqlite3</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SQLiteAPI</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, dbname=None)</span>:</span></span><br><span class="line">        self.dbname = dbname <span class="keyword">if</span> dbname <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">else</span> <span class="string">'test.db'</span></span><br><span class="line">        self.conn = sqlite3.connect(self.dbname)  <span class="comment"># 如果文件不存在，会自动在当前目录创建:</span></span><br><span class="line">        <span class="comment"># 创建一个Cursor</span></span><br><span class="line">        self.cursor = self.conn.cursor()</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self, table: str, fields: dict)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        建表（待完善）</span></span><br><span class="line"><span class="string">        :param table: 表名</span></span><br><span class="line"><span class="string">        :param fields: 字段及类型</span></span><br><span class="line"><span class="string">        :return: 执行结果</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self, table: str, data: dict)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        插入语句</span></span><br><span class="line"><span class="string">        :param table: 表名</span></span><br><span class="line"><span class="string">        :param data: 字典（包含插入列，值）</span></span><br><span class="line"><span class="string">        :return: 执行结果</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span><span class="params">(self, table: str, cols=<span class="string">'*'</span>, where=<span class="string">''</span>)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        查询</span></span><br><span class="line"><span class="string">        :param table: 表名</span></span><br><span class="line"><span class="string">        :param cols: 查询列</span></span><br><span class="line"><span class="string">        :param where: 查询条件</span></span><br><span class="line"><span class="string">        :return: 查询结果</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">   	</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self, table: str, data: dict, where=<span class="string">''</span>)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        更新表</span></span><br><span class="line"><span class="string">        :param table: 表名</span></span><br><span class="line"><span class="string">        :param data:更新数据</span></span><br><span class="line"><span class="string">        :param where:条件</span></span><br><span class="line"><span class="string">        :return: 执行结果</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">(self, table: str, where=<span class="string">''</span>)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        删除数据</span></span><br><span class="line"><span class="string">        :param table: 表名</span></span><br><span class="line"><span class="string">        :param where: 条件</span></span><br><span class="line"><span class="string">        :return: 执行结果</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">       </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">drop</span><span class="params">(self, table: str)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        删除表</span></span><br><span class="line"><span class="string">        :param table:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">close</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.cursor.close()  <span class="comment"># 关闭Cursor</span></span><br><span class="line">        self.conn.close()  <span class="comment"># 关闭Connection</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="2-1-创建表"><a href="#2-1-创建表" class="headerlink" title="2.1. 创建表"></a>2.1. 创建表</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self, table: str, fields: dict)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    建表（待完善）</span></span><br><span class="line"><span class="string">    :param table: 表名</span></span><br><span class="line"><span class="string">    :param fields: 字段及类型</span></span><br><span class="line"><span class="string">    :return: 执行结果</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    flag = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        data = fields.items()</span><br><span class="line">        func = <span class="keyword">lambda</span> x: <span class="string">' '</span>.join(x)</span><br><span class="line">        field_info = <span class="string">','</span>.join(list(map(func, data)))</span><br><span class="line">        <span class="comment"># create table fields</span></span><br><span class="line">        sql_create = <span class="string">f"CREATE TABLE <span class="subst">&#123;table&#125;</span> (<span class="subst">&#123;field_info&#125;</span>)"</span></span><br><span class="line">        print(sql_create)</span><br><span class="line">        self.cursor.execute(sql_create)</span><br><span class="line">        self.conn.commit()  <span class="comment"># 提交事务</span></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line">        flag = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> flag</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-插入语句（增加记录）"><a href="#2-2-插入语句（增加记录）" class="headerlink" title="2.2. 插入语句（增加记录）"></a>2.2. 插入语句（增加记录）</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self, table: str, data: dict)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    插入语句</span></span><br><span class="line"><span class="string">    :param table: 表名</span></span><br><span class="line"><span class="string">    :param data: 字典（包含插入列，值）</span></span><br><span class="line"><span class="string">    :return: 执行结果</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    flag = <span class="literal">True</span></span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        data = collections.OrderedDict(data)</span><br><span class="line">        keys = tuple(data.keys())</span><br><span class="line">        vals = tuple(data.values())</span><br><span class="line">        sql_insert = <span class="string">'''INSERT INTO %s %s VALUES %s'''</span> % (table, keys, vals)</span><br><span class="line">        print(sql_insert)</span><br><span class="line">        self.cursor.execute(sql_insert)</span><br><span class="line">        count = self.cursor.rowcount</span><br><span class="line">        self.conn.commit()</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line">        flag = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> flag, count</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-查询操作"><a href="#2-3-查询操作" class="headerlink" title="2.3. 查询操作"></a>2.3. 查询操作</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select</span><span class="params">(self, table: str, cols=<span class="string">'*'</span>, where=<span class="string">''</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    查询</span></span><br><span class="line"><span class="string">    :param table: 表名</span></span><br><span class="line"><span class="string">    :param cols: 查询列</span></span><br><span class="line"><span class="string">    :param where: 查询条件</span></span><br><span class="line"><span class="string">    :return: 查询结果</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    values = <span class="literal">None</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        where = <span class="string">'WHERE '</span> + where <span class="keyword">if</span> where <span class="keyword">else</span> <span class="string">''</span></span><br><span class="line">        sql_select = <span class="string">'''SELECT &#123;1&#125; FROM &#123;0&#125; &#123;2&#125;'''</span>.format(table, cols, where)</span><br><span class="line">        print(sql_select)</span><br><span class="line">        self.cursor.execute(sql_select)</span><br><span class="line">        values = self.cursor.fetchall()</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> values</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-更新操作"><a href="#2-4-更新操作" class="headerlink" title="2.4. 更新操作"></a>2.4. 更新操作</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self, table: str, data: dict, where=<span class="string">''</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    更新表</span></span><br><span class="line"><span class="string">    :param table: 表名</span></span><br><span class="line"><span class="string">    :param data:更新数据</span></span><br><span class="line"><span class="string">    :param where:条件</span></span><br><span class="line"><span class="string">    :return: 执行结果</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    flag = <span class="literal">True</span></span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        data = data.items()</span><br><span class="line">        func = <span class="keyword">lambda</span> x: <span class="string">' = '</span>.join(x)</span><br><span class="line">        field_info = <span class="string">','</span>.join(list(map(func, data)))</span><br><span class="line">        where = <span class="string">' WHERE '</span> + where <span class="keyword">if</span> where <span class="keyword">else</span> <span class="string">''</span></span><br><span class="line">        sql_update = <span class="string">'''UPDATE &#123;0&#125; SET &#123;1&#125; &#123;2&#125;'''</span>.format(table, field_info, where)</span><br><span class="line">        <span class="comment"># sql_update = '''UPDATE USER SET NAME = 'sun' WHERE ID = 3 '''   # test</span></span><br><span class="line">        print(sql_update)</span><br><span class="line">        self.cursor.execute(sql_update)</span><br><span class="line">        count = self.cursor.rowcount</span><br><span class="line">        self.conn.commit()</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line">        flag = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> flag, count</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-删除操作"><a href="#2-5-删除操作" class="headerlink" title="2.5. 删除操作"></a>2.5. 删除操作</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">(self, table: str, where=<span class="string">''</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    删除数据</span></span><br><span class="line"><span class="string">    :param table: 表名</span></span><br><span class="line"><span class="string">    :param where: 条件</span></span><br><span class="line"><span class="string">    :return: 执行结果</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    flag = <span class="literal">True</span></span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> where:</span><br><span class="line">        print(<span class="string">'条件不能为空，请重新尝试！'</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span>, count</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        sql_delete = <span class="string">'''DELETE FROM &#123;0&#125; WHERE &#123;1&#125;'''</span>.format(table, where)</span><br><span class="line">        </span><br><span class="line">        self.cursor.execute(sql_delete)</span><br><span class="line">        count = self.cursor.rowcount</span><br><span class="line">        self.conn.commit()</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line">        flag = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> flag, count</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-6-删除表"><a href="#2-6-删除表" class="headerlink" title="2.6. 删除表"></a>2.6. 删除表</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">drop</span><span class="params">(self, table: str)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    删除表</span></span><br><span class="line"><span class="string">    :param table:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    flag = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        sql_drop = <span class="string">f'''DROP TABLE <span class="subst">&#123;table&#125;</span>'''</span></span><br><span class="line">        self.cursor.execute(sql_drop)</span><br><span class="line">        self.conn.commit()</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line">        flag = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> flag</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="3-测试"><a href="#3-测试" class="headerlink" title="3. 测试"></a>3. 测试</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">code_test</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 新建表</span></span><br><span class="line">    fields = &#123;</span><br><span class="line">        <span class="string">'id '</span>: <span class="string">'INT PRIMARY KEY'</span>,</span><br><span class="line">        <span class="string">'name'</span>: <span class="string">'VARCHAR(50) NOT NULL'</span>,</span><br><span class="line">        <span class="string">'phone'</span>: <span class="string">'VARCHAR(20)'</span>,</span><br><span class="line">        <span class="string">'address'</span>: <span class="string">'VARCHAR(50)'</span>,</span><br><span class="line">        <span class="string">'age'</span>: <span class="string">'INT NOT NULL'</span>,</span><br><span class="line">        <span class="string">'position'</span>: <span class="string">'VARCHAR(20)'</span>,</span><br><span class="line">        <span class="string">'salary'</span>: <span class="string">'REAL'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># res = myApi.create('user',fields)</span></span><br><span class="line">    <span class="comment"># print('create result is :', res)</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 插入数据</span></span><br><span class="line">    insert_data = &#123;</span><br><span class="line">        <span class="string">'id'</span>: <span class="string">'1'</span>,</span><br><span class="line">        <span class="string">'name'</span>: <span class="string">'alfred'</span>,</span><br><span class="line">        <span class="string">'phone'</span>: <span class="string">'111111'</span>,</span><br><span class="line">        <span class="string">'age'</span>: <span class="string">'20'</span>,</span><br><span class="line">        <span class="string">'salary'</span>: <span class="string">'15000'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># res2 = myApi.insert('user', insert_data)</span></span><br><span class="line">    <span class="comment"># print('insert result is :', res2)</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 查询数据</span></span><br><span class="line">    <span class="comment"># res3 = myApi.select('user', cols='id,name', where='id=2')</span></span><br><span class="line">    <span class="comment"># res3 = myApi.select('user')</span></span><br><span class="line">    <span class="comment"># print('select result is :', res3)</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 更新数据(提示：no such column: 加''号，可以用转义字符)</span></span><br><span class="line">    update_data = &#123;</span><br><span class="line">        <span class="string">'name'</span>: <span class="string">'\'Lucy\''</span></span><br><span class="line">    &#125;</span><br><span class="line">    res4 = myApi.update(<span class="string">'user'</span>, data=update_data, where=<span class="string">'id=3'</span>)</span><br><span class="line">    print(<span class="string">'update result is :'</span>, res4)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 删除数据</span></span><br><span class="line">    <span class="comment"># res5 = myApi.delete('user', where='id=3')</span></span><br><span class="line">    <span class="comment"># print('delete result is :', res5)</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 删除表</span></span><br><span class="line">    <span class="comment"># res6 = myApi.drop('user')</span></span><br><span class="line">    <span class="comment"># print('drop result is :', res6)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">myApi = SQLiteAPI()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    code_test()</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p>结束，以上是对sqlite数据库的一些简单操作！</p>
+<blockquote>
+<p>原文地址： CSDN博客 - <a href="https://blog.csdn.net/weixin_41599858/article/details/102888828" target="_blank" rel="noopener">Python（五）- 连接sqlite3以及CURD操作！</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>数据库</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>CURD</tag>
+        <tag>SQLite</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python（四）- 数据类型及常用的操作！</title>
+    <url>/archives/2fc509ab.html</url>
+    <content><![CDATA[<blockquote>
+<p>所有语言的开端都绕不开数据类型，作为面向对象语言，Python之所以深受欢迎，同样离不开其丰富的数据类型</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="一、类型分类"><a href="#一、类型分类" class="headerlink" title="一、类型分类"></a>一、类型分类</h2><ol>
+<li><strong>数字 Number</strong></li>
+<li><strong>字符串 String</strong></li>
+<li><strong>列表 List</strong></li>
+<li><strong>元组 Tuple</strong></li>
+<li><strong>字典 Dict/有序字典 OrderedDict</strong></li>
+<li><strong>集合 Set/固定集合 FrozenSet</strong></li>
+</ol>
+<h2 id="二、相关操作"><a href="#二、相关操作" class="headerlink" title="二、相关操作"></a>二、相关操作</h2><h3 id="1-数字-Number"><a href="#1-数字-Number" class="headerlink" title="1. 数字 Number"></a>1. 数字 Number</h3><ul>
+<li>int：整型</li>
+<li>float：浮点型</li>
+<li>bool：布尔型</li>
+<li>complex：复数<blockquote>
+<p>数值运算： 加、减、乘、除、取模、求余、幂运算</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-字符串-String"><a href="#2-字符串-String" class="headerlink" title="2. 字符串 String"></a>2. 字符串 String</h3><blockquote>
+<p>Python中的字符串用单引号 ‘ 或双引号 “ 括起来，使用反斜杠 \ 转义特殊字符。支持索引、切片，但不能改变</p>
+</blockquote>
+<p><strong>常用字符串方法:</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S.isdigit()</td>
+<td>判断字符串中的字符是否全为数字</td>
+</tr>
+<tr>
+<td>S.isalpha()</td>
+<td>判断字符串是否全为英文字母</td>
+</tr>
+<tr>
+<td>S.islower()</td>
+<td>判断字符串所有字符是否全为小写英文字母</td>
+</tr>
+<tr>
+<td>S.isupper()</td>
+<td>判断字符串所有字符是否全为大写英文字母</td>
+</tr>
+<tr>
+<td>S.isspace()</td>
+<td>判断字符串是否全为空白字符</td>
+</tr>
+<tr>
+<td>S.center(width[,fill])</td>
+<td>将原字符串居中，左右默认填充空格</td>
+</tr>
+<tr>
+<td>S.count(sub[, start[,end]])</td>
+<td>获取一个字符串中子串的个数</td>
+</tr>
+<tr>
+<td>S.find(sub[, start[,end]])</td>
+<td>获取字符串中子串sub的索引,失败返回-1</td>
+</tr>
+<tr>
+<td>S.strip()</td>
+<td>返回去掉左右空白字符的字符串</td>
+</tr>
+<tr>
+<td>S.lstrip()</td>
+<td>返回去掉左侧空白字符的字符串</td>
+</tr>
+<tr>
+<td>S.rstrip()</td>
+<td>返回去掉右侧空白字符的字符串</td>
+</tr>
+<tr>
+<td>S.upper()</td>
+<td>生成将英文转换为大写的字符串</td>
+</tr>
+<tr>
+<td>S.lower()</td>
+<td>生成将英文转换为小写的字符串</td>
+</tr>
+<tr>
+<td>S.replace(old, new[, count])</td>
+<td>将原字符串的old用new代替，生成一个新的字符串</td>
+</tr>
+<tr>
+<td>S.startswith(prefix[, start[, end]])</td>
+<td>返回S是否是以prefix开头，如果以prefix开头返回True,否则返回False,</td>
+</tr>
+<tr>
+<td>S.endswith(suffix[, start[, end]])</td>
+<td>返回S是否是以suffix结尾，如果以suffix结尾返回True,否则返回False</td>
+</tr>
+<tr>
+<td>S.title()</td>
+<td>生成每个英文单词的首字母大写字符串</td>
+</tr>
+<tr>
+<td>S.isnumeric()</td>
+<td>判断字符串是否全为数字字符</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<h3 id="3-列表-List"><a href="#3-列表-List" class="headerlink" title="3. 列表 List"></a>3. 列表 List</h3><blockquote>
+<p>Python 中使用最频繁的数据类型，支持索引、切片、赋值，为可变类型。详细可见：help(list)</p>
+</blockquote>
+<p><strong>常用列表方法：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>L.index(v [, begin[, end]])</td>
+<td>返回对应元素的索引下标, begin为开始索引，end为结束索引,当 value不存在时触发ValueError错误</td>
+</tr>
+<tr>
+<td>L.insert(index, obj)</td>
+<td>将某个元素插放到列表中指定的位置</td>
+</tr>
+<tr>
+<td>L.count(x)</td>
+<td>返回列表中元素的个数</td>
+</tr>
+<tr>
+<td>L.remove(x)</td>
+<td>从列表中删除第一次出现在列表中的值</td>
+</tr>
+<tr>
+<td>L.copy()</td>
+<td>复制此列表（只复制一层，不会复制深层对象)</td>
+</tr>
+<tr>
+<td>L.append(x)</td>
+<td>向列表中追加单个元素</td>
+</tr>
+<tr>
+<td>L.extend(lst)</td>
+<td>向列表追加另一个列表</td>
+</tr>
+<tr>
+<td>L.clear()</td>
+<td>清空列表,等同于 L[:] = []</td>
+</tr>
+<tr>
+<td>L.sort(reverse=False)</td>
+<td>将列表中的元素进行排序，默认顺序按值的小到大的顺序排列</td>
+</tr>
+<tr>
+<td>L.reverse()</td>
+<td>列表的反转，用来改变原列表的先后顺序</td>
+</tr>
+<tr>
+<td>L.pop([index])</td>
+<td>删除索引对应的元素，如果不加索引，默认删除最后元素，同时返回删除元素的引用关系</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>常用还有列表推倒式，如：[i for i in range(10) if i % 2 == 0]</p>
+</blockquote>
+<h3 id="4-元组-Tuple"><a href="#4-元组-Tuple" class="headerlink" title="4. 元组 Tuple"></a>4. 元组 Tuple</h3><blockquote>
+<p>元组是一个不可变类型，支持索引、切片，当元组内嵌有其他可变类型时，可以改变可变类型的值。</p>
+</blockquote>
+<p><strong>元组支持的方法：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>len(tuple)</td>
+<td>计算元组元素个数</td>
+</tr>
+<tr>
+<td>max(tuple)</td>
+<td>返回元组中元素最大值</td>
+</tr>
+<tr>
+<td>min(tuple)</td>
+<td>返回元组中元素最小值</td>
+</tr>
+<tr>
+<td>tuple(seq)</td>
+<td>将列表转换为元组</td>
+</tr>
+<tr>
+<td><del>cmp(tup1,tup2</del> )</td>
+<td>比较两个元组元素</td>
+</tr>
+<tr>
+<td>tuple.count(val)</td>
+<td>计算元素val在元组中的出现次数</td>
+</tr>
+<tr>
+<td>tuple.index(val)</td>
+<td>返回元素val在元组中的位置</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>python3中将cmp()比较方法弃用了，可以手写一个：<br><code>cmp = lambda x,y: (x&gt;y) - (x&lt;y)</code></p>
+</blockquote>
+<h3 id="5-字典-Dict"><a href="#5-字典-Dict" class="headerlink" title="5. 字典 Dict"></a>5. 字典 Dict</h3><blockquote>
+<p>python中的字典属于可变无序类型，类似于其他语言中的哈希，如果需要有序，可用有序字典：OrderedDict</p>
+</blockquote>
+<p><strong>字典的方法:</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>D.clear()</td>
+<td>清空字典</td>
+</tr>
+<tr>
+<td>D.pop(key)</td>
+<td>移除键，同时返回此键所对应的值</td>
+</tr>
+<tr>
+<td>D.copy()</td>
+<td>返回字典D的副本,只复制一层(浅拷贝)</td>
+</tr>
+<tr>
+<td>D.update(D2)</td>
+<td>将字典 D2 合并到D中，如果键相同，则此键的值取D2的值作为新值</td>
+</tr>
+<tr>
+<td>D.get(key, default)</td>
+<td>返回键key所对应的值,如果没有此键，则返回default</td>
+</tr>
+<tr>
+<td>D.keys()</td>
+<td>返回可迭代的 dict_keys 集合对象</td>
+</tr>
+<tr>
+<td>D.values()</td>
+<td>返回可迭代的 dict_values 值对象</td>
+</tr>
+<tr>
+<td>D.items()</td>
+<td>返回可迭代的 dict_items 对象</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>常用还有字典推倒式，如：    {k: v for k, v in zip(lst1, lst2)}</p>
+</blockquote>
+<blockquote>
+<p>创建有序字典：<br><code>import collections</code><br><code>od = collections.OrderedDict()</code></p>
+</blockquote>
+<p><strong>有序字典的方法：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>od.clear()</td>
+<td>清空字典</td>
+</tr>
+<tr>
+<td>od.copy()</td>
+<td>拷贝</td>
+</tr>
+<tr>
+<td>od.fromkeys(lst1,val)</td>
+<td>fromkeys(指定一个列表，把列表中的值作为字典的key,生成一个字典)</td>
+</tr>
+<tr>
+<td>od.get(key, default)</td>
+<td>返回键key所对应的值,如果没有此键，则返回default</td>
+</tr>
+<tr>
+<td>od.update(od2)</td>
+<td>将字典 od2 合并到od中，如果键相同，则此键的值取od2的值作为新值</td>
+</tr>
+<tr>
+<td>od.pop(k)</td>
+<td>获取指定key的value，并在字典中删除</td>
+</tr>
+<tr>
+<td>od.popitem()</td>
+<td>按照后进先出原则，删除最后加入的元素，返回key-value</td>
+</tr>
+<tr>
+<td>od.move_to_end(k)</td>
+<td>指定一个key，把对应的key-value移到最后</td>
+</tr>
+<tr>
+<td>od.keys()</td>
+<td>获取字典所有的key</td>
+</tr>
+<tr>
+<td>od.values()</td>
+<td>获取字典所有的value</td>
+</tr>
+<tr>
+<td>od.items()</td>
+<td>返回由键值对组成的列表</td>
+</tr>
+<tr>
+<td>od.setdefault(k)</td>
+<td>获取指定key的value，如果key不存在，则创建</td>
+</tr>
+</tbody></table>
+<h3 id="6-集合-Set"><a href="#6-集合-Set" class="headerlink" title="6. 集合 Set"></a>6. 集合 Set</h3><blockquote>
+<p>集合：基本功能是进行成员关系测试和删除重复元素，也是无序可变的，固定集合是不可变的。</p>
+</blockquote>
+<p><strong>1. 集合的运算：</strong></p>
+<ul>
+<li>交集 &amp;</li>
+<li>并集 |</li>
+<li>补集（差集） -</li>
+<li>对称补集 ^</li>
+<li>子集 &lt;</li>
+<li>超集（父集） &gt;</li>
+</ul>
+<p><strong>2. 集合的常用方法：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S.add(e)</td>
+<td>在集合中添加一个新的元素e；如果元素已经存在，则不添加</td>
+</tr>
+<tr>
+<td>S.remove(e)</td>
+<td>从集合中删除一个元素，如果元素不存在于集合中，则会产生一个KeyError错误</td>
+</tr>
+<tr>
+<td>S.discard(e)</td>
+<td>从集合S中移除一个元素e;</td>
+</tr>
+<tr>
+<td>S.clear()</td>
+<td>清空集合内的所有元素</td>
+</tr>
+<tr>
+<td>S.copy()</td>
+<td>将集合进行一次浅拷贝</td>
+</tr>
+<tr>
+<td>S.pop()</td>
+<td>从集合S中删除一个随机元素;如果此集合为空，则引发KeyError异常</td>
+</tr>
+<tr>
+<td>S.update(s2)</td>
+<td>用 S与s2得到的全集更新变量S</td>
+</tr>
+<tr>
+<td>S.difference(s2)</td>
+<td>用S - s2 运算，返回存在于在S中，但不在s2中的所有元素的集合</td>
+</tr>
+<tr>
+<td>S.difference_update(s2)</td>
+<td>等同于 S = S - s2</td>
+</tr>
+<tr>
+<td>S.intersection(s2)</td>
+<td>等同于S &amp; s2</td>
+</tr>
+<tr>
+<td>S.intersection_update(s2)</td>
+<td>等同于S = S &amp; s2</td>
+</tr>
+<tr>
+<td>S.isdisjoint(s2)</td>
+<td>如果S与s2交集为空返回True,非空则返回False</td>
+</tr>
+<tr>
+<td>S.issubset(s2)</td>
+<td>如果S与s2交集为非空返回True,空则返回False</td>
+</tr>
+<tr>
+<td>S.issuperset(…)</td>
+<td>如果S为s2的子集返回True,否则返回False</td>
+</tr>
+<tr>
+<td>S.symmetric_difference(s2)</td>
+<td>返回对称补集,等同于 S ^ s2</td>
+</tr>
+<tr>
+<td>S.symmetric_difference_update(s2)</td>
+<td>用S 与 s2的对称补集更新 S</td>
+</tr>
+<tr>
+<td>S.union(s2)</td>
+<td>生成 S 与 s2的全集</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>常用还有集合推倒式，如：{x**2 for x in range(6)}</p>
+</blockquote>
+<hr>
+<p>另外的关于时间的类型，可以参考time、datetime、pytz等模块，对时间格式化处理比较多样灵活。</p>
+<p>结束！</p>
+<blockquote>
+<p>原文地址： CSDN博客 - <a href="https://blog.csdn.net/weixin_41599858/article/details/102883940" target="_blank" rel="noopener">Python（四）- 数据类型及常用的操作！</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>数据类型</tag>
+        <tag>基本操作</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python（三）- 交互式编程：jupyter的安装、使用以及出现的部分问题！</title>
+    <url>/archives/441b84e2.html</url>
+    <content><![CDATA[<blockquote>
+<p>如题，本次主要聊聊关于交互式编程在Python中的应用。</p>
+</blockquote>
+<a id="more"></a>
+
+<p>对于交互式编程，很多人都很熟悉了,其实，很多脚本语言都有这样的功能。<br>可以把它看做程序员和计算机之间的对话，程序员通过解释器或者控制台输入一段命令或逻辑操作，计算机反馈回程序员想要得到的信息。<br>这么一来，就很清楚了，我们平时工作学习中，一直在使用着，如：</p>
+<blockquote>
+<p>JavaScript 在浏览器中使用通过控制台和页面交互；<br>Ruby中的irb，通过它，我们可以和ruby解释器交互；<br>Python中的解释器，交互式模块：ipython、jupyter等等；<br>Lua中的lua命令；</p>
+</blockquote>
+<p>接下来，重点介绍一下关于jupyter的一些使用：</p>
+<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h1><blockquote>
+<p>Jupyter Notebook（此前被称为 IPython notebook）是一个交互式笔记本，支持运行 40 多种编程语言;<br>Jupyter Notebook 的本质是一个 Web 应用程序，便于创建和共享文学化程序文档，支持实时代码，数学方程，可视化和 markdown。 用途包括：数据清理和转换，数值模拟，统计建模，机器学习等等。 – 【<a href="https://baike.baidu.com/item/Jupyter/20423051" target="_blank" rel="noopener">百度百科</a>】<br>简单来说：jupyter为多种语言提供一种页面交互式的操作（编程、撰写技术文档），功能强大的它极大程度上方便了我们的工作和学习。</p>
+</blockquote>
+<h1 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h1><h2 id="2-1-Windows下："><a href="#2-1-Windows下：" class="headerlink" title="2.1. Windows下："></a>2.1. Windows下：</h2><p>DOS命令，打开命令提示符，输入：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install jupyter  <span class="comment"># 前提是安装了python和pip并加入环境变量</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>中途可能会出现失败情况，一般，更新一下pip都能解决：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>DOS命令下的使用，这里就不说了，具体看下面 <code>使用</code> ，Linux和Windows命令行的开启方法都一样。</p>
+</blockquote>
+<h2 id="2-2-Linux下："><a href="#2-2-Linux下：" class="headerlink" title="2.2. Linux下："></a>2.2. Linux下：</h2><p>终端输入：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 更新pip</span></span><br><span class="line">python pip3 install --upgrade pip</span><br><span class="line"><span class="comment"># 安装</span></span><br><span class="line">pip install jupyter</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>过程中可能出现：<code>EnvironmentError: [Errno 13] 权限不够</code> 这样的错误</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install jupyter --user  <span class="comment"># 根据提示，我们可以试下添加 `--user`</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="3-使用"><a href="#3-使用" class="headerlink" title="3.使用"></a>3.使用</h1><h2 id="3-1-启动"><a href="#3-1-启动" class="headerlink" title="3.1. 启动"></a>3.1. 启动</h2><p>命令行输入：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># [] 内为可选操作</span></span><br><span class="line">ipython notebook [--no-browser --port 8080 --ip localhost]</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">jupyter notebook [--no-browser --port 8080 --ip localhost]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>过程中可能会出现：找不到jupyter命令的错误:</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">find -name jupyter      <span class="comment"># 查找</span></span><br><span class="line"><span class="built_in">cd</span> ./.<span class="built_in">local</span>/bin/        <span class="comment"># 路径</span></span><br><span class="line">sudo vim /etc/profile   <span class="comment"># 修改，添加下面一行</span></span><br><span class="line"><span class="comment"># 最后 添加： export PATH=$PATH:~/.local/bin</span></span><br><span class="line"><span class="comment"># 或者将上面一行加入到 ~/.bashrc</span></span><br><span class="line"><span class="comment"># 退出并执行加载</span></span><br><span class="line"><span class="built_in">source</span>  /etc/profile  <span class="comment"># ~/.bashrc</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通常推荐，使用虚拟环境，在虚拟环境中安装jupyter，并开启。</p>
+</blockquote>
+<p>成功后，如图：</p>
+<blockquote>
+<p>这是首页</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20191001021433259.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>如Linux下的vim，它有编辑和命令模式，Esc可退出到命令模式，此时，我们可以使用快捷键操作；<br>jupyter有两个单元，code和markdown，即代码单元和标记语言单元；</p>
+</blockquote>
+<h2 id="3-2-编写"><a href="#3-2-编写" class="headerlink" title="3.2. 编写"></a>3.2. 编写</h2><blockquote>
+<p>接下来，我们可以混用code和markdown，操作一下。</p>
+</blockquote>
+<p>点击new，选择python3，如图：</p>
+<p><img src="https://img-blog.csdnimg.cn/20191001132746176.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>输入代码语句和markdown语句，分别执行一遍，如图：</p>
+<p><img src="https://img-blog.csdnimg.cn/2019100102183297.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="3-3-保存与导出"><a href="#3-3-保存与导出" class="headerlink" title="3.3. 保存与导出"></a>3.3. 保存与导出</h2><p><img src="https://img-blog.csdnimg.cn/20191001133928568.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>推荐使用download as ，多种文本格式可供选择保存。</p>
+<p>好了，以上就是关于jupyter的一点简单用法，当然有需要的话，我们也可以用它来快速地编写一份技术文档，so good！</p>
+<blockquote>
+<p>原文地址： CSDN博客 - <a href="https://blog.csdn.net/weixin_41599858/article/details/101806377" target="_blank" rel="noopener">Python（三）- 交互式编程：jupyter的安装、使用以及出现的部分问题！</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>交互式编程</tag>
+        <tag>jupyter</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python（二）- 虚拟环境管理：pyenv、virtualwnv、virtualenvwrapper的安装</title>
+    <url>/archives/9ceab481.html</url>
+    <content><![CDATA[<blockquote>
+<p>python 中使用虚拟环境</p>
+</blockquote>
+<a id="more"></a>
+
+<p>很多人都说Python是一门胶水语言，事实上，它的确很强大！<br>应用于很多领域，注重模块化，因此我们需要一种手段，能够帮助我们去区分和管理不同的模块集合（环境），适应不同需求，同时可以丢掉那些不必要且繁重的依赖（纯净）。<br>虚拟环境管理就是为这个而生的。</p>
+<h1 id="1-pyenv"><a href="#1-pyenv" class="headerlink" title="1. pyenv"></a>1. pyenv</h1><blockquote>
+<p>针对python多版本的管理工具，可以自由切换不同版本，适应多种需求。<br>类似git的分支管理。<br>但不支持Windows，不过Windows下有一个替代品：<code>pywin</code></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装curl 和 git</span></span><br><span class="line">sudo apt-get install curl git-core</span><br><span class="line"><span class="comment"># 安装 (如果用的是 zsh 的话，则替换命令中的 bash)</span></span><br><span class="line">curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash</span><br><span class="line">or</span><br><span class="line"><span class="comment"># 安装到 ~/.pyenv 目录</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/pyenv/pyenv.git ~/.pyenv</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>配置环境变量 (zsh则将 <code>~/.bashrc</code> 修改为 <code>/.zshrc</code> )</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">'export PYENV_ROOT="$HOME/.pyenv"'</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'export PATH="$PYENV_ROOT/bin:$PATH"'</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>一些基本操作：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pyenv update              <span class="comment"># 更新</span></span><br><span class="line">rm -fr ~/.pyenv           <span class="comment"># 卸载：删除目录</span></span><br><span class="line"></span><br><span class="line">pyenv install -list       <span class="comment"># 显示可安装版本</span></span><br><span class="line">pyenv versions            <span class="comment"># 显示已有版本</span></span><br><span class="line"></span><br><span class="line">pyenv install `版本号`     <span class="comment"># 安装指定版本</span></span><br><span class="line">pyenv uninstall `版本号`   <span class="comment"># 卸载指定版本</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># local：临时，global：永久</span></span><br><span class="line">pyenv global `版本号`      <span class="comment"># 指定全局版本</span></span><br><span class="line">pyenv global system       <span class="comment"># 恢复系统全局默认版本</span></span><br><span class="line">pyenv <span class="built_in">local</span> system        <span class="comment"># 设置当前虚拟版本为系统默认的版本</span></span><br><span class="line">pyenv <span class="built_in">local</span> `版本号`		  <span class="comment"># 指定本地默认版本</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="2-virtualenv"><a href="#2-virtualenv" class="headerlink" title="2. virtualenv"></a>2. virtualenv</h1><blockquote>
+<p>virtualenv 提供了一种功能， 将一个目录建成一个python的虚拟环境， 用户可以建立多个虚拟环境， 可以指定每个环境中的python版本， 环境之间相互独立。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">pip install virtualenv</span><br><span class="line"><span class="comment"># 进入环境目录</span></span><br><span class="line"><span class="built_in">cd</span> `env_name`</span><br><span class="line"><span class="comment"># 创建虚拟环境</span></span><br><span class="line">virtualenv [-p `python_path` --no-site-packages] `env_name`</span><br><span class="line"><span class="comment"># 切换不同的虚拟环境</span></span><br><span class="line"><span class="built_in">source</span> `env_name`/bin/activate</span><br><span class="line"><span class="comment"># 退出</span></span><br><span class="line">deactivate</span><br><span class="line"><span class="comment"># 删除</span></span><br><span class="line">rm `env_name`</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-virtualevnwapper"><a href="#3-virtualevnwapper" class="headerlink" title="3. virtualevnwapper"></a>3. virtualevnwapper</h1><blockquote>
+<p>对virtualenv的强化和扩展，使管理更加方便简单。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">pip install virtualenv  <span class="comment"># 依赖</span></span><br><span class="line">pip install virtualenvwrapper</span><br><span class="line"><span class="comment"># 创建</span></span><br><span class="line">mkvirtualenv [-p `python_path`] `env_name`</span><br><span class="line"><span class="comment"># 列出所有虚拟环境</span></span><br><span class="line">workon 或 lsvirtualenv -b</span><br><span class="line"><span class="comment"># 切换</span></span><br><span class="line">workon `env_name`</span><br><span class="line"><span class="comment"># 退出</span></span><br><span class="line">deactive</span><br><span class="line"><span class="comment"># 删除</span></span><br><span class="line">rmvirtualenv `env_name`</span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>常用：<br><code>pyenv + virtualenv</code>  和  <code>virtualenv + virtualenvwrapper</code> 的组合<br>个人倾向于后者</p>
+</blockquote>
+<p>现在可以随意地创建不同的虚拟环境，供不同项目使用和管理了。<br>当然，如果对docker熟悉的话，这也是一个很好的选择。</p>
+<blockquote>
+<p>原文地址： CSDN博客 - <a href="https://blog.csdn.net/weixin_41599858/article/details/101801050" target="_blank" rel="noopener">Python（二）- 虚拟环境管理：pyenv、virtualwnv、virtualenvwrapper的安装</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>虚拟环境</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python（一）- 安装与升级！</title>
+    <url>/archives/3b7f3111.html</url>
+    <content><![CDATA[<blockquote>
+<p>由于重装了系统，一些工具都要重新安装，正好，准备做一点记录。</p>
+</blockquote>
+<p><strong>这里是Python的开始…</strong></p>
+<a id="more"></a>
+
+<h1 id="1-Windows下："><a href="#1-Windows下：" class="headerlink" title="1.Windows下："></a>1.Windows下：</h1><blockquote>
+<p>去官网：<a href="https://www.python.org/" target="_blank" rel="noopener">https://www.python.org/</a> 下载</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20190930220722488.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>接下来，属于傻瓜操作了，就不多说了，<br>安装完成后，将python.exe和pip程序路径加入环境变量，</p>
+<p>DOS命令，大家应该都熟悉了，<code>Win+R</code> 输入cmd，打开命令行，<br>更新pip的话，输入：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+<h1 id="2-Linux下："><a href="#2-Linux下：" class="headerlink" title="2.Linux下："></a>2.Linux下：</h1><p>一般都默认安装了2.7和3.5版本的Python</p>
+<h2 id="2-1-安装"><a href="#2-1-安装" class="headerlink" title="2.1. 安装"></a>2.1. 安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打开终端，新建下载目录</span></span><br><span class="line">mkdir /usr/<span class="built_in">local</span>/python37</span><br><span class="line"><span class="comment"># 进入安装目录： </span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/python37  <span class="comment"># 也可以进入任意自己想要存放安装包的目录</span></span><br><span class="line"><span class="comment"># 安装</span></span><br><span class="line">wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz</span><br><span class="line"><span class="comment"># 解压缩</span></span><br><span class="line">tar -xzvf Python-3.7.4.tgz</span><br><span class="line"><span class="comment"># 进入目录，执行./configure配置构建文件</span></span><br><span class="line"><span class="built_in">cd</span> Python-3.7.4</span><br><span class="line">./configure --<span class="built_in">enable</span>-optimizations</span><br><span class="line"><span class="comment"># 编译并安装</span></span><br><span class="line">make &amp;&amp; sudo make install</span><br><span class="line"><span class="comment"># 添加python3的软链接</span></span><br><span class="line">sudo ln -s /usr/<span class="built_in">local</span>/bin/python3.7 /usr/bin/python3.7</span><br><span class="line"><span class="comment"># 添加 pip3 的软链接</span></span><br><span class="line">sudo ln -s /usr/<span class="built_in">local</span>/bin/pip3.7 /usr/bin/pip3.7</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果是要升级Python版本的话，最好卸载之前的版本</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1、卸载python3.5</span></span><br><span class="line">sudo apt-get remove python3.5</span><br><span class="line"><span class="comment"># 2、卸载python3.5及其依赖</span></span><br><span class="line">sudo apt-get remove --auto-remove python3.5</span><br><span class="line"><span class="comment"># 3、清除python3.5</span></span><br><span class="line">sudo apt-get purge python3.5</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">sudo apt-get purge --auto-remove python3.5</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-升级pip"><a href="#2-2-升级pip" class="headerlink" title="2.2.升级pip"></a>2.2.升级pip</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pip3 install --upgrade pip</span><br></pre></td></tr></table></figure>
+<p>可能有人会出现retrying且ssl error的错误：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 去python解压缩目录，重新执行：</span></span><br><span class="line"><span class="built_in">cd</span> Python-3.7.4</span><br><span class="line">./configure --with-ssl</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>或者更换镜像源。<br>阿里云： <a href="http://mirrors.aliyun.com/pypi/simple/" target="_blank" rel="noopener">http://mirrors.aliyun.com/pypi/simple/</a><br>   中国科技大学： <a href="https://pypi.mirrors.ustc.edu.cn/simple/" target="_blank" rel="noopener">https://pypi.mirrors.ustc.edu.cn/simple/</a><br>   豆瓣 ：<a href="http://pypi.douban.com/simple" target="_blank" rel="noopener">http://pypi.douban.com/simple</a></p>
+</blockquote>
+<p>以上OK后，就可以使用pip 安装想要的模块和插件了！</p>
+<blockquote>
+<p>原文地址： CSDN博客 - <a href="https://blog.csdn.net/weixin_41599858/article/details/101795427" target="_blank" rel="noopener">Python（一）- 安装与升级！</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHP（六）- 抽象类的继承与MySQL接口CURD操作的实现！</title>
+    <url>/archives/f1afa15c.html</url>
+    <content><![CDATA[<blockquote>
+<p>本篇博客移值自博主在PHP中文网上写的原文，这里做个记录</p>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="1-抽象类继承"><a href="#1-抽象类继承" class="headerlink" title="1.抽象类继承"></a>1.抽象类继承</h1><h2 id="1-1-抽象类特点"><a href="#1-1-抽象类特点" class="headerlink" title="1.1. 抽象类特点"></a>1.1. 抽象类特点</h2><ol>
+<li>抽象类不能实例化;</li>
+<li>抽象类中定义的抽象方法必须在子类中实现;</li>
+<li>如果子类定义了构造函数，父类的构造函数不会被调用，如果需要，构造函数中要写 <code>parent::__construct()</code>。</li>
+</ol>
+<h2 id="1-2-演示"><a href="#1-2-演示" class="headerlink" title="1.2. 演示"></a>1.2. 演示</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@authors</span> Alfred (jusheng_yao<span class="doctag">@outlook</span>.com)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>    2019-10-13 19:01:49</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 抽象类</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 抽象属性</span></span><br><span class="line">	<span class="keyword">protected</span> $name;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($name = <span class="string">'Alfred'</span>)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">$this</span>-&gt;name = $name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">$this</span>-&gt;name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 签名, 抽象方法</span></span><br><span class="line">	<span class="keyword">abstract</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setName</span><span class="params">($value)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">extends</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">	<span class="comment">//构造方法不会继承</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">parent</span>::__construct($name);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//抽象类中定义的抽象方法必须在子类中实现</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setName</span><span class="params">($value)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">$this</span>-&gt;name = $value;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$person = <span class="keyword">new</span> Person(<span class="string">'轻狂书生'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'网游中的一个重要角色是： '</span> . $person-&gt;getName() . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"></span><br><span class="line">$person-&gt;setName(<span class="string">"残雪飞戈"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'Alfred 的QQ网名是： '</span> . $person-&gt;getName() . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="2-数据库接口"><a href="#2-数据库接口" class="headerlink" title="2.数据库接口"></a>2.数据库接口</h1><ul>
+<li>接口放置空方法;</li>
+<li>DB类实现具体逻辑，如:<ul>
+<li>增删改查、</li>
+<li>条件、</li>
+<li>限制、</li>
+<li>字段域、</li>
+<li>默认数据库参数属性等等</li>
+</ul>
+</li>
+</ul>
+<p><strong>实例演示：</strong></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@authors</span> Alfred (jusheng_yao<span class="doctag">@outlook</span>.com)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>    2019-10-13 20:53:31</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口，类的模板</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MySQL</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 增加数据</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span><span class="params">($data)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 读取数据</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">read</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 更新数据</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">($data, $where)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 删除数据</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">delete</span><span class="params">($where)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类，接口的实现</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * mysql CURD操作</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SQLAction</span> <span class="keyword">implements</span> <span class="title">MySQL</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 数据库连接参数</span></span><br><span class="line">	<span class="keyword">protected</span> $settings = [</span><br><span class="line">		<span class="string">'type'</span> =&gt; <span class="string">'mysql'</span>,</span><br><span class="line">		<span class="string">'host'</span> =&gt; <span class="string">'localhost'</span>,</span><br><span class="line">		<span class="string">'dbname'</span> =&gt; <span class="string">'tests'</span>,</span><br><span class="line">		<span class="string">'username'</span> =&gt; <span class="string">'root'</span>,</span><br><span class="line">		<span class="string">'password'</span> =&gt; <span class="string">'123456'</span>,</span><br><span class="line">	];</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 数据库的连接对象</span></span><br><span class="line">	<span class="keyword">protected</span> $pdo = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 数据表</span></span><br><span class="line">	<span class="keyword">protected</span> $table;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 字段</span></span><br><span class="line">	<span class="keyword">public</span> $field = <span class="string">'*'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 条件</span></span><br><span class="line">	<span class="keyword">public</span> $where;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 数量</span></span><br><span class="line">	<span class="keyword">public</span> $limit;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 构造方法: 连接数据库,并设置默认的数据表名称</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($dsn, $user, $password, $table = <span class="string">'staff'</span>)</span> </span>&#123;</span><br><span class="line">		$default_dsn = <span class="string">"&#123;$this-&gt;settings['type']&#125;:host=&#123;$this-&gt;settings['host']&#125;;dbname=&#123;$this-&gt;settings['dbname']&#125;"</span>;</span><br><span class="line">		$dsn = <span class="keyword">empty</span>($dsn) ? $default_dsn : $dsn;</span><br><span class="line">		$user = <span class="keyword">empty</span>($user) ? <span class="keyword">$this</span>-&gt;settings[<span class="string">'username'</span>] : $user;</span><br><span class="line">		$password = <span class="keyword">empty</span>($password) ? <span class="keyword">$this</span>-&gt;settings[<span class="string">'password'</span>] : $password;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">$this</span>-&gt;pdo = <span class="keyword">new</span> PDO($dsn, $user, $password);</span><br><span class="line">		<span class="keyword">$this</span>-&gt;table = $table;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 增加数据</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span><span class="params">($data)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 字段列表</span></span><br><span class="line">		$fields = <span class="string">' (name, age, sex,position, mobile, hiredate) '</span>;</span><br><span class="line">		<span class="comment">// 值列表</span></span><br><span class="line">		$values = <span class="string">' (:name, :age, :sex, :position, :mobile, :hiredate) '</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 创建SQL - INSERT INTO TABLE FIELDS VALUES (...)</span></span><br><span class="line">		$sql = <span class="string">'INSERT INTO '</span> . <span class="keyword">$this</span>-&gt;table . $fields . <span class="string">' VALUES '</span> . $values;</span><br><span class="line">		<span class="keyword">echo</span> $sql . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"></span><br><span class="line">		$stmt = <span class="keyword">$this</span>-&gt;pdo-&gt;prepare($sql);</span><br><span class="line">		$stmt-&gt;execute($data);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> [</span><br><span class="line">			<span class="string">'count'</span> =&gt; $stmt-&gt;rowCount(),</span><br><span class="line">			<span class="string">'id'</span> =&gt; <span class="keyword">$this</span>-&gt;pdo-&gt;lastInsertId(),</span><br><span class="line">		];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 读取数据</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">read</span><span class="params">($fields = <span class="string">'*'</span>, $where = <span class="string">''</span>, $limit = <span class="string">'0, 5'</span>)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 设置字段</span></span><br><span class="line">		<span class="keyword">$this</span>-&gt;field = <span class="keyword">empty</span>($fields) ? (<span class="keyword">empty</span>(<span class="keyword">$this</span>-&gt;field) ? <span class="string">'*'</span> : <span class="keyword">$this</span>-&gt;field) : $fields;</span><br><span class="line">		<span class="comment">//设置条件</span></span><br><span class="line">		<span class="keyword">$this</span>-&gt;where = <span class="keyword">empty</span>($where) ? (<span class="keyword">empty</span>(<span class="keyword">$this</span>-&gt;where) ? <span class="string">''</span> : <span class="keyword">$this</span>-&gt;where) : <span class="string">' WHERE '</span> . $where;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 设置显示数量</span></span><br><span class="line">		<span class="keyword">$this</span>-&gt;limit = $limit === <span class="string">'0, 5'</span> ? (<span class="keyword">empty</span>(<span class="keyword">$this</span>-&gt;limit) ? <span class="string">' LIMIT '</span> . $limit : <span class="keyword">$this</span>-&gt;limit) : $limit;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 创建SQL - SELECT FIELDS FROM TABLE WHERE (...) LIMIT ...</span></span><br><span class="line">		$sql = <span class="string">'SELECT '</span> . <span class="keyword">$this</span>-&gt;field . <span class="string">' FROM '</span> . <span class="keyword">$this</span>-&gt;table . <span class="keyword">$this</span>-&gt;where . <span class="keyword">$this</span>-&gt;limit;</span><br><span class="line">		<span class="keyword">echo</span> $sql . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"></span><br><span class="line">		$stmt = <span class="keyword">$this</span>-&gt;pdo-&gt;prepare($sql);</span><br><span class="line">		$stmt-&gt;execute();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> $stmt-&gt;fetchAll(\PDO::FETCH_ASSOC);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 更新数据</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">($data, $where)</span> </span>&#123;</span><br><span class="line">		$keyArr = array_keys($data);</span><br><span class="line">		$set = <span class="string">''</span>;</span><br><span class="line">		<span class="keyword">foreach</span> ($keyArr <span class="keyword">as</span> $value) &#123;</span><br><span class="line">			$set .= $value . <span class="string">' = :'</span> . $value . <span class="string">', '</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		$set = rtrim($set, <span class="string">', '</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 设置条件</span></span><br><span class="line">		<span class="keyword">$this</span>-&gt;where = <span class="keyword">empty</span>($where) ? (<span class="keyword">empty</span>(<span class="keyword">$this</span>-&gt;where) ? <span class="string">''</span> : <span class="keyword">$this</span>-&gt;where) : <span class="string">' WHERE '</span> . $where;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 创建SQL - UPDATE TABLE SET ... WHERE (...)</span></span><br><span class="line">		$sql = <span class="string">'UPDATE '</span> . <span class="keyword">$this</span>-&gt;table . <span class="string">' SET '</span> . $set . <span class="keyword">$this</span>-&gt;where;</span><br><span class="line">		<span class="keyword">echo</span> $sql . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"></span><br><span class="line">		$stmt = <span class="keyword">$this</span>-&gt;pdo-&gt;prepare($sql);</span><br><span class="line">		$stmt-&gt;execute($data);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> $stmt-&gt;rowCount();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 删除数据</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">delete</span><span class="params">($where)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 设置条件</span></span><br><span class="line">		<span class="keyword">$this</span>-&gt;where = <span class="keyword">empty</span>($where) ? (<span class="keyword">empty</span>(<span class="keyword">$this</span>-&gt;where) ? <span class="string">''</span> : <span class="keyword">$this</span>-&gt;where) : <span class="string">' WHERE '</span> . $where;</span><br><span class="line">		<span class="comment">// 创建SQL - DELETE FROM TABLE WHERE (...)</span></span><br><span class="line">		$sql = <span class="string">'DELETE FROM '</span> . <span class="keyword">$this</span>-&gt;table . <span class="keyword">$this</span>-&gt;where;</span><br><span class="line">		<span class="keyword">echo</span> $sql . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"></span><br><span class="line">		$stmt = <span class="keyword">$this</span>-&gt;pdo-&gt;prepare($sql);</span><br><span class="line">		$stmt-&gt;execute();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> $stmt-&gt;rowCount();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// fields字段域</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">field</span><span class="params">($fields = <span class="string">'*'</span>)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">$this</span>-&gt;field = <span class="keyword">empty</span>($fields) ? <span class="string">'*'</span> : $fields;</span><br><span class="line">		<span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;field . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">$this</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// where条件</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">where</span><span class="params">($where = <span class="string">''</span>)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">$this</span>-&gt;where = <span class="keyword">empty</span>($where) ? $where : <span class="string">' WHERE '</span> . $where;</span><br><span class="line">		<span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;where . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">$this</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// limit 数量限制</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">limit</span><span class="params">($limit)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">$this</span>-&gt;limit = <span class="keyword">empty</span>($limit) ? $limit : <span class="string">' LIMIT '</span> . $limit;</span><br><span class="line">		<span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;limit . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">$this</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 客户端的代码</span></span><br><span class="line">$dsn = <span class="string">'mysql:host=127.0.0.1;dbname=tests'</span>;</span><br><span class="line">$user = <span class="string">'root'</span>;</span><br><span class="line">$password = <span class="string">'123456'</span>;</span><br><span class="line">$db = <span class="keyword">new</span> SQLAction($dsn, $user, $password);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历1</span></span><br><span class="line"><span class="keyword">foreach</span> ($db-&gt;read() <span class="keyword">as</span> $item) &#123;</span><br><span class="line">	print_r($item);</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'field: '</span> . $db-&gt;field . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'where: '</span> . $db-&gt;where . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'limit: '</span> . $db-&gt;limit . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历2</span></span><br><span class="line">$db-&gt;field(<span class="string">'staff_id,name,position,mobile'</span>)</span><br><span class="line">	-&gt;where(<span class="string">'staff_id &gt; 2'</span>)</span><br><span class="line">	-&gt;limit(<span class="number">8</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($db-&gt;read() <span class="keyword">as</span> $item) &#123;</span><br><span class="line">	print_r($item);</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'field: '</span> . $db-&gt;field . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'where: '</span> . $db-&gt;where . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'limit: '</span> . $db-&gt;limit . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新增</span></span><br><span class="line">$data = [</span><br><span class="line">	<span class="string">'name'</span> =&gt; <span class="string">'郭靖'</span>,</span><br><span class="line">	<span class="string">'age'</span> =&gt; <span class="number">29</span>,</span><br><span class="line">	<span class="string">'sex'</span> =&gt; <span class="number">1</span>,</span><br><span class="line">	<span class="string">'position'</span> =&gt; <span class="string">'金刀驸马'</span>,</span><br><span class="line">	<span class="string">'mobile'</span> =&gt; <span class="string">'1389998899'</span>,</span><br><span class="line">	<span class="string">'hiredate'</span> =&gt; time(),</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">$res = $db-&gt;create($data);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'成功的新增了: '</span> . $res[<span class="string">'count'</span>] . <span class="string">' 条记录,新增的记录的主键ID是: '</span> . $res[<span class="string">'id'</span>] . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'field: '</span> . $db-&gt;field . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'where: '</span> . $db-&gt;where . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'limit: '</span> . $db-&gt;limit . <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更新</span></span><br><span class="line"><span class="comment">// $data = [</span></span><br><span class="line"><span class="comment">//    'age' =&gt; 40,</span></span><br><span class="line"><span class="comment">//    'position' =&gt; '抗金英雄'</span></span><br><span class="line"><span class="comment">// ];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// $where = 'staff_id = 11';</span></span><br><span class="line"><span class="comment">// echo '成功的更新了: ' . $db-&gt;update($data, $where) . ' 条记录' . '&lt;br&gt;';</span></span><br><span class="line"><span class="comment">// echo 'field: ' . $db-&gt;field . '&lt;br&gt;';</span></span><br><span class="line"><span class="comment">// echo 'where: ' . $db-&gt;where . '&lt;br&gt;';</span></span><br><span class="line"><span class="comment">// echo 'limit: ' . $db-&gt;limit . '&lt;br&gt;';</span></span><br><span class="line"><span class="comment">// echo '&lt;hr&gt;';</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除</span></span><br><span class="line"><span class="comment">// $where = 'staff_id = 11';</span></span><br><span class="line"><span class="comment">// echo '成功的删除了: ' . $db-&gt;delete($where) . ' 条记录' . '&lt;br&gt;';</span></span><br><span class="line"><span class="comment">// echo 'field: ' . $db-&gt;field . '&lt;br&gt;';</span></span><br><span class="line"><span class="comment">// echo 'where: ' . $db-&gt;where . '&lt;br&gt;';</span></span><br><span class="line"><span class="comment">// echo 'limit: ' . $db-&gt;limit . '&lt;br&gt;';</span></span><br><span class="line"><span class="comment">// echo '&lt;hr&gt;';</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>编程</category>
+        <category>数据库</category>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>类继承</tag>
+        <tag>MySQL</tag>
+        <tag>CURD</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHP（五）- 类属性与类方法的重载以及回调执行方法！</title>
+    <url>/archives/7d71ab32.html</url>
+    <content><![CDATA[<blockquote>
+<p>本篇博客移值自博主在PHP中文网上写的原文，这里做个记录</p>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="1-属性重载"><a href="#1-属性重载" class="headerlink" title="1.属性重载"></a>1.属性重载</h1><p><strong>主要使用以下四种魔术方法实现属性重载：</strong></p>
+<ul>
+<li><p>__get()：读操作,</p>
+</li>
+<li><p>__set()：写操作,</p>
+</li>
+<li><p>__isset()：判断是否有值, </p>
+</li>
+<li><p>__unset()：释放变量</p>
+</li>
+</ul>
+<p><strong>演示：</strong></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@authors</span> Alfred (jusheng_yao<span class="doctag">@outlook</span>.com)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>    2019-10-09 22:08:35</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 属性重载：__get(), __set(), __isset(), __unset()</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> $name;</span><br><span class="line">	<span class="keyword">private</span> $salary = <span class="number">9999</span>;</span><br><span class="line">	<span class="keyword">protected</span> $password;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($name, $password)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 对象的引用</span></span><br><span class="line">		<span class="keyword">$this</span>-&gt;name = $name;</span><br><span class="line">		<span class="keyword">$this</span>-&gt;password = $password;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 属性重载方法：由系统调用</span></span><br><span class="line">	<span class="comment">// 1. __get(): 重载了用户对属性的访问，即读操作</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__get</span><span class="params">($name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (<span class="keyword">$this</span>-&gt;name === <span class="string">'admin'</span>) ? <span class="keyword">$this</span>-&gt;$name : <span class="string">'权限不够！'</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 2. __set($name, $value): 写操作</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__set</span><span class="params">($name, $value)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> ($name === <span class="string">'salary'</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;name === <span class="string">'admin'</span>)&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;$name = $value;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"工资更新成功！&lt;br&gt;"</span>;</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'工资更新需要权限！&lt;br&gt;'</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">			<span class="comment">// return ($this-&gt;name === 'admin') ? ($this-&gt;$name = $value) : '工资更新需要权限！';</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">$this</span>-&gt;$name = $value;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 3. __isset($name)：判断是否有值</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__isset</span><span class="params">($name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">isset</span>(<span class="keyword">$this</span>-&gt;$name);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//4. __unset($name)：释放资源</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__unset</span><span class="params">($name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">unset</span>(<span class="keyword">$this</span>-&gt;$name);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$obj = <span class="keyword">new</span> UserInfo(<span class="string">'大师兄'</span>, <span class="string">'123456'</span>);</span><br><span class="line">$obj1 = <span class="keyword">new</span> UserInfo(<span class="string">'admin'</span>, <span class="string">'123456'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1.读操作</span></span><br><span class="line"><span class="keyword">echo</span> $obj-&gt;salary . <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.写操作</span></span><br><span class="line"><span class="keyword">echo</span> ($obj-&gt;salary = <span class="number">15000</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.判断是否有值</span></span><br><span class="line"><span class="keyword">echo</span> <span class="keyword">isset</span>($obj-&gt;name);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4.释放变量</span></span><br><span class="line"><span class="keyword">unset</span>($obj-&gt;password);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="2-方法重载"><a href="#2-方法重载" class="headerlink" title="2.方法重载"></a>2.方法重载</h1><p><strong>以魔术方法<strong>call()、</strong>callStatic()分别实现对普通方法和静态方法的重载</strong></p>
+<p><strong>演示：</strong></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@authors</span> Alfred (jusheng_yao<span class="doctag">@outlook</span>.com)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>    2019-10-09 22:08:40</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法重载: __call()、__callStatic()</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestDemo</span> </span>&#123;</span><br><span class="line">	<span class="comment">// __call(): 访问一个不存在或无权限访问的方法的时候会自动调用</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span><span class="params">($name, $args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">'方法是: '</span> . $name . <span class="string">'&lt;br&gt;参数列表: &lt;pre&gt;'</span> . print_r($args, <span class="keyword">true</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// __callStatic(): 访问一个不存在或无权限访问的静态方法的时候会自动调用</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">__callStatic</span><span class="params">($name, $args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">'方法是: '</span> . $name . <span class="string">'&lt;br&gt;参数列表: &lt;pre&gt;'</span> . print_r($args, <span class="keyword">true</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$obj = <span class="keyword">new</span> TestDemo();</span><br><span class="line"><span class="keyword">echo</span> $obj-&gt;getInfo1(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> TestDemo::getInfo2(<span class="string">'html'</span>, <span class="string">'css'</span>, <span class="string">'js'</span>, <span class="string">'ES6'</span>, <span class="string">'vue'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="3-回调执行"><a href="#3-回调执行" class="headerlink" title="3.回调执行"></a>3.回调执行</h1><p><strong>实现方法</strong></p>
+<ul>
+<li><code>call_user_func()</code></li>
+<li><code>call_user_func_array()</code></li>
+</ul>
+<p><strong>作用：</strong></p>
+<ul>
+<li>实现对函数和类方法（包括普通和静态方法）的回调</li>
+</ul>
+<p><strong>演示：</strong></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@authors</span> Alfred (jusheng_yao<span class="doctag">@outlook</span>.com)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>    2019-10-13 12:08:35</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">_1008</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">($a, $b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"&#123;$a&#125; + &#123;$b&#125; = "</span> . ($a + $b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">reduce</span><span class="params">($a, $b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"&#123;$a&#125; - &#123;$b&#125; = "</span> . ($a - $b);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">multiply</span><span class="params">($a, $b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"&#123;$a&#125; x &#123;$b&#125; = "</span> . ($a * $b);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行回调方法</span></span><br><span class="line"><span class="keyword">echo</span> call_user_func(<span class="keyword">__NAMESPACE__</span> . <span class="string">'\sum'</span>, <span class="number">11</span>, <span class="number">22</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;hr&gt;"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行回调方法 - 数组</span></span><br><span class="line"><span class="keyword">echo</span> call_user_func_array(<span class="keyword">__NAMESPACE__</span> . <span class="string">'\sum'</span>, [<span class="number">1</span>, <span class="number">2</span>]);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;hr&gt;"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行回调对象中的公共方法</span></span><br><span class="line"><span class="keyword">echo</span> call_user_func_array([<span class="keyword">new</span> Test(), <span class="string">'reduce'</span>], [<span class="number">22</span>, <span class="number">11</span>]);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;hr&gt;"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行回调对象中的静态方法</span></span><br><span class="line"><span class="keyword">echo</span> call_user_func_array(<span class="keyword">__NAMESPACE__</span> . <span class="string">'\Test::multiply'</span>, [<span class="number">11</span>, <span class="number">11</span>]);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line"><span class="comment">// 或者 使用 ::class</span></span><br><span class="line"><span class="keyword">echo</span> call_user_func_array([Test::class, <span class="string">'multiply'</span>], [<span class="number">11</span>, <span class="number">12</span>]);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;hr&gt;"</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>编程</category>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>类属性</tag>
+        <tag>方法重载</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHP（四）- 子类与类成员访问限制符的使用场景！</title>
+    <url>/archives/a06e8925.html</url>
+    <content><![CDATA[<blockquote>
+<p>本篇博客源自博主在PHP中文网上写的原文，这里做个记录</p>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="1-子类"><a href="#1-子类" class="headerlink" title="1.子类"></a>1.子类</h1><h2 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1. 简介"></a>1.1. 简介</h2><blockquote>
+<p>面向对象语言的三大特点：封装、继承、多态。</p>
+</blockquote>
+<ul>
+<li><p>封装，也就是把客观事物封装成抽象的类，一个类就是一个封装了数据以及操作这些数据的代码的逻辑实体。</p>
+</li>
+<li><p>继承，是指可以让某个类型的对象获得另一个类型的对象的属性的方法，可以使用现有类的所有功能，并在无需重新编写原来的类的情况下对这些功能进行扩展，而通过继承创建的新类称为“子类”或“派生类”，被继承的类称为“基类”、“父类”或“超类”。</p>
+</li>
+<li><p>多态，是指一个类实例的相同方法在不同情形有不同表现形式。</p>
+</li>
+</ul>
+<h2 id="1-2-php子类的应用场景"><a href="#1-2-php子类的应用场景" class="headerlink" title="1.2. php子类的应用场景"></a>1.2. php子类的应用场景</h2><ul>
+<li><p>代码复用</p>
+</li>
+<li><p>功能扩展</p>
+</li>
+<li><p>方法重写</p>
+</li>
+</ul>
+<h2 id="1-3-演示"><a href="#1-3-演示" class="headerlink" title="1.3. 演示"></a>1.3. 演示</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// 属性(变量)</span></span><br><span class="line">    <span class="keyword">public</span> $product;</span><br><span class="line">    <span class="keyword">public</span> $price;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($product, $price)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;product = $product;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;price = $price;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 方法(函数)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getInfo</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'商品名称: '</span> . <span class="keyword">$this</span>-&gt;product.<span class="string">', 商品价格: '</span> . <span class="keyword">$this</span>-&gt;price;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子类</span></span><br><span class="line"><span class="comment">// 1. 代码复用</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sub1</span> <span class="keyword">extends</span> <span class="title">Demo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$sub1 = <span class="keyword">new</span> Sub1(<span class="string">'iPhone 11'</span>, <span class="number">9800</span>);</span><br><span class="line"><span class="keyword">echo</span> $sub1-&gt;getInfo() . <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子类</span></span><br><span class="line"><span class="comment">// 2. 功能扩展</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sub2</span> <span class="keyword">extends</span> <span class="title">Demo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// 增加一个属性</span></span><br><span class="line">    <span class="keyword">public</span> $num; <span class="comment">// 数量</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($product, $price, $num)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line"><span class="comment">//        $this-&gt;product = $product;</span></span><br><span class="line"><span class="comment">//        $this-&gt;price = $price;</span></span><br><span class="line">        <span class="keyword">parent</span>::__construct($product, $price);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;num = $num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 子类中增加一个新方法: 计算总和</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">total</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> round(<span class="keyword">$this</span>-&gt;price * <span class="keyword">$this</span>-&gt;num, <span class="number">3</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$sub2 = <span class="keyword">new</span> Sub2(<span class="string">'电脑'</span>, <span class="number">3980.1234</span>, <span class="number">13</span>);</span><br><span class="line"><span class="keyword">echo</span> $sub2-&gt;product . <span class="string">'的总价是:　'</span>. $sub2-&gt;total(). <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子类</span></span><br><span class="line"><span class="comment">// 3. 方法重写</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sub3</span> <span class="keyword">extends</span> <span class="title">Sub2</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// 重写total()</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">total</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $total = <span class="keyword">parent</span>::total();</span><br><span class="line"></span><br><span class="line"><span class="comment">//        设置折扣率</span></span><br><span class="line">        <span class="keyword">switch</span> (<span class="keyword">true</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">case</span> ($total &gt; <span class="number">20000</span> &amp;&amp; $total &lt; <span class="number">40000</span>):</span><br><span class="line">                $discountRate = <span class="number">0.88</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> ($total &gt;= <span class="number">40000</span> &amp;&amp; $total &lt; <span class="number">60000</span>):</span><br><span class="line">                $discountRate = <span class="number">0.78</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> ($total &gt;= <span class="number">60000</span>):</span><br><span class="line">                $discountRate = <span class="number">0.68</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="comment">// 小于或等于2000,不打折</span></span><br><span class="line">                $discountRate = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 打折后的价格</span></span><br><span class="line">        $discountPrice = round($total*$discountRate, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ($discountRate &lt; <span class="number">1</span>) &#123;</span><br><span class="line">            $discountPrice=$discountPrice . <span class="string">'元, &lt;span style="color: red"&gt;('</span>. $discountRate.<span class="string">'折)&lt;/span&gt;'</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 返回折扣价</span></span><br><span class="line">        <span class="keyword">return</span> $discountPrice;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$sub3 = <span class="keyword">new</span> Sub3(<span class="string">'电脑'</span>, <span class="number">3980</span>, <span class="number">13</span>);</span><br><span class="line">$sub3 = <span class="keyword">new</span> Sub3(<span class="string">'电脑'</span>, <span class="number">3980</span>, <span class="number">33</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'折扣价是: '</span> . $sub3-&gt;total();</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="2-访问限制符"><a href="#2-访问限制符" class="headerlink" title="2.访问限制符"></a>2.访问限制符</h1><h2 id="2-1-php的类成员访问限制符有："><a href="#2-1-php的类成员访问限制符有：" class="headerlink" title="2.1 php的类成员访问限制符有："></a>2.1 php的类成员访问限制符有：</h2><ul>
+<li><p>public（公共的、默认） ：该成员能被外部代码访问和操作；</p>
+</li>
+<li><p>protected（受保护的）： 对于类内部所有成员都可见，对类外部不允许访问；</p>
+</li>
+<li><p>private（私有的）：只允许该类的子类进行访问；</p>
+</li>
+</ul>
+<blockquote>
+<p>分别用在类的属性和方法上，用来修饰类成员的访问权限。</p>
+</blockquote>
+<h2 id="2-2-演示："><a href="#2-2-演示：" class="headerlink" title="2.2. 演示："></a>2.2. 演示：</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// 访问控制符: </span></span><br><span class="line"><span class="comment">// public : 类中,类外均可访问, 子类中也可以访问</span></span><br><span class="line"><span class="comment">// protected: 类中,类外不可访问, 但是子类中可以访问</span></span><br><span class="line"><span class="comment">// private: 只允许在类中, 类外, 子类中不可访问</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 类中成员: 属性, 方法</span></span><br><span class="line">  <span class="comment">// 成员属性, 成员方法</span></span><br><span class="line">  <span class="comment">// 对象属性: 需要使用类的实例进行访问的成员属性</span></span><br><span class="line">  <span class="keyword">public</span> $name; <span class="comment">// 姓名</span></span><br><span class="line">  <span class="keyword">protected</span> $position; <span class="comment">// 职位</span></span><br><span class="line">  <span class="keyword">private</span> $salary; <span class="comment">// 工资</span></span><br><span class="line">  <span class="keyword">protected</span> $department; <span class="comment">// 部门</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 构造方法</span></span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($name, $position, $salary, $department)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;name = $name;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;position = $position;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;salary = $salary;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;department = $department;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 职位访问器/方法/函数</span></span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getPosition</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;department === <span class="string">'培训部'</span> ? <span class="keyword">$this</span>-&gt;position : <span class="string">'无权查看'</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 工资访问器/方法/函数</span></span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getSalary</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 工资 只允许财务部的人看</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;department === <span class="string">'财务部'</span> ? <span class="keyword">$this</span>-&gt;salary : <span class="string">'无权查看'</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 部门获取器/方法/函数</span></span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getDepartment</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;department;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$obj = <span class="keyword">new</span> Demo(<span class="string">'朱老师'</span>, <span class="string">'讲师'</span>, <span class="number">8888</span>, <span class="string">'培训部'</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'name = '</span> . $obj-&gt;name, <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="comment">// echo 'position = ' . $obj-&gt;position, '&lt;br&gt;'; // 会报错，protected 变量，类外部不允许访问</span></span><br><span class="line"><span class="comment">//  echo 'salary = ' . $obj-&gt;salary;  // private，会报错不允许访问</span></span><br><span class="line"><span class="keyword">echo</span> $obj-&gt;getPosition(), <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> $obj-&gt;getSalary(), <span class="string">'&lt;br&gt;'</span>;</span><br><span class="line"><span class="keyword">echo</span> $obj-&gt;getDepartment(), <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sub</span> <span class="keyword">extends</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;name . <span class="string">'&lt;br&gt;'</span>; <span class="comment">// public</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;position . <span class="string">'&lt;br&gt;'</span>; <span class="comment">// protected</span></span><br><span class="line">    <span class="comment">// echo $this-&gt;salary . '&lt;br&gt;'; // private，这里会报错，无法访问</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$sub = <span class="keyword">new</span> Sub(<span class="string">'欧阳克'</span>, <span class="string">'讲师'</span>, <span class="number">9999</span>, <span class="string">'培训部'</span>);</span><br><span class="line">$sub-&gt;display();</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;br&gt;'</span>;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>访问限制符</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PHP（三）- 匿名函数、命名空间以及类与对象的学习！</title>
     <url>/archives/25de20b7.html</url>
     <content><![CDATA[<blockquote>
-<p>本篇博客来自博主在<a href="https://www.php.cn/blog/detail/15677.html" target="_blank" rel="noopener">php中文网</a>上写的一篇，移至CSDN作为记录。</p>
+<p>本篇博客来自博主在<a href="https://www.php.cn/blog/detail/15677.html" target="_blank" rel="noopener">php中文网</a>上写的一篇，这里做个记录。</p>
 </blockquote>
 <a id="more"></a>
 <h1 id="1-匿名函数"><a href="#1-匿名函数" class="headerlink" title="1.匿名函数"></a>1.匿名函数</h1><h2 id="1-1-解释："><a href="#1-1-解释：" class="headerlink" title="1.1.解释："></a>1.1.解释：</h2><ul>
@@ -541,10 +1439,9 @@
 ]]></content>
       <categories>
         <category>数据库</category>
-        <category>MySQL</category>
       </categories>
       <tags>
-        <tag>mysql</tag>
+        <tag>MySQL</tag>
         <tag>用户密码</tag>
       </tags>
   </entry>

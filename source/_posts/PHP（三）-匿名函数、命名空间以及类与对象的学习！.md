@@ -16,7 +16,7 @@ categories:
   - [PHP]
 ---
 
-> 本篇博客来自博主在[php中文网](https://www.php.cn/blog/detail/15677.html)上写的一篇，移至CSDN作为记录。
+> 本篇博客来自博主在[php中文网](https://www.php.cn/blog/detail/15677.html)上写的一篇，这里做个记录。
 <!-- more -->
 # 1.匿名函数
 
