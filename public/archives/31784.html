@@ -42,8 +42,8 @@
 <meta property="article:published_time" content="2020-02-17T09:40:05.000Z">
 <meta property="article:modified_time" content="2020-03-01T13:49:41.615Z">
 <meta property="article:author" content="Jusheng Yao">
-<meta property="article:tag" content="基本配置">
 <meta property="article:tag" content="yilia">
+<meta property="article:tag" content="基本配置">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yaojusheng.github.io/archives/31784.html">
@@ -501,8 +501,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/" rel="tag"><i class="fa fa-tag"></i> 基本配置</a>
               <a href="/tags/yilia/" rel="tag"><i class="fa fa-tag"></i> yilia</a>
+              <a href="/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/" rel="tag"><i class="fa fa-tag"></i> 基本配置</a>
           </div>
 
         
@@ -533,15 +533,10 @@
           
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
             <li class="tab"><a href="#comment-utterance">utterance</a></li>
             <li class="tab"><a href="#comment-valine">valine</a></li>
         </ul>
         <div class="tab-content">
-
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
-            </div>
 
             <div class="tab-pane utterance" id="comment-utterance">
               <div class="comments" id="utterance-container"></div>
@@ -886,26 +881,6 @@
   
 
   
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID    : '35890ce192840bd76bc6',
-      clientSecret: '18b465f1ea803824fe0aef032d74ce6262df3b6e',
-      repo        : 'yaojusheng.github.io',
-      owner       : 'yaojusheng',
-      admin       : ['yaojusheng'],
-      id          : '6617811f8672e56f79ed0d1fc9205e10',
-        language: 'zh-CN',
-      distractionFreeMode: true
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-});
-</script>
 <script type="text/javascript">
   (function() {
     // 匿名函数，防止污染全局变量
