@@ -17,6 +17,7 @@ categories:
 
 网上关于搭建个人博客网站所用主题，yilia和next两款比较多，这里记录一下next5.1.4相关的一些配置。
 
+目前升级到 7+
 <!-- more -->
 
 ## 1.页面显示问题
@@ -636,6 +637,202 @@ canvas_nest:
   </script>
 {% endif %}
 ```
+
+
+## 9.添加 `utterance` 评论系统
+
+> Next 主题集成了常用的几种评论系统，这里只提一下 `utterance`，用来替代 `gitment`、`gitalk` 的最佳选择。
+
+### 9.1.安装utteranc插件
+
++ `git bash` 或 `Dos` 窗口下，运行：
+
+```bash
+npm install --save github:theme-next/hexo-next-utteranc
+```
+
++ 在主题配置文件中，添加：
+
+```yaml
+utteranc:
+  enable: true
+  repo: ''     #Github repo such as :blog/utterance_repo
+  pathname: pathname
+  # theme: github-light,github-dark,github-dark-orange
+  theme: github-light
+  cdn: https://utteranc.es/client.js
+```
+
+> 针对新版本，可以作如下修改：
+
+### 9.2.自定义添加
+
++ 配置文件，添加：
+
+```yaml
+utterance:
+  enable: true
+  repo: ''     #仓库名字,格式：你的用户ID/仓库名称，如：blog/utterance_repo
+  issue_term: 'title'            #映射配置
+  theme: 'github-light'          #主题
+```
+
++ 新建 `utterance.swig` 文件
+
+在路径 `themes\next\layout\_third-party\comments\` 下，新建 `utterance.swig` 文件，添加内容：
+
+```swjg
+<script type="text/javascript">
+  (function() {
+    // 匿名函数，防止污染全局变量
+    var utterances = document.createElement('script');
+    utterances.type = 'text/javascript';
+    utterances.async = true;
+    utterances.setAttribute('issue-term','{{ theme.utterance.issue_term }}')
+    utterances.setAttribute('theme','{{ theme.utterance.theme }}')
+    utterances.setAttribute('repo','{{ theme.utterance.repo }}')
+    utterances.crossorigin = 'anonymous';
+    utterances.src = 'https://utteranc.es/client.js';
+    // content 是要插入评论的地方
+    document.getElementById('utterance-container').appendChild(utterances);
+  })();
+</script>
+```
+
++ 新建 `utterance.js` 文件
+
+在路径 `themes\next\scripts\filters\comment\` 下，新建 `utterance.js` 文件，添加内容：
+
+```js
+/* global hexo */
+
+'use strict';
+
+const path = require('path');
+
+// Add comment
+hexo.extend.filter.register('theme_inject', injects => {
+  let theme = hexo.theme.config;
+  if (!theme.utterance || !theme.utterance.enable) return;
+
+  injects.comment.raw('utterance', '<div class="comments" id="utterance-container"></div>', {}, {cache: true});
+
+  injects.bodyEnd.file('utterance', path.join(hexo.theme_dir, 'layout/_third-party/comments/utterance.swig'));
+
+});
+```
+
+## 10.静态资源压缩
+
+### 10.1.`hexo-neat` 压缩
+
++ 安装
+
+```bash
+npm install hexo-neat --save-dev
+```
+
++ 在站点目录下的_config.yml的末尾，添加配置信息:
+
+```yaml
+# hexo-neat
+# 博文压缩
+neat_enable: true
+# 压缩html
+neat_html:
+  enable: true
+  exclude:  #排除的文件
+  
+# 压缩css  跳过min.css
+neat_css:
+  enable: true
+  exclude:
+    - '**/*.min.css'
+    
+# 压缩js 跳过min.js
+neat_js:
+  enable: true
+  mangle: true
+  output:
+  compress:
+  exclude:
+    - '**/*.min.js'
+    - '**/jquery.fancybox.pack.js'
+    - '**/index.js'  
+# 压缩博文配置结束
+# 注意上面的路径 **/* ,需要自己去配置正确的路径。，不然生成的是空白页面，当然你也可以删掉，全部压缩。
+```
+
+### 10.2.`gulp` 压缩
+
++ 安装
+
+```bash
+npm install gulp -g
+# or
+npm install gulp-cli -g
+
+npm install gulp-minify-css gulp-uglify gulp-htmlmin gulp-htmlclean gulp --save
+```
+
++ 博客根目录下新建 `gulpfile.js` ，并添加内容：
+
+```js
+var gulp = require('gulp');
+var minifycss = require('gulp-minify-css');
+var uglify = require('gulp-uglify');
+var htmlmin = require('gulp-htmlmin');
+var htmlclean = require('gulp-htmlclean');
+var imagemin = require('gulp-imagemin');
+
+// 压缩html
+gulp.task('minify-html', function() {
+  return gulp.src('./public/**/*.html')
+    .pipe(htmlclean())
+    .pipe(htmlmin({
+      collapseWhitespace: true, //从字面意思应该可以看出来，清除空格，压缩html，这一条比较重要，作用比较大，引起的改变压缩量也特别大
+      collapseBooleanAttributes: true, //省略布尔属性的值，比如：<input checked="checked"/>,那么设置这个属性后，就会变成 <input checked/>
+      removeComments: true, //清除html中注释的部分
+      removeEmptyAttributes: true, //清除所有的空属性
+      removeScriptTypeAttributes: true, //清除所有script标签中的type="text/javascript"属性。
+      removeStyleLinkTypeAttributes: true, //清楚所有Link标签上的type属性。
+      minifyJS: true,
+      minifyCSS: true,
+      minifyURLs: true,
+    }))
+    .pipe(gulp.dest('./public'));
+});
+// 压缩css
+gulp.task('minify-css', function() {
+  return gulp.src('./public/**/*.css')
+    .pipe(minifycss({
+        compatibility: 'ie8'
+    }))
+    .pipe(gulp.dest('./public'));
+});
+// 压缩js !代表排除的js,例如['!./public/js/**/*min.js']
+gulp.task('minify-js', function() {
+  return gulp.src(['./public/js/**/.js'])
+    .pipe(uglify()) //压缩混淆
+    .pipe(gulp.dest('./public'));
+});
+// 压缩图片
+gulp.task('minify-images', function() {
+  return gulp.src('./public/images/**/*.*')
+    .pipe(imagemin(
+    [imagemin.gifsicle({'optimizationLevel': 3}),
+    imagemin.jpegtran({'progressive': true}),
+    imagemin.optipng({'optimizationLevel': 7}),
+    imagemin.svgo()],
+    {'verbose': true}))
+    .pipe(gulp.dest('./public/images'));
+});
+// 默认任务
+gulp.task('default',gulp.series(gulp.parallel('minify-html','minify-css','minify-js','minify-images')));
+```
+> 执行 `hexo g && gulp` 就会根据 `gulpfile.js` 中的配置，对 `public` 目录中的静态资源文件进行压缩。
+
+> 参考：[静态资源压缩](https://segmentfault.com/a/1190000021486140)
 
 
 ---
