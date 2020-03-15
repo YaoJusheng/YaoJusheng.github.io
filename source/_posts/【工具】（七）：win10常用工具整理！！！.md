@@ -195,6 +195,7 @@ Hyper-V：win10（企业版、专业版、教育版）自带。
 ## 9. 影音娱乐工具
 - [网易云音乐](https://music.163.com/#/download)：以前比较喜欢，现在好多资源缺失。
 - [QQ音乐](https://y.qq.com/download/)
+- [Listen 1](https://listen1.github.io/listen1/)：一个比较全面的音乐播放器，可以搜索和播放来自网易云音乐，虾米，QQ音乐，酷狗音乐，酷我音乐网站的歌曲（同时也有Chrome插件版、Mac版...）。
 - [Potplayer](https://daumpotplayer.com/download/)：一款无广告，功能强大的视频播放器。
 - [优酷视频](https://pd.youku.com/?spm=a2hpd.20022520.uerCenter.5!5~5~5~A)
 - [爱奇艺](https://www.iqiyi.com/)
