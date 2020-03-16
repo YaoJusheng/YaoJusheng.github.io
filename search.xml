@@ -45,8 +45,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>CURD</tag>
         <tag>MongoDB</tag>
+        <tag>CURD</tag>
       </tags>
   </entry>
   <entry>
@@ -99,8 +99,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>MySQL</tag>
         <tag>CURD</tag>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -797,9 +797,9 @@
         <category>数据库</category>
       </categories>
       <tags>
+        <tag>CURD</tag>
         <tag>类继承</tag>
         <tag>MySQL</tag>
-        <tag>CURD</tag>
       </tags>
   </entry>
   <entry>
