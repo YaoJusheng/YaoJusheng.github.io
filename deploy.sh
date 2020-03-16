@@ -8,7 +8,7 @@ sleep 5
 
 # Deploy
 hexo deploy
-sleep 5
+sleep 10
 
 # Push hexo code
 git add .
