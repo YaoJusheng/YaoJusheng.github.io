@@ -1,0 +1,120 @@
+// Custom styles.
+// 修改背景图片
+body {
+    background:url(https://source.unsplash.com/random/1600x900?wallpapers);
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-position:50% 50%;
+}
+
+// 修改主体透明度
+.post-block, .pagination {
+  background: #fff;
+  opacity: 0.8;
+}
+
+// 修改菜单栏透明度
+.header-inner, .sidebar {
+  opacity: 0.8;
+}
+
+.post {
+   margin-top: 3px;
+   margin-bottom: 5px;
+   padding: 5px;
+   -webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5);
+   -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);
+  }
+
+// 标签
+.tag-cloud-tags {
+  text-align:center;
+}
+
+.tag-cloud-tags a {
+  margin:auto;
+  padding: 10px 30px;
+  word-break:keep-all;
+  border-bottom: 1px solid blue;
+  white-space: nowrap;
+}
+
+.tag-cloud-tags a:hover {
+  font-style: italic;
+  border-bottom: 2px solid green;
+  font-size: 25px !important;
+  color: #22323a;
+  text-decoration: none;
+}
+
+.tag-cloud-tags a::before {
+  content:"";
+  position:absolute;
+  background:#08c;
+  -webkit-transition:width .3s ease;
+  transition:width .3s ease
+}
+
+// 标签云
+.my-tag-cloud {
+  background: var(--content-bg-color);
+  border-radius: initial;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
+  box-sizing: border-box;
+  color: var(--text-color);
+  width: 240px;
+  padding: 18px 10px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+// 友链样式
+.links-of-blogroll-item {
+  padding: 2px 10px;
+  text-align: left;
+  margin: 2px 2px 2px 30px;
+
+  a {
+    max-width: 280px;
+    box-sizing: border-box;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.links-item-img {
+  margin: 0;
+  padding: auto;
+  display: inline-block;
+  width: 25px !important;
+  /* 头像圆形 */
+  border-radius: 80px;
+  -webkit-border-radius: 80px;
+  -moz-border-radius: 80px;
+  box-shadow: inset 0 -1px 0 #333sfs;
+  /* 鼠标经过头像旋转360度 */
+  -webkit-transition: -webkit-transform 1.0s ease-out;
+  -moz-transition: -moz-transform 1.0s ease-out;
+  transition: transform 1.0s ease-out;
+}
+
+img:hover {
+  /* 鼠标经过停止头像旋转
+  -webkit-animation-play-state:paused;
+  animation-play-state:paused;*/
+  /* 鼠标经过头像旋转360度 */
+  -webkit-transform: rotateZ(360deg);
+  -moz-transform: rotateZ(360deg);
+  transform: rotateZ(360deg);
+}
+
+// utterance 评论样式
+.utterances-frame,
+.timeline,
+.timeline-comment {
+  margin: auto 0 !important;
+  padding: auto 0 !important;
+  width: 100% !important;
+}
