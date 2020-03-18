@@ -10,6 +10,7 @@
         <%- partial('post/title', {class_name: 'p-name article-title'}) %>
       </header>
     <% } %>
+
     <div class="e-content article-entry" itemprop="articleBody">
       <% if (post.excerpt && index){ %>
         <%- post.excerpt %>
@@ -23,6 +24,7 @@
       <% } %>
     </div>
     <footer class="article-footer">
+
       <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" data-title="<%= post.title %>" class="article-share-link"><%= __('share') %></a>
       <% if (post.comments && config.disqus_shortname){ %>
         <a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
@@ -33,7 +35,11 @@
           <%= __('comment') %>
         </a>
       <% } %>
+
       <%- partial('post/tag') %>
+
+      <%- partial('busuanzi_count') %>
+
     </footer>
   </div>
   <% if (!index){ %>

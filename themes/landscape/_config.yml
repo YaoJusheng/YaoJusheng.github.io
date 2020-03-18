@@ -2,50 +2,80 @@
 menu:
   Home: /
   Archives: /archives
+  Notes: /notes
+  Photos: /photos
 rss: /atom.xml
-banner: "images/banner.jpg"
+
+# 轮播背景图
+banner: "images/background/character/character-05.png"
+top:
+  enable: true
+  img: "/images/scrollup.png"
 
 # Content
 excerpt_link: Read More
 fancybox: true
-recent_posts_limits: 5
+recent_posts_limits: 3
 
 # Sidebar
-sidebar: right
+sidebar: left
 widgets:
 - category
-- tag
+# - tag
 - tagcloud
 - archive
 - recent_posts
 
 # display widgets at the bottom of index pages (pagination == 2)
+pagination: 2
 index_widgets:
-# - category
-# - tagcloud
-# - archive
+- category
+- tagcloud
+- archive
+
+
+# TagCloud settings for tags page.
+tagcloud:
+  # All values below are same as default, change them by yourself.
+  min: 12 # Minimun font size in px
+  max: 30 # Maxium font size in px
+  start: "#ccc" # Start color (hex, rgba, hsla or color keywords)
+  end: "#111" # End color (hex, rgba, hsla or color keywords)
+  amount: 200 # Amount of tags, change it if you have more than 200 tags
 
 # widget behavior
 archive_type: 'monthly'
-show_count: false
+show_count: true
 
 # Miscellaneous
+# 统计
 google_analytics:
 gauges_analytics:
-favicon: /favicon.png
+
+# 访问量统计功能(不蒜子)
+busuanzi:
+  enable: true
+  site_visit: true  # 站点访问量显示
+  article_visit: true  # 文章访问量显示
+
+# 网站图标
+favicon: '/images/MrYao.ico'
 twitter:
 fb_admins:
 fb_app_id:
 
 # valine comment system. https://valine.js.org
+# https://leancloud.cn/dashboard/login.html#/signup
 valine:
-  enable: false # if you want use valine,please set this value is true
-  appId:  # leancloud application app id
-  appKey:  # leancloud application app key
-  notify: false # valine mail notify (true/false) https://github.com/xCss/Valine/wiki
-  verify: false # valine verify code (true/false)
-  pageSize: 10 # comment list page size
-  avatar: mm # gravatar style https://valine.js.org/#/avatar
+  enable: true # if you want use valine,please set this value is true
+  appId: 'oT30CtobWiSnNhMrBtXP9d0A-gzGzoHsz'  # leancloud application app id
+  appKey: 'oVHGMlRjJJyTXPLmyrGKrWFu'  # leancloud application app key
+  notify: false # 评论回复提醒 valine mail notify (true/false) https://github.com/xCss/Valine/wiki
+  verify: false # 验证码 valine verify code (true/false)
+  pageSize: 6 # comment list page size
+  avatar: mm # 评论列表头像样式 gravatar style https://valine.js.org/#/avatar
   lang: zh-cn # i18n: zh-cn/en
-  placeholder: Just go go # valine comment input placeholder(like: Please leave your footprints )
+  placeholder: 有话要说？ # 评论框占位符 valine comment input placeholder(like: Please leave your footprints )
   guest_info: nick,mail,link #valine comment header info
+
+

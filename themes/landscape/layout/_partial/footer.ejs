@@ -3,9 +3,21 @@
     <%- partial('_partial/sidebar') %>
   <% } %>
   <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %><br>
-      <%= __('powered_by') %> <a href="https://hexo.io/" target="_blank">Hexo</a>
+    <div id="footer-info" class="inner" style="text-align: center;">
+      <span style="float:left;">
+        &copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %>
+        &emsp;<span>|</span>&emsp;
+        <%= __('powered_by') %> <a href="https://hexo.io/" target="_blank">Hexo</a>
+      </span>
+      
+      <% if (theme.busuanzi.enable){ %>
+        <span>
+          本站总访问量:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;次
+          <span>&emsp;|&emsp;</span>
+          本站访客数:&nbsp;<span id="busuanzi_value_site_uv"></span>&nbsp;人
+        </span>
+        
+      <% } %>
     </div>
   </div>
 </footer>

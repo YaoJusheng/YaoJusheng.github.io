@@ -1,28 +1,58 @@
 <article class="article article-type-post show">
   <header class="article-header" style="border-bottom: 1px solid #ccc">
-    <h1 class="article-title" itemprop="name">标签</h1>
+    <h1 class="article-title" itemprop="name">标签归档</h1>
 
   </header>
+  
+  <div align=center>
+    <nav>
+      <font size="4" color="rgba(34, 177, 48)">
+        文章 [<%=site.posts.length%>] &emsp;&emsp;
+        分类 [<%=site.categories.length%>] &emsp;&emsp;
+        标签 [<%=site.tags.length%>]
+      </font>
+    </nav>
+  </div>
 
-  <% if (site.tags.length) { %>
-    <div class="tag-cloud">
-      <div class="tag-cloud-title">
-        <%- "TOTAl : " + site.tags.length %>
-        <br>
-        <br>
-      </div>
+  <br>
+  <center><strong><font size="5" color="#228B66"><%= page.title %></font> </strong></center>
 
-      <div class="tag-cloud-tags"> 
-        <%- tagcloud({
-          min_font: 12,
-          max_font: 30,
-          amount: 200,
-          color: true,
-          start_color: '#555',
-          end_color: '#111'
-          }) %>
-      </div>
-    </div>
+  <% if (site.categories.length){ %>
+    <ul class="category-list">
+      <p style='color:lightyellow'>共计&nbsp;<%= site.categories.length %>&nbsp;个分类</p>
+      <br>
+      <% site.categories.sort('name').each(function(item){ %>
+        <% if(item.posts.length){ %>
+          <li class="category-list-item">
+            <a href="<%- config.root %><%- item.path %>" class="category-list-link" title="<%= item.name %>">
+              <%= item.name %>
+              <span class="category-list-count"><sup>[<%= item.posts.length %>]</sup></span>
+            </a>
+          </li>
+        <% } %>
+      <% }) %>
+    </ul>
   <% } %>
   
+  <center><strong><font size="5" color="#228B22">标签云 </font> </strong></center>
+
+  <div align=center>
+    <% if (site.tags.length) { %>
+      <br>
+      <p style='color:lightyellow'>共计&nbsp;<%= site.tags.length %>&nbsp;个标签</p>
+
+      <div class="tag-cloud">
+        <%- tagcloud({
+          min_font: 15, 
+          max_font: 25, 
+          amount: 999,
+          start_color: 'blue', 
+          end_color: 'gray',
+        }) %>
+      </div>
+
+    <% } %>
+  </div>
+
+
 </article>

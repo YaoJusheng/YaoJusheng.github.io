@@ -1,4 +1,4 @@
-﻿.clearfix:after,.clearfix:before {
+.clearfix:after,.clearfix:before {
     content: "";
     display: table
 }
@@ -876,7 +876,7 @@ body {
 }
 
 .article-entry .highlight,.article-entry pre {
-    background: #1a0139;
+    background: #000110;
     margin: 10px 0;
     padding: 10px;
     overflow: hidden;
@@ -884,6 +884,32 @@ body {
     color: #fff;
     font-size: .9em;
     line-height: 22.400000000000002px
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+.article-entry ol, .article-entry ul {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+ol, ul, li {
+    list-style: none outside none;
+}
+.article-entry ul li:before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border: 1px solid #F5FFFA;
+    border-radius: 10px;
+    background: #00FF7F;
+    display: inline-block;
+    padding: 0;
+    margin-right: 10px;
+    float: left;
+    margin-top: 10px;
 }
 
 .article-entry .highlight::-webkit-scrollbar,.article-entry pre::-webkit-scrollbar {
@@ -914,7 +940,7 @@ body {
 }
 
 .article-entry .gist .gist-file .gist-data .line-numbers,.article-entry .highlight .gutter pre,.article-entry .highlight .gutter pre .line {
-    color: #fc0000
+    color: #fcaa
 }
 
 .article-entry code,.article-entry pre {
@@ -983,7 +1009,7 @@ body {
 }
 
 .article-entry .highlight .line {
-    color: #fff;
+    color: #eff;
     min-height: 19px
 }
 
@@ -1582,9 +1608,9 @@ pre .css~* .id,pre .id {
 
 .archives .archive-article-title {
     font-size: 16px;
-    font-weight: bold!important;
+    font-weight: bold;
     /*color: #333;*/
-    /*transition: color .3s*/
+    transition: color .3s
     background: transparent;
     text-decoration: none;
     color: #af9;
@@ -2061,7 +2087,7 @@ a.article-title {
 
 .article-inner {
     /*border-color: #d1d1d1；*/
-    background-color: rgba(193, 194, 195,0.6)!important;
+    background-color: rgba(193, 194, 195,0.6);
 }
 
 .article-inner h1 {
@@ -3930,7 +3956,7 @@ a.pswp__share--download:hover {
 }
 
 
-/*标签页面样式*/
+/*《分类页面，标签页面样弝*/
 .category-list {
   text-align:center;
   padding:20px
@@ -3950,12 +3976,20 @@ a.pswp__share--download:hover {
   padding:20px
 }
 .tag-cloud a {
-  margin:0 20px;
+  margin:auto 20px;
   word-break:keep-all;
+  border-bottom: 1px solid blue;
+  white-space: nowrap;
   position:relative
 }
-.tag-cloud a:hover::before {
+.tag-cloud a:hover {
   width:100%;
+  font-style: italic;
+  border-bottom: 2px solid green;
+  font-style: italic;
+  font-size: 25px !important;
+  color: #22323a;
+  text-decoration: none;
   left:0;
   right:auto
 }
@@ -3966,31 +4000,13 @@ a.pswp__share--download:hover {
   right:0;
   bottom:0;
   height:2px;
-  background:rgb(72, 166, 212);
+  background:#08c;
   -webkit-transition:width .3s ease;
   transition:width .3s ease
 }
+/*分类页面，标签页面样弝》*/
 
-.tag-cloud-tags a {
-  color: #3c79ac !important;
-}
-
-.tag-cloud-tags a:hover {
-  /* border-bottom: 2px solid green; */
-  font-style: italic;
-  color: #555 !important;
-  font-size: 24px !important;
-  text-decoration: none;
-}
-
-/*分类页面样式*/
-.tag-cloud-title, .category-all-title {
-  font-weight: bold;
-  font-family: Charcoal;
-  text-align: center;
-}
-
-/*代码雨*/
+/*代砝雨*/
 .code_rain_canvas {
     position: fixed;
     right: 0px;
@@ -4002,10 +4018,10 @@ a.pswp__share--download:hover {
     /*z-index: -1;*/
 }
 
-/*复制功能*/
-/* 代码块复制按钮 */
+/*夝制功能*/
+/* 代砝块夝制按钮 */
  .highlight {
-    /* 方便copy代码按钮（btn-copy）的定位 */
+    /* 方便copy代砝按钮（btn-copy）的定佝 */
     position: relative;
 }
 .btn-copy {
@@ -4039,11 +4055,13 @@ a.pswp__share--download:hover {
 .highlight:hover .btn-copy {
     opacity: 1;
 }
-/* 代码块复制按钮 */
+/* 代砝块夝制按钮 */
 
-/*网站运行时间*/
-#timeDate, #times {
-	font-weight: bold;
-    color: lightyellow;
-	opacity:0.6;
+.post-copyright{
+    margin: 0em 0em 0em 0em;
+    padding: 0.5em 1em;
+    border-left:3px solid #ff1700;
+    background-color: #f9f9f9;
+    list-style: none;
+    font-size: 14px;
 }

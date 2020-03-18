@@ -3,8 +3,18 @@ menu:
   主页: /
   标签: /tags
   分类: /categories
+  相册: /photos
   随笔: /notes
   归档: /archives
+
+menu_icons:
+  enable: true
+  # Icon Mapping.
+  home: home
+  about: user
+  categories: th
+  tags: tags
+  archives: archive
 
 # subNav-子导航
 subNav:
@@ -14,10 +24,10 @@ subNav:
   # cnblog: "#"
   #blog: "#"
   csdn: "https://blog.csdn.net/weixin_41599858"
-  #rss: "#"
+  # rss: /atom.xml
   # zhihu: "https://www.zhihu.com/people/qing-kuang-shu-sheng-78-59"
-  #qq: "img/*.jpg"
-  #weixin: "img/*.png"
+  #qq: "#"
+  #weixin: "#"
   #weibo: "#"
   #douban: "#"
   #segmentfault: "#"
@@ -28,6 +38,16 @@ subNav:
   #google: "#"
   #twitter: "#"
   #linkedin: "#"
+
+# 智能菜单
+# 如不需要，将该对应项置为false
+# 比如
+#smart_menu:
+#  friends: false
+smart_menu:
+  innerArchive: '所有文章'
+  friends: '友链'
+  aboutme: '关于我'
 
 # 悬停预览图片效果
 hover_effect:
@@ -44,26 +64,27 @@ rss: /atom.xml
 # 如果您的网站存放在子目录中，例如 http://yoursite.com/blog，
 # 请将您的 url 设为 http://yoursite.com/blog 并把 / 设为 /blog/。
 # 新版本已弃用，请在博客根目录文件进行配置
-# root: /
+# root: /blog/
 
 # Content
 # 文章太长，截断按钮文字(在需要截断的行增加此标记：<!--more-->)
 # excerpt_link: more
-archive_yearly: true  #按年存档
+archive_yearly: true #按年存档
 fancybox: true
 
 # 文章卡片右下角常驻链接，不需要请设置为false
 show_all_link: '展开全文'
-# 数学公式
-mathjax: false
-  # enable: true
-  # per_page: true
 
 # 文章结束语
 end_message:
   enable: true
   default: 'The END'
   text: '本文已结束，感谢阅读!'
+
+# 数学公式
+mathjax: false
+  # enable: true
+  # per_page: true
 
 # Open link in a new tab | 是否在新窗口打开链接
 open_in_new:
@@ -81,7 +102,7 @@ alipay: /img/alipay.jpg
 # 微信二维码图片地址
 weixin: /img/wechat.png
 
-# 目录
+# 目录 如果某个文章不需要目录,可以指定文章layout: post-noTOC实现
 # 目录设定：0-不显示目录； 1-文章对应的md文件里有toc:true属性，才有目录； 2-所有文章均显示目录
 toc: 1
 # 根据自己的习惯来设置，如果你的目录标题习惯有标号，置为true即可隐藏hexo重复的序号；否则置为false
@@ -95,7 +116,15 @@ top: true
 #是否开启分享
 socialShare: true
 #是否开启云标签
-tagcloud: true
+# tagcloud: true
+# hexo-tag-cloud 
+tagcloud:
+  enable: true
+  textFont: 'Trebuchet MS, Helvetica'
+  textColor: '#42a5f5'
+  textHeight: 15
+  outlineColor: '#fc9867'
+  maxSpeed: 0.3 # range from [0.01 ~ 1]
 
 #是否开启捐赠
 donate: true
@@ -108,13 +137,13 @@ recentContent: ''
 #是否开启微简历
 resume: true
 
-# Miscellaneous (前两个是设置百度和谷歌搜索的，favicon设置标签页图标的)
+# Miscellaneous
 # 百度统计
 baidu_analytics: ''
 google_analytics: ''
 
 # 网站图标
-favicon: /images/site-icon/ico/MrYao.ico
+favicon: /images/site-icon/svg/MrYao02.svg
 
 # 你的头像url
 avatar: /images/avatar.jpg  
@@ -122,9 +151,10 @@ avatar: /images/avatar.jpg
 # 是否开启分享
 share_jia: true
 
-# 评论： 1、多说；2、网易云跟帖；3、畅言；4、Disqus；5、Gitment；6、Giteement ;7、gitalk ;8、valine ;9、utteranc
+# 评论： 1、多说；2、网易云跟帖；3、畅言；4、Disqus；5、Gitment；6、Giteement ;7、gitalk ;8、valine ;9、utteranc评论
 # 具体请参考wiki：https://github.com/JoeyBling/hexo-theme-yilia-plus/wiki
 # 是否开启评论, 不需要使用某项，直接设置值为false，或注释掉
+
 # 1、多说
 duoshuo: false
 
@@ -142,7 +172,7 @@ disqus: false
 # 关于如何集成:https://www.jianshu.com/p/ac7658cc912f
 gitment_owner: false      # 你的 GitHub ID  e.g. YaoJusheng
 # 是否使用官方js(false可以提升访问速度，本地修改过一部分的js，官方js可能会出现服务器不稳定，不太建议使用)
-gitment_repo: 'yaojusheng.github.io'          #存储评论的 repo name(需要在Github创建)
+gitment_repo: 'YaoJusheng.github.io'          #存储评论的 repo name(需要在Github创建)
 gitment_oauth:
   client_id: '35890ce192840bd76bc6'           #client ID
   client_secret: '18b465f1ea803824fe0aef032d74ce6262df3b6e'       #client secret
@@ -168,7 +198,7 @@ giteement:
 gitalk:
   enable:  false
   githubID:  YaoJusheng   
-  repo:  'yaojusheng.github.io'
+  repo:  'yaojusheng.gitee.io'
   ClientID:  '35890ce192840bd76bc6'
   ClientSecret:  '18b465f1ea803824fe0aef032d74ce6262df3b6e'
   adminUser:  YaoJusheng
@@ -176,7 +206,7 @@ gitalk:
 
 # 8、valine 评论系统，到leancloud进行注册
 # https://leancloud.cn/dashboard/login.html#/signup
-valine:
+valine: 
  appid: 'oT30CtobWiSnNhMrBtXP9d0A-gzGzoHsz'  # Leancloud应用的appId
  appkey: 'oVHGMlRjJJyTXPLmyrGKrWFu'          # Leancloud应用的appKey
  verify: false      # 验证码
@@ -216,10 +246,11 @@ clickLove:
   # (关闭请设置为false)
   enable: true
 
-# GitHub Ribbons(https://github.blog/2008-12-19-github-ribbons/)
-github: false   
+# fork 项目 GitHub Ribbons(https://github.blog/2008-12-19-github-ribbons/)
+github: 
   # (关闭请设置为false)
-  # url: https://github.com/JoeyBling/hexo-theme-yilia-plus
+  enable: true
+  url: https://github.com/YaoJusheng/hexo-theme-yilia-plus
 
 # Progress Bar | 页面加载进度条
 # Demo: http://github.hubspot.com/pace/docs/welcome/
@@ -278,7 +309,7 @@ canvas_nest:
   pointColor: '249, 72, 137'     # color of points, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
   opacity: '0.9'               # the opacity of line (0~1), default: 0.5.
   count: '256'                  # the number of lines, default: 99.
-  zIndex: '-1'                 # z-index property of the background, default: -1.
+  zIndex: '-1'                 # z-index property of the background, default: -1. 底层
 
 # 看板娘动态模型插件
 ## https://github.com/JoeyBling/live2d-widget.js
@@ -310,20 +341,20 @@ style:
   left_ground: 
     enable: true
     default: 'rgba(0,0,0,0.5)'
-    url: 'url(http://q5ndkf89x.bkt.clouddn.com/images/background/36.jpg) no-repeat 100%;background-size:cover;opacity:0.8;filter:alpha(opacity=80);'
-    # url: 'url(http://q5ndkf89x.bkt.clouddn.com/images/background/11.jpg) no-repeat 100%;background-size:cover;opacity:0.8;filter:alpha(opacity=80);'
+    # url: 'url(http://q5ndkf89x.bkt.clouddn.com/images/background/36.jpg) no-repeat 100%;background-size:cover;opacity:0.8;filter:alpha(opacity=80);'
+    url: 'url(http://q5ndkf89x.bkt.clouddn.com/images/code/code-15.jpg) no-repeat 100%;background-size:cover;opacity:0.8;filter:alpha(opacity=80);'
   # 左侧头像板块动态图效果
   gif:
     # 是否启用
     enable: true
     # 自定义背景图路径(默认可以不设置，提供默认背景图biubiubiu.gif)
-    path: /img/back-02.gif
+    path: /img/avatar.gif
   # 正文的背景颜色(IE兼容设置：opacity:0.8;filter:alpha(opacity=80);)
   article_ground: 
     enable: true
     default: 'rgba(25, 25, 25, 0)'  #设置背景透明度
-    url: 'url(http://q5ndkf89x.bkt.clouddn.com/images/background/39.jpg) no-repeat 100%;background-size:cover;opacity:0.7;filter:alpha(opacity=70);'
-    # url: 'url(http://q5ndkf89x.bkt.clouddn.com/images/background/2.jpg) no-repeat 100%;background-size:cover;opacity:0.7;filter:alpha(opacity=70);'
+    # url: 'url(http://q5ndkf89x.bkt.clouddn.com/images/background/39.jpg) no-repeat 100%;background-size:cover;opacity:0.7;filter:alpha(opacity=70);'
+    url: 'url(http://q5ndkf89x.bkt.clouddn.com//images/background/44.jpg) no-repeat 100%;background-size:cover;opacity:0.7;filter:alpha(opacity=70);'
   # 右滑板块背景
   slider: 'linear-gradient(200deg,#ccc,#000)'
 
@@ -331,16 +362,6 @@ style:
 slider:
   # 是否默认展开tags板块
   showTags: true
-
-# 智能菜单
-# 如不需要，将该对应项置为false
-# 比如
-#smart_menu:
-#  friends: false
-smart_menu:
-  innerArchive: '所有文章'
-  friends: '友链'
-  aboutme: '关于我'
 
 # 友情链接
 friends:
@@ -399,7 +420,7 @@ pageFooter:
   litten: GitHub:<a href="https://github.com/JoeyBling/hexo-theme-yilia-plus" target="_blank">hexo-theme-yilia-plus</a>
 
 # 开启百度站长平台自动推送(https://ziyuan.baidu.com/linksubmit/index)
-baidu_push: false
+baidu_push: true
 
 # 版权声明
 # 版权声明type设定：0-关闭版权声明； 1-文章对应的md文件里有copyright: true属性，才有版权声明； 2-所有文章均有版权声明

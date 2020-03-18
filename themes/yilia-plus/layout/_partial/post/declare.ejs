@@ -37,12 +37,12 @@
         <% if(theme.copyright.licensee_img != undefined){ %>
           <span>
             <a rel="license" href="<%= theme.copyright.licensee_url%>">
-              <img alt="知识共享许可协议" style="border-width:0" src="<%= theme.copyright.licensee_img %>"/>
+              <img alt="知识共享许可协议" style="border-width:0" src="<%- config.root %><%= theme.copyright.licensee_img %>"/>
             </a>
           </span>
         <% } %>
       
-      <% } else {%>
+      <% } else { %>
         <%= theme.copyright.copyright_text %>
       <% } %>
     </li>

@@ -1,7 +1,9 @@
 <% var defaultBg = '#4d4d4d'; %>
 <% var defaultBgImg = '/img/biubiubiu.gif'; %>
 <% var overlayBgImg= theme.style.gif && theme.style.gif.enable && theme.style.gif.path ? theme.style.gif.path : defaultBgImg; %>
-<div class="overlay" style="background: <%= theme.style && theme.style.header ? theme.style.header : defaultBg %>;<% if (theme.style.gif && theme.style.gif.enable){ %>background: url('<%- url_for(overlayBgImg) %>') no-repeat ;<%}%>"></div>
+
+<div class="overlay" style="background: <%= theme.style && theme.style.header ? theme.style.header : defaultBg %>;<% if (theme.style.gif && theme.style.gif.enable){ %>background: url('<%- url_for(overlayBgImg) %>') no-repeat ;<%}%> z-index:-1"></div>
+
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="<%- url_for('/') %>" class="profilepic">
@@ -21,15 +23,14 @@
 			<%}%>
 			</ul>
 		</nav>
-		
 		<nav style="font-size:13px; font-weight: bold;">
-			<span style="color:rgb(180,125,100)">总文章数: </span>
-      <span style="color:rgb(99,88,25)"><%=site.posts.length%></span>
+    	<span style="color:rgb(180,125,100)">总文章数: </span>
+    	<span style="color:rgb(99,88,25)"><%=site.posts.length%></span>
       <strong style="color:rgb(26, 73, 92)">|</strong>
       <span style="color:rgb(117, 122, 128)">总字数: </span>
       <span class="post-count" style="color:rgb(51, 108, 122)"><%= totalcount(site, '0,0.0a') %></span>
 		</nav>
-		
+
 		<nav class="header-smart-menu">
 			<% for (var i in theme.smart_menu){ %>
 				<% if(theme.smart_menu[i]){ %>
@@ -62,38 +63,45 @@
 		    })
 		  </script>
 		<% } %>
+
+		<div style='color:lightyellow;font-weight:blod;marin:0;padding:0;opacity:0.6;'>
+      本站已安全运行 <span class='time-day'></span>天 
+      <span class='times'></span>
+    </div>
+    
+    <script>
+      var now = new Date(); 
+      function createtime() { 
+        var grt= new Date("2/14/2020 17:10:00");//此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        
+        document.getElementsByClassName("time-day")[0].innerHTML = dnum;
+        document.getElementsByClassName("times")[0].innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+      } 
+      setInterval("createtime()",250);
+    </script>
 		
-		<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
-		<script>
-		  var now = new Date(); 
-		  function createtime() { 
-			var grt= new Date("2/14/2020 17:10:00");//此处修改你的建站时间或者网站上线时间 
-			now.setTime(now.getTime()+250); 
-			days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
-			hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
-			if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
-			mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
-			seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
-			snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
-			document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
-			document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
-		  } 
-		  setInterval("createtime()",250);
-		</script>
-	
 		<% if (theme.music && theme.music.enable){ %>
 			<%# "网易云音乐插件" %>
 			<%# "bottom:120px; left:auto;position:absolute;  width:85%" %>
 			<% var defaultHeight = theme.music.type == 1 ? '32' : '66'; %>
 			<% var defaultIframeHeight = theme.music.type == 1 ? '52' : '86'; %>
-			<div>
-				<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="240" height="<%=defaultIframeHeight%>" src="//music.163.com/outchain/player?type=2&id=<%=theme.music.id||27580009%>&auto=<%=theme.music.autoPlay?1:0%>&height=<%=defaultHeight%>"></iframe>
+			<div style="margin:0; padding:5px 0;">
+				<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="250" height="<%=defaultIframeHeight%>" src="//music.163.com/outchain/player?type=2&id=<%=theme.music.id||27580009%>&auto=<%=theme.music.autoPlay?1:0%>&height=<%=defaultHeight%>"></iframe>
 			</div>
 			<% if (theme.music.text || theme.music.text == null){ %>
 				<% var musicText = ( theme.music.text == null || theme.music.text == true ) ? "悠扬的旋律，为谁而敲响！" : theme.music.text; %>
-				<p style="font-size: 12px;opacity:0.6;color:lightyellow"><%-musicText%><p>
+				<p style="font-size: 12px;color:lightgray;opacity:0.6;"><%-musicText%><p>
 			<% } %>
 		<% } %>
 		</nav>
-	</header>		
+
+	</header>
+
 </div>
