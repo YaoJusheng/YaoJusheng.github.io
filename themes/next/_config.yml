@@ -129,11 +129,11 @@ darkmode: false
 # External url should start with http:// or https://
 menu:
   home: / || home
-  #about: /about/ || user
   tags: /tags/ || tags
   categories: /categories/ || th
   notes: /notes/ || book
   archives: /archives/ || archive
+  about: /resume/ || user
   #schedule: /schedule/ || calendar
   sitemap: /sitemap.xml || sitemap
   commonweal: /404.html || heartbeat
