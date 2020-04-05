@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yaojusheng.github.io/"/>
-  <updated>2020-03-13T14:34:39.807Z</updated>
+  <updated>2020-04-05T09:01:29.031Z</updated>
   <id>http://yaojusheng.github.io/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python（九）- 音频文字转换</title>
+    <link href="http://yaojusheng.github.io/archives/890d42a0.html"/>
+    <id>http://yaojusheng.github.io/archives/890d42a0.html</id>
+    <published>2020-04-01T12:42:59.000Z</published>
+    <updated>2020-04-05T09:01:29.031Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Python 是一门通用性很强的语言，本文主要讲述其中的音频模块 gtts（Google文本到语音）的使用。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
+    
+    
+      <category term="音频" scheme="http://YaoJusheng.github.io/tags/%E9%9F%B3%E9%A2%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python（八）- url 代理设置!</title>
+    <link href="http://yaojusheng.github.io/archives/17e4c729.html"/>
+    <id>http://yaojusheng.github.io/archives/17e4c729.html</id>
+    <published>2020-03-16T14:15:24.000Z</published>
+    <updated>2020-04-05T09:04:53.096Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;之前有同事问到关于 Python 中URL走代理的问题，这里做个简单的记录。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
+    
+    
+      <category term="代理配置" scheme="http://YaoJusheng.github.io/tags/%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/"/>
+    
+  </entry>
   
   <entry>
     <title>Python（七）- 连接MongoDB数据库以及CURD操作！</title>
@@ -34,14 +80,14 @@
     
       <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
       <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
     
+      <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
-      <category term="CURD" scheme="http://YaoJusheng.github.io/tags/CURD/"/>
     
       <category term="MongoDB" scheme="http://YaoJusheng.github.io/tags/MongoDB/"/>
+    
+      <category term="CURD" scheme="http://YaoJusheng.github.io/tags/CURD/"/>
     
   </entry>
   
@@ -63,14 +109,14 @@
     
       <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
       <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
     
+      <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
-      <category term="MySQL" scheme="http://YaoJusheng.github.io/tags/MySQL/"/>
     
       <category term="CURD" scheme="http://YaoJusheng.github.io/tags/CURD/"/>
+    
+      <category term="MySQL" scheme="http://YaoJusheng.github.io/tags/MySQL/"/>
     
   </entry>
   
@@ -92,9 +138,9 @@
     
       <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
       <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
+    
+      <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
       <category term="CURD" scheme="http://YaoJusheng.github.io/tags/CURD/"/>
@@ -226,16 +272,16 @@
     
       <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
       <category term="PHP" scheme="http://YaoJusheng.github.io/categories/PHP/"/>
     
+      <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="CURD" scheme="http://YaoJusheng.github.io/tags/CURD/"/>
     
       <category term="类继承" scheme="http://YaoJusheng.github.io/tags/%E7%B1%BB%E7%BB%A7%E6%89%BF/"/>
     
       <category term="MySQL" scheme="http://YaoJusheng.github.io/tags/MySQL/"/>
-    
-      <category term="CURD" scheme="http://YaoJusheng.github.io/tags/CURD/"/>
     
   </entry>
   
@@ -441,9 +487,9 @@
       <category term="Hexo" scheme="http://YaoJusheng.github.io/categories/Hexo/"/>
     
     
-      <category term="next" scheme="http://YaoJusheng.github.io/tags/next/"/>
-    
       <category term="基本配置" scheme="http://YaoJusheng.github.io/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="next" scheme="http://YaoJusheng.github.io/tags/next/"/>
     
   </entry>
   
@@ -494,55 +540,6 @@
     
     
       <category term="Docker" scheme="http://YaoJusheng.github.io/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【工具】（五）：Windows和Linux下 Docker的安装！</title>
-    <link href="http://yaojusheng.github.io/archives/ef94d4d4.html"/>
-    <id>http://yaojusheng.github.io/archives/ef94d4d4.html</id>
-    <published>2020-02-26T05:30:16.000Z</published>
-    <updated>2020-03-10T15:25:16.060Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;本文介绍关于docker在Windows和Linux下的安装。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="工具" scheme="http://YaoJusheng.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="Docker" scheme="http://YaoJusheng.github.io/categories/Docker/"/>
-    
-    
-      <category term="Docker" scheme="http://YaoJusheng.github.io/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【工具】（四）：衔接上一篇：VSCode插件推荐！！！</title>
-    <link href="http://yaojusheng.github.io/archives/dd145cc.html"/>
-    <id>http://yaojusheng.github.io/archives/dd145cc.html</id>
-    <published>2020-02-25T04:20:16.000Z</published>
-    <updated>2020-03-09T15:26:28.443Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;对于很多编程工作者来说，一款好的IDE或者编辑器至关重要，&lt;/p&gt;
-&lt;p&gt;很多人都喜欢用IDE，因为全面，配置方便，管理更是一键式，用起来贼爽，不需要关心开发之外的东西，&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="工具" scheme="http://YaoJusheng.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="VSCode" scheme="http://YaoJusheng.github.io/categories/VSCode/"/>
-    
-    
-      <category term="插件" scheme="http://YaoJusheng.github.io/tags/%E6%8F%92%E4%BB%B6/"/>
     
   </entry>
   
