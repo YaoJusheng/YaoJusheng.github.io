@@ -134,6 +134,9 @@ menu:
   notes: /notes/ || book
   archives: /archives/ || archive
   about: /resume/ || user
+  static-resume: /static-resume/ || user-circle
+  dynamic-resume: /dynamic-resume/ || bolt
+  make-resume: /online-resume/ || id-card
   #schedule: /schedule/ || calendar
   sitemap: /sitemap.xml || sitemap
   commonweal: /404.html || heartbeat

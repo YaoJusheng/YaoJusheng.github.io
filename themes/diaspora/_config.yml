@@ -5,7 +5,10 @@ menu:
   标签: /tags
   归档: /archives 
   随笔: /notes 
-  关于: /about
+  关于: http://yaojusheng.gitee.io/resume
+  静态简历: http://yaojusheng.gitee.io/static-resume
+  动态简历: http://yaojusheng.gitee.io/dynamic-resume
+  简历制作: http://yaojusheng.gitee.io/online-resume
 
 # 是否显示目录
 TOC: true
