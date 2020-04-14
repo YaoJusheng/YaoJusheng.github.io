@@ -1,6 +1,1270 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>个人网站之GitBook的简单使用</title>
+    <url>/archives/4544d152.html</url>
+    <content><![CDATA[<p>相比于博客网站（如：CSDN、简书、Hexo搭建的个人博客等），个人感觉GitBook更能做一些系列型的技术存档与学习，<br>前者更适合做一些笔记的整理和技术分享，而GitBook的作用相当于将这些笔记做了一些归纳，类似电子书的方式。<br>对于查询资料和文档整理会更好些，当然，工具的使用因人而异。</p>
+<a id="more"></a>
+
+<h2 id="1-环境安装"><a href="#1-环境安装" class="headerlink" title="1.环境安装"></a>1.环境安装</h2><p>使用之前，先确保安装了 <code>Git</code> 和 <code>Node.js</code>。</p>
+<h3 id="1-1-安装-Git-工具"><a href="#1-1-安装-Git-工具" class="headerlink" title="1.1.安装 Git 工具"></a>1.1.安装 <code>Git</code> 工具</h3><blockquote>
+<p>传送门：<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git 下载</a></p>
+</blockquote>
+<img src="/archives/4544d152/git_download.png" class>
+
+<p>检查环境变量，将 <code>Git</code> 加入<strong>系统环境变量</strong>，做一些简单的<strong>配置</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设定user和email</span></span><br><span class="line">git config --global user.name <span class="string">"username"</span></span><br><span class="line">git config --global user.email <span class="string">"email@example.com"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建SSH Key，使用ssh进行上传提交更新时需要公钥，生成获取pubkey</span></span><br><span class="line">ssh-keygen -t rsa -b 4096 -C <span class="string">"email@example.com"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-安装-Node-js-环境"><a href="#1-2-安装-Node-js-环境" class="headerlink" title="1.2.安装 Node.js 环境"></a>1.2.安装 <code>Node.js</code> 环境</h3><blockquote>
+<p>传送门：<a href="https://nodejs.org/zh-cn/download/" target="_blank" rel="noopener">Node.js 下载</a></p>
+</blockquote>
+<img src="/archives/4544d152/node_download.png" class>
+
+<p>选好版本下载、安装完成后，同样将程序加入环境变量。</p>
+<p>检查安装结果：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 检查 node 和 npm 版本</span></span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-安装-GitBook"><a href="#1-3-安装-GitBook" class="headerlink" title="1.3.安装 GitBook"></a>1.3.安装 <code>GitBook</code></h3><blockquote>
+<p>官网：<a href="https://www.gitbook.com/" target="_blank" rel="noopener">GitBook</a></p>
+</blockquote>
+<p>安装 <code>GitBook</code> 插件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install gitbook-cli -g</span><br></pre></td></tr></table></figure>
+
+<p>检查版本：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gitbook -V</span><br><span class="line">CLI version: 2.3.2</span><br><span class="line">GitBook version: 3.2.3</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-简单使用"><a href="#2-简单使用" class="headerlink" title="2.简单使用"></a>2.简单使用</h2><h3 id="2-1-初始化图书目录"><a href="#2-1-初始化图书目录" class="headerlink" title="2.1.初始化图书目录"></a>2.1.初始化图书目录</h3><p>在图书目录，打开 <code>gitbash</code> 或者 <code>DOS</code> 窗口，输入：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gitbook init</span><br><span class="line">warn: no summary file <span class="keyword">in</span> this book</span><br><span class="line">info: create README.md</span><br><span class="line">info: create SUMMARY.md</span><br><span class="line">info: initialization is finished</span><br></pre></td></tr></table></figure>
+
+<p>此时，目录下会生成 <code>README.md</code> 和 <code>SUMMARY.md</code> 这两个文件。</p>
+<p>前者是 图书说明文档，后者是目录章节配置文档。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- README.md --&gt;</span></span></span><br><span class="line"><span class="section"># Introduction</span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- SUMMARY.md --&gt;</span></span></span><br><span class="line"><span class="section"># Summary</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">* </span>[<span class="string">Introduction</span>](<span class="link">README.md</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-一些简单操作"><a href="#2-2-一些简单操作" class="headerlink" title="2.2.一些简单操作"></a>2.2.一些简单操作</h3><blockquote>
+<p>将要写的文章系列以 mrakdown 的形式生成，放到图书根目录下。</p>
+</blockquote>
+<p>（1）、将 <strong><code>.md</code></strong> 文件转成页面文件 <strong><code>.html</code></strong>，运行 <strong>命令</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gitbook build</span><br></pre></td></tr></table></figure>
+
+<p>此时，根目录中会生成 <code>_book</code> 目录，这是网站的静态资源目录。</p>
+<p>（2）、本地运行，在网页显示GitBook页面内容，运行 <strong>命令</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gitbook serve --port=xxxx</span><br></pre></td></tr></table></figure>
+<p>此时，浏览器输入网址： <code>http://localhost:xxxx</code>，即可打开本地部署的网站。</p>
+<p>（3）、命令帮助<br>命令行输入以下命令，会显示 <code>gitbook</code> 的 <strong>帮助信息</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gitbook <span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+
+<p>（4）、安装插件</p>
+<p>命令行输入：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install &lt;gitbook-plugin-xxx&gt;</span><br></pre></td></tr></table></figure>
+
+<p>（5）、更新和卸载</p>
+<p>命令行输入：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 更新</span></span><br><span class="line">gitbook update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">gitbook uninstall &lt;version&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-配置-book-json-文件"><a href="#2-3-配置-book-json-文件" class="headerlink" title="2.3.配置 book.json 文件"></a>2.3.配置 <code>book.json</code> 文件</h3><p>根目录下，新建文件 <strong><code>book.json</code></strong>，内容如下：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"title"</span> : <span class="string">"标题"</span>,</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">"作者"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">"描述"</span>,</span><br><span class="line">  <span class="attr">"extension"</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">"generator"</span>: <span class="string">"site"</span>,</span><br><span class="line">  <span class="attr">"language"</span> : <span class="string">"zh-hans"</span>,</span><br><span class="line">  <span class="attr">"links"</span>: &#123;</span><br><span class="line">    <span class="attr">"sharing"</span>: &#123;</span><br><span class="line">      <span class="attr">"all"</span>: <span class="literal">null</span>,</span><br><span class="line">      <span class="attr">"facebook"</span>: <span class="literal">null</span>,</span><br><span class="line">      <span class="attr">"google"</span>: <span class="literal">null</span>,</span><br><span class="line">      <span class="attr">"twitter"</span>: <span class="literal">null</span>,</span><br><span class="line">      <span class="attr">"weibo"</span>: <span class="literal">null</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"sidebar"</span>: &#123;</span><br><span class="line">      <span class="attr">"个人主页"</span>: <span class="string">"网址"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"variables"</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-GitBook-部分常用插件"><a href="#3-GitBook-部分常用插件" class="headerlink" title="3.GitBook 部分常用插件"></a>3.<code>GitBook</code> 部分常用插件</h2><p><strong><font color="green"><code>book.json</code> 插件配置</font></strong>：</p>
+<ul>
+<li>插件放置在 <strong><code>plugins</code></strong> 数组中。</li>
+<li>插件配置在 <strong><code>pluginsConfig</code></strong> 字典中。 </li>
+</ul>
+<h3 id="3-1-expandable-chapters-章节导航扩展"><a href="#3-1-expandable-chapters-章节导航扩展" class="headerlink" title="3.1.expandable-chapters 章节导航扩展"></a>3.1.<code>expandable-chapters</code> 章节导航扩展</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"plugins"</span>: [</span><br><span class="line">    <span class="string">"expandable-chapters"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-copy-code-button-代码复制按钮"><a href="#3-2-copy-code-button-代码复制按钮" class="headerlink" title="3.2.copy-code-button 代码复制按钮"></a>3.2.<code>copy-code-button</code> 代码复制按钮</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"plugins"</span>: [<span class="string">"copy-code-button"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-search-plus-页面搜索"><a href="#3-3-search-plus-页面搜索" class="headerlink" title="3.3. search-plus 页面搜索"></a>3.3. <code>search-plus</code> 页面搜索</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"plugins"</span>: [<span class="string">"search-plus"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4-右上角添加-github-图标"><a href="#3-4-右上角添加-github-图标" class="headerlink" title="3.4.右上角添加 github 图标"></a>3.4.右上角添加 <code>github</code> 图标</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"plugins"</span>: [ </span><br><span class="line">    <span class="string">"github"</span> </span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"pluginsConfig"</span>: &#123;</span><br><span class="line">    <span class="attr">"github"</span>: &#123;</span><br><span class="line">      <span class="attr">"url"</span>: <span class="string">"https://github.com/&#123;github-id&#125;"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-5-splitter-侧边栏宽度可调节"><a href="#3-5-splitter-侧边栏宽度可调节" class="headerlink" title="3.5.splitter 侧边栏宽度可调节"></a>3.5.<code>splitter</code> 侧边栏宽度可调节</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"plugins"</span>: [<span class="string">"splitter"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-6-sharing-plus-分享"><a href="#3-6-sharing-plus-分享" class="headerlink" title="3.6.sharing-plus 分享"></a>3.6.<code>sharing-plus</code> 分享</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"plugins"</span>: [<span class="string">"-sharing"</span>, <span class="string">"sharing-plus"</span>],</span><br><span class="line">  <span class="attr">"pluginsConfig"</span>: &#123;</span><br><span class="line">    <span class="attr">"sharing"</span>: &#123;</span><br><span class="line">      <span class="attr">"douban"</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">"facebook"</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">"google"</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">"pocket"</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">"qq"</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">"qzone"</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">"twitter"</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">"weibo"</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">"all"</span>: [</span><br><span class="line">        <span class="string">"douban"</span>, <span class="string">"facebook"</span>, <span class="string">"google"</span>, <span class="string">"instapaper"</span>, <span class="string">"linkedin"</span>,<span class="string">"twitter"</span>, <span class="string">"weibo"</span>, </span><br><span class="line">        <span class="string">"messenger"</span>,<span class="string">"qq"</span>, <span class="string">"qzone"</span>,<span class="string">"viber"</span>,<span class="string">"whatsapp"</span></span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-7-page-copyright-页面页脚版权"><a href="#3-7-page-copyright-页面页脚版权" class="headerlink" title="3.7.page-copyright 页面页脚版权"></a>3.7.<code>page-copyright</code> 页面页脚版权</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"plugins"</span> : [<span class="string">"page-copyright"</span>],</span><br><span class="line">  <span class="attr">"pluginsConfig"</span> : &#123;</span><br><span class="line">    <span class="attr">"page-copyright"</span>: &#123;</span><br><span class="line">      <span class="attr">"description"</span>: <span class="string">"modified at"</span>,</span><br><span class="line">      <span class="attr">"signature"</span>: <span class="string">"你的签名"</span>,</span><br><span class="line">      <span class="attr">"wisdom"</span>: <span class="string">"Designer info"</span>,</span><br><span class="line">      <span class="attr">"format"</span>: <span class="string">"YYYY-MM-dd hh:mm:ss"</span>,</span><br><span class="line">      <span class="attr">"copyright"</span>: <span class="string">"Copyright &amp;#169; 你的名字"</span>,</span><br><span class="line">      <span class="attr">"timeColor"</span>: <span class="string">"#666"</span>,</span><br><span class="line">      <span class="attr">"copyrightColor"</span>: <span class="string">"#666"</span>,</span><br><span class="line">      <span class="attr">"utcOffset"</span>: <span class="string">"8"</span>,</span><br><span class="line">      <span class="attr">"style"</span>: <span class="string">"normal"</span>,</span><br><span class="line">      <span class="attr">"noPowered"</span>: <span class="literal">false</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-8-anchor-navigation-ex-悬浮目录与置顶"><a href="#3-8-anchor-navigation-ex-悬浮目录与置顶" class="headerlink" title="3.8.anchor-navigation-ex 悬浮目录与置顶"></a>3.8.<code>anchor-navigation-ex</code> 悬浮目录与置顶</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"plugins"</span> : [ </span><br><span class="line">    <span class="string">"anchor-navigation-ex"</span> </span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"pluginsConfig"</span>: &#123;</span><br><span class="line">    <span class="attr">"anchor-navigation-ex"</span>: &#123;</span><br><span class="line">      <span class="attr">"showLevel"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"associatedWithSummary"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"printLog"</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">"multipleH1"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"mode"</span>: <span class="string">"float"</span>,</span><br><span class="line">        <span class="attr">"showGoTop"</span>:<span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"float"</span>: &#123;</span><br><span class="line">          <span class="attr">"floatIcon"</span>: <span class="string">"fa fa-navicon"</span>,</span><br><span class="line">          <span class="attr">"showLevelIcon"</span>: <span class="literal">false</span>, </span><br><span class="line">          <span class="attr">"level1Icon"</span>: <span class="string">"fa fa-hand-o-right"</span>, </span><br><span class="line">          <span class="attr">"level2Icon"</span>: <span class="string">"fa fa-hand-o-right"</span>,</span><br><span class="line">          <span class="attr">"level3Icon"</span>: <span class="string">"fa fa-hand-o-right"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"pageTop"</span>: &#123;</span><br><span class="line">          <span class="attr">"showLevelIcon"</span>: <span class="literal">false</span>,</span><br><span class="line">          <span class="attr">"level1Icon"</span>: <span class="string">"fa fa-hand-o-right"</span>,</span><br><span class="line">          <span class="attr">"level2Icon"</span>: <span class="string">"fa fa-hand-o-right"</span>,</span><br><span class="line">          <span class="attr">"level3Icon"</span>: <span class="string">"fa fa-hand-o-right"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-9-donate-打赏"><a href="#3-9-donate-打赏" class="headerlink" title="3.9.donate 打赏"></a>3.9.<code>donate</code> 打赏</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"plugins"</span> : [ </span><br><span class="line">    <span class="string">"donate"</span> </span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"donate"</span>: &#123;</span><br><span class="line">    <span class="attr">"wechat"</span>: <span class="string">"微信图片"</span>,</span><br><span class="line">    <span class="attr">"alipay"</span>: <span class="string">"支付宝图片"</span>,</span><br><span class="line">    <span class="attr">"title"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="attr">"button"</span>: <span class="string">"赏"</span>,</span><br><span class="line">    <span class="attr">"alipayText"</span>: <span class="string">"支付宝打赏"</span>,</span><br><span class="line">    <span class="attr">"wechatText"</span>: <span class="string">"微信打赏"</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-10-mygitalk-评论插件"><a href="#3-10-mygitalk-评论插件" class="headerlink" title="3.10.mygitalk 评论插件"></a>3.10.<code>mygitalk</code> 评论插件</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"plugins"</span> : [ </span><br><span class="line">    <span class="string">"mygitalk"</span> </span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"mygitalk"</span>: &#123;</span><br><span class="line">    <span class="attr">"clientID"</span>: <span class="string">"gitalk id"</span>,</span><br><span class="line">    <span class="attr">"clientSecret"</span>: <span class="string">"密钥"</span>,</span><br><span class="line">    <span class="attr">"repo"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="attr">"owner"</span>: <span class="string">"GitHub id"</span>,</span><br><span class="line">    <span class="attr">"admin"</span>: [<span class="string">"username"</span>],</span><br><span class="line">    <span class="attr">"distractionFreeMode"</span>: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="4-安装-gitbook-插件"><a href="#4-安装-gitbook-插件" class="headerlink" title="4.安装 gitbook 插件"></a>4.安装 <code>gitbook</code> 插件</h2><p>命令行输入：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gitbook install</span><br></pre></td></tr></table></figure>
+<p>可能会比较慢，等待一会儿，安装完成后再重新构建页面和启动服务。</p>
+<blockquote>
+<p>参考： <a href="https://www.jianshu.com/p/427b8bb066e6" target="_blank" rel="noopener">GitBook 插件整理</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>网站</category>
+      </categories>
+      <tags>
+        <tag>GitBook</tag>
+        <tag>插件配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python（十一）- 命令行参数选项解析</title>
+    <url>/archives/2d2f30d0.html</url>
+    <content><![CDATA[<p>Python中模块和库比较丰富，这里记录一下关于命令行解析相关的模块。</p>
+<a id="more"></a>
+
+<h2 id="1-sys-系统模块"><a href="#1-sys-系统模块" class="headerlink" title="1.sys 系统模块"></a>1.<code>sys</code> 系统模块</h2><p>通常，初学者都会使用 <code>sys.argv</code>收集命令行参数（执行py文件的参数选项，得到一个参数列表，<br>通过切片和索引可以获取相应的选项和参数，继而去做相应的业务逻辑处理。</p>
+<h2 id="2-docopt-模块"><a href="#2-docopt-模块" class="headerlink" title="2.docopt 模块"></a>2.<code>docopt</code> 模块</h2><p>docopt 是一个参数解析的库，与众不同的是在代码的最开头使用”””文档注释的形式写出符合要求的文档，会自动生成对应的parse。</p>
+<p>以 docopt_parse.py 文件为例:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Usage:</span></span><br><span class="line"><span class="string">    docopt_parse.py (-h | --help)</span></span><br><span class="line"><span class="string">    docopt_parse.py (-v | --version)</span></span><br><span class="line"><span class="string">    docopt_parse.py (-i | --input) &lt;infile&gt;</span></span><br><span class="line"><span class="string">    docopt_parse.py (-o | --output) &lt;outfile&gt;</span></span><br><span class="line"><span class="string">    docopt_parse.py info</span></span><br><span class="line"><span class="string">    docopt_parse.py list &lt;names&gt;...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Arguments:</span></span><br><span class="line"><span class="string">    infile            optional input file</span></span><br><span class="line"><span class="string">    outfile           optional output file</span></span><br><span class="line"><span class="string">    names             many names</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Options:</span></span><br><span class="line"><span class="string">    -h, --help           Show help</span></span><br><span class="line"><span class="string">    -v, --version        Show version</span></span><br><span class="line"><span class="string">    -i, --input          Input of file</span></span><br><span class="line"><span class="string">    -o, --output         Output to file</span></span><br><span class="line"><span class="string">    info                 Get object information</span></span><br><span class="line"><span class="string">    list                 Get some files list</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Examples:</span></span><br><span class="line"><span class="string">    docopt_parse.py -i filename</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> docopt <span class="keyword">import</span> docopt</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    args = docopt(__doc__, version=<span class="string">'1.0.0'</span>)</span><br><span class="line">    <span class="comment"># print(args)</span></span><br><span class="line">    print(<span class="string">'---------------------------------------'</span>)</span><br><span class="line">    kwargs = &#123;</span><br><span class="line">        <span class="string">'info'</span>: args[<span class="string">'info'</span>],</span><br><span class="line">        <span class="string">'get_list'</span>: args[<span class="string">'list'</span>],</span><br><span class="line">        <span class="string">'names'</span>: args[<span class="string">'&lt;names&gt;'</span>],</span><br><span class="line">        <span class="string">'outfile'</span>: args[<span class="string">'&lt;outfile&gt;'</span>],</span><br><span class="line">        <span class="string">'infile'</span>: args[<span class="string">'&lt;infile&gt;'</span>],</span><br><span class="line">        <span class="string">'help'</span>: args[<span class="string">'--help'</span>],</span><br><span class="line">        <span class="string">'version'</span>: args[<span class="string">'--version'</span>],</span><br><span class="line">    &#125;</span><br><span class="line">    print(kwargs)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Tips</strong>:</p>
+<ul>
+<li>分段显示，段落之间空一行，避免模块解析错误</li>
+</ul>
+<p><strong>其中</strong>：</p>
+<ul>
+<li><code>Usage</code> 为用法示例，</li>
+<li><code>Arguments</code> 为参数说明，</li>
+<li><code>Options</code> 为选项说明，</li>
+<li><code>Examples</code> 为样例</li>
+</ul>
+<p><strong>运行示例</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python docopt_parse.py -o out-test.txt</span><br></pre></td></tr></table></figure>
+<p><strong>结果</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#39;info&#39;: False, &#39;get_list&#39;: False, &#39;get_count&#39;: False, &#39;names&#39;: [], &#39;suffix_name&#39;: None, &#39;outfile&#39;: &#39;out-test.txt&#39;, &#39;infile&#39;: None, &#39;help&#39;: False, &#39;version&#39;</span><br><span class="line">: False&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>用得好的话，这会是一个不错的选择。</p>
+</blockquote>
+<h2 id="3-getopt-模块"><a href="#3-getopt-模块" class="headerlink" title="3.getopt 模块"></a>3.<code>getopt</code> 模块</h2><p>该模块有两个主要函数，两个属性（主要用来抛出错误信息）。</p>
+<ul>
+<li><p>函数：</p>
+<ul>
+<li>getopt.getopt</li>
+<li>getopt.gnu_getopt</li>
+</ul>
+</li>
+<li><p>属性：</p>
+<ul>
+<li>getopt.error</li>
+<li>getopt.GetoptError</li>
+</ul>
+</li>
+</ul>
+<p>这里主要说一下 <code>getopt.getopt()</code> 函数</p>
+<blockquote>
+<p>opts, args = getopt.getopt(args, shortopts, longopts=[])函数</p>
+</blockquote>
+<p><strong>参数解释</strong>：</p>
+<ul>
+<li><code>args</code> 指的是当前脚本接收的参数，它是一个列表，可通过 <code>sys.argv</code> 获得</li>
+<li><code>shortopts</code> 是短选项格式，即：”-“ 号后面要紧跟一个选项字母。如：<code>-h</code></li>
+<li><code>longopts</code> 是长选项格式，即：”–” 号后面跟一个完整单词。如果选项含有附加参数，后面要紧跟 “=”，再加上参数，且 “=” 号前后不能有空格。</li>
+</ul>
+<p><strong>返回值</strong>：</p>
+<ul>
+<li><code>opts</code>：解析出的格式信息，为一个两元组（选项+参数）组成的列表。</li>
+<li><code>args</code>：格式信息之外的剩余命令行参数组成的列表。</li>
+</ul>
+<p><strong>Tips</strong>：</p>
+<ul>
+<li>当选项后面是带一个附加参数时，在分析串中写入选项字符同时后面加一个”:”号。如：<code>getopt.getopt(sys.argv[1:], &#39;ho:&#39;, [&#39;help&#39;,&#39;output=&#39;])</code>，其中：<code>h</code> 和 <code>o:</code> 表示两个选项，对应短选项 <code>-h</code> 和 <code>-o</code>。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> getopt</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">()</span>:</span></span><br><span class="line">    print(sys.argv[<span class="number">1</span>:])</span><br><span class="line">    print(<span class="string">'----------------------'</span>)</span><br><span class="line">    opts, args = getopt.getopt(sys.argv[<span class="number">1</span>:], <span class="string">'ho:'</span>, [<span class="string">'help'</span>,<span class="string">'output='</span>])</span><br><span class="line">    print(<span class="string">'opts: '</span>, opts)</span><br><span class="line">    print(<span class="string">'args: '</span>, args)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+<p><strong>运行示例</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python getopt_parse.py -h amazing why mytest</span><br></pre></td></tr></table></figure>
+<p><strong>结果</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[&#39;-h&#39;, &#39;amazing&#39;, &#39;why&#39;, &#39;mytest&#39;]</span><br><span class="line">----------------------</span><br><span class="line">opts:  [(&#39;-h&#39;, &#39;&#39;)]</span><br><span class="line">args:  [&#39;amazing&#39;, &#39;why&#39;, &#39;mytest&#39;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-optparse-模块"><a href="#4-optparse-模块" class="headerlink" title="4.optparse 模块"></a>4.<code>optparse</code> 模块</h2><p><code>optparse</code> 是 python 内置模块，功能也很强大。</p>
+<h3 id="4-1-基本用法"><a href="#4-1-基本用法" class="headerlink" title="4.1.基本用法"></a>4.1.基本用法</h3><p>使用 <code>OptionParser</code> 类来解析：</p>
+<ul>
+<li><p>导入</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> optparse <span class="keyword">import</span> OptionParser</span><br></pre></td></tr></table></figure></li>
+<li><p>构造解析器</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">parser = OptionParser(usage=<span class="string">'自定义帮助信息'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加解析规则</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">parser.add_option(*args, **kwargs)</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">parser.add_options(option_list)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用解析函数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">opts, params = parser.parse_args(args=<span class="literal">None</span>, values=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>返回值</strong>：</p>
+<ul>
+<li><code>opts</code>: 一个Python字典，<code>add_option</code> 中添加规则的 <strong><code>dest</code></strong> 参数值为 key，<strong><code>default</code></strong> 值 或 <strong>用户输入参数值</strong> 作为 value。</li>
+<li><code>params</code>: 用户传入的规则之外的 <strong>剩余参数</strong> 组成的列表。</li>
+</ul>
+<h3 id="4-2-案例"><a href="#4-2-案例" class="headerlink" title="4.2.案例"></a>4.2.案例</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> optparse</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">opt_func</span><span class="params">(uargs=None)</span>:</span></span><br><span class="line">    <span class="string">"""命令行解析"""</span></span><br><span class="line">    <span class="comment"># 创建解析类</span></span><br><span class="line">    usage = <span class="string">'\n\t--- 帮助信息 ---\n\t'</span> \</span><br><span class="line">            <span class="string">'program_name.py (-v | --version)\n\t'</span> \</span><br><span class="line">            <span class="string">'program_name.py (-h | --help)\n\t'</span> \</span><br><span class="line">            <span class="string">'program_name.py (-f | --file) filename\n\t'</span> \</span><br><span class="line">            <span class="string">' \n'</span> \</span><br><span class="line">            <span class="string">'Examples: \n\tpython program_name.py [options] &lt;params&gt;'</span></span><br><span class="line">    parser = optparse.OptionParser(usage=usage)</span><br><span class="line">    <span class="comment"># 添加解析规则</span></span><br><span class="line">    parser.add_option(<span class="string">'-f'</span>, <span class="string">'--file'</span>, action=<span class="string">'store'</span>, type=<span class="string">'string'</span>, dest=<span class="string">'filename'</span>, help=<span class="string">'-f 操作文件（参数说明信息）'</span>)</span><br><span class="line">    parser.add_option(<span class="string">'-v'</span>, <span class="string">'--version'</span>, action=<span class="string">'store_false'</span>, dest=<span class="string">'version'</span>, default=<span class="string">'1.0.0'</span>, help=<span class="string">'-v 版本信息（参数说明信息）'</span>)</span><br><span class="line">    <span class="keyword">return</span> parser.parse_args(uargs)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""测试"""</span></span><br><span class="line">    <span class="comment"># 无参</span></span><br><span class="line">    opts, params = opt_func()</span><br><span class="line">    print(<span class="string">'opts-1: '</span>, opts)</span><br><span class="line">    print(<span class="string">'params-1: '</span>, params)</span><br><span class="line">    print(<span class="string">'-------------------------'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 用户输入</span></span><br><span class="line">    args = [<span class="string">'-f'</span>, <span class="string">'file.txt'</span>, <span class="string">'-v'</span>, <span class="string">'this is a test'</span>, <span class="string">'last arg'</span>]</span><br><span class="line">    opts, params = opt_func(args)</span><br><span class="line">    print(<span class="string">'opts-2: '</span>, opts)</span><br><span class="line">    print(<span class="string">'params-2: '</span>, params)</span><br><span class="line">    print(<span class="string">'-------------------------'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 帮助信息</span></span><br><span class="line">    opt_func([<span class="string">'-h'</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>option</code>中参数的含义</strong>：</p>
+<ul>
+<li>type：用于检测命令行入参的数据类型</li>
+<li>action：告诉程序在遇到指定选项时，如何处理</li>
+<li>dest：用于保存入参选项的值，通过 <code>options</code> 访问</li>
+<li>default：dest的默认值，在用户未输入时分配</li>
+<li>help：生成帮助说明信息</li>
+</ul>
+<p><strong>运行示例</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python optparse_test.py</span><br></pre></td></tr></table></figure>
+
+<p><strong>结果</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">opts-1:  &#123;&#39;filename&#39;: None, &#39;version&#39;: &#39;1.0.0&#39;&#125;</span><br><span class="line">params-1:  []</span><br><span class="line">-------------------------</span><br><span class="line">opts-2:  &#123;&#39;filename&#39;: &#39;file.txt&#39;, &#39;version&#39;: False&#125;</span><br><span class="line">params-2:  [&#39;this is a test&#39;, &#39;last arg&#39;]</span><br><span class="line">-------------------------</span><br><span class="line">Usage: </span><br><span class="line">	--- 帮助信息 ---</span><br><span class="line">	program_name.py (-v | --version)</span><br><span class="line">	program_name.py (-h | --help)</span><br><span class="line">	program_name.py (-f | --file) filename</span><br><span class="line">	 </span><br><span class="line">Examples: </span><br><span class="line">	python program_name.py [options] &lt;params&gt;</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -h, --help            show this help message and exit</span><br><span class="line">  -f FILENAME, --file&#x3D;FILENAME</span><br><span class="line">                        -f 操作文件（参数说明信息）</span><br><span class="line">  -v, --version         -v 版本信息（参数说明信息）</span><br></pre></td></tr></table></figure>
+
+<hr>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>命令行解析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>web前端（八）：webpack的使用</title>
+    <url>/archives/7c6cfabd.html</url>
+    <content><![CDATA[<p><code>webpack</code> 是一款模块加载器兼打包工具，它能够把各种资源，例如js（含JSX）、样式（含less/sass）、图片等都作为模块来使用和处理。</p>
+<a id="more"></a>
+
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p><code>Webpack</code> 是一个模块打包器。根据模块的依赖关系进行静态分析，然后按照指定的规则将这些模块生成对应的静态资源。<br>相比于  <code>gulp</code>、<code>grunt</code> 等构件工具，<code>WebPack</code> 是一种模块化的解决方案，适合一些前后端分离项目的的场景，模块间依赖不强，<br>而 <code>gulp</code> 等工具侧重于资源压缩和自动化的构建，目前大型项目的开发，可以结合两者，协同工作。</p>
+<p>这张官网图片，很好地展示了它的用途：</p>
+<img src="/archives/7c6cfabd/webpack.jpg" class>
+
+<h2 id="2-Webpack-的特点"><a href="#2-Webpack-的特点" class="headerlink" title="2.Webpack 的特点"></a>2.<code>Webpack</code> 的特点</h2><ul>
+<li><p>代码拆分<br>Webpack 有两种组织模块依赖的方式，同步和异步。异步依赖作为分割点，形成一个新的块。在优化了依赖树后，每一个异步区块都作为一个文件被打包。</p>
+</li>
+<li><p>Loader<br>Webpack 本身只能处理原生的 JavaScript 模块，但是 loader 转换器可以将各种类型的资源转换成 JavaScript 模块。这样，任何资源都可以成为 Webpack 可以处理的模块。</p>
+</li>
+<li><p>智能解析<br>Webpack 有一个智能解析器，几乎可以处理任何第三方库，无论它们的模块形式是 CommonJS、 AMD 还是普通的 JS 文件。甚至在加载依赖的时候，允许使用动态表达式 require(“./templates/“ + name + “.jade”)。</p>
+</li>
+<li><p>插件系统<br>Webpack 还有一个功能丰富的插件系统。大多数内容功能都是基于这个插件系统运行的，还可以开发和使用开源的 Webpack 插件，来满足各式各样的需求。</p>
+</li>
+<li><p>快速运行<br>Webpack 使用异步 I/O 和多级缓存提高运行效率，这使得 Webpack 能够以令人难以置信的速度快速增量编译。</p>
+</li>
+</ul>
+<blockquote>
+<p>参考：<a href="https://www.w3cschool.cn/webpackguide/webpackguide-ewiz2775.html" target="_blank" rel="noopener">W3Cschool</a></p>
+</blockquote>
+<h2 id="3-安装使用"><a href="#3-安装使用" class="headerlink" title="3.安装使用"></a>3.安装使用</h2><h3 id="3-1-安装"><a href="#3-1-安装" class="headerlink" title="3.1.安装"></a>3.1.安装</h3><p>（1）、确保已安装 <code>Node.js</code> 环境，使用 <code>npm</code> 安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install webpack -g</span><br></pre></td></tr></table></figure>
+
+<p>（2）、在项目目录，进行初始化：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm init</span><br><span class="line"><span class="comment"># 此时会生成 package.json</span></span><br></pre></td></tr></table></figure>
+
+<p>（3）、安装 <code>webpack</code> 依赖：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install webpack --save-dev</span><br></pre></td></tr></table></figure>
+
+<p>（4）、安装 <code>Webpack</code> 开发工具：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install webpack-dev-server --save-dev</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-简单使用"><a href="#3-2-简单使用" class="headerlink" title="3.2.简单使用"></a>3.2.简单使用</h3><p>新建一个简单的项目 <code>hello-world</code>，目录结构如下：</p>
+<img src="/archives/7c6cfabd/hello-world.png" class>
+
+<p>（1）、<code>index.html</code> 内容如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Webpack test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">"center"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">h2</span>&gt;</span><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">"blue"</span>&gt;</span>This is a test<span class="tag">&lt;/<span class="name">font</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">span</span>&gt;</span>Hello Webpack!<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">h6</span>&gt;</span>----------------------------------------<span class="tag">&lt;/<span class="name">h6</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）、<code>module.js</code> 和 <code>test.js</code> 内容如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// module.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="string">'&lt;div align="center"&gt;&lt;h4&gt;It works from module.js.&lt;/h4&gt;&lt;/div&gt;'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// test.js</span></span><br><span class="line"><span class="built_in">document</span>.write(<span class="built_in">require</span>(<span class="string">'./module.js'</span>)) <span class="comment">// 添加模块</span></span><br><span class="line"><span class="built_in">document</span>.write(<span class="string">'&lt;div align="center"&gt;&lt;h3&gt;webpack`s work is done.&lt;/h3&gt;&lt;/div&gt;'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>（3）、<code>package.json</code> 内容如下：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"hello-world"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">"webpack test"</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"test.js"</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>,</span><br><span class="line">    <span class="attr">"dev"</span>: <span class="string">"webpack test.js bundle.js"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">"Mr. Yao"</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"webpack"</span>: <span class="string">"^4.42.1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）、新建 <code>webpack.config.js</code> 文件：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// 入口文件</span></span><br><span class="line">  entry:  __dirname + <span class="string">"/test.js"</span>, <span class="comment">//</span></span><br><span class="line">  <span class="comment">// 输出文件</span></span><br><span class="line">  output: &#123;</span><br><span class="line">    path: __dirname + <span class="string">"/"</span>, </span><br><span class="line">    filename: <span class="string">"bundle.js"</span> <span class="comment">//打包后的输出文件名</span></span><br><span class="line">  &#125;,</span><br><span class="line">  mode: <span class="string">'development'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（5）、运行打包命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<p>页面显示：</p>
+<img src="/archives/7c6cfabd/result.png" class>
+
+<h2 id="4-Webpack-核心"><a href="#4-Webpack-核心" class="headerlink" title="4.Webpack 核心"></a>4.<code>Webpack</code> 核心</h2><p><strong><font face="楷体" color="green">核心概念</font></strong>：</p>
+<ul>
+<li><font face="华文行楷" color="green">入口(entry)</font>：<font face="华文行楷">指示 webpack 应该使用哪个模块，以及模块和库是入口起点</font></li>
+<li><font face="华文行楷" color="green">输出(output)</font>：<font face="华文行楷">告诉 webpack 在哪里输出它所创建的目标文件，以及如何命名。</font></li>
+<li><font face="华文行楷" color="green">加载转换(loader)</font>：<font face="华文行楷">让 webpack 能够去处理其他类型的文件，并将它们转换为可识别的模块</font></li>
+<li><font face="华文行楷" color="green">插件(plugin)</font>：<font face="华文行楷">用于执行范围更广的任务（扩展）。包括：打包优化，资源管理，注入环境变量。</font></li>
+<li><font face="华文行楷" color="green">模式(mode)</font>：<font face="华文行楷">通过选择 development, production 或 none 之中的一个，来设置 mode 参数</font></li>
+</ul>
+<h3 id="4-1-常用-Loader"><a href="#4-1-常用-Loader" class="headerlink" title="4.1.常用 Loader"></a>4.1.常用 <code>Loader</code></h3><ol>
+<li>样式： <code>css-loader</code>、<code>style-loader</code>、<code>less-loader</code>、<code>sass-loader</code>等</li>
+</ol>
+<ul>
+<li><p><code>scss</code> 样式处理</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.scss$/</span>,</span><br><span class="line">        use:[</span><br><span class="line">          &#123;<span class="attr">loader</span>:<span class="string">'style-loader'</span>&#125;,</span><br><span class="line">          &#123;<span class="attr">loader</span>:<span class="string">'css-loader'</span>,<span class="attr">options</span>:&#123;<span class="attr">sourceMap</span>:<span class="literal">true</span>,<span class="attr">modules</span>:<span class="literal">true</span>&#125;&#125;,</span><br><span class="line">          &#123;<span class="attr">loader</span>:<span class="string">'sass-loader'</span>,<span class="attr">options</span>:&#123;<span class="attr">sourceMap</span>:<span class="literal">true</span>&#125;&#125;</span><br><span class="line">        ],</span><br><span class="line">        exclude:<span class="regexp">/node_modules/</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>postcss-loader/autoprefixer</code>: 浏览器兼容考虑，将前缀补充交由<code>webpack</code> 完成</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// postcss.config.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="comment">// 需要使用的插件列表</span></span><br><span class="line">    <span class="built_in">require</span>(<span class="string">'autoprefixer'</span>),</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="built_in">module</span>:&#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>, <span class="string">'postcss-loader'</span>]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="2">
+<li>文件：<code>raw-loader</code>、<code>file-loader</code>、<code>json-loader</code> 、<code>url-loader</code>等</li>
+<li>编译：<code>babel-loader</code>、<code>coffee-loader</code> 、<code>ts-loader</code>等</li>
+<li>校验：<code>mocha-loader</code>、<code>jshint-loader</code> 、<code>eslint-loader</code>等</li>
+</ol>
+<blockquote>
+<p>参考： <a href="https://juejin.im/post/5980752ef265da3e2e56e82e" target="_blank" rel="noopener">webpack之 loader 和 plugin 简介</a></p>
+</blockquote>
+<h3 id="4-2-常用-plugin"><a href="#4-2-常用-plugin" class="headerlink" title="4.2.常用 plugin"></a>4.2.常用 <code>plugin</code></h3><p>在配置文件 <code>webpack.config.js</code> 中，<code>plugins</code> 是一个插件组成的数组。 数组中的插件对象是插件new出来的实例。<br><strong>用法</strong>：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">plugins:[plugin1,plugin2, ...]</span><br></pre></td></tr></table></figure>
+
+<p><em>e.g.</em>：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(),</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;<span class="attr">template</span>: <span class="string">'./public/index.html'</span>&#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-1-HTML文件生成插件-html-webpack-plugin"><a href="#4-2-1-HTML文件生成插件-html-webpack-plugin" class="headerlink" title="4.2.1.HTML文件生成插件(html-webpack-plugin)"></a>4.2.1.HTML文件生成插件(html-webpack-plugin)</h4><p><strong>作用</strong>：HtmlWebpackPlugin 在此可以用于自动重新生成一个index.html或依据模板生成，帮你把所有生产的js文件引入到html中，最终生成到output目录。</p>
+<p><strong>安装</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save-dev html-webpack-plugin</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置</strong>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//引入</span></span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"><span class="comment">//配置</span></span><br><span class="line">plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;  <span class="comment">// 打包输出HTML</span></span><br><span class="line">      title: <span class="string">'Hello World app'</span>,</span><br><span class="line">      favicon: <span class="string">''</span>,             <span class="comment">// 指定页面的图标</span></span><br><span class="line">      inject: <span class="string">''</span>,              <span class="comment">// 引入模板的注入位置（true/false/body/head）</span></span><br><span class="line">      minify: &#123;                <span class="comment">// 压缩HTML文件</span></span><br><span class="line">        removeComments: <span class="literal">true</span>,     <span class="comment">// 移除HTML中的注释</span></span><br><span class="line">        collapseWhitespace: <span class="literal">true</span>, <span class="comment">// 删除空白符与换行符</span></span><br><span class="line">        caseSensitive: <span class="literal">false</span>,     <span class="comment">// 是否大小写敏感</span></span><br><span class="line">        minifyCSS: <span class="literal">true</span>           <span class="comment">// 压缩内联css</span></span><br><span class="line">      &#125;,</span><br><span class="line">      template: <span class="string">'index.html'</span>,     <span class="comment">// 模板来源html文件</span></span><br><span class="line">      filename: <span class="string">'index.html'</span>      <span class="comment">// 生成的模板文件名</span></span><br><span class="line">    &#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-2-图片压缩插件-imagemin-webpack-plugin"><a href="#4-2-2-图片压缩插件-imagemin-webpack-plugin" class="headerlink" title="4.2.2.图片压缩插件(imagemin-webpack-plugin)"></a>4.2.2.图片压缩插件(imagemin-webpack-plugin)</h4><p><strong>作用</strong>：批量压缩图片。</p>
+<p><strong>安装</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save-dev imagemin-webpack-plugin</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置</strong>：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//引入插件</span></span><br><span class="line"><span class="keyword">var</span> ImageminPlugin = <span class="built_in">require</span>(<span class="string">'imagemin-webpack-plugin'</span>).default;</span><br><span class="line"></span><br><span class="line"><span class="comment">//配置</span></span><br><span class="line">plugins: [</span><br><span class="line">  <span class="keyword">new</span> ImageminPlugin(&#123;</span><br><span class="line">    disable: process.env.NODE_ENV !== <span class="string">'production'</span>, <span class="comment">// 开发时不启用</span></span><br><span class="line">    pngquant: &#123;<span class="comment">//图片质量</span></span><br><span class="line">      quality: <span class="string">'95-100'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-3-清空文件夹插件-clean-webpack-plugin"><a href="#4-2-3-清空文件夹插件-clean-webpack-plugin" class="headerlink" title="4.2.3.清空文件夹插件(clean-webpack-plugin)"></a>4.2.3.清空文件夹插件(clean-webpack-plugin)</h4><p><strong>作用</strong>：打包前先清空output文件夹。</p>
+<p><strong>安装</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save-dev clean-webpack-plugin</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置</strong>：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//引入</span></span><br><span class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>);</span><br><span class="line"><span class="comment">//清空dist文件夹</span></span><br><span class="line">plugins: [</span><br><span class="line">  <span class="keyword">new</span> CleanWebpackPlugin([<span class="string">'public'</span>])</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-4-删除冗余css插件-purifycss-webpack"><a href="#4-2-4-删除冗余css插件-purifycss-webpack" class="headerlink" title="4.2.4.删除冗余css插件(purifycss-webpack)"></a>4.2.4.删除冗余css插件(purifycss-webpack)</h4><p><strong>作用</strong>：去除冗余的css代码。</p>
+<p><strong>安装</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save-dev purifycss-webpack</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置</strong>：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> purifycssWebpack = <span class="built_in">require</span>(<span class="string">'purifycss-webpack'</span>);</span><br><span class="line"><span class="keyword">const</span> glob = <span class="built_in">require</span>(<span class="string">'glob'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Make sure this is after ExtractTextPlugin!</span></span><br><span class="line"><span class="keyword">new</span> purifycssWebpack(&#123;</span><br><span class="line">　　paths: glob.sync(path.resolve(<span class="string">'./public/*.html'</span>))</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-5-加速代码构建-happypack"><a href="#4-2-5-加速代码构建-happypack" class="headerlink" title="4.2.5.加速代码构建(happypack)"></a>4.2.5.加速代码构建(happypack)</h4><p><strong>作用</strong>：通过多进程模型，来加速代码构建。</p>
+<p><strong>安装</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save-dev happypack</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置</strong>：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> os = <span class="built_in">require</span>(<span class="string">'os'</span>);</span><br><span class="line"><span class="keyword">let</span> HappyPack = <span class="built_in">require</span>(<span class="string">'happypack'</span>);</span><br><span class="line"><span class="keyword">let</span> happyThreadPool = HappyPack.ThreadPool(&#123;<span class="attr">size</span>: os.cpus().length&#125;);</span><br><span class="line">exports.plugins = [</span><br><span class="line">  <span class="keyword">new</span> HappyPack(&#123;</span><br><span class="line">    id: <span class="string">'jsx'</span>,</span><br><span class="line">    threadPool: happyThreadPool,</span><br><span class="line">    loaders: [ <span class="string">'babel-loader'</span> ]</span><br><span class="line">  &#125;),</span><br><span class="line"></span><br><span class="line">  <span class="keyword">new</span> HappyPack(&#123;</span><br><span class="line">    id: <span class="string">'coffeescripts'</span>,</span><br><span class="line">    threadPool: happyThreadPool,</span><br><span class="line">    loaders: [ <span class="string">'coffee-loader'</span> ]</span><br><span class="line">  &#125;)</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">exports.module.loaders = [</span><br><span class="line">  &#123;</span><br><span class="line">    test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">    loaders: [ <span class="string">'happypack/loader?id=jsx'</span> ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    test: <span class="regexp">/\.coffee$/</span>,</span><br><span class="line">    loaders: [ <span class="string">'happypack/loader?id=coffeescripts'</span> ]</span><br><span class="line">  &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-6-提取公共模块-CommonsChunkPlugin"><a href="#4-2-6-提取公共模块-CommonsChunkPlugin" class="headerlink" title="4.2.6.提取公共模块(CommonsChunkPlugin)"></a>4.2.6.提取公共模块(CommonsChunkPlugin)</h4><p><strong>作用</strong>：提取代码中的公共模块，单独生成一个或多个文件，这样避免在多入口重复打包文件。</p>
+<p><strong>配置</strong>：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry:[<span class="string">'index1.js'</span>,<span class="string">'index2.js'</span>],</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> CommonsChunkPlugin(&#123;</span><br><span class="line">      name:<span class="string">"entry"</span>,</span><br><span class="line">      filename:<span class="string">"common.js"</span>,  <span class="comment">//忽略则以name为输出文件的名字，否则以此为输出文件名字</span></span><br><span class="line">      minChunks:<span class="number">2</span>,  <span class="comment">// 最小引用2次</span></span><br><span class="line">   &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 把 index1.js，index2.js公用的js抽取出来，打包成单独文件common.js。</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-7-js压缩-UglifyJsPlugin"><a href="#4-2-7-js压缩-UglifyJsPlugin" class="headerlink" title="4.2.7.js压缩(UglifyJsPlugin)"></a>4.2.7.js压缩(UglifyJsPlugin)</h4><p><strong>作用</strong>：压缩js文件。</p>
+<p><strong>配置</strong>：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry:[<span class="string">'index.js'</span>],</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;</span><br><span class="line">      compress: &#123;</span><br><span class="line">        warnings: VERBOSE,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-8-开启服务插件-webpack-dev-server"><a href="#4-2-8-开启服务插件-webpack-dev-server" class="headerlink" title="4.2.8.开启服务插件(webpack-dev-server)"></a>4.2.8.开启服务插件(webpack-dev-server)</h4><p><strong>作用</strong>：可以完成自动刷新、热替换等功能的服务端。</p>
+<p><strong>安装</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save-dev  webpack-dev-server</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置</strong>：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// package.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"dev"</span>: <span class="string">"webpack-dev-server --open --hot"</span>,</span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"set NODE_ENV=production &amp;&amp; webpack"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(path);</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> webpack.HotModuleReplacementPlugin()  <span class="comment">// 热模块替换：只替换更新部分,不会页面重载.</span></span><br><span class="line">  ],</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    contentBase: path.join(__dirname, <span class="string">'public'</span>),</span><br><span class="line">    port: <span class="number">8000</span>,</span><br><span class="line">    <span class="comment">// inline: false,</span></span><br><span class="line">    hot: <span class="literal">true</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>参考：<a href="https://juejin.im/post/5d591c2ae51d453b39774399" target="_blank" rel="noopener">webpack常用插件</a></p>
+</blockquote>
+<hr>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Webpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>web前端（七）：gh-pages部署到GitHub</title>
+    <url>/archives/ff075d55.html</url>
+    <content><![CDATA[<p>有时需要将一些前端静态资源部署到GitHub上，如博客、在线简历这类的情况。<br>这只涉及一些简单的页面和静态文件，为了减少一些脚本的使用，前端有gh-pages这样一个模块，可以帮助部署到GitHub上。</p>
+<a id="more"></a>
+
+<h2 id="1-注册-GitHub-账号"><a href="#1-注册-GitHub-账号" class="headerlink" title="1.注册 GitHub 账号"></a>1.注册 <code>GitHub</code> 账号</h2><p>确保有一个GitHub账号，新建仓库，并设置与本地关联，具体步骤参考网上的资料。</p>
+<h2 id="2-创建-gh-pages-分支"><a href="#2-创建-gh-pages-分支" class="headerlink" title="2.创建 gh-pages 分支"></a>2.创建 <code>gh-pages</code> 分支</h2><p>为了不影响项目的开发，在 <code>GitHub</code> 上创建一个 gh-pages 分支。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout --orphan gh-pages </span><br><span class="line">git remote add origin &#123;远程仓&#125;   <span class="comment"># 添加关联</span></span><br><span class="line">git push origin gh-pages        <span class="comment"># 推送远程</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-安装-node-js"><a href="#3-安装-node-js" class="headerlink" title="3.安装 node.js"></a>3.安装 <code>node.js</code></h2><p>确保有 <code>node</code> 环境，安装 <code>npm</code>，一般安装nodejs的安装包都集成了。<br>将 <code>node</code> 和 <code>npm</code> 添加到环境变量，具体流程可去网上搜索。<br>这里推荐一款修改Windows环境变量的软件：<a href="https://www.rapidee.com/en/download" target="_blank" rel="noopener">rapidee</a></p>
+<h2 id="4-安装插件-gh-pages"><a href="#4-安装插件-gh-pages" class="headerlink" title="4.安装插件 gh-pages"></a>4.安装插件 <code>gh-pages</code></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> project_path  <span class="comment"># 进入项目目录</span></span><br><span class="line">npm install gh-pages --save</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-修改-package-json"><a href="#5-修改-package-json" class="headerlink" title="5.修改 package.json"></a>5.修改 <code>package.json</code></h2><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">//配置homepage</span></span><br><span class="line">  <span class="attr">"homepage"</span>:<span class="string">"https://yaojusheng.github.io/dynamic-resume"</span>,</span><br><span class="line">  <span class="comment">//配置scripts</span></span><br><span class="line">  <span class="attr">"scripts"</span>:&#123;</span><br><span class="line">    <span class="attr">"dev"</span>: <span class="string">"node build/dev-server.js"</span>,</span><br><span class="line">    <span class="attr">"build"</span>: <span class="string">"node build/build.js"</span>,</span><br><span class="line">    <span class="attr">"predeploy"</span>:<span class="string">"npm run build"</span>,</span><br><span class="line">    <span class="attr">"deploy"</span>:<span class="string">"gh-pages -d public"</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-修改-config-index-js"><a href="#6-修改-config-index-js" class="headerlink" title="6.修改 config/index.js"></a>6.修改 <code>config/index.js</code></h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">build: &#123;</span><br><span class="line">  ...,</span><br><span class="line">  assetsPublicPath: <span class="string">''</span>  <span class="comment">// 置空</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-推送到-gh-pages-分支"><a href="#6-推送到-gh-pages-分支" class="headerlink" title="6.推送到 gh-pages 分支"></a>6.推送到 <code>gh-pages</code> 分支</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm run deploy</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-设置-GitHub-Pages-的-source"><a href="#7-设置-GitHub-Pages-的-source" class="headerlink" title="7.设置 GitHub Pages 的 source"></a>7.设置 <code>GitHub Pages</code> 的 <code>source</code></h2><p>点击项目的 <code>Settings</code> 按钮，找到 <code>GitHub Pages</code> 选项，然后选择之前创建的 <code>gh-pages</code> 分支作为 <code>source</code>，等待部署完成。</p>
+<hr>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>gh-pages</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>web前端（六）：静态资源压缩</title>
+    <url>/archives/3d25ddbc.html</url>
+    <content><![CDATA[<blockquote>
+<p>前端的静态资源压缩的方式有很多，这里记录一下 <code>Grunt</code> 和  <code>Gulp</code> 的使用</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="1-Grunt压缩"><a href="#1-Grunt压缩" class="headerlink" title="1. Grunt压缩"></a>1. Grunt压缩</h2><p>Grunt3是基于NodeJS的一个自动化压缩、合并、测试等构建工具，可用npm安装，任务文件Gruntfile.js放在项目的根目录下。</p>
+<h3 id="1-1-安装"><a href="#1-1-安装" class="headerlink" title="1.1.安装"></a>1.1.安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g grunt-cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-新建-package-json"><a href="#1-2-新建-package-json" class="headerlink" title="1.2.新建 package.json"></a>1.2.新建 <code>package.json</code></h3><p>文件内容如下：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"project-name"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"grunt"</span>: <span class="string">"^0.4.5"</span>,</span><br><span class="line">    <span class="attr">"grunt-contrib-concat"</span>: <span class="string">"^1.0.0"</span>,</span><br><span class="line">    <span class="attr">"grunt-contrib-cssmin"</span>: <span class="string">"^0.12.3"</span>,</span><br><span class="line">    <span class="attr">"grunt-contrib-imagemin"</span>: <span class="string">"^1.0.0"</span>,</span><br><span class="line">    <span class="attr">"grunt-contrib-jshint"</span>: <span class="string">"^0.12.0"</span>,</span><br><span class="line">    <span class="attr">"grunt-contrib-nodeunit"</span>: <span class="string">"~0.4.1"</span>,</span><br><span class="line">    <span class="attr">"grunt-contrib-uglify"</span>: <span class="string">"^0.5.1"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-安装依赖"><a href="#1-3-安装依赖" class="headerlink" title="1.3.安装依赖"></a>1.3.安装依赖</h3><p>执行命令:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4-新建-Gruntfile-js"><a href="#1-4-新建-Gruntfile-js" class="headerlink" title="1.4.新建 Gruntfile.js"></a>1.4.新建 <code>Gruntfile.js</code></h3><p>添加配置任务，如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>) </span>&#123;</span><br><span class="line">grunt.initConfig(&#123;</span><br><span class="line">  pkg: grunt.file.readJSON(<span class="string">'package.json'</span>),</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//压缩 js</span></span><br><span class="line">  uglify: &#123;</span><br><span class="line">    options: &#123;</span><br><span class="line">      banner: <span class="string">'/*压缩文件声明文本...*/\n'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    build:&#123;</span><br><span class="line">     files:[&#123;</span><br><span class="line">      src: [<span class="string">'a.js'</span>, <span class="string">'b.js'</span>, <span class="string">'c.js'</span>],</span><br><span class="line">      dest: <span class="string">'abc.min.js'</span>  <span class="comment">//合并压缩后生成的文件</span></span><br><span class="line">     &#125;,&#123;</span><br><span class="line">      src: [<span class="string">'d.js'</span>],</span><br><span class="line">      dest: <span class="string">'d.min.js'</span></span><br><span class="line">     &#125;]</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//压缩 css</span></span><br><span class="line">  cssmin: &#123;</span><br><span class="line">    options: &#123;</span><br><span class="line">      keepSpecialComments: <span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">    compress: &#123;</span><br><span class="line">      files: [&#123;</span><br><span class="line">        src: [<span class="string">"a.css"</span>, <span class="string">"b.css"</span>],</span><br><span class="line">        dest: <span class="string">'ab.min.css'</span>  <span class="comment">//合并压缩后生成的文件</span></span><br><span class="line">      &#125;,&#123;</span><br><span class="line">        src: [<span class="string">'c.css'</span>],</span><br><span class="line">        dest: <span class="string">'c.min.css'</span></span><br><span class="line">      &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//压缩 图片</span></span><br><span class="line">  imagemin: &#123;</span><br><span class="line">    <span class="comment">/* 压缩图片大小 */</span></span><br><span class="line">    dist: &#123;</span><br><span class="line">      options: &#123;</span><br><span class="line">        optimizationLevel: <span class="number">3</span> <span class="comment">//定义 PNG 图片优化水平</span></span><br><span class="line">      &#125;,</span><br><span class="line">      files: [&#123;</span><br><span class="line">        expand: <span class="literal">true</span>,</span><br><span class="line">        cwd: <span class="string">'images'</span>,</span><br><span class="line">        src: [<span class="string">'**/*.&#123;png,jpg,jpeg&#125;'</span>], <span class="comment">// 优化 img 目录下所有 png/jpg/jpeg 图片</span></span><br><span class="line">        dest: <span class="string">'images'</span> <span class="comment">// 优化后的图片保存位置，覆盖旧图片，并且不作提示（建议新建一个目录）</span></span><br><span class="line">      &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 加载任务插件 */</span></span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-uglify'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-cssmin'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-imagemin'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 默认被执行的任务列表 */</span></span><br><span class="line">  grunt.registerTask(<span class="string">'default'</span>, [<span class="string">'uglify'</span>, <span class="string">'cssmin'</span>, <span class="string">'imagemin]);</span></span><br><span class="line"><span class="string">&#125;;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Gulp压缩"><a href="#2-Gulp压缩" class="headerlink" title="2. Gulp压缩"></a>2. Gulp压缩</h2><h3 id="2-1-安装"><a href="#2-1-安装" class="headerlink" title="2.1.安装"></a>2.1.安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install gulp -g</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">npm install gulp-cli -g</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-新建-package-json-文件"><a href="#2-2-新建-package-json-文件" class="headerlink" title="2.2.新建 package.json 文件"></a>2.2.新建 <code>package.json</code> 文件</h3><p>添加依赖项：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"project-name"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"gulp"</span>: <span class="string">"^4.0.2"</span>,</span><br><span class="line">    <span class="attr">"gulp-autoprefixer"</span>: <span class="string">"^3.1.0"</span>,</span><br><span class="line">    <span class="attr">"gulp-minify-css"</span>: <span class="string">"^1.2.1"</span>,</span><br><span class="line">    <span class="attr">"gulp-rename"</span>: <span class="string">"^1.2.2"</span>,</span><br><span class="line">    <span class="attr">"gulp-htmlclean"</span>: <span class="string">"^2.7.22"</span>,</span><br><span class="line">    <span class="attr">"gulp-htmlmin"</span>: <span class="string">"^5.0.1"</span>,</span><br><span class="line">    <span class="attr">"gulp-uglify"</span>: <span class="string">"^3.0.2"</span>,</span><br><span class="line">    <span class="attr">"babel-core"</span>: <span class="string">"^6.26.3"</span>,</span><br><span class="line">    <span class="attr">"gulp-babel"</span>: <span class="string">"^7.0.1"</span>,</span><br><span class="line">    <span class="attr">"gulp-imagemin"</span>: <span class="string">"^7.1.0"</span>,</span><br><span class="line">    <span class="attr">"gulp-sass"</span>: <span class="string">"^4.0.2"</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-安装依赖"><a href="#2-3-安装依赖" class="headerlink" title="2.3.安装依赖"></a>2.3.安装依赖</h3><p>执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-新建-gulpfile-js-文件"><a href="#2-4-新建-gulpfile-js-文件" class="headerlink" title="2.4.新建 gulpfile.js 文件"></a>2.4.新建 <code>gulpfile.js</code> 文件</h3><p>添加任务配置，如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp        = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"><span class="keyword">var</span> sass        = <span class="built_in">require</span>(<span class="string">'gulp-sass'</span>);</span><br><span class="line"><span class="keyword">var</span> prefix      = <span class="built_in">require</span>(<span class="string">'gulp-autoprefixer'</span>);</span><br><span class="line"><span class="keyword">var</span> minifyCSS   = <span class="built_in">require</span>(<span class="string">'gulp-minify-css'</span>);</span><br><span class="line"><span class="keyword">var</span> rename      = <span class="built_in">require</span>(<span class="string">'gulp-rename'</span>);</span><br><span class="line"><span class="keyword">var</span> htmlmin     = <span class="built_in">require</span>(<span class="string">'gulp-htmlmin'</span>);</span><br><span class="line"><span class="keyword">var</span> htmlclean   = <span class="built_in">require</span>(<span class="string">'gulp-htmlclean'</span>);</span><br><span class="line"><span class="keyword">var</span> babel       = <span class="built_in">require</span>(<span class="string">'gulp-babel'</span>);</span><br><span class="line"><span class="keyword">var</span> uglify      = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);</span><br><span class="line"><span class="keyword">var</span> imagemin    = <span class="built_in">require</span>(<span class="string">'gulp-imagemin'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 压缩 html</span></span><br><span class="line">gulp.task(<span class="string">'minify-html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.src(<span class="string">'./*.html'</span>)</span><br><span class="line">      .pipe(htmlclean())</span><br><span class="line">      .pipe(htmlmin(&#123;</span><br><span class="line">          removeComments: <span class="literal">true</span>,</span><br><span class="line">          minifyJS: <span class="literal">true</span>,</span><br><span class="line">          minifyCSS: <span class="literal">true</span>,</span><br><span class="line">          minifyURLs: <span class="literal">true</span>,</span><br><span class="line">      &#125;))</span><br><span class="line">      .pipe(gulp.dest(<span class="string">'./public'</span>));</span><br><span class="line">  done();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 压缩 css</span></span><br><span class="line">gulp.task(<span class="string">'compressCSS'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.src([<span class="string">'src/css/*.scss'</span>,<span class="string">'src/css/*.css'</span>])</span><br><span class="line">        .pipe(sass())</span><br><span class="line">        .pipe(prefix([<span class="string">'last 15 versions'</span>, <span class="string">'&gt; 1%'</span>, <span class="string">'ie 8'</span>, <span class="string">'ie 7'</span>], &#123; <span class="attr">cascade</span>: <span class="literal">true</span> &#125;))</span><br><span class="line">        .pipe(minifyCSS())</span><br><span class="line">        .pipe(rename(&#123;</span><br><span class="line">            suffix: <span class="string">'.min'</span></span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'./public/src/css/'</span>))</span><br><span class="line">        .pipe(browserSync.stream());</span><br><span class="line">  done();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 压缩 js</span></span><br><span class="line">gulp.task(<span class="string">'minify-js'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">done</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.src([<span class="string">'src/js/*.js'</span>])</span><br><span class="line">      .pipe(uglify())</span><br><span class="line">      .pipe(gulp.dest(<span class="string">'./public/src/js/'</span>));</span><br><span class="line">  done();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 压缩 图片</span></span><br><span class="line">gulp.task(<span class="string">'minify-images'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src(<span class="string">'*.ico'</span>, <span class="string">'src/img/*.*'</span>)</span><br><span class="line">        .pipe(imagemin(</span><br><span class="line">        [imagemin.gifsicle(&#123;<span class="string">'optimizationLevel'</span>: <span class="number">3</span>&#125;),</span><br><span class="line">        imagemin.optipng(&#123;<span class="string">'optimizationLevel'</span>: <span class="number">7</span>&#125;),</span><br><span class="line">        imagemin.svgo()],</span><br><span class="line">        &#123;<span class="string">'verbose'</span>: <span class="literal">true</span>&#125;))</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'./public/src/images'</span>))</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'font'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">done</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.src([<span class="string">'./font/*'</span>])</span><br><span class="line">      .pipe(gulp.dest(<span class="string">'./public/font'</span>));</span><br><span class="line">  done();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'default'</span>,gulp.series(gulp.parallel(<span class="string">'compressCSS'</span>,<span class="string">'minify-js'</span>, <span class="string">'minify-images'</span>, <span class="string">'font'</span>, <span class="string">'minify-html'</span>)), <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"----------gulp Finished----------"</span>);</span><br><span class="line">  <span class="comment">// Do something after a, b, and c are finished.</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>另外，其他同类插件的使用，可参考：<a href="https://fis.baidu.com/fis3/docs/lv3.html" target="_blank" rel="noopener">fis3使用</a>、<a href="https://juejin.im/entry/5a577f64518825733a30a050" target="_blank" rel="noopener">gzip压缩</a>、<a href="https://blog.7v1.net/front-end/webpack.html" target="_blank" rel="noopener">Webpack 构建前端资源</a></p>
+</blockquote>
+<p><strong>参考</strong>：<br>[1]. <a href="https://borninsummer.com/2015/01/03/web-performance-in-practice/" target="_blank" rel="noopener">Web前端性能优化实践</a><br>[2]. <a href="https://lanqy.xyz/2018/05/21/grunt-example/" target="_blank" rel="noopener">Gruntjs 压缩合并前端静态资源</a></p>
+<hr>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>资源压缩</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>web前端（五）：CSS布局之Grid网格布局</title>
+    <url>/archives/2db465c1.html</url>
+    <content><![CDATA[<blockquote>
+<p>以下资料来源于网络。</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>CSS网格布局（又名“网格”）是一个二维的基于网格的布局系统，其目的只在于完全改变我们设计基于网格的用户界面的方式。</p>
+<ul>
+<li><p>Grid是第一个专门为解决布局问题而生的CSS模块</p>
+</li>
+<li><p>雷切尔·安德鲁（Rachel Andrew）的书<a href="http://abookapart.com/products/get-ready-for-css-grid-layout" target="_blank" rel="noopener">为CSS Grid布局准备</a>。 这本书对网格布局做了彻底、清晰的介绍，也是是整篇文章的基础。</p>
+</li>
+<li><p>Chris Coyier的<a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener">Flexbox完全指南</a>。</p>
+</li>
+</ul>
+<h2 id="2-常用术语"><a href="#2-常用术语" class="headerlink" title="2.常用术语"></a>2.常用术语</h2><p>在深入了解网格的概念之前，理解术语是很重要的。 由于这里所涉及的术语在概念上都是相似的，如果不先记住它们在网格规范中定义的含义，则很容易将它们彼此混淆。</p>
+<h3 id="2-1-网格容器Grid-Container"><a href="#2-1-网格容器Grid-Container" class="headerlink" title="2.1. 网格容器Grid Container"></a>2.1. 网格容器<code>Grid Container</code></h3><p>设置了 <code>display: gird</code> 的元素。 这是所有 grid item 的直接父项。 在下面的例子中，<code>.container</code> 就是是 grid container。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item-1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item-2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item-3"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-2-网格项目Grid-Item"><a href="#2-2-网格项目Grid-Item" class="headerlink" title="2.2. 网格项目Grid Item"></a>2.2. 网格项目<code>Grid Item</code></h3><p>Grid 容器的孩子（直接子元素）。下面的 <code>.item</code> 元素就是 grid item，但 <code>.sub-item</code>不是</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"sub-item"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-网格线Grid-Line"><a href="#2-3-网格线Grid-Line" class="headerlink" title="2.3. 网格线Grid Line"></a>2.3. 网格线<code>Grid Line</code></h3><p>这个分界线组成网格结构。 它们既可以是垂直的（“column grid lines”），也可以是水平的（“row grid lines”），并位于行或列的任一侧。 下面例中的黄线就是一个列网格线</p>
+<p><img src="/archives/2db465c1/grid_line.jpeg" alt="表格线"></p>
+<h3 id="2-4-网格轨道Grid-Track"><a href="#2-4-网格轨道Grid-Track" class="headerlink" title="2.4. 网格轨道Grid Track"></a>2.4. 网格轨道<code>Grid Track</code></h3><p>两个相邻网格线之间的空间。 你可以把它们想象成网格的列或行。 下面是第二行和第三行网格线之间的网格轨道</p>
+<p><img src="/archives/2db465c1/gird_track.jpeg" alt="网格轨道"></p>
+<h3 id="2-5-网格单元Grid-Cell"><a href="#2-5-网格单元Grid-Cell" class="headerlink" title="2.5. 网格单元Grid Cell"></a>2.5. 网格单元<code>Grid Cell</code></h3><p>两个相邻的行和两个相邻的列网格线之间的空间。它是网格的一个“单元”。 下面是行网格线1和2之间以及列网格线2和3的网格单元。</p>
+<p><img src="/archives/2db465c1/grid_cell.jpeg" alt="网格单元"></p>
+<h3 id="2-6-网格区域Grid-Area"><a href="#2-6-网格区域Grid-Area" class="headerlink" title="2.6. 网格区域Grid Area"></a>2.6. 网格区域<code>Grid Area</code></h3><p>四个网格线包围的总空间。 网格区域可以由任意数量的网格单元组成。 下面是行网格线1和3以及列网格线1和3之间的网格区域</p>
+<p><img src="/archives/2db465c1/grid-area.jpeg" alt="网格区域"></p>
+<h2 id="3-Grid容器属性"><a href="#3-Grid容器属性" class="headerlink" title="3.Grid容器属性"></a>3.Grid容器属性</h2><p><strong>Grid Container 的全部属性</strong></p>
+<ul>
+<li><font color="blue">display</font>: 显示样式选择，如：grid | inline-grid | subgrid;<ul>
+<li><strong><code>grid</code></strong>:  生成一个块级(block-level)网格</li>
+<li><strong><code>inline-grid</code></strong>:  生成一个行级(inline-level)网格</li>
+<li><strong><code>subgrid</code></strong>:  如果你的 grid container 本身就是一个 grid item（即,嵌套网格），你可以使用这个属性来表示你想从它的父节点获取它的行/列的大小，而不是指定它自己的大小。</li>
+</ul>
+</li>
+<li><font color="blue">grid-template-columns</font>：以空格分隔的多个值来定义网格的列。这些值表示轨道大小(track size)，它们之间的空格代表表格线(grid line)；</li>
+<li><font color="blue">grid-template-rows</font>：以空格分隔的多个值来定义网格的行。这些值表示轨道大小(track size)，它们之间的空格代表表格线(grid line)；</li>
+<li><font color="blue">grid-template-areas</font>：指定的网格区域的名称来定义网格模板（网格区域的名称）；<ul>
+<li><strong><code>&lt;grid-area-name&gt;</code></strong> – 使用 grid-area 属性设置的网格区域的名称</li>
+<li><strong><code>.</code></strong> – 点号代表一个空网格单元</li>
+<li><strong>none</strong> – 没有定义网格区域</li>
+</ul>
+</li>
+<li><font color="blue">grid-template</font>：在单个声明中定义 grid-template-rows、grid-template-columns、grid-template-areas 的简写；<ul>
+<li><strong>none</strong> – 将三个属性都设置为其初始值</li>
+<li><strong>subgrid</strong> – 把 grid-template-rows 和 grid-template-columns 设置为 subgrid, 并且 grid-template-areas 设置为初始值</li>
+<li><strong><code>grid-template-rows</code> / <code>&lt;grid-template-columns</code></strong> – 把 grid-template-columns 和 grid-template-rows 设置为指定值, 与此同时, 设置 grid-template-areas 为 none</li>
+</ul>
+</li>
+<li><font color="blue">grid-column-gap</font>：网格线的大小，即设置列之间的间距的宽度；</li>
+<li><font color="blue">grid-row-gap</font>：网格线的大小，即设置行之间的间距的宽度；</li>
+<li><font color="blue">grid-gap</font>：grid-row-gap 和 grid-column-gap 的缩写；</li>
+<li><font color="blue">justify-items</font>：沿着行轴对齐网格内的内容，该值适用于容器内的所有的 grid items，如：start | end | center | stretch；<ul>
+<li><strong>start</strong>: 内容与网格区域的左端对齐</li>
+<li><strong>end</strong>: 内容与网格区域的右端对齐</li>
+<li><strong>center</strong>: 内容位于网格区域的中间位置</li>
+<li><strong>stretch</strong>: 内容宽度占据整个网格区域空间(这是默认值)</li>
+</ul>
+</li>
+<li><font color="blue">align-items</font>：沿着列轴对齐网格内的内容，该值适用于容器内的所有的 grid items；<ul>
+<li><strong>start</strong>: 内容与网格区域的顶端对齐</li>
+<li><strong>end</strong>: 内容与网格区域的底部对齐</li>
+<li><strong>center</strong>: 内容位于网格区域的垂直中心位置</li>
+<li><strong>stretch</strong>: 内容高度占据整个网格区域空间(这是默认值)</li>
+</ul>
+</li>
+<li><font color="blue">justify-content</font>：沿着行轴对齐网格，设置网格容器内的网格的对齐方式；<ul>
+<li><strong>start</strong> – 网格与网格容器的左边对齐</li>
+<li><strong>end</strong> – 网格与网格容器的右边对齐</li>
+<li><strong>center</strong> – 网格与网格容器的中间对齐</li>
+<li><strong>stretch</strong> – 调整g rid item 的大小，让宽度填充整个网格容器</li>
+<li><strong>space-around</strong> – 在 grid item 之间设置均等宽度的空白间隙，其外边缘间隙大小为中间空白间隙宽度的一半</li>
+<li><strong>space-between</strong> – 在 grid item 之间设置均等宽度空白间隙，其外边缘无间隙</li>
+<li><strong>space-evenly</strong> – 在每个 grid item 之间设置均等宽度的空白间隙，包括外边缘</li>
+</ul>
+</li>
+<li><font color="blue">align-content</font>：沿着列轴对齐网格，设置网格容器内的网格的对齐方式；<ul>
+<li><strong>start</strong> – 网格与网格容器的顶部对齐</li>
+<li><strong>end</strong> – 网格与网格容器的底部对齐</li>
+<li><strong>center</strong> – 网格与网格容器的中间对齐</li>
+<li><strong>stretch</strong> – 调整 grid item 的大小，让高度填充整个网格容器</li>
+<li><strong>space-around</strong> – 在 grid item 之间设置均等宽度的空白间隙，其外边缘间隙大小为中间空白间隙宽度的一半</li>
+<li><strong>space-between</strong> – 在 grid item 之间设置均等宽度空白间隙，其外边缘无间隙</li>
+<li><strong>space-evenly</strong> – 在每个 grid item 之间设置均等宽度的空白间隙，包括外边缘</li>
+</ul>
+</li>
+<li><font color="blue">grid-auto-columns</font>：指定自动生成的网格轨道（又名隐式网格轨道）的大小，隐式网格轨道在你显式的定位超出指定网格范围的行或列（使用 grid-template-rows/grid-template-columns）时被创建；</li>
+<li><font color="blue">grid-auto-rows</font>：指定自动生成的网格轨道（又名隐式网格轨道）的大小，隐式网格轨道在你显式的定位超出指定网格范围的行或列（使用 grid-template-rows/grid-template-columns）时被创建；</li>
+<li><font color="blue">grid-auto-flow</font>：如果你存在没有显示指明放置在网格上的 grid item，则自动放置算法会自动放置这些项目；<ul>
+<li><strong>row</strong> – 告诉自动布局算法依次填充每行，根据需要添加新行</li>
+<li><strong>column</strong> – 告诉自动布局算法依次填充每列，根据需要添加新列</li>
+<li><strong>dense</strong> – 告诉自动布局算法，如果后面出现较小的 grid item，则尝试在网格中填充空洞</li>
+</ul>
+</li>
+<li><font color="blue">grid</font>：设置所有以下属性的简写：grid-template-rows，grid-template-columns，grid-template-areas，grid-auto-rows，grid-auto-columns和grid-auto-flow。 它同时也将 sets grid-column-gap 和 grid-row-gap 设置为它们的初始值；</li>
+</ul>
+<h2 id="4-Grid项目属性"><a href="#4-Grid项目属性" class="headerlink" title="4.Grid项目属性"></a>4.Grid项目属性</h2><p><strong>Grid Items 的全部属性</strong></p>
+<ul>
+<li><font color="blue">grid-column-start</font>：表示 <code>grid item</code> 的网格线的列起始位置；</li>
+<li><font color="blue">grid-column-end</font>：表示 <code>grid item</code> 的网格线的列终止位置；</li>
+<li><font color="blue">grid-row-start</font>：表示 <code>grid item</code> 的网格线的行起始位置；</li>
+<li><font color="blue">grid-row-end</font>：表示 <code>grid item</code> 的网格线的行终止位置；<ul>
+<li><strong><code>&lt;line&gt;</code></strong>: 可以是一个数字来指代相应编号的网格线，也可使用名称指代相应命名的网格线</li>
+<li><strong><code>span &lt;number&gt;</code></strong>: 网格项将跨越指定数量的网格轨道</li>
+<li><strong><code>span &lt;name&gt;</code></strong>: 网格项将跨越一些轨道，直到碰到指定命名的网格线</li>
+<li><strong>auto</strong>: 自动布局， 或者自动跨越， 或者跨越一个默认的轨道</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">grid-column-start</span>: &lt;number&gt; | &lt;name&gt; | span &lt;number&gt; | span &lt;name&gt; | auto</span><br><span class="line">  grid-column-end: &lt;number&gt; | &lt;name&gt; | span &lt;number&gt; | span &lt;name&gt; | auto</span><br><span class="line">  grid-row-start: &lt;number&gt; | &lt;name&gt; | span &lt;number&gt; | span &lt;name&gt; | auto</span><br><span class="line">  grid-row-end: &lt;number&gt; | &lt;name&gt; | span &lt;number&gt; | span &lt;name&gt; | auto</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><font color="blue">grid-column</font>：<code>grid-column-start</code> + <code>grid-column-end</code> 的简写形式；</li>
+<li><font color="blue">grid-row</font>：<code>grid-row-start</code> + <code>grid-row-end</code> 的简写形式；<ul>
+<li><strong><code>&lt;start-line&gt;</code> / <code>&lt;end-line&gt;</code></strong> – 每个值的用法都和属性分开写时的用法一样</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">grid-column</span>: &lt;start-line&gt; / &lt;end-line&gt; | &lt;start-line&gt; / span &lt;value&gt;;</span><br><span class="line">  <span class="attribute">grid-row</span>: &lt;start-line&gt; / &lt;end-line&gt; | &lt;start-line&gt; / span &lt;value&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><font color="blue">grid-area</font>：给 <code>grid item</code> 进行命名以便于使用 <code>grid-template-areas</code> 属性创建模板时来进行引用，也可以做为 <code>grid-row-start</code> + <code>grid-column-start</code> + <code>grid-row-end</code> + <code>grid-column-end</code> 的简写形式；<ul>
+<li><strong><code>&lt;name&gt;</code></strong> – 你的命名</li>
+<li><strong><code>&lt;row-start&gt;</code> / <code>&lt;column-start&gt;</code> / <code>&lt;row-end&gt;</code> / <code>&lt;column-end&gt;</code></strong> – 可以是数字，也可以是网格线的名字</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: &lt;name&gt; | &lt;row-start&gt; / &lt;column-start&gt; / &lt;row-end&gt; / &lt;column-end&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><font color="blue">justify-self</font>：沿着行轴对齐 <code>grid item</code> 里的内容，此属性对单个网格项内的内容生效；<ul>
+<li><strong>start</strong> – 将内容对齐到网格区域的左端</li>
+<li><strong>end</strong> – 将内容对齐到网格区域的右端</li>
+<li><strong>center</strong> – 将内容对齐到网格区域的中间</li>
+<li><strong>stretch</strong> – 填充网格区域的宽度 (这是默认值)</li>
+</ul>
+</li>
+<li><font color="blue">align-self</font>：沿列轴对齐 <code>grid item</code> 里的内容，此属性对单个网格项内的内容生效；<ul>
+<li><strong>start</strong> – 将内容对齐到网格区域的左端</li>
+<li><strong>end</strong> – 将内容对齐到网格区域的右端</li>
+<li><strong>center</strong> – 将内容对齐到网格区域的中间</li>
+<li><strong>stretch</strong> – 填充网格区域的宽度 (这是默认值)</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-三列布局案例"><a href="#5-三列布局案例" class="headerlink" title="5.三列布局案例"></a>5.三列布局案例</h2><p><img src="/archives/2db465c1/layout1.jpg" alt="最终效果图"></p>
+<h3 id="5-1-HTML结构"><a href="#5-1-HTML结构" class="headerlink" title="5.1. HTML结构"></a>5.1. HTML结构</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"style.css"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>简单的三列布局<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">header</span> <span class="attr">class</span>=<span class="string">"header"</span>&gt;</span>头部<span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aside</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>左边栏<span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">main</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span>主体内容区<span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aside</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>右边栏<span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">"footer"</span>&gt;</span>底部<span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-CSS代码"><a href="#5-2-CSS代码" class="headerlink" title="5.2. CSS代码"></a>5.2. CSS代码</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* style.css */</span></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="comment">/*设置body元素采用网格布局*/</span></span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*行模板: 第一行60px,第二行750px, 第三行60px*/</span></span><br><span class="line">  <span class="attribute">grid-template-rows</span>: <span class="number">60px</span> <span class="number">750px</span> <span class="number">60px</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*列模板: 第一列200px,第2列自动扩展, 第3列200px*/</span></span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">200px</span> auto <span class="number">200px</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*设置行间距:10px*/</span></span><br><span class="line">  <span class="attribute">grid-row-gap</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*设置列间距: 10px*/</span></span><br><span class="line">  <span class="attribute">grid-column-gap</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.header</span> &#123;</span><br><span class="line">  <span class="comment">/*网格区域命名*/</span></span><br><span class="line">  <span class="attribute">grid-area</span>: my-header;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*参考背景色*/</span></span><br><span class="line">  <span class="attribute">background-color</span>: lightgreen;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.footer</span> &#123;</span><br><span class="line">  <span class="comment">/*网格区域命名*/</span></span><br><span class="line">  <span class="attribute">grid-area</span>: my-footer;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*参考背景色*/</span></span><br><span class="line">  <span class="attribute">background-color</span>: lightgreen;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">  <span class="comment">/*网格区域命名*/</span></span><br><span class="line">  <span class="attribute">grid-area</span>: my-left;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*参考背景色*/</span></span><br><span class="line">  <span class="attribute">background-color</span>: lightblue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">  <span class="comment">/*网格区域命名*/</span></span><br><span class="line">  <span class="attribute">grid-area</span>: my-right;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*参考背景色*/</span></span><br><span class="line">  <span class="attribute">background-color</span>: lightblue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="comment">/*网格区域命名*/</span></span><br><span class="line">  <span class="attribute">grid-area</span>: my-content;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*参考背景色*/</span></span><br><span class="line">  <span class="attribute">background-color</span>: coral;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*设置网格区域: 非常直观*/</span></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="comment">/*网格区域名称相同, 意味着合并*/</span></span><br><span class="line">  <span class="attribute">grid-template-areas</span>:</span><br><span class="line">    <span class="string">"my-header  my-header   my-header"</span></span><br><span class="line">    <span class="string">"my-left    my-content    my-right"</span></span><br><span class="line">    <span class="string">"my-footer  my-footer   my-footer"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>css布局</tag>
+        <tag>grid布局</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>web前端（四）：CSS布局之flex弹性布局</title>
+    <url>/archives/1155e3cf.html</url>
+    <content><![CDATA[<ul>
+<li>布局的传统解决方案，基于<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box_model" target="_blank" rel="noopener">盒状模型</a>，依赖 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display" target="_blank" rel="noopener"><code>display</code></a> 属性 + <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" target="_blank" rel="noopener"><code>position</code></a>属性 + <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/float" target="_blank" rel="noopener"><code>float</code></a>属性。</li>
+<li>它对于那些特殊布局非常不方便，比如，<a href="https://css-tricks.com/centering-css-complete-guide/" target="_blank" rel="noopener">垂直居中</a>就不容易实现。</li>
+</ul>
+<a id="more"></a>
+
+<blockquote>
+<p>2009年, W3C提出一个新方案: Flex布局</p>
+</blockquote>
+<h2 id="1-Flex-简介"><a href="#1-Flex-简介" class="headerlink" title="1.Flex 简介"></a>1.Flex 简介</h2><p>Flex 是 <strong>Flexible Box</strong>的缩写, 意思是”<strong>弹性布局</strong>“, 用来为盒状模型提供最大的布局灵活性，任何一个容器都可以设置为<code>Flex</code>布局模式。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 块元素可以设置为Flex容器 */</span></span><br><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*内联元素也可以设置为Flex*/</span></span><br><span class="line"><span class="selector-tag">span</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* WebKit内核浏览器,如Safari, 需要加前缀*/</span></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-flex;	<span class="comment">/*Safari*/</span></span><br><span class="line">  <span class="attribute">display</span>: lfex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><font face="微软雅黑" color="Blue"><strong>Tips</strong>:</font></p>
+<ul>
+<li>一旦设置为Flex容器, 则容器内子元素的<code>float</code>, <code>clear</code>, <code>vertical-align</code>属性则全部失去效果</li>
+<li>布局演变史: 表格布局<code>table</code> -&gt; 定位布局<code>positon</code> -&gt; 浮动布局<code>float</code> -&gt; 弹性布局<code>flex</code> -&gt; 网格布局<code>grid</code></li>
+</ul>
+<h2 id="2-基本术语"><a href="#2-基本术语" class="headerlink" title="2.基本术语"></a>2.基本术语</h2><h3 id="2-1-Flex容器-flex-container"><a href="#2-1-Flex容器-flex-container" class="headerlink" title="2.1.Flex容器(flex container)"></a>2.1.Flex容器(flex container)</h3><p>采用<code>flex</code>布局的元素, 称为<code>flex容器</code>, 简称<strong>容器</strong></p>
+<h3 id="2-2-Flex项目-flex-item"><a href="#2-2-Flex项目-flex-item" class="headerlink" title="2.2.Flex项目(flex item)"></a>2.2.Flex项目(flex item)</h3><p>Flex容器中的所有成员(子元素)会自动成为该容器的成员，称为<code>flex项目</code>，简称<strong>项目</strong>。<br>flex项目都支持宽高设置, 哪怕它之前是内联元素，类似于浮动元素。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="comment">/*flex容器*/</span></span></span><br><span class="line"><span class="css">  <span class="selector-class">.contaier</span> &#123;</span></span><br><span class="line">    display: flex;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="comment">/*flex项目*/</span></span></span><br><span class="line"><span class="css">  <span class="selector-class">.item</span> &#123;</span></span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>item1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>item2<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>item3<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-主轴-main-axis"><a href="#2-3-主轴-main-axis" class="headerlink" title="2.3.主轴(main axis)"></a>2.3.主轴(main axis)</h3><p>主轴也叫水平轴, 横轴,x轴</p>
+<ul>
+<li><code>main start</code>: 起始位置</li>
+<li><code>main end</code>: 结束位置</li>
+<li><code>main size</code>: 单个项目占据的主轴空间</li>
+</ul>
+<h3 id="2-4-交叉轴-cross-axis"><a href="#2-4-交叉轴-cross-axis" class="headerlink" title="2.4.交叉轴(cross axis)"></a>2.4.交叉轴(cross axis)</h3><p>交叉轴也叫垂直轴,坚轴,y轴</p>
+<ul>
+<li><code>cross start</code>: 起始位置</li>
+<li><code>cross end</code>: 结束位置</li>
+<li><code>cross size</code>: 单个项目占据的交叉轴空间</li>
+</ul>
+<img src="/archives/1155e3cf/bg2015071004.png" class title="图例">
+
+<h2 id="3-Flex容器属性"><a href="#3-Flex容器属性" class="headerlink" title="3.Flex容器属性"></a>3.Flex容器属性</h2><p><strong>容器属性汇总:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="left">属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="left">flex-direction</td>
+<td align="left">主轴方向(即项目排列方向)</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="left">flex-wrap</td>
+<td align="left">当多个项目在一行排列不下时,如何换行</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="left">flex-flow</td>
+<td align="left">flex-direction,flex-wrap的简写,默认:<code>row nowrap</code></td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="left">justify-content</td>
+<td align="left">项目在主轴上对齐方式</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="left">align-items</td>
+<td align="left">项目在交叉轴上的对齐方式</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="left">align-content</td>
+<td align="left">项目在多根轴线上的对齐方式,只有一根轴线无效</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="3-1-flex-direction"><a href="#3-1-flex-direction" class="headerlink" title="3.1.flex-direction"></a>3.1.flex-direction</h3><ul>
+<li><strong>功能</strong>: 决定项目在主轴上的排列方向</li>
+<li>它有四个可能的值:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>属性值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>row 默认值</td>
+<td>主轴为水平方向,起点在左边</td>
+</tr>
+<tr>
+<td>2</td>
+<td>row-reverse</td>
+<td>主轴为水平方向, 起点在右边(反转)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>column</td>
+<td>主轴为垂直方向, 起点在上边</td>
+</tr>
+<tr>
+<td>4</td>
+<td>column-reverse</td>
+<td>主轴为垂直方向, 起点在下边</td>
+</tr>
+</tbody></table>
+<ul>
+<li>CSS语法:</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row | row-reverse | column | column-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>示意图:</li>
+</ul>
+<p><img src="/archives/1155e3cf/bg2015071005.png" alt="flex-direction"></p>
+<h3 id="3-2-flex-wrap"><a href="#3-2-flex-wrap" class="headerlink" title="3.2.flex-wrap"></a>3.2.flex-wrap</h3><ul>
+<li><strong>功能</strong>: 多个项目默认排列在一根轴线上,该属性定义了当一根轴线排列不下时,多作的项目的换行方式</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>属性值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>nowrap 默认值</td>
+<td>不换行</td>
+</tr>
+<tr>
+<td>2</td>
+<td>wrap</td>
+<td>自动换行, 第一行排列不下, 自动转到下一行</td>
+</tr>
+<tr>
+<td>3</td>
+<td>wrap-reverse</td>
+<td>自动反向换行, 第一行显示在下方, 与wrap相反</td>
+</tr>
+</tbody></table>
+<p><img src="/archives/1155e3cf/bg2015071006.png" alt="flex-wrap"></p>
+<ul>
+<li>CSS语法</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: nowrap | wrap | wrap-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>属性值说明:</p>
+<ul>
+<li><code>nowrap</code>: (默认值)不换行</li>
+</ul>
+<p><img src="/archives/1155e3cf/bg2015071007.png" alt="nowrap"></p>
+<ul>
+<li><code>wrap</code>: 自动换行</li>
+</ul>
+<p><img src="/archives/1155e3cf/bg2015071008.jpg" alt="wrap"></p>
+<ul>
+<li><code>wrap-reverse</code>: 自动反向换行</li>
+</ul>
+<p><img src="/archives/1155e3cf/bg2015071009.jpg" alt="wrap-reverse"></p>
+</li>
+</ul>
+<h3 id="3-3-flex-flow"><a href="#3-3-flex-flow" class="headerlink" title="3.3.flex-flow"></a>3.3.flex-flow</h3><p>flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为<code>row nowrap</code></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-flow</span>: [flex-direction] || [flex-wrap];</span><br><span class="line">  <span class="comment">/*默认*/</span></span><br><span class="line">  <span class="attribute">flex-flow</span>: row nowrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4-justity-content"><a href="#3-4-justity-content" class="headerlink" title="3.4. justity-content"></a>3.4. justity-content</h3><ul>
+<li><strong>功能</strong>: 设置项目在主轴上的对齐方式</li>
+<li>CSS语法:</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: flex-start | flex-end | center | space-between | space-around;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>属性值说明</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>属性值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>flex-start 默认值</td>
+<td>左对齐</td>
+</tr>
+<tr>
+<td>2</td>
+<td>flex-end</td>
+<td>右对齐</td>
+</tr>
+<tr>
+<td>3</td>
+<td>center</td>
+<td>居中对齐</td>
+</tr>
+<tr>
+<td>4</td>
+<td>space-between</td>
+<td>两端对齐: 项目之间间隔相等</td>
+</tr>
+<tr>
+<td>5</td>
+<td>space-around</td>
+<td>项目两侧间隔相等,即项目之间间隔是项目到两端的二倍</td>
+</tr>
+<tr>
+<td>6</td>
+<td>space-evenly</td>
+<td>平均分配主轴上的剩余空间</td>
+</tr>
+</tbody></table>
+<ul>
+<li>示意图:</li>
+</ul>
+<p><img src="/archives/1155e3cf/bg2015071010.png" alt="justify-content"></p>
+<h3 id="3-5-align-items"><a href="#3-5-align-items" class="headerlink" title="3.5. align-items"></a>3.5. align-items</h3><ul>
+<li><strong>功能:</strong> 该属性设置项目在交叉轴上的对齐方式</li>
+<li>CSS语法:</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>属性值说明:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>属性值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>flex-start</td>
+<td>与交叉轴起点对齐, 即: 顶对齐 / 上对齐</td>
+</tr>
+<tr>
+<td>2</td>
+<td>flex-end</td>
+<td>与交叉轴终点对齐, 即: 底对齐 / 下对齐</td>
+</tr>
+<tr>
+<td>3</td>
+<td>center</td>
+<td>与交叉轴中间线对齐, 即: 居中对齐</td>
+</tr>
+<tr>
+<td>4</td>
+<td>baseline</td>
+<td>与项目中第一行文本的基线对齐, 即文本的下边线</td>
+</tr>
+<tr>
+<td>5</td>
+<td>stretch 默认值</td>
+<td>自动伸展到容器的高度(项目未设置高度或将高度设置为auto有效)</td>
+</tr>
+</tbody></table>
+<ul>
+<li>示意图:</li>
+</ul>
+<p><img src="/archives/1155e3cf/bg2015071011.png" alt="align-items"></p>
+<h3 id="3-6-align-content"><a href="#3-6-align-content" class="headerlink" title="3.6. align-content"></a>3.6. align-content</h3><ul>
+<li><code>align-items</code>和<code>align-content</code>有相同的功能，不过不同点是它是用来让每一个单行的容器居中而不是让整个容器居中</li>
+<li><code>align-content</code>属性只适用于<strong>多行</strong>的flex容器，并且当交叉轴上有多余空间使flex容器内的flex线对齐</li>
+<li><code>align-items</code>属性适用于所有的flex容器，它是用来设置每个flex元素在交叉轴上的默认对齐方式</li>
+<li>该属性的重点,在于<strong>多行项目</strong>, 这是与<code>align-items</code>最重要的区别</li>
+<li>CSS语法:</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-content</span>: flex-start | flex-end | center | space-between | space-around | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>属性值说明:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>属性值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>flex-start</td>
+<td>与交叉轴起点对齐</td>
+</tr>
+<tr>
+<td>2</td>
+<td>flex-end</td>
+<td>与交叉轴终点对齐</td>
+</tr>
+<tr>
+<td>3</td>
+<td>center</td>
+<td>与交叉轴中间点对齐</td>
+</tr>
+<tr>
+<td>4</td>
+<td>space-between</td>
+<td>与交叉轴两端对齐, 轴线之间间隔相等</td>
+</tr>
+<tr>
+<td>5</td>
+<td>sapce-around</td>
+<td>每根轴线间隔相等,轴线间隔比轴线到边框大一倍</td>
+</tr>
+<tr>
+<td>6</td>
+<td>stretch 默认值</td>
+<td>轴线占满整个交叉轴</td>
+</tr>
+</tbody></table>
+<ul>
+<li>示意图:</li>
+</ul>
+<p><img src="/archives/1155e3cf/bg2015071012.png" alt="align-content"></p>
+<h2 id="4-Flex项目属性"><a href="#4-Flex项目属性" class="headerlink" title="4.Flex项目属性"></a>4.Flex项目属性</h2><p>在Flex项目也有6个可用的属性，分别是:</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>order</td>
+<td>定义项目排列顺序,索引越小超靠前,默认为0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>flex-grow</td>
+<td>定义项目的放大比例,默认为0表示不放大, 即就算存在剩余空间也不放大</td>
+</tr>
+<tr>
+<td>3</td>
+<td>flex-shrink</td>
+<td>定义了项目的缩小比例,默认为1,即如何空间不足,则自动缩小项目来填充</td>
+</tr>
+<tr>
+<td>4</td>
+<td>flex-basis</td>
+<td>定义了项目占据的主轴空间,默认值为auto, 即项目原始大小</td>
+</tr>
+<tr>
+<td>5</td>
+<td>flex</td>
+<td>是flex-grow,flex-shrink,flex-basis简写,默认值: 0 1 auto, 后二个属性可选</td>
+</tr>
+<tr>
+<td>6</td>
+<td>align-self</td>
+<td>个性化定定制某单个项目的对齐方式,可覆盖容器<code>align-items</code>属性,默认auto</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="4-1-order"><a href="#4-1-order" class="headerlink" title="4.1.order"></a>4.1.order</h3><ul>
+<li>定义项目的排列顺序。数值越小，排列越靠前，默认为0</li>
+<li>CSS语法:</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">order</span>: integer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>示意图:</li>
+</ul>
+<p><img src="/archives/1155e3cf/bg2015071013.png" alt="order"></p>
+<h3 id="4-2-flex-grow"><a href="#4-2-flex-grow" class="headerlink" title="4.2.flex-grow"></a>4.2.flex-grow</h3><ul>
+<li>设置项目的放大比例, 默认为0: 不放大,哪怕轴上有剩余空间</li>
+<li>CSS语法:</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-grow</span>: number; <span class="comment">/* default: 0 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>空间分配方案小案例:<ul>
+<li><code>flex-grow: 1</code>: 每个项目等分, 都占全部的空间的N分之一(N: 项目数量)</li>
+<li><code>flex-grow: 2</code>如果某个项目为2, 其它项目为1, 则它占据空间比其它项目多一倍</li>
+</ul>
+</li>
+</ul>
+<p><img src="/archives/1155e3cf/bg2015071014.png" alt="flex-grow"></p>
+<h3 id="4-3-flex-shrink"><a href="#4-3-flex-shrink" class="headerlink" title="4.3.flex-shrink"></a>4.3.flex-shrink</h3><ul>
+<li>设置了项目的缩小比例,默认为1, 即空间不足时, 自动缩小填充</li>
+<li>CSS语法:</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-shrink</span>: number; <span class="comment">/*defautl: 1*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>缩放规则<ul>
+<li><code>flex-shrink: 1</code>: 所有项目都为1, 空间不足时, 自动等比例缩小填充主轴剩余空间</li>
+<li><code>flex-shrink</code>: 如果有一个项目为0, 其它项目为1, 则空间不足时, 它并不随其它项目缩小</li>
+<li>注意: 该属性不支持负值, 即<code>flex-shrink: -1</code> 无效</li>
+</ul>
+</li>
+</ul>
+<p><img src="/archives/1155e3cf/bg2015071015.jpg" alt="flex-shrink"></p>
+<h3 id="4-4-flex-basis"><a href="#4-4-flex-basis" class="headerlink" title="4.4.flex-basis"></a>4.4.flex-basis</h3><ul>
+<li>定义了在计算分配主轴上剩余空间之前, 项目占据的主轴空间(main size)<ul>
+<li>浏览器根据该属性,可以计算出主轴上是否还有剩余空间, 决定是否换行</li>
+<li>默认值为<code>auto</code>, 即项目原来占据的空间大小</li>
+</ul>
+</li>
+<li>CSS语法:</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-basis</span>: length | auto; <span class="comment">/* default auto */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你可以设置与<code>height</code>或者<code>width</code>属性一样的绝对值,例如<code>500px</code>,则该项目占据固定的空间大小</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-basis</span>: <span class="number">500px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-5-flex"><a href="#4-5-flex" class="headerlink" title="4.5.flex"></a>4.5.flex</h3><ul>
+<li>flex属性是前面<code>flex-grow</code>,<code>flex-shrink</code>和<code>flex-basis</code>属性的简写</li>
+<li>默认值: <code>0  1 auto</code>, 除第一个外, 其它二个可选</li>
+<li>CSS语法:</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: none | [ &lt;<span class="string">'flex-grow'</span>&gt; &lt;<span class="string">'flex-shrink'</span>&gt;? || &lt;<span class="string">'flex-basis'</span>&gt; ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>由于该属性极其常用, 为了简化, Flex布局还为该属性设置了快捷值<ul>
+<li><code>flex: auto</code>:  等价于<code>flex: 1 1 auto</code></li>
+<li><code>flex: none</code>: 等价于<code>flex: 0 0 auto</code></li>
+</ul>
+</li>
+<li>推荐优先使用flex属性, 由浏览器自动计算出其它属性的值</li>
+</ul>
+<h3 id="4-6-align-self"><a href="#4-6-align-self" class="headerlink" title="4.6.align-self"></a>4.6.align-self</h3><ul>
+<li>该属性允许单个项目有与其它项目不一样的对齐方式, 可覆盖掉容器的<code>flex-items</code>属性</li>
+<li>默认值: <code>auto</code>,表示继承父元素的<code>align-items</code>,如果没有父元素,则等价于<code>stretch</code></li>
+<li>CSS语法:</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">align-self</span>: auto | flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>示意图:</li>
+</ul>
+<p><img src="/archives/1155e3cf/bg2015071016.png" alt="align-self"></p>
+<blockquote>
+<p>资源来源于网络</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>css布局</tag>
+        <tag>flex布局</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>web前端（三）：CSS布局之双飞翼、圣杯布局</title>
+    <url>/archives/d533509a.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文简单整理一下前端样式中的经典布局方式。</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="1-三栏布局"><a href="#1-三栏布局" class="headerlink" title="1.三栏布局"></a>1.三栏布局</h2><p>所谓的 ‘三栏布局’， 即：左右两栏固定宽度，中间部分自适应的布局方式。</p>
+<h3 id="1-1-相同点"><a href="#1-1-相同点" class="headerlink" title="1.1.相同点"></a>1.1.相同点</h3><p>双飞翼与圣杯布局的相同点：</p>
+<ul>
+<li>都是浮动布局，在实现三栏布局；</li>
+<li>左右两边加上负的margin值，使之与中间并排；</li>
+<li>中间盒子优先渲染，两边的盒子框子固定不变，即使页面宽度变小，也不影响浏览。</li>
+</ul>
+<h3 id="1-2-不同点"><a href="#1-2-不同点" class="headerlink" title="1.2.不同点"></a>1.2.不同点</h3><ul>
+<li>圣杯布局：通过父容器的内边距（padding）来实现各列的间隙；</li>
+<li>双飞翼布局：通过新建的div的外边距（margin）隔离各列。</li>
+</ul>
+<h2 id="2-圣杯布局"><a href="#2-圣杯布局" class="headerlink" title="2.圣杯布局"></a>2.圣杯布局</h2><p><strong>实现方式</strong>：</p>
+<ul>
+<li>三者都设置向左浮动，脱离文档流，且设置 <code>position: relative;</code></li>
+<li>设置 <code>main</code> 宽度为100%；</li>
+<li>设置 负边距，<code>left</code> 设置负左边距为自身宽度，<code>right</code> 设置负右边距为自身宽度；</li>
+<li><code>container</code> 设置 <code>padding: 0, rightWidth, 0, leftWidth;</code>，给左右两个子面板留出空间，同时 设置<code>overflow: hidden;</code></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span>middle<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-双飞翼布局"><a href="#3-双飞翼布局" class="headerlink" title="3.双飞翼布局"></a>3.双飞翼布局</h2><p><strong>实现方式</strong>：</p>
+<ul>
+<li>三者都设置向左浮动，脱离文档流；</li>
+<li>设置 <code>main-wraper</code> 宽度为100%；</li>
+<li>设置 负边距，<code>left</code> 设置 <code>margin-left: -100%</code>，<code>right</code> 设置 <code>margin-left:</code> 为负的自身宽度；</li>
+<li><code>container</code> 设置 <code>margin: 0, rightWidth, 0, leftWidth;</code>，给左右两个子面板留出空间，同时 设置<code>overflow: hidden;</code></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main-wraper"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span>middle<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>参考：<a href="https://www.zhihu.com/question/21504052" target="_blank" rel="noopener">知乎</a>、<a href="https://juejin.im/post/5caf4043f265da039f0eff94" target="_blank" rel="noopener">掘金</a></p>
+</blockquote>
+<hr>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>CSS布局</tag>
+        <tag>圣杯布局</tag>
+        <tag>双飞翼布局</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>web前端（二）：HTML标签常用属性和CSS样式</title>
+    <url>/archives/9d4c0047.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文主要记录一下HTML标签的常用属性和CSS样式。</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="1-一些特殊标签"><a href="#1-一些特殊标签" class="headerlink" title="1.一些特殊标签"></a>1.一些特殊标签</h2><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;b&gt;</code></td>
+<td>粗体字</td>
+</tr>
+<tr>
+<td><code>&lt;strong&gt;</code></td>
+<td>粗体字，强调</td>
+</tr>
+<tr>
+<td><code>&lt;i&gt;</code></td>
+<td>斜体字</td>
+</tr>
+<tr>
+<td><code>&lt;em&gt;</code></td>
+<td>斜体字，强调</td>
+</tr>
+<tr>
+<td><code>&lt;dfn&gt;</code></td>
+<td>斜体定义</td>
+</tr>
+<tr>
+<td><code>&lt;u&gt;</code></td>
+<td>底线</td>
+</tr>
+<tr>
+<td><code>&lt;ins&gt;</code></td>
+<td>底线，插入文字</td>
+</tr>
+<tr>
+<td><code>&lt;strike&gt;</code></td>
+<td>横线</td>
+</tr>
+<tr>
+<td><code>&lt;s&gt;</code>、<code>&lt;del&gt;</code></td>
+<td>删除线</td>
+</tr>
+<tr>
+<td><code>&lt;kbd&gt;</code></td>
+<td>键盘文字</td>
+</tr>
+<tr>
+<td><code>&lt;tt&gt;</code></td>
+<td>打字体，H5不支持</td>
+</tr>
+<tr>
+<td><code>&lt;xmp&gt;</code></td>
+<td>固定宽度的字体，在文件中空白，换行</td>
+</tr>
+<tr>
+<td><code>&lt;pre&gt;</code></td>
+<td>预格式化</td>
+</tr>
+<tr>
+<td><code>&lt;code&gt;</code></td>
+<td>源代码</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<h2 id="2-常用属性及样式"><a href="#2-常用属性及样式" class="headerlink" title="2.常用属性及样式"></a>2.常用属性及样式</h2><h3 id="2-1-背景、颜色"><a href="#2-1-背景、颜色" class="headerlink" title="2.1. 背景、颜色"></a>2.1. 背景、颜色</h3><ul>
+<li>background：背景</li>
+<li>color：颜色，可用颜色名称、16进制、rgb元组表示</li>
+<li>opacity：透明度，也可用rgba()的第四参数指定，filter可添加可视效果</li>
+</ul>
+<h3 id="2-2-形状边界"><a href="#2-2-形状边界" class="headerlink" title="2.2. 形状边界"></a>2.2. 形状边界</h3><ul>
+<li>width/height：宽/高，同时有最大/小值、比例等设置</li>
+<li>border-radius：圆角</li>
+<li>border-shadow：添加阴影</li>
+<li>border-image：边界图片，不支持IE</li>
+<li>resize：调整尺寸，由用户调整，IE不兼容，e.g.：resize:both;…</li>
+<li>box-sizing：方框大小调整，以确切方式定义适应某区域具体内容</li>
+<li>outline-offset：对轮廓进行偏移，并在超出边缘的位置绘制轮廓</li>
+</ul>
+<h3 id="2-3-位置排布"><a href="#2-3-位置排布" class="headerlink" title="2.3. 位置排布"></a>2.3. 位置排布</h3><ul>
+<li>top/right/bottom/left：上/右/下/左</li>
+<li>position：位置布局，relative - 相对、absolute - 绝对</li>
+<li>float：浮动</li>
+<li>display：显示样式，如：none、block、inline、inherit、flex …</li>
+<li>align/text-align/vertical-align：位置显示设置</li>
+<li>margin/padding：外/内 边距</li>
+<li>transform：元素空间位置变换</li>
+</ul>
+<h3 id="2-4-文本效果"><a href="#2-4-文本效果" class="headerlink" title="2.4. 文本效果"></a>2.4. 文本效果</h3><ul>
+<li>@font-face规则：可通过font-family指定字体类型，src指定字体url，font-weight指定字体粗细等等</li>
+<li>text-shadow：文本阴影</li>
+<li>box-shadow：盒子阴影</li>
+<li>text-overflow：定义如何显示溢出内容</li>
+<li>word-wrap：允许文本换行</li>
+<li>word-break：单词拆分换行属性，指定换行规则</li>
+</ul>
+<h3 id="2-5-2-3D转换"><a href="#2-5-2-3D转换" class="headerlink" title="2.5. 2/3D转换"></a>2.5. 2/3D转换</h3><ul>
+<li><p>2D：</p>
+<ul>
+<li>translate()方法：根据左（X）轴和顶（Y）轴位置参数，从当前位置移动</li>
+<li>rotate()方法：对于给定参数的元素，顺/逆时针旋转</li>
+<li>scale()方法：对给定参数（x,y）的元素增加或减少大小</li>
+<li>skew()方法：（x,y）对应两轴的倾斜角</li>
+<li>…</li>
+</ul>
+</li>
+<li><p>3D:</p>
+<ul>
+<li>matrix()方法：有六个参数，为合并方法，包含上述功能</li>
+<li>rotateX()方法：围绕一个给定度数的X轴旋转元素</li>
+<li>rotateY()方法：围绕一个给定度数的Y轴旋转元素</li>
+<li>…</li>
+</ul>
+<hr>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>HTML</tag>
+        <tag>属性样式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python（十）- tkinter案例(1): WiFi连接器!</title>
     <url>/archives/6eec6899.html</url>
     <content><![CDATA[<p>前段时间，在脉脉上看到一篇关于WiFi连接的python实现，感觉挺有意思的。</p>
@@ -3378,8 +4642,8 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>基本配置</tag>
         <tag>yilia</tag>
+        <tag>基本配置</tag>
       </tags>
   </entry>
   <entry>
