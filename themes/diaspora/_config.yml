@@ -115,9 +115,9 @@ gitalk:
     # 是否自动展开评论框
     autoExpand: false
     # 应用编号
-    clientID: '35890ce192840bd76bc6'
+    clientID: '46cfc8340c38a03ba30e'
     # 应用秘钥
-    clientSecret: '18b465f1ea803824fe0aef032d74ce6262df3b6e'
+    clientSecret: '7d260935d66607be6eadefccb4669c6c8f764bb2'
     # issue仓库名
     repo: 'yaojusheng.gitee.io'
     # Github名
