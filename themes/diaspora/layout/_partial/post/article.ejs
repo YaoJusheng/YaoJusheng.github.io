@@ -51,11 +51,7 @@
         
         <% if (theme.valine && theme.valine.appid && theme.valine.appkey){ %>
           <section id="valine-container" style="margin:10px;padding:10px;background:#fff;">
-            <%- partial('_partial/post/valine', {
-              key: page.slug,
-              title: page.title,
-              url: config.url+url_for(page.path)
-            }) %>
+            <%- partial('_partial/post/valine', { post: page }) %>
           </section>
         <% } %>
 

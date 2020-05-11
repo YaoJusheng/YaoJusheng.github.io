@@ -1,6 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【工具】（八）：VSCode 之个性化配置</title>
+    <url>/archives/9a4a16.html</url>
+    <content><![CDATA[<p>本文主要记录VSCode中的一些个性化配置。</p>
+<a id="more"></a>
+
+<p>主要插件如下：</p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=hoovercj.vscode-power-mode" target="_blank" rel="noopener">Power Mode</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=shalldie.background" target="_blank" rel="noopener">background</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=yuansnowboy.yuansnowboy" target="_blank" rel="noopener">Live2D</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=karigari.chat" target="_blank" rel="noopener">Live Share Chat</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=auchenberg.vscode-browser-preview" target="_blank" rel="noopener">Browser Preview</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=shengchen.vscode-leetcode" target="_blank" rel="noopener">LeetCode</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker" target="_blank" rel="noopener">Docker</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.vscode-mysql" target="_blank" rel="noopener">MySQL</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh" target="_blank" rel="noopener">Remote - SSH</a> | <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" target="_blank" rel="noopener">Remote - WSL</a></li>
+</ul>
+<h2 id="1-Power-Mode"><a href="#1-Power-Mode" class="headerlink" title="1.Power Mode"></a>1.<a href="https://marketplace.visualstudio.com/items?itemName=hoovercj.vscode-power-mode" target="_blank" rel="noopener">Power Mode</a></h2><p>vscode代码特效插件，</p>
+<h3 id="1-1-安装"><a href="#1-1-安装" class="headerlink" title="1.1.安装"></a>1.1.安装</h3><p><code>Ctrl+Shift+X</code> 打开扩展，搜索插件 <code>Power Mode</code>，点击 <code>install</code> 安装。</p>
+
+
+<h3 id="1-2-配置"><a href="#1-2-配置" class="headerlink" title="1.2.配置"></a>1.2.配置</h3><p><code>Ctrl+Shift+P</code> -&gt; 搜索 <code>Open User Settings</code>，找到 <code>settings.json</code> 文件:<br>做如下配置：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">// power mode 输入特效配置</span></span><br><span class="line">  <span class="attr">"powermode.enabled"</span>: <span class="literal">true</span>,         <span class="comment">//是否开启</span></span><br><span class="line">  <span class="attr">"powermode.enableShake"</span>: <span class="literal">false</span>,    <span class="comment">//是否抖动</span></span><br><span class="line">  <span class="attr">"powermode.presets"</span>: <span class="string">"flames"</span>,   <span class="comment">//动画效果 particles | fireworks | flames | magic | clippy</span></span><br><span class="line">  <span class="attr">"editor.renderWhitespace"</span>: <span class="string">"all"</span>,</span><br><span class="line">  <span class="attr">"workbench.colorCustomizations"</span>: &#123;</span><br><span class="line">    <span class="attr">"editorWhitespace.foreground"</span>: <span class="string">"#FFFFFF00"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-效果"><a href="#1-3-效果" class="headerlink" title="1.3.效果"></a>1.3.效果</h3><img src="/archives/9a4a16/demo-presets-flames.gif" class title="图片来源于官网">
+
+
+<h2 id="2-background"><a href="#2-background" class="headerlink" title="2.background"></a>2.<a href="https://marketplace.visualstudio.com/items?itemName=shalldie.background" target="_blank" rel="noopener">background</a></h2><h3 id="2-1-安装"><a href="#2-1-安装" class="headerlink" title="2.1.安装"></a>2.1.安装</h3><p><code>Ctrl+Shift+X</code> 打开扩展，搜索插件 <code>background</code>，点击 <code>install</code> 安装。</p>
+<img src="/archives/9a4a16/background-setup.png" class>
+
+<h3 id="2-2-配置"><a href="#2-2-配置" class="headerlink" title="2.2.配置"></a>2.2.配置</h3><p>可以通过 <code>Ctrl+Shift+P</code> -&gt; 搜索 <code>Open Default Settings</code> 找到默认配置文件，查看配置项，再搜索 <code>Open User Settings</code>，找到 <code>settings.json</code> 文件:<br>做如下配置：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">// 背景图片</span></span><br><span class="line">  <span class="comment">// 自己定制背景图，最多3个</span></span><br><span class="line">    <span class="attr">"background.customImages"</span>: [</span><br><span class="line">    <span class="string">"file:///E:/Jusheng_Yao/Pictures/background/others/2018-09-12_背景图片27.jpg"</span>,</span><br><span class="line">  ],</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 插件是否启用</span></span><br><span class="line">    <span class="attr">"background.enabled"</span>: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 背景图样式。</span></span><br><span class="line">    <span class="attr">"background.style"</span>: &#123;</span><br><span class="line">    <span class="attr">"content"</span>: <span class="string">"''"</span>,</span><br><span class="line">    <span class="attr">"pointer-events"</span>: <span class="string">"none"</span>,</span><br><span class="line">    <span class="attr">"position"</span>: <span class="string">"absolute"</span>,</span><br><span class="line">    <span class="attr">"z-index"</span>: <span class="string">"99999"</span>,</span><br><span class="line">    <span class="attr">"width"</span>: <span class="string">"100%"</span>,</span><br><span class="line">    <span class="attr">"height"</span>: <span class="string">"100%"</span>,</span><br><span class="line">    <span class="attr">"background-position"</span>: <span class="string">"center"</span>,</span><br><span class="line">    <span class="attr">"background-size"</span>: <span class="string">"cover"</span>,</span><br><span class="line">    <span class="attr">"background-repeat"</span>: <span class="string">"no-repeat"</span>,</span><br><span class="line">    <span class="attr">"opacity"</span>: <span class="number">0.1</span></span><br><span class="line">  &#125;,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 使用默认图片</span></span><br><span class="line">    <span class="attr">"background.useDefault"</span>: <span class="literal">false</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 是否使用前景图，这样会使图片放在代码的顶部</span></span><br><span class="line">  <span class="attr">"background.useFront"</span>: <span class="literal">true</span>,</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-效果"><a href="#2-3-效果" class="headerlink" title="2.3.效果"></a>2.3.效果</h3><img src="/archives/9a4a16/background.png" class>
+
+<p>插件自带：</p>
+<img src="/archives/9a4a16/background.gif" class title="图片来源于官网">
+
+<h2 id="3-Live2D"><a href="#3-Live2D" class="headerlink" title="3.Live2D"></a>3.<a href="https://marketplace.visualstudio.com/items?itemName=yuansnowboy.yuansnowboy" target="_blank" rel="noopener">Live2D</a></h2><h3 id="3-1-安装"><a href="#3-1-安装" class="headerlink" title="3.1.安装"></a>3.1.安装</h3><p><code>Ctrl+Shift+X</code> 打开扩展，搜索插件 <code>Live2D</code>，点击 <code>install</code> 安装。</p>
+<img src="/archives/9a4a16/Live2D-setup.png" class>
+
+<h3 id="3-2-配置"><a href="#3-2-配置" class="headerlink" title="3.2.配置"></a>3.2.配置</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="comment">// 是否开启live2D</span></span><br><span class="line">    <span class="attr">"live2D.use"</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-效果"><a href="#3-3-效果" class="headerlink" title="3.3.效果"></a>3.3.效果</h3><img src="/archives/9a4a16/Live2D-show.png" class>
+
+<h2 id="4-Live-Share-Chat"><a href="#4-Live-Share-Chat" class="headerlink" title="4.Live Share Chat"></a>4.<a href="https://marketplace.visualstudio.com/items?itemName=karigari.chat" target="_blank" rel="noopener">Live Share Chat</a></h2><h3 id="4-1-安装"><a href="#4-1-安装" class="headerlink" title="4.1.安装"></a>4.1.安装</h3><p>该插件可以让你进行团队交流和协同开发，使开发变得更高效。<br><code>Ctrl+Shift+X</code> 打开扩展，搜索插件 <code>Live Share Chat</code>，点击 <code>install</code> 安装。</p>
+<img src="/archives/9a4a16/LiveShareChat-setup.png" class>
+
+<h3 id="4-2-效果"><a href="#4-2-效果" class="headerlink" title="4.2.效果"></a>4.2.效果</h3><img src="/archives/9a4a16/Live_Share_Chat.gif" class title="图片来源于官网">
+
+<h2 id="5-Browser-Preview"><a href="#5-Browser-Preview" class="headerlink" title="5.Browser Preview"></a>5.<a href="https://marketplace.visualstudio.com/items?itemName=auchenberg.vscode-browser-preview" target="_blank" rel="noopener">Browser Preview</a></h2><h3 id="5-1-安装"><a href="#5-1-安装" class="headerlink" title="5.1.安装"></a>5.1.安装</h3><p><code>Ctrl+Shift+X</code> 打开扩展，搜索插件 <code>Browser Preview</code>，点击 <code>install</code> 安装。</p>
+<img src="/archives/9a4a16/BrowserPreview-setup.png" class>
+
+<h3 id="5-2-效果"><a href="#5-2-效果" class="headerlink" title="5.2.效果"></a>5.2.效果</h3><img src="/archives/9a4a16/browser-demo.gif" class title="图片来源于官网">
+
+<h2 id="6-LeetCode"><a href="#6-LeetCode" class="headerlink" title="6.LeetCode"></a>6.<a href="https://marketplace.visualstudio.com/items?itemName=shengchen.vscode-leetcode" target="_blank" rel="noopener">LeetCode</a></h2><h3 id="6-1-安装"><a href="#6-1-安装" class="headerlink" title="6.1.安装"></a>6.1.安装</h3><p><code>Ctrl+Shift+X</code> 打开扩展，搜索插件 <code>LeetCode</code>，点击 <code>install</code> 安装。</p>
+<img src="/archives/9a4a16/LeetCode-setup.png" class>
+
+<h3 id="6-2-效果"><a href="#6-2-效果" class="headerlink" title="6.2.效果"></a>6.2.效果</h3><img src="/archives/9a4a16/LeetCode-menu.png" class>
+<p>官网图片：</p>
+<img src="/archives/9a4a16/LeetCode-demo.gif" class>
+
+<h2 id="7-MySQL"><a href="#7-MySQL" class="headerlink" title="7.MySQL"></a>7.<a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.vscode-mysql" target="_blank" rel="noopener">MySQL</a></h2><h3 id="7-1-安装"><a href="#7-1-安装" class="headerlink" title="7.1.安装"></a>7.1.安装</h3><p><code>Ctrl+Shift+X</code> 打开扩展，搜索插件 <code>MySQL</code>，点击 <code>install</code> 安装。</p>
+<img src="/archives/9a4a16/MySQL-setup.png" class>
+
+<h3 id="7-2-效果"><a href="#7-2-效果" class="headerlink" title="7.2.效果"></a>7.2.效果</h3><img src="/archives/9a4a16/mysql-run.png" class title="图片来源于官网">
+
+<h2 id="8-Remote-SSH"><a href="#8-Remote-SSH" class="headerlink" title="8.Remote - SSH"></a>8.<a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh" target="_blank" rel="noopener">Remote - SSH</a></h2><p>该插件可以让vscode使用任何远程计算机与SSH服务器作为开发环境。<br><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" target="_blank" rel="noopener">Remote - WSL</a> 插件可以让vscode连接Windows子系统作为开发环境。</p>
+<h3 id="8-1-安装"><a href="#8-1-安装" class="headerlink" title="8.1.安装"></a>8.1.安装</h3><p><code>Ctrl+Shift+X</code> 打开扩展，搜索插件 <code>Remote - SSH</code> 或 <code>Remote - WSL</code>，点击 <code>install</code> 安装。</p>
+<img src="/archives/9a4a16/Remote-SSH-setup.png" class>
+
+<h3 id="8-2-效果"><a href="#8-2-效果" class="headerlink" title="8.2.效果"></a>8.2.效果</h3><p>ssh:</p>
+<img src="/archives/9a4a16/ssh-readme.gif" class title="图片来源于官网">
+<p>wsl:</p>
+<img src="/archives/9a4a16/wsl-readme.gif" class title="图片来源于官网">
+
+<hr>
+]]></content>
+      <categories>
+        <category>工具</category>
+        <category>VSCode</category>
+      </categories>
+      <tags>
+        <tag>插件</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>个人网站之GitBook的简单使用</title>
     <url>/archives/4544d152.html</url>
     <content><![CDATA[<p>相比于博客网站（如：CSDN、简书、Hexo搭建的个人博客等），个人感觉GitBook更能做一些系列型的技术存档与学习，<br>前者更适合做一些笔记的整理和技术分享，而GitBook的作用相当于将这些笔记做了一些归纳，类似电子书的方式。<br>对于查询资料和文档整理会更好些，当然，工具的使用因人而异。</p>
@@ -3117,8 +3204,8 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>next</tag>
         <tag>基本配置</tag>
+        <tag>next</tag>
       </tags>
   </entry>
   <entry>

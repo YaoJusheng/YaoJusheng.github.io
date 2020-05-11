@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yaojusheng.github.io/"/>
-  <updated>2020-04-14T16:31:34.238Z</updated>
+  <updated>2020-05-09T12:23:31.569Z</updated>
   <id>http://yaojusheng.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【工具】（八）：VSCode 之个性化配置</title>
+    <link href="http://yaojusheng.github.io/archives/9a4a16.html"/>
+    <id>http://yaojusheng.github.io/archives/9a4a16.html</id>
+    <published>2020-05-04T11:12:18.000Z</published>
+    <updated>2020-05-09T12:23:31.569Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文主要记录VSCode中的一些个性化配置。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://YaoJusheng.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="VSCode" scheme="http://YaoJusheng.github.io/categories/VSCode/"/>
+    
+    
+      <category term="插件" scheme="http://YaoJusheng.github.io/tags/%E6%8F%92%E4%BB%B6/"/>
+    
+  </entry>
   
   <entry>
     <title>个人网站之GitBook的简单使用</title>
@@ -506,37 +529,6 @@
     
     
       <category term="环境搭建" scheme="http://YaoJusheng.github.io/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PHP（六）- 抽象类的继承与MySQL接口CURD操作的实现！</title>
-    <link href="http://yaojusheng.github.io/archives/f1afa15c.html"/>
-    <id>http://yaojusheng.github.io/archives/f1afa15c.html</id>
-    <published>2020-03-13T13:25:42.000Z</published>
-    <updated>2020-03-13T14:33:30.678Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;本篇博客移值自博主在PHP中文网上写的原文，这里做个记录&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
-    
-      <category term="PHP" scheme="http://YaoJusheng.github.io/categories/PHP/"/>
-    
-      <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-    
-      <category term="类继承" scheme="http://YaoJusheng.github.io/tags/%E7%B1%BB%E7%BB%A7%E6%89%BF/"/>
-    
-      <category term="MySQL" scheme="http://YaoJusheng.github.io/tags/MySQL/"/>
-    
-      <category term="CURD" scheme="http://YaoJusheng.github.io/tags/CURD/"/>
     
   </entry>
   

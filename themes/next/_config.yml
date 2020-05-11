@@ -131,7 +131,7 @@ menu:
   home: / || home
   tags: /tags/ || tags
   categories: /categories/ || th
-  notes: /notes/ || book
+  # notes: /notes/ || book
   archives: /archives/ || archive
   about: /resume/ || user
   static-resume: /static-resume/ || user-circle
@@ -530,6 +530,11 @@ font:
   
   # Font settings for posts (.post-body).
   posts:
+    external: true
+    family:
+  
+  # Font settings for notes
+  notes:
     external: true
     family:
 

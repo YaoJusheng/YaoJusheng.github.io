@@ -4,11 +4,13 @@ title:
   category: 分类
   tag: 标签
   schedule: 日程表
+  notes: 随笔
 menu:
   home: 首页
   archives: 归档
   categories: 分类
   tags: 标签
+  notes: 笔记
   about: 关于
   make-resume: 简历制作
   static-resume: 静态简历
@@ -60,6 +62,7 @@ state:
   posts: 日志
   tags: 标签
   categories: 分类
+  notes: 笔记
 search:
   placeholder: 搜索...
 cheers:

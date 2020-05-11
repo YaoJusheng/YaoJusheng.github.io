@@ -10,6 +10,8 @@
       {{- __('title.tag') + page_title_suffix }}
     {%- elif page.type === 'schedule' and not page.title %}
       {{- __('title.schedule') + page_title_suffix }}
+    {% elif page.type === 'notes' and not page.title %}
+      {{ __('title.notes') + page_title_suffix }}
     {%- else %}
       {{- page.title + page_title_suffix }}
     {%- endif %}
@@ -56,6 +58,8 @@
           <div class="event-list">
           </div>
           {% include '_scripts/pages/schedule.swig' %}
+        {% elif page.type === 'notes' %}
+          {% include 'notes.swig' %}
         {% else %}
           {{ page.content }}
         {%- endif %}

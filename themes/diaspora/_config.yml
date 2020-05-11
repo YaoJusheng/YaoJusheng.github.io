@@ -5,9 +5,7 @@ menu:
   标签: /tags
   归档: /archives 
   随笔: /notes 
-  关于: http://yaojusheng.gitee.io/resume
-  静态简历: http://yaojusheng.gitee.io/static-resume
-  动态简历: http://yaojusheng.gitee.io/dynamic-resume
+  关于: http://yaojusheng.gitee.io/resume/
   简历制作: http://yaojusheng.gitee.io/online-resume
 
 # 是否显示目录
@@ -24,6 +22,7 @@ mp3:
   - https://link.hhtjim.com/163/4903779845.mp3
   - https://link.hhtjim.com/163/29032189.mp3
   - https://link.hhtjim.com/163/92305.mp3
+  - https://link.hhtjim.com/163/1443027575.mp3
   - https://link.hhtjim.com/163/553815178.mp3
   - https://link.hhtjim.com/163/1338146196.mp3
   - https://link.hhtjim.com/163/1363205817.mp3
@@ -100,7 +99,7 @@ search:
 # 备案
 beian: 
     # 是否显示备案信息
-    enable: true
+    enable: false
     # 是否在主页面最底下显示备案信息(虽然丑，但是完全满足规定要求)
     enableFooter: false
     # 备案号
@@ -163,6 +162,10 @@ valine:
   notify: true       # 评论回复提醒
   avatar: wavatar        # 评论列表头像样式（https://valine.js.org/avatar）mm
   placeholder: 有话要说？ # 评论框占位符
+  pageSize: 10
+  visitor: true
+  # 是否自动展开评论框
+  autoExpand: false
 
 # 版权声明
 # 版权声明type设定：0-关闭版权声明； 1-文章对应的md文件里有copyright: true属性，才有版权声明； 2-所有文章均有版权声明

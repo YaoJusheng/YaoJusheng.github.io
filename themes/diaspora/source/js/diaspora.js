@@ -617,9 +617,30 @@ $(function() {
 					$(".comment").removeClass("link")
 					gitalk.render('comment-container')
 					Diaspora.loaded();
-				}else{
-          $('#comment-container').html("Gitalk评论已关闭");
-					location.reload();
+        }else if ($('.valine_comment').data('enable') == true) {
+          Diaspora.loading(),
+          comment = $('.valine_comment');
+          
+          valine = new Valine({
+            av: AV,
+            el: comment.data('el'),
+            notify: comment.data('notify'),  // 有人回复时的通知
+            verify: comment.data('verify'),  // 回复时的验证码
+            visitor: comment.data('visitor'),
+            avatar: comment.data('avatar'),
+            emoticon_url: comment.data('emurl'),
+            emoticon_list: comment.data('emlist'),
+            app_id: comment.data('appid'),
+            app_key: comment.data('appkey'),
+            pageSize: comment.data('pagesize'),
+            placeholder: comment.data('placeholder')
+          })
+          $(".valine_comment").removeClass("link")
+          // valine.render('valine_comment')
+          Diaspora.loaded();
+        }else{
+          $('#comment-container').html("评论已关闭");
+					// location.reload();
 				}
                 return false;
                 break;
@@ -632,6 +653,10 @@ $(function() {
     comment = $("#comment-container");
     if (comment.data('ae') == true){
         comment.click();
+    }
+    comment_valine = $(".valine_comment");
+    if (comment_valine.data('ae') == true){
+      comment_valine.click();
     }
 		
     console.log("%c Github %c","background:#24272A; color:#ffffff","","https://github.com/Fechin/hexo-theme-diaspora")

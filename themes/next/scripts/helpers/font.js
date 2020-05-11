@@ -13,7 +13,7 @@ hexo.extend.helper.register('next_font', () => {
   var fontHost = config.host || '//fonts.googleapis.com';
 
   //Get a font list from config
-  var fontFamilies = ['global', 'title', 'headings', 'posts', 'codes'].map(item => {
+  var fontFamilies = ['global', 'title', 'headings', 'posts', 'notes', 'codes'].map(item => {
     if (config[item] && config[item].family && config[item].external) {
       return config[item].family + fontStyles;
     }
