@@ -13,9 +13,9 @@
     </div>
     <div id="header">
         <div>
-            <a class="image-logo" href="/"></a>
+            <a class="image-logo" href="<%= config.root %>"></a>
 			<% if (theme.local_search.enable){ %>
-			<div class="iconfont icon-search switchsearch" href="/search/" title="搜索"></div>
+			<div class="iconfont icon-search switchsearch" href="<%= config.root %>/search/" title="搜索"></div>
 			<%}%>
             <div class="iconfont icon-menu switchmenu"></div>
         </div>
