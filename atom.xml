@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yaojusheng.github.io/"/>
-  <updated>2020-05-09T12:23:31.569Z</updated>
+  <updated>2020-05-23T03:38:17.739Z</updated>
   <id>http://yaojusheng.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python（十二）- 基础知识点汇总</title>
+    <link href="http://yaojusheng.github.io/archives/65842ce6.html"/>
+    <id>http://yaojusheng.github.io/archives/65842ce6.html</id>
+    <published>2020-05-16T10:51:47.000Z</published>
+    <updated>2020-05-23T03:38:17.739Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Python 语言如今风靡一时，因其简单易学的语法和庞大完善的社区支持深受程序员的喜爱，本篇博文主要整理一下 Python 相关的基础知识以及一些汇总。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
+    
+    
+      <category term="基础知识" scheme="http://YaoJusheng.github.io/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+  </entry>
   
   <entry>
     <title>【工具】（八）：VSCode 之个性化配置</title>
@@ -363,9 +386,9 @@
       <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="CURD" scheme="http://YaoJusheng.github.io/tags/CURD/"/>
-    
       <category term="MongoDB" scheme="http://YaoJusheng.github.io/tags/MongoDB/"/>
+    
+      <category term="CURD" scheme="http://YaoJusheng.github.io/tags/CURD/"/>
     
   </entry>
   
@@ -392,9 +415,9 @@
       <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="MySQL" scheme="http://YaoJusheng.github.io/tags/MySQL/"/>
-    
       <category term="CURD" scheme="http://YaoJusheng.github.io/tags/CURD/"/>
+    
+      <category term="MySQL" scheme="http://YaoJusheng.github.io/tags/MySQL/"/>
     
   </entry>
   
@@ -503,32 +526,6 @@
     
     
       <category term="虚拟环境" scheme="http://YaoJusheng.github.io/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python（一）- 安装与升级！</title>
-    <link href="http://yaojusheng.github.io/archives/3b7f3111.html"/>
-    <id>http://yaojusheng.github.io/archives/3b7f3111.html</id>
-    <published>2020-03-13T13:32:51.000Z</published>
-    <updated>2020-03-13T13:41:51.237Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;由于重装了系统，一些工具都要重新安装，正好，准备做一点记录。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;这里是Python的开始…&lt;/strong&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
-    
-      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
-    
-    
-      <category term="环境搭建" scheme="http://YaoJusheng.github.io/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
     
   </entry>
   
