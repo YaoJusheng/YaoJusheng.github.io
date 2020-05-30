@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#aaaa">
   <meta name="google-site-verification" content="oBPAMrbfd4SCViJ8ZMg-NDMRa4uK8W_SIoJeWESCuSI">
-  <meta name="baidu-site-verification" content="0OflGWGIrN">
+  <meta name="baidu-site-verification" content="ICdzS4qVKo">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -493,17 +493,17 @@
           
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-valine">valine</a></li>
             <li class="tab"><a href="#comment-utterance">utterance</a></li>
+            <li class="tab"><a href="#comment-valine">valine</a></li>
         </ul>
         <div class="tab-content">
 
-            <div class="tab-pane valine" id="comment-valine">
-              <div class="comments" id="valine-comments"></div>
-            </div>
-
             <div class="tab-pane utterance" id="comment-utterance">
               <div class="comments" id="utterance-container"></div>
+            </div>
+
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
             </div>
         </div>
       </div>
@@ -841,7 +841,21 @@
   
 
   
-
+<script type="text/javascript">
+  (function() {
+    // 匿名函数，防止污染全局变量
+    var utterances = document.createElement('script');
+    utterances.type = 'text/javascript';
+    utterances.async = true;
+    utterances.setAttribute('issue-term','title')
+    utterances.setAttribute('theme','github-light')
+    utterances.setAttribute('repo','yaojusheng/yaojusheng.github.io')
+    utterances.crossorigin = 'anonymous';
+    utterances.src = 'https://utteranc.es/client.js';
+    // content 是要插入评论的地方
+    document.getElementById('utterance-container').appendChild(utterances);
+  })();
+</script>
 
 <script>
 NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
@@ -870,21 +884,7 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
   }, window.Valine);
 });
 </script>
-<script type="text/javascript">
-  (function() {
-    // 匿名函数，防止污染全局变量
-    var utterances = document.createElement('script');
-    utterances.type = 'text/javascript';
-    utterances.async = true;
-    utterances.setAttribute('issue-term','title')
-    utterances.setAttribute('theme','github-light')
-    utterances.setAttribute('repo','yaojusheng/yaojusheng.github.io')
-    utterances.crossorigin = 'anonymous';
-    utterances.src = 'https://utteranc.es/client.js';
-    // content 是要插入评论的地方
-    document.getElementById('utterance-container').appendChild(utterances);
-  })();
-</script>
+
 
   
   
