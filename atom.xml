@@ -91,6 +91,23 @@
   </entry>
   
   <entry>
+    <title>数据结构与算法（一）- 常见的数据结构及应用场景分析</title>
+    <link href="http://yaojusheng.github.io/archives/eafd9a05.html"/>
+    <id>http://yaojusheng.github.io/archives/eafd9a05.html</id>
+    <published>2020-05-19T14:22:54.000Z</published>
+    <updated>2020-06-21T07:09:53.798Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;算法中，往往都会涉及数据结构的选择和使用。&lt;br&gt;本篇博文主要描述一些常用的数据结构。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>Python（十二）- 基础知识点汇总</title>
     <link href="http://yaojusheng.github.io/archives/65842ce6.html"/>
     <id>http://yaojusheng.github.io/archives/65842ce6.html</id>
@@ -492,35 +509,6 @@
       <category term="MySQL" scheme="http://YaoJusheng.github.io/tags/MySQL/"/>
     
       <category term="CURD" scheme="http://YaoJusheng.github.io/tags/CURD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python（五）- 连接sqlite3以及CURD操作！</title>
-    <link href="http://yaojusheng.github.io/archives/5e26e967.html"/>
-    <id>http://yaojusheng.github.io/archives/5e26e967.html</id>
-    <published>2020-03-13T14:02:59.000Z</published>
-    <updated>2020-03-13T14:34:06.539Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;本文主要描述使用python连接sqlite数据库，并进行简单的CURD操作&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
-    
-      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
-    
-      <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-    
-      <category term="CURD" scheme="http://YaoJusheng.github.io/tags/CURD/"/>
-    
-      <category term="SQLite" scheme="http://YaoJusheng.github.io/tags/SQLite/"/>
     
   </entry>
   

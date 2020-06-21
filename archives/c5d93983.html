@@ -473,17 +473,17 @@
           
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-valine">valine</a></li>
             <li class="tab"><a href="#comment-utterance">utterance</a></li>
+            <li class="tab"><a href="#comment-valine">valine</a></li>
         </ul>
         <div class="tab-content">
 
-            <div class="tab-pane valine" id="comment-valine">
-              <div class="comments" id="valine-comments"></div>
-            </div>
-
             <div class="tab-pane utterance" id="comment-utterance">
               <div class="comments" id="utterance-container"></div>
+            </div>
+
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
             </div>
         </div>
       </div>
@@ -565,7 +565,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">49</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -690,13 +690,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">205k</span>
+    <span title="站点总字数">211k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:06</span>
+    <span title="站点阅读时长">3:12</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
@@ -821,7 +821,21 @@
   
 
   
-
+<script type="text/javascript">
+  (function() {
+    // 匿名函数，防止污染全局变量
+    var utterances = document.createElement('script');
+    utterances.type = 'text/javascript';
+    utterances.async = true;
+    utterances.setAttribute('issue-term','title')
+    utterances.setAttribute('theme','github-light')
+    utterances.setAttribute('repo','yaojusheng/yaojusheng.github.io')
+    utterances.crossorigin = 'anonymous';
+    utterances.src = 'https://utteranc.es/client.js';
+    // content 是要插入评论的地方
+    document.getElementById('utterance-container').appendChild(utterances);
+  })();
+</script>
 
 <script>
 NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
@@ -850,21 +864,7 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
   }, window.Valine);
 });
 </script>
-<script type="text/javascript">
-  (function() {
-    // 匿名函数，防止污染全局变量
-    var utterances = document.createElement('script');
-    utterances.type = 'text/javascript';
-    utterances.async = true;
-    utterances.setAttribute('issue-term','title')
-    utterances.setAttribute('theme','github-light')
-    utterances.setAttribute('repo','yaojusheng/yaojusheng.github.io')
-    utterances.crossorigin = 'anonymous';
-    utterances.src = 'https://utteranc.es/client.js';
-    // content 是要插入评论的地方
-    document.getElementById('utterance-container').appendChild(utterances);
-  })();
-</script>
+
 
   
   

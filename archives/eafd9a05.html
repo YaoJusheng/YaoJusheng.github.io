@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#aaaa">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/site-icon/svg/MrYao02.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#aaaa">
+  <meta name="google-site-verification" content="oBPAMrbfd4SCViJ8ZMg-NDMRa4uK8W_SIoJeWESCuSI">
+  <meta name="baidu-site-verification" content="ICdzS4qVKo">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "6d0092ef"
+    });
+  daovoice('update');
+  </script>
+
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yaojusheng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"2Z9M5GO3BS","apiKey":"640cd38c21e14a012ef1735cf4e47453","indexName":"github_search","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+  <meta name="description" content="算法中，往往都会涉及数据结构的选择和使用。本篇博文主要描述一些常用的数据结构。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法（一）- 常见的数据结构及应用场景分析">
+<meta property="og:url" content="http://yaojusheng.github.io/archives/eafd9a05.html">
+<meta property="og:site_name" content="Mr Yao 的博客">
+<meta property="og:description" content="算法中，往往都会涉及数据结构的选择和使用。本篇博文主要描述一些常用的数据结构。">
+<meta property="article:published_time" content="2020-05-19T14:22:54.000Z">
+<meta property="article:modified_time" content="2020-06-21T07:09:53.798Z">
+<meta property="article:author" content="Jusheng Yao">
+<meta property="article:tag" content="前端博客">
+<meta property="article:tag" content=" 后端博客">
+<meta property="article:tag" content=" Python">
+<meta property="article:tag" content=" PHP">
+<meta property="article:tag" content=" Ruby">
+<meta property="article:tag" content=" JavaScript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yaojusheng.github.io/archives/eafd9a05.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>数据结构与算法（一）- 常见的数据结构及应用场景分析 | Mr Yao 的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Mr Yao 的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr Yao 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/resume/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-static-resume">
+
+    <a href="/static-resume/" rel="section"><i class="fa fa-fw fa-user-circle"></i>静态简历</a>
+
+  </li>
+        <li class="menu-item menu-item-dynamic-resume">
+
+    <a href="/dynamic-resume/" rel="section"><i class="fa fa-fw fa-bolt"></i>动态简历</a>
+
+  </li>
+        <li class="menu-item menu-item-make-resume">
+
+    <a href="/online-resume/" rel="section"><i class="fa fa-fw fa-id-card"></i>简历制作</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/yaojusheng/hexo-theme-next" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yaojusheng.github.io/archives/eafd9a05.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Jusheng Yao">
+      <meta itemprop="description" content="个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr Yao 的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据结构与算法（一）- 常见的数据结构及应用场景分析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-19 22:22:54" itemprop="dateCreated datePublished" datetime="2020-05-19T22:22:54+08:00">2020-05-19</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/archives/eafd9a05.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/archives/eafd9a05.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>算法中，往往都会涉及数据结构的选择和使用。<br>本篇博文主要描述一些常用的数据结构。</p>
+<a id="more"></a>
+
+<p>如：</p>
+<ul>
+<li>字符串、数组</li>
+<li>队列</li>
+<li>双端队列</li>
+<li>链表</li>
+<li>栈</li>
+<li>树</li>
+</ul>
+<h2 id="1-字符串、数组（String-amp-Array）"><a href="#1-字符串、数组（String-amp-Array）" class="headerlink" title="1.字符串、数组（String &amp; Array）"></a>1.字符串、数组（String &amp; Array）</h2><p>字符串转化<br>数组和字符串是最基本的数据结构，在很多编程语言中都有着十分相似的性质，而围绕着它们的算法面试题也是最多的。 </p>
+<p>很多时候，在分析字符串的过程中，我们往往要针对字符串当中的每一个字符进行分析和处理，甚至有时候我们得先把给定的字符串转换成字符数组之后再进行分析和处理。</p>
+<p>举例：翻转字符串“algorithm”。</p>
+<h2 id="2-队列（Queue）"><a href="#2-队列（Queue）" class="headerlink" title="2.队列（Queue）"></a>2.队列（Queue）</h2><p>特点：和栈不同，队列的最大特点是先进先出（FIFO），就好像按顺序排队一样。对于队列的数据来说，我们只允许在队尾查看和添加数据，在队头查看和删除数据。</p>
+<p>实现：可以借助双链表来实现队列。双链表的头指针允许在队头查看和删除数据，而双链表的尾指针允许我们在队尾查看和添加数据。</p>
+<p>应用场景：直观来看，当我们需要按照一定的顺序来处理数据，而该数据的数据量在不断地变化的时候，则需要队列来帮助解题。在算法面试题当中，广度优先搜索（Breadth-First Search）是运用队列最多的地方，我们将在第 06 课时中详细介绍。</p>
+<p>python模拟实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">DEFAULT_CAPACITY = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Empty</span><span class="params">(Exception)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArrayQueue</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self._data = [<span class="literal">None</span>] * DEFAULT_CAPACITY</span><br><span class="line">        self._size = <span class="number">0</span></span><br><span class="line">        self._front = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self._size</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_empty</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""Return True if the queue is empty."""</span></span><br><span class="line">        <span class="keyword">return</span> self._size == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">first</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""Return the element at the front of the queue."""</span></span><br><span class="line">        <span class="keyword">if</span> self.is_empty():</span><br><span class="line">            <span class="keyword">raise</span> Empty(<span class="string">'Queue is empty.'</span>)</span><br><span class="line">        <span class="keyword">return</span> self._data[self._front]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dequeue</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""Remove and return the first element of the queue."""</span></span><br><span class="line">        <span class="keyword">if</span> self.is_empty():</span><br><span class="line">            <span class="keyword">raise</span> Empty(<span class="string">'Queue is empty.'</span>)</span><br><span class="line">        answer = self._data[self._front]</span><br><span class="line">        self._data[self._front] = <span class="literal">None</span></span><br><span class="line">        self._front = (self._front + <span class="number">1</span>) % len(self._data)</span><br><span class="line">        self._size -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> answer</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">enqueue</span><span class="params">(self, e)</span>:</span></span><br><span class="line">        <span class="string">"""Add an element to the back of the queue."""</span></span><br><span class="line">        <span class="keyword">if</span> self._size == len(self._data):</span><br><span class="line">            self._resize(<span class="number">2</span> * len(self._data))</span><br><span class="line">        avail = (self._front + self._size) % len(self._data)</span><br><span class="line">        self._data[avail] = e</span><br><span class="line">        self._size += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_resize</span><span class="params">(self, cap)</span>:</span></span><br><span class="line">        <span class="string">"""Resize a new list of capacity &gt;= len(self)."""</span></span><br><span class="line">        old = self._data</span><br><span class="line">        self._data = [<span class="literal">None</span>] * cap</span><br><span class="line">        walk = self._front</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(self._size):</span><br><span class="line">            self._data[k] = old[walk]</span><br><span class="line">            walk = (<span class="number">1</span> + walk) % len(old)</span><br><span class="line">        self._front = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-双端队列（Deque）"><a href="#3-双端队列（Deque）" class="headerlink" title="3.双端队列（Deque）"></a>3.双端队列（Deque）</h2><p>特点：双端队列和普通队列最大的不同在于，它允许我们在队列的头尾两端都能在 O(1) 的时间内进行数据的查看、添加和删除。</p>
+<p>实现：与队列相似，我们可以利用一个双链表实现双端队列。</p>
+<p>应用场景：双端队列最常用的地方就是实现一个长度动态变化的窗口或者连续区间，而动态窗口这种数据结构在很多题目里都有运用。</p>
+<h2 id="4-链表（LinkedList）"><a href="#4-链表（LinkedList）" class="headerlink" title="4.链表（LinkedList）"></a>4.链表（LinkedList）</h2><p>单链表：链表中的每个元素实际上是一个单独的对象，而所有对象都通过每个元素中的引用字段链接在一起。</p>
+<p>双链表：与单链表不同的是，双链表的每个结点中都含有两个引用字段。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span><span class="params">(object)</span>:</span></span><br><span class="line">    __slots__ = (<span class="string">'val'</span>, <span class="string">'next'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-1-链表的优缺点"><a href="#4-1-链表的优缺点" class="headerlink" title="4.1.链表的优缺点"></a>4.1.链表的优缺点</h3><p>链表的优点如下：</p>
+<ul>
+<li>链表能灵活地分配内存空间；</li>
+<li>能在 O(1) 时间内删除或者添加元素，前提是该元素的前一个元素已知，当然也取决于是单链表还是双链表，在双链表中，如果已知该元素的后一个元素，同样可以在 O(1) 时间内删除或者添加该元素。</li>
+</ul>
+<p>链表的缺点是：</p>
+<ul>
+<li>不像数组能通过下标迅速读取元素，每次都要从链表头开始一个一个读取；</li>
+<li>查询第 k 个元素需要 O(k) 时间。</li>
+</ul>
+<h3 id="4-2-应用场景"><a href="#4-2-应用场景" class="headerlink" title="4.2.应用场景"></a>4.2.应用场景</h3><p>如果要解决的问题里面需要很多快速查询，链表可能并不适合；</p>
+<p>如果遇到的问题中，数据的元素个数不确定，而且需要经常进行数据的添加和删除，那么链表会比较合适。</p>
+<p>而如果数据元素大小确定，删除插入的操作并不多，那么数组可能更适合。</p>
+<h2 id="5-栈（Stack）"><a href="#5-栈（Stack）" class="headerlink" title="5.栈（Stack）"></a>5.栈（Stack）</h2><p>特点：栈的最大特点就是后进先出（LIFO）。对于栈中的数据来说，所有操作都是在栈的顶部完成的，只可以查看栈顶部的元素，只能够向栈的顶部压⼊数据，也只能从栈的顶部弹出数据。</p>
+<p>实现：利用一个单链表来实现栈的数据结构。而且，因为我们都只针对栈顶元素进行操作，所以借用单链表的头就能让所有栈的操作在 O(1) 的时间内完成。</p>
+<p>应用场景：在解决某个问题的时候，只要求关心最近一次的操作，并且在操作完成了之后，需要向前查找到更前一次的操作。</p>
+<p>如果打算用一个数组外加一个指针来实现相似的效果，那么，一旦数组的长度发生了改变，哪怕只是在最后添加一个新的元素，时间复杂度都不再是 O(1)，而且，空间复杂度也得不到优化。</p>
+<p>注意：栈是许多 LeetCode 中等难度偏上的题目里面经常需要用到的数据结构，掌握好它是十分必要的。</p>
+<p>python模拟栈的实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArrayStack</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self._data = []</span><br><span class="line">        self._min_data = []</span><br><span class="line">        self._max_data = []</span><br><span class="line">        self.minVal = <span class="literal">None</span></span><br><span class="line">        self.maxVal = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> len(self._data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_set_min_value</span><span class="params">(self, val)</span>:</span></span><br><span class="line">        <span class="string">"""设置最小值"""</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self._min_data:</span><br><span class="line">            self._min_data.append(val)</span><br><span class="line">            self.minVal = val</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> val &lt;= self.minVal:</span><br><span class="line">                self._min_data.append(val)</span><br><span class="line">                self.minVal = val</span><br><span class="line">        print(<span class="string">'min-list: '</span>, self._min_data, end=<span class="string">' '</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_set_max_value</span><span class="params">(self, val)</span>:</span></span><br><span class="line">        <span class="string">"""设置最大值"""</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self._max_data:</span><br><span class="line">            self._max_data.append(val)</span><br><span class="line">            self.maxVal = val</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> val &gt;= self.maxVal:</span><br><span class="line">                self._max_data.append(val)</span><br><span class="line">                self.maxVal = val</span><br><span class="line">        print(<span class="string">'max-list: '</span>, self._max_data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_update_min_value</span><span class="params">(self, val)</span>:</span></span><br><span class="line">        <span class="string">"""更新最小值"""</span></span><br><span class="line">        <span class="keyword">if</span> val == self.minVal:</span><br><span class="line">            self._min_data.pop()</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> self._min_data:</span><br><span class="line">                self.minVal = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.minVal = self._min_data[<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> val <span class="keyword">in</span> self._min_data:</span><br><span class="line">                self._min_data.remove(val)</span><br><span class="line">        print(<span class="string">'min-list: '</span>, self._min_data, end=<span class="string">' '</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_update_max_value</span><span class="params">(self, val)</span>:</span></span><br><span class="line">        <span class="string">"""更新最大值"""</span></span><br><span class="line">        <span class="keyword">if</span> val == self.maxVal:</span><br><span class="line">            self._max_data.pop()</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> self._max_data:</span><br><span class="line">                self.maxVal = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.maxVal = self._max_data[<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> val <span class="keyword">in</span> self._max_data:</span><br><span class="line">                self._max_data.remove(val)</span><br><span class="line">        print(<span class="string">'max-list: '</span>, self._max_data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_empty</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""Return True if the stack is empty."""</span></span><br><span class="line">        <span class="keyword">return</span> len(self._data) == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""Remove and return the element from the top of the stack."""</span></span><br><span class="line">        <span class="keyword">if</span> self.is_empty():</span><br><span class="line">            <span class="keyword">raise</span> Empty(<span class="string">'Stack is empty.'</span>)</span><br><span class="line"></span><br><span class="line">        pop_val = self._data.pop()</span><br><span class="line"></span><br><span class="line">        self._update_min_value(pop_val)</span><br><span class="line">        self._update_max_value(pop_val)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> pop_val</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, e)</span>:</span></span><br><span class="line">        <span class="string">"""Add an element e to the top of the stack."""</span></span><br><span class="line">        self._data.append(e)</span><br><span class="line">        self._set_min_value(e)</span><br><span class="line">        self._set_max_value(e)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">top</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""Return the element at the top of the stack."""</span></span><br><span class="line">        <span class="keyword">if</span> self.is_empty():</span><br><span class="line">            <span class="keyword">raise</span> Empty(<span class="string">'Stack is empty.'</span>)</span><br><span class="line">        <span class="keyword">return</span> self._data[<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-树（Tree）"><a href="#6-树（Tree）" class="headerlink" title="6.树（Tree）"></a>6.树（Tree）</h2><p>树的结构十分直观，而树的很多概念定义都有一个相同的特点：递归，也就是说，一棵树要满足某种性质，往往要求每个节点都必须满足。例如，在定义一棵二叉搜索树时，每个节点也都必须是一棵二叉搜索树。</p>
+<p>正因为树有这样的性质，大部分关于树的面试题都与递归有关，换句话说，面试官希望通过一道关于树的问题来考察你对于递归算法掌握的熟练程度。</p>
+<p>树的形状<br>在面试中常考的树的形状有：普通二叉树、平衡二叉树、完全二叉树、二叉搜索树、四叉树（Quadtree）、多叉树（N-ary Tree）。</p>
+<p>对于一些特殊的树，例如红黑树（Red-Black Tree）、自平衡二叉搜索树（AVL Tree），一般在面试中不会被问到，除非你所涉及的研究领域跟它们相关或者你十分感兴趣，否则不需要特别着重准备。</p>
+<p>python模拟树的实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tree</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""创建树"""</span></span><br><span class="line"></span><br><span class="line">    default_chars = [chr(c) <span class="keyword">for</span> c <span class="keyword">in</span> range(<span class="number">65</span>, <span class="number">91</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, seq=None)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        初始化</span></span><br><span class="line"><span class="string">        :param seq: 二叉树元素序列</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        seq = self.default_chars <span class="keyword">if</span> seq <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">else</span> seq</span><br><span class="line">        self.chars = seq</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""执行创建"""</span></span><br><span class="line">        tree = self._recursive_create_node(self.chars)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> tree</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_recursive_create_node</span><span class="params">(self, seq)</span>:</span></span><br><span class="line">        <span class="string">"""递归创建节点"""</span></span><br><span class="line">        n = len(seq)</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        i = n // <span class="number">2</span></span><br><span class="line">        <span class="keyword">return</span> Node(seq[i], self._recursive_create_node(seq[:i]), self._recursive_create_node(seq[i + <span class="number">1</span>:]))</span><br></pre></td></tr></table></figure>
+
+<p>树的遍历</p>
+<ol>
+<li>前序遍历（Preorder Traversal）</li>
+</ol>
+<p>方法：先访问根节点，然后访问左子树，最后访问右子树。在访问左、右子树的时候，同样，先访问子树的根节点，再访问子树根节点的左子树和右子树，这是一个不断递归的过程。</p>
+<p>应用场景：运用最多的场合包括在树里进行搜索以及创建一棵新的树。</p>
+<p>python实现前序遍历：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 递归实现</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pre_order</span><span class="params">(tree, lst=[])</span>:</span></span><br><span class="line">    <span class="string">"""前序遍历: 根-&gt;左-&gt;右"""</span></span><br><span class="line">    <span class="keyword">if</span> tree <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="comment"># print(tree.data, end='-&gt;')</span></span><br><span class="line">    lst.append(tree.data)</span><br><span class="line">    self.pre_order(tree.left, lst)</span><br><span class="line">    self.pre_order(tree.right, lst)</span><br><span class="line">    <span class="keyword">return</span> lst</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>中序遍历（Inorder Traversal）</li>
+</ol>
+<p>方法：先访问左子树，然后访问根节点，最后访问右子树，在访问左、右子树的时候，同样，先访问子树的左边，再访问子树的根节点，最后再访问子树的右边。</p>
+<p>应用场景：最常见的是二叉搜素树，由于二叉搜索树的性质就是左孩子小于根节点，根节点小于右孩子，对二叉搜索树进行中序遍历的时候，被访问到的节点大小是按顺序进行的。</p>
+<p>python实现中序遍历：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 递归实现</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mid_order</span><span class="params">(tree, lst=[])</span>:</span></span><br><span class="line">    <span class="string">"""中序遍历: 左-&gt;根-&gt;右"""</span></span><br><span class="line">    <span class="keyword">if</span> tree <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    self.mid_order(tree.left, lst)</span><br><span class="line">    <span class="comment"># print(tree.data, end='-&gt;')</span></span><br><span class="line">    lst.append(tree.data)</span><br><span class="line">    self.mid_order(tree.right, lst)</span><br><span class="line">    <span class="keyword">return</span> lst</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>后序遍历（Postorder Traversal）</li>
+</ol>
+<p>方法：先访问左子树，然后访问右子树，最后访问根节点。</p>
+<p>应用场景：在对某个节点进行分析的时候，需要来自左子树和右子树的信息。收集信息的操作是从树的底部不断地往上进行，好比你在修剪一棵树的叶子，修剪的方法是从外面不断地往根部将叶子一片片地修剪掉。</p>
+<p>python实现后序遍历：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 递归实现</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">post_order</span><span class="params">(tree, lst=[])</span>:</span></span><br><span class="line">    <span class="string">"""后序遍历: 左-&gt;右-&gt;根"""</span></span><br><span class="line">    <span class="keyword">if</span> tree <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    self.post_order(tree.left, lst)</span><br><span class="line">    self.post_order(tree.right, lst)</span><br><span class="line">    <span class="comment"># print(tree.data, end='-&gt;')</span></span><br><span class="line">    lst.append(tree.data)</span><br><span class="line">    <span class="keyword">return</span> lst</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>广度遍历（Breadth traversal）</li>
+</ol>
+<p>python实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">level_order</span><span class="params">(tree)</span>:</span></span><br><span class="line">    <span class="string">"""广度遍历"""</span></span><br><span class="line">    lst = list()</span><br><span class="line">    <span class="keyword">if</span> tree <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span> lst</span><br><span class="line"></span><br><span class="line">    q = list()</span><br><span class="line">    q.append(tree)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> len(q) &gt; <span class="number">0</span>:</span><br><span class="line">        node = q.pop(<span class="number">0</span>)</span><br><span class="line">        <span class="comment"># print(node.data, end='-&gt;')</span></span><br><span class="line">        lst.append(node.data)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> node.left:</span><br><span class="line">            q.append(node.left)  <span class="comment"># 左子节点入队</span></span><br><span class="line">        <span class="keyword">if</span> node.right:</span><br><span class="line">            q.append(node.right)  <span class="comment"># 右子节点入队</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> lst</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>内容来源：拉勾网（数据结构与算法）</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    
+    <div>
+      
+        <div style="text-align:center;color: red;font-size:14px;">
+          -------------   本文已结束  <i class="fa fa-paw"></i>  感谢您的阅读！  -------------
+        </div>
+      
+    </div>
+        <div class="reward-container">
+  <div>Donate comment here.</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Jusheng Yao 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Jusheng Yao 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      
+      
+      <div>
+        <div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/archives/eafd9a05.html">数据结构与算法（一）- 常见的数据结构及应用场景分析</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Jusheng Yao 的个人博客">Jusheng Yao</a></p>
+  <p><span>发布时间:</span>2020年05月19日 - 22:22</p>
+  <p><span>最后更新:</span>2020年06月21日 - 15:09</p>
+  <p><span>原始链接:</span><a href="/archives/eafd9a05.html" title="数据结构与算法（一）- 常见的数据结构及应用场景分析">http://yaojusheng.github.io/archives/eafd9a05.html</a>
+    <span class="copy-path"  title="点击复制文章链接">
+      <i class="fa fa-clipboard" data-clipboard-text="http://yaojusheng.github.io/archives/eafd9a05.html"  aria-label="复制成功！"></i>
+    </span>
+  </p>
+  <p>
+    <span>版权声明:</span>
+    本博客所有文章除特别声明外，均采用 
+    <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">
+    <i class="fa fa-creative-commons"></i>BY-NC-SA </a>
+    许可协议。转载请注明出处!
+  </p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+      </div>
+      
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/atom.xml">
+                <span class="icon">
+                  <i class="fa fa-rss"></i>
+                </span>
+
+                <span class="label">RSS</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/65842ce6.html" rel="prev" title="Python（十二）- 基础知识点汇总">
+      <i class="fa fa-chevron-left"></i> Python（十二）- 基础知识点汇总
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/70f95257.html" rel="next" title="Python（十三）- 常用内置模块与第三方库">
+      Python（十三）- 常用内置模块与第三方库 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-utterance">utterance</a></li>
+            <li class="tab"><a href="#comment-valine">valine</a></li>
+        </ul>
+        <div class="tab-content">
+
+            <div class="tab-pane utterance" id="comment-utterance">
+              <div class="comments" id="utterance-container"></div>
+            </div>
+
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    
+    <div class="my-tag-cloud">
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <h3 class="widget-title">Tag Cloud</h3>
+          <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width:100%">
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Boxy/" rel="tag">Boxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E5%B8%83%E5%B1%80/" rel="tag">CSS布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CURD/" rel="tag">CURD</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitBook/" rel="tag">GitBook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Subnav%E5%9B%BE%E6%A0%87/" rel="tag">Subnav图标</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tkinter/" rel="tag">Tkinter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/" rel="tag">Webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi%E8%BF%9E%E6%8E%A5/" rel="tag">WiFi连接</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css%E5%B8%83%E5%B1%80/" rel="tag">css布局</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex%E5%B8%83%E5%B1%80/" rel="tag">flex布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gh-pages/" rel="tag">gh-pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid%E5%B8%83%E5%B1%80/" rel="tag">grid布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello-world/" rel="tag">hello world</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jupyter/" rel="tag">jupyter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/next/" rel="tag">next</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/" rel="tag">yilia</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/" rel="tag">二叉树遍历</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="tag">交互式编程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/" rel="tag">代理配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92/" rel="tag">前后端交互</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0/" rel="tag">匿名函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%8F%E7%A8%8B/" rel="tag">协程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/" rel="tag">双飞翼布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%A7%A3%E6%9E%90/" rel="tag">命令行解析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" rel="tag">命名空间</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80/" rel="tag">圣杯布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" rel="tag">基本操作</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/" rel="tag">基本配置</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag">基础知识</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B1%9E%E6%80%A7%E6%A0%B7%E5%BC%8F/" rel="tag">属性样式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A8%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97%E4%B8%8E%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/" rel="tag">常用内置模块与第三方库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" rel="tag">常用工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/" rel="tag">插件配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD/" rel="tag">方法重载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%87%E7%AD%BE%E5%88%86%E7%B1%BB/" rel="tag">标签分类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="tag">环境搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81/" rel="tag">用户密码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%B8%E5%86%8C%E8%A7%86%E9%A2%91/" rel="tag">相册视频</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1/" rel="tag">类与对象</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%B1%9E%E6%80%A7/" rel="tag">类属性</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E7%BB%A7%E6%89%BF/" rel="tag">类继承</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/" rel="tag">背景图片</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" rel="tag">虚拟环境</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BF%E9%97%AE%E9%99%90%E5%88%B6%E7%AC%A6/" rel="tag">访问限制符</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" rel="tag">评论系统</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B5%84%E6%BA%90%E5%8E%8B%E7%BC%A9/" rel="tag">资源压缩</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9F%B3%E9%A2%91/" rel="tag">音频</a><span class="tag-list-count">1</span></li></ul>
+            </canvas>
+          </div>
+        </div>
+      
+    </div>
+
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-字符串、数组（String-amp-Array）"><span class="nav-text">1.字符串、数组（String &amp; Array）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-队列（Queue）"><span class="nav-text">2.队列（Queue）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-双端队列（Deque）"><span class="nav-text">3.双端队列（Deque）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-链表（LinkedList）"><span class="nav-text">4.链表（LinkedList）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-链表的优缺点"><span class="nav-text">4.1.链表的优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-应用场景"><span class="nav-text">4.2.应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-栈（Stack）"><span class="nav-text">5.栈（Stack）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-树（Tree）"><span class="nav-text">6.树（Tree）</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jusheng Yao"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Jusheng Yao</p>
+  <div class="site-description" itemprop="description">个人技术博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/YaoJusheng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;YaoJusheng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/YaoJusheng" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;YaoJusheng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github-alt"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_41599858" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_41599858" rel="noopener" target="_blank"><i class="fa fa-fw fa-mortar-board"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:jusheng_yao@outlook.com" title="E-Mail → mailto:jusheng_yao@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.google.com/" title="最受欢迎的搜索引擎，国内使用可用代理或安装助手"  target="_blank">
+              <img src="/images/ico/google_favicon.ico" class="links-item-img">&emsp;
+            Google搜索
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://cn.bing.com/" title="必应搜索，一款好用的搜索引擎"  target="_blank">
+              <img src="/images/ico/biying_favicon.ico" class="links-item-img">&emsp;
+            Bing搜索
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://translate.google.cn/" title="谷歌翻译"  target="_blank">
+              <img src="/images/ico/fanyi_favicon.ico" class="links-item-img">&emsp;
+            Translate
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.bilibili.com/" title="技术视频网站"  target="_blank">
+              <img src="/images/ico/bili_favicon.ico" class="links-item-img">&emsp;
+            bilibili
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhihu.com/" title="知识、技术交流平台"  target="_blank">
+              <img src="/images/ico/zhihu_favicon.ico" class="links-item-img">&emsp;
+            知乎
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://tool.lu/" title="全面多样化的开发、站长类工具"  target="_blank">
+              <img src="/images/ico/onlinetool.ico" class="links-item-img">&emsp;
+            在线工具
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://fontstore.baidu.com/static/editor/index.html" title="可制作图形文字，减少字体体积"  target="_blank">
+              <img src="/images/ico/font_favicon.ico" class="links-item-img">&emsp;
+            百度字体编辑器
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.draw.io/" title="一款在线绘制流程图的网页工具"  target="_blank">
+              <img src="/images/ico/draw_favicon.ico" class="links-item-img">&emsp;
+            绘图draw
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://naotu.baidu.com/home" title="一款可替代XMind的在线思维导图工具"  target="_blank">
+              <img src="/images/ico/naotu_favicon.ico" class="links-item-img">&emsp;
+            百度脑图
+          </a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jusheng Yao</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">211k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:12</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 — <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+  <br>
+  
+  <div class="powered-by" style='color: gray'>
+    <i class="fa fa-user-md"></i>
+    <span id="busuanzi_container_site_uv">
+      本站总访客数:&nbsp;<span id="busuanzi_value_site_uv" style='color: silver'></span>&nbsp;人&nbsp;| 
+    </span>
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_container_site_pv">
+        &nbsp;本站总访问量:&nbsp;<span id="busuanzi_value_site_pv" style='color: silver'></span>&nbsp;次
+    </span>
+  </div>
+
+  <br>
+  
+  <div>
+    <span id="timeDate" class="color: lightblue;"></span>  
+    <span id="times" class="color: lightgreen;"></span>
+  </div>
+
+
+
+<script>
+  var now = new Date(); 
+  function createtime() { 
+      var grt= new Date("02/12/2020 18:00:00"); 
+      now.setTime(now.getTime()+250); 
+      days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+      if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+      mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+      snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+      document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+      document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+  } 
+  setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='0,0,255' opacity='0.8' zIndex='-2' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+<script type="text/javascript">
+  (function() {
+    // 匿名函数，防止污染全局变量
+    var utterances = document.createElement('script');
+    utterances.type = 'text/javascript';
+    utterances.async = true;
+    utterances.setAttribute('issue-term','title')
+    utterances.setAttribute('theme','github-light')
+    utterances.setAttribute('repo','yaojusheng/yaojusheng.github.io')
+    utterances.crossorigin = 'anonymous';
+    utterances.src = 'https://utteranc.es/client.js';
+    // content 是要插入评论的地方
+    document.getElementById('utterance-container').appendChild(utterances);
+  })();
+</script>
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'oT30CtobWiSnNhMrBtXP9d0A-gzGzoHsz',
+      appKey     : 'oVHGMlRjJJyTXPLmyrGKrWFu',
+      placeholder: "有话要说？",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+
+  
+  
+    <script type="text/javascript" src="/js/clicklove.js"></script>
+  
+
+</body>
+</html>
