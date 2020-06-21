@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yaojusheng.github.io/"/>
-  <updated>2020-05-23T03:38:17.739Z</updated>
+  <updated>2020-06-21T09:30:46.448Z</updated>
   <id>http://yaojusheng.github.io/</id>
   
   <author>
@@ -15,6 +15,97 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title> Python（十五）- 创建二叉树和遍历的实现</title>
+    <link href="http://yaojusheng.github.io/archives/f9d00648.html"/>
+    <id>http://yaojusheng.github.io/archives/f9d00648.html</id>
+    <published>2020-06-21T07:16:26.000Z</published>
+    <updated>2020-06-21T09:30:46.448Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;树（tree）是一种非线性的数据结构，是一种抽象数据类型（ADT），用来模拟具有树状结构性质的数据集合，它是由n（n&amp;gt;0）个有限节点通过连接它们的边组成一个具有层次关系的集合。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
+    
+    
+      <category term="二叉树遍历" scheme="http://YaoJusheng.github.io/tags/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python（十四）- 多任务：进程、线程、协程</title>
+    <link href="http://yaojusheng.github.io/archives/46aa5d73.html"/>
+    <id>http://yaojusheng.github.io/archives/46aa5d73.html</id>
+    <published>2020-05-21T15:03:58.000Z</published>
+    <updated>2020-06-21T12:03:58.075Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;实际开发中，经常会面临一些并发问题的方案和设计，通常会有性能优化和提升的需求。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
+    
+    
+      <category term="进程" scheme="http://YaoJusheng.github.io/tags/%E8%BF%9B%E7%A8%8B/"/>
+    
+      <category term="线程" scheme="http://YaoJusheng.github.io/tags/%E7%BA%BF%E7%A8%8B/"/>
+    
+      <category term="协程" scheme="http://YaoJusheng.github.io/tags/%E5%8D%8F%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python（十三）- 常用内置模块与第三方库</title>
+    <link href="http://yaojusheng.github.io/archives/70f95257.html"/>
+    <id>http://yaojusheng.github.io/archives/70f95257.html</id>
+    <published>2020-05-20T14:31:06.000Z</published>
+    <updated>2020-06-21T05:51:07.938Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;python具有庞大的用户群，因其语法简洁，开发效率高而备受欢迎，同样，它的标准库与第三方库的支持也比较完善。&lt;/p&gt;
+&lt;p&gt;&lt;font color=&quot;red&quot;&gt;这里做些简单的整理。&lt;/font&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
+    
+    
+      <category term="常用内置模块与第三方库" scheme="http://YaoJusheng.github.io/tags/%E5%B8%B8%E7%94%A8%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97%E4%B8%8E%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构与算法（一）- 常见的数据结构及应用场景分析</title>
+    <link href="http://yaojusheng.github.io/archives/eafd9a05.html"/>
+    <id>http://yaojusheng.github.io/archives/eafd9a05.html</id>
+    <published>2020-05-19T14:22:54.000Z</published>
+    <updated>2020-06-21T07:09:53.798Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;算法中，往往都会涉及数据结构的选择和使用。&lt;br&gt;本篇博文主要描述一些常用的数据结构。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Python（十二）- 基础知识点汇总</title>
@@ -418,114 +509,6 @@
       <category term="MySQL" scheme="http://YaoJusheng.github.io/tags/MySQL/"/>
     
       <category term="CURD" scheme="http://YaoJusheng.github.io/tags/CURD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python（五）- 连接sqlite3以及CURD操作！</title>
-    <link href="http://yaojusheng.github.io/archives/5e26e967.html"/>
-    <id>http://yaojusheng.github.io/archives/5e26e967.html</id>
-    <published>2020-03-13T14:02:59.000Z</published>
-    <updated>2020-03-13T14:34:06.539Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;本文主要描述使用python连接sqlite数据库，并进行简单的CURD操作&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
-    
-      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
-    
-      <category term="数据库" scheme="http://YaoJusheng.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-    
-      <category term="CURD" scheme="http://YaoJusheng.github.io/tags/CURD/"/>
-    
-      <category term="SQLite" scheme="http://YaoJusheng.github.io/tags/SQLite/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python（四）- 数据类型及常用的操作！</title>
-    <link href="http://yaojusheng.github.io/archives/2fc509ab.html"/>
-    <id>http://yaojusheng.github.io/archives/2fc509ab.html</id>
-    <published>2020-03-13T13:53:24.000Z</published>
-    <updated>2020-03-13T14:02:21.901Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;所有语言的开端都绕不开数据类型，作为面向对象语言，Python之所以深受欢迎，同样离不开其丰富的数据类型&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
-    
-      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
-    
-    
-      <category term="数据类型" scheme="http://YaoJusheng.github.io/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
-    
-      <category term="基本操作" scheme="http://YaoJusheng.github.io/tags/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python（三）- 交互式编程：jupyter的安装、使用以及出现的部分问题！</title>
-    <link href="http://yaojusheng.github.io/archives/441b84e2.html"/>
-    <id>http://yaojusheng.github.io/archives/441b84e2.html</id>
-    <published>2020-03-13T13:49:06.000Z</published>
-    <updated>2020-03-13T13:55:20.941Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;如题，本次主要聊聊关于交互式编程在Python中的应用。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
-    
-      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
-    
-    
-      <category term="交互式编程" scheme="http://YaoJusheng.github.io/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BC%96%E7%A8%8B/"/>
-    
-      <category term="jupyter" scheme="http://YaoJusheng.github.io/tags/jupyter/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python（二）- 虚拟环境管理：pyenv、virtualwnv、virtualenvwrapper的安装</title>
-    <link href="http://yaojusheng.github.io/archives/9ceab481.html"/>
-    <id>http://yaojusheng.github.io/archives/9ceab481.html</id>
-    <published>2020-03-13T13:44:31.000Z</published>
-    <updated>2020-03-13T13:47:23.517Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;python 中使用虚拟环境&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="编程" scheme="http://YaoJusheng.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
-    
-      <category term="Python" scheme="http://YaoJusheng.github.io/categories/Python/"/>
-    
-    
-      <category term="虚拟环境" scheme="http://YaoJusheng.github.io/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/"/>
     
   </entry>
   
