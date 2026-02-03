@@ -1,3 +1,4 @@
+---
 # Hexo Configuration
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
@@ -5,8 +6,8 @@
 # Site 网站
 title: Mr Yao 的博客           # 网站标题
 subtitle: ''          # 网站副标题
-description: '个人技术博客'       # 网站描述
-keywords: 前端博客, 后端博客, Python, PHP, Ruby, JavaScript
+description: 个人技术博客         # 网站描述
+keywords: 前端博客, 后端博客, Python, Go, Rust, Web
 author: Jusheng Yao   # 博主的名字
 
 # 网站使用的语言
@@ -16,7 +17,7 @@ author: Jusheng Yao   # 博主的名字
 # zh-Hant-TW   Chinese (Traditional)    台灣正體
 language: zh-Hans
 
-timezone: ''          # 网站时区。Hexo 默认使用您电脑的时区
+timezone: Asia/Shanghai            # 网站时区。Hexo 默认使用您电脑的时区
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -33,14 +34,14 @@ abbrlink:
 
 # 网站搜索
 algolia:
-  applicationID: 2Z9M5GO3BS # applicationID
+  applicationID: 2Z9M5GO3BS  # applicationID
   apiKey: 640cd38c21e14a012ef1735cf4e47453
-  indexName: 'github_search'
+  indexName: github_search
   chunkSize: 5000
 
 pretty_urls:
-  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
-  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+  trailing_index: true   # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: true    # Set to false to remove trailing '.html' from permalinks
 
 # 本地搜索
 search:
@@ -50,10 +51,10 @@ search:
   limit: 10000
 
 # 设置RSS
-plugins: 
-  hexo-generator-feed
-  hexo-generator-sitemap
-  hexo-generator-baidu-sitemap
+plugins:
+- hexo-generator-feed
+- hexo-generator-sitemap
+- hexo-generator-baidu-sitemap
 
 
 # 配置sitemap以及配置keyWords(方便我们提交到各大搜索引擎)
@@ -73,7 +74,7 @@ feed:
 
 # 字数统计和阅读时长(网站底部/文章内) - next 配置 - 弃用，自定义
 symbols_count_time:
-  #文章内是否显示
+  # 文章内是否显示
   symbols: true  # 文章字数
   time: true    # 阅读时长
   # 网页底部是否显示
@@ -92,12 +93,12 @@ i18n_dir: :lang
 skip_render:
 
 # Writing
-new_post_name: :title.md # File name of new posts
+new_post_name: :title.md  # File name of new posts
 default_layout: post
-titlecase: false # Transform title into titlecase
+titlecase: false          # Transform title into titlecase
 external_link:
-  enable: true # Open external links in new tab
-  field: site # Apply to the whole site
+  enable: true            # Open external links in new tab
+  field: site             # Apply to the whole site
   exclude: ''
 filename_case: 0
 render_drafts: false
@@ -127,18 +128,18 @@ index_generator:
 # Category & Tag
 default_category: uncategorized
 category_map:
-  # 网站: site
-  # 小程序: miniprogram
-  # 开发工具: tools
+# 网站: site
+# 小程序: miniprogram
+# 开发工具: tools
 tag_map:
-  # 标签分类: kinds
-  # 基础: basic
-  # Web框架: web_frame
-  # 数据库操作: sql_action
-  # 数据分析: ddata_analysis
-  # 爬虫: spider
-  # 自动化测试: auto_test
-  # 插件: plugins
+# 标签分类: kinds
+# 基础: basic
+# Web框架: web_frame
+# 数据库操作: sql_action
+# 数据分析: ddata_analysis
+# 爬虫: spider
+# 自动化测试: auto_test
+# 插件: plugins
 
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
@@ -205,16 +206,16 @@ neat_enable: false
 # 压缩html
 neat_html:
   enable: false
-  exclude:  #排除的文件
-    - '**/baidu*.html'
-    - '**/google*.html'
-  
+  exclude:  # 排除的文件
+  - '**/baidu*.html'
+  - '**/google*.html'
+
 # 压缩css  跳过min.css
 neat_css:
   enable: false
   exclude:
-    - '**/*.min.css'
-    
+  - '**/*.min.css'
+
 # 压缩js 跳过min.js
 neat_js:
   enable: false
@@ -222,9 +223,9 @@ neat_js:
   output:
   compress:
   exclude:
-    - '**/*.min.js'
-    - '**/jquery.fancybox.pack.js'
-    - '**/index.js'  
+  - '**/*.min.js'
+  - '**/jquery.fancybox.pack.js'
+  - '**/index.js'
 # 压缩博文配置结束
 # 注意上面的路径 **/* ,需要自己去配置正确的路径。，不然生成的是空白页面，当然你也可以删掉，全部压缩。
 

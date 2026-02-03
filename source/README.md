@@ -4,7 +4,8 @@
 
 categories:
   - Python
-  - PHP
+  - Go
+  - Rust
   - Ruby
   - Web
   - SQL
