@@ -1,4 +1,3 @@
----
 lockfileVersion: '9.0'
 
 settings:
@@ -69,9 +68,18 @@ importers:
       hexo-tag-cloud:
         specifier: 2.1.2
         version: 2.1.2
+      hexo-util:
+        specifier: ^4.0.0
+        version: 4.0.0
       jasmine-node:
         specifier: ^3.0.0
         version: 3.0.0
+      js-yaml:
+        specifier: ^4.1.1
+        version: 4.1.1
+      nunjucks:
+        specifier: ^3.2.4
+        version: 3.2.4(chokidar@3.6.0)
     devDependencies:
       hexo-neat:
         specifier: ^1.0.9
@@ -406,9 +414,7 @@ packages:
 
   core-js@1.2.7:
     resolution: {integrity: sha512-ZiPp9pZlgxpWRu0M+YWbm6+aQ84XEfH1JRXvfOc/fILWI0VKhLC2LX13X1NYq4fULzLMq7Hfh43CSo2/aIaUPA==}
-    deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, 
-      feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility 
-      issues. Please, upgrade your dependencies to the actual version of core-js.
+    deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
 
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -438,8 +444,7 @@ packages:
 
   cuid@1.3.8:
     resolution: {integrity: sha512-MoL67ZZuBetDMxzrZtO+Iq1ATajFACQCP52QRinBgd3yTjYdv54mJO8ibUrh06fojKCoX5P2i7KkEatm4VTIOQ==}
-    deprecated: Cuid and other k-sortable and non-cryptographic ids (Ulid, ObjectId, KSUID, all UUIDs) are all insecure. Use @paralleldrive/cuid2 
-      instead.
+    deprecated: Cuid and other k-sortable and non-cryptographic ids (Ulid, ObjectId, KSUID, all UUIDs) are all insecure. Use @paralleldrive/cuid2 instead.
 
   data-urls@5.0.0:
     resolution: {integrity: sha512-ZYP5VBHshaDAiVZxjbRVcFJpc+4xGgT0bK3vzy1HLN8jTO975HEbuYzZJcHoQEY5K1a0z8YayJkyVETa08eNTg==}
@@ -898,8 +903,8 @@ packages:
   hexo-generator-baidu-sitemap@0.1.9:
     resolution: {integrity: sha512-P/mLsddxcIaq6GmKkqcdw6zrx+iYMpxpL8eh8bSDEJFyTNYDLWJBN29fHin6T3etu9mnOKvNc17dyLgYTN4O3Q==}
 
-  ? hexo-generator-calendar@https://codeload.github.com/howiefh/hexo-generator-calendar/tar.gz/9c25735a38dc7997bd498563cd624091905c8e72
-  : resolution: {tarball: https://codeload.github.com/howiefh/hexo-generator-calendar/tar.gz/9c25735a38dc7997bd498563cd624091905c8e72}
+  hexo-generator-calendar@https://codeload.github.com/howiefh/hexo-generator-calendar/tar.gz/9c25735a38dc7997bd498563cd624091905c8e72:
+    resolution: {tarball: https://codeload.github.com/howiefh/hexo-generator-calendar/tar.gz/9c25735a38dc7997bd498563cd624091905c8e72}
     version: 0.0.1
 
   hexo-generator-category@2.0.0:
@@ -1055,8 +1060,7 @@ packages:
 
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
-    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async
-      requests by a key value, which is much more comprehensive and powerful.
+    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 
   inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
@@ -1400,8 +1404,7 @@ packages:
 
   mkdirp@0.3.5:
     resolution: {integrity: sha512-8OCq0De/h9ZxseqzCH8Kw/Filf5pF/vMI6+BH7Lu0jXz2pqYCjTAQRolSxRIi+Ax+oCCjlxoJMP0YQ4XlrQNHg==}
-    deprecated: Legacy versions of mkdirp are no longer supported. Please update to mkdirp 1.x. (Note that the API surface has changed to use Promises
-      in 1.x.)
+    deprecated: Legacy versions of mkdirp are no longer supported. Please update to mkdirp 1.x. (Note that the API surface has changed to use Promises in 1.x.)
 
   mkdirp@0.5.6:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
@@ -1409,8 +1412,7 @@ packages:
 
   moize@6.1.7:
     resolution: {integrity: sha512-8/9XgYooMo7/q5tf6zGF4+Wp1jx5sbxV87uK6YvTq9rgDtusLWZCZ8c5C0EhYZbNGudul5EMeMsObO4Ug/gszg==}
-    deprecated: This library has been deprecated in favor of micro-memoize, which as-of version 5 incorporates most of the functionality that this 
-      library offers at nearly half the size and better speed.
+    deprecated: This library has been deprecated in favor of micro-memoize, which as-of version 5 incorporates most of the functionality that this library offers at nearly half the size and better speed.
 
   moment-timezone@0.5.48:
     resolution: {integrity: sha512-f22b8LV1gbTO2ms2j2z13MuPogNoh5UzxL3nzNAYKGraILnbGc9NEE6dyiiiLv46DGRb8A4kg8UKWLjPthxBHw==}
@@ -2073,13 +2075,13 @@ snapshots:
 
   '@csstools/color-helpers@5.1.0': {}
 
-  ? '@csstools/css-calc@2.1.4(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)'
-  : dependencies:
+  '@csstools/css-calc@2.1.4(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)':
+    dependencies:
       '@csstools/css-parser-algorithms': 3.0.5(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-tokenizer': 3.0.4
 
-  ? '@csstools/css-color-parser@3.1.0(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)'
-  : dependencies:
+  '@csstools/css-color-parser@3.1.0(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)':
+    dependencies:
       '@csstools/color-helpers': 5.1.0
       '@csstools/css-calc': 2.1.4(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-parser-algorithms': 3.0.5(@csstools/css-tokenizer@3.0.4)
@@ -2141,7 +2143,7 @@ snapshots:
       micromatch: 3.1.10
       normalize-path: 2.1.1
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   anymatch@3.1.3:
     dependencies:
@@ -2241,7 +2243,7 @@ snapshots:
       split-string: 3.1.0
       to-regex: 3.0.2
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   braces@3.0.3:
     dependencies:
@@ -2339,7 +2341,7 @@ snapshots:
     optionalDependencies:
       fsevents: 1.2.13
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   chokidar@2.1.8:
     dependencies:
@@ -2357,7 +2359,7 @@ snapshots:
     optionalDependencies:
       fsevents: 1.2.13
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   chokidar@3.6.0:
     dependencies:
@@ -2431,7 +2433,7 @@ snapshots:
       safe-buffer: 5.2.1
       vary: 1.1.2
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   concat-map@0.0.1: {}
 
@@ -2442,7 +2444,7 @@ snapshots:
       parseurl: 1.3.3
       utils-merge: 1.0.1
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   copy-descriptor@0.1.1: {}
 
@@ -2672,7 +2674,7 @@ snapshots:
       snapdragon: 0.8.2
       to-regex: 3.0.2
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   expand-range@1.8.2:
     dependencies:
@@ -2702,7 +2704,7 @@ snapshots:
       snapdragon: 0.8.2
       to-regex: 3.0.2
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   fast-archy@1.0.0: {}
 
@@ -2748,7 +2750,7 @@ snapshots:
       statuses: 1.5.0
       unpipe: 1.0.0
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   for-in@1.0.2: {}
 
@@ -2931,7 +2933,7 @@ snapshots:
       resolve: 1.22.11
       tildify: 1.2.0
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   hexo-cli@4.3.2:
     dependencies:
@@ -2955,7 +2957,7 @@ snapshots:
       nunjucks: 3.2.4(chokidar@3.6.0)
       picocolors: 1.1.1
     transitivePeerDependencies:
-    - chokidar
+      - chokidar
 
   hexo-front-matter@0.2.3:
     dependencies:
@@ -2976,7 +2978,7 @@ snapshots:
       escape-string-regexp: 1.0.5
       graceful-fs: 4.2.11
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   hexo-fs@1.0.2:
     dependencies:
@@ -2985,7 +2987,7 @@ snapshots:
       escape-string-regexp: 1.0.5
       graceful-fs: 4.2.11
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   hexo-fs@3.1.0:
     dependencies:
@@ -3018,11 +3020,11 @@ snapshots:
       hexo: 3.9.0(chokidar@3.6.0)
       utils-merge: 1.0.1
     transitivePeerDependencies:
-    - chokidar
-    - supports-color
+      - chokidar
+      - supports-color
 
-  ? hexo-generator-calendar@https://codeload.github.com/howiefh/hexo-generator-calendar/tar.gz/9c25735a38dc7997bd498563cd624091905c8e72
-  : dependencies:
+  hexo-generator-calendar@https://codeload.github.com/howiefh/hexo-generator-calendar/tar.gz/9c25735a38dc7997bd498563cd624091905c8e72:
+    dependencies:
       object-assign: 4.1.1
 
   hexo-generator-category@2.0.0:
@@ -3034,7 +3036,7 @@ snapshots:
       hexo-util: 2.7.0
       nunjucks: 3.2.4(chokidar@3.6.0)
     transitivePeerDependencies:
-    - chokidar
+      - chokidar
 
   hexo-generator-index@4.0.0:
     dependencies:
@@ -3044,7 +3046,7 @@ snapshots:
     dependencies:
       nunjucks: 3.2.4(chokidar@3.6.0)
     transitivePeerDependencies:
-    - chokidar
+      - chokidar
 
   hexo-generator-sitemap@3.0.1(chokidar@3.6.0):
     dependencies:
@@ -3052,7 +3054,7 @@ snapshots:
       micromatch: 4.0.8
       nunjucks: 3.2.4(chokidar@3.6.0)
     transitivePeerDependencies:
-    - chokidar
+      - chokidar
 
   hexo-generator-tag@2.0.0:
     dependencies:
@@ -3098,17 +3100,17 @@ snapshots:
       jsdom: 25.0.1
       marked: 15.0.12
     transitivePeerDependencies:
-    - bufferutil
-    - canvas
-    - supports-color
-    - utf-8-validate
+      - bufferutil
+      - canvas
+      - supports-color
+      - utf-8-validate
 
   hexo-renderer-stylus@3.0.1:
     dependencies:
       nib: 1.2.0(stylus@0.62.0)
       stylus: 0.62.0
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   hexo-server@3.0.0:
     dependencies:
@@ -3121,7 +3123,7 @@ snapshots:
       picocolors: 1.1.1
       serve-static: 1.16.3
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   hexo-symbols-count-time@0.7.1:
     dependencies:
@@ -3132,7 +3134,7 @@ snapshots:
       hexo-fs: 0.2.3
       hexo-log: 0.2.0
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   hexo-util@0.6.3:
     dependencies:
@@ -3217,8 +3219,8 @@ snapshots:
       titlecase: 1.1.3
       warehouse: 2.2.0
     transitivePeerDependencies:
-    - chokidar
-    - supports-color
+      - chokidar
+      - supports-color
 
   hexo@8.1.1(chokidar@3.6.0):
     dependencies:
@@ -3246,7 +3248,7 @@ snapshots:
       titlecase: 1.1.3
       warehouse: 6.0.0
     transitivePeerDependencies:
-    - chokidar
+      - chokidar
 
   highlight.js@11.11.1: {}
 
@@ -3326,14 +3328,14 @@ snapshots:
       agent-base: 7.1.4
       debug: 4.4.3
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   https-proxy-agent@7.0.6:
     dependencies:
       agent-base: 7.1.4
       debug: 4.4.3
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   iconv-lite@0.6.3:
     dependencies:
@@ -3513,9 +3515,9 @@ snapshots:
       ws: 8.19.0
       xml-name-validator: 5.0.0
     transitivePeerDependencies:
-    - bufferutil
-    - supports-color
-    - utf-8-validate
+      - bufferutil
+      - supports-color
+      - utf-8-validate
 
   jsonparse@1.3.1: {}
 
@@ -3626,7 +3628,7 @@ snapshots:
       snapdragon: 0.8.2
       to-regex: 3.0.2
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   micromatch@4.0.8:
     dependencies:
@@ -3694,7 +3696,7 @@ snapshots:
       on-finished: 2.3.0
       on-headers: 1.1.0
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   ms@2.0.0: {}
 
@@ -3726,7 +3728,7 @@ snapshots:
       snapdragon: 0.8.2
       to-regex: 3.0.2
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   ncp@2.0.0:
     optional: true
@@ -3909,7 +3911,7 @@ snapshots:
       micromatch: 3.1.10
       readable-stream: 2.3.8
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   readdirp@3.6.0:
     dependencies:
@@ -3996,7 +3998,7 @@ snapshots:
       range-parser: 1.2.1
       statuses: 2.0.2
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   serve-static@1.16.3:
     dependencies:
@@ -4005,7 +4007,7 @@ snapshots:
       parseurl: 1.3.3
       send: 0.19.2
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   set-value@2.0.1:
     dependencies:
@@ -4043,7 +4045,7 @@ snapshots:
       source-map-resolve: 0.5.3
       use: 3.1.1
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   source-map-resolve@0.5.3:
     dependencies:
@@ -4122,7 +4124,7 @@ snapshots:
       sax: 1.3.0
       source-map: 0.7.6
     transitivePeerDependencies:
-    - supports-color
+      - supports-color
 
   supports-color@2.0.0: {}
 

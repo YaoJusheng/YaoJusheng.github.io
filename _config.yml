@@ -169,7 +169,7 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 # theme: landscape
-theme: next  # landscape | yilia | yilia-plus | next
+theme: next  # landscape | redefine | yilia-plus | next
 
 # 新增内容
 jsonContent:

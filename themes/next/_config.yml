@@ -218,21 +218,6 @@ links_settings:
   layout: block
 
 links:
-  Google搜索: 
-    name: Google搜索
-    url: https://www.google.com/
-    ico: images/ico/google_favicon.ico
-    description: 最受欢迎的搜索引擎，国内使用可用代理或安装助手
-  Bing搜索: 
-    name: Bing搜索
-    url: https://cn.bing.com/
-    ico: images/ico/biying_favicon.ico
-    description: 必应搜索，一款好用的搜索引擎
-  Translate: 
-    name: Translate
-    url: https://translate.google.cn/
-    ico: images/ico/fanyi_favicon.ico
-    description: 谷歌翻译
   bilibili: 
     name: bilibili
     url: https://www.bilibili.com/
@@ -248,21 +233,6 @@ links:
     url: https://tool.lu/
     ico: images/ico/onlinetool.ico
     description: 全面多样化的开发、站长类工具
-  百度字体编辑器: 
-    name: 百度字体编辑器
-    url: http://fontstore.baidu.com/static/editor/index.html
-    ico: images/ico/font_favicon.ico
-    description: 可制作图形文字，减少字体体积
-  绘图draw: 
-    name: 绘图draw
-    url: https://www.draw.io/
-    ico: images/ico/draw_favicon.ico
-    description: 一款在线绘制流程图的网页工具
-  百度脑图: 
-    name: 百度脑图
-    url: https://naotu.baidu.com/home
-    ico: images/ico/naotu_favicon.ico
-    description: 一款可替代XMind的在线思维导图工具
 
 # Table of Contents in the Sidebar
 # Front-matter variable (unsupport wrap expand_all).
