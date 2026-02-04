@@ -12,9 +12,9 @@ menu:
   tags: 标签
   notes: 笔记
   about: 关于
-  make-resume: 简历制作
-  static-resume: 静态简历
-  dynamic-resume: 动态简历
+  # make-resume: 简历制作
+  # static-resume: 静态简历
+  # dynamic-resume: 动态简历
   search: 搜索
   schedule: 日程表
   sitemap: 站点地图

@@ -164,6 +164,7 @@ pagination_dir: page
 include:
 exclude:
 ignore:
+- README.md
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
@@ -197,7 +198,7 @@ deploy:
   type: git
   # repository: https://github.com/YaoJusheng/YaoJusheng.github.io.git
   repository: git@github.com:YaoJusheng/YaoJusheng.github.io.git
-  branch: master
+  branch: gh-pages
 
 
 # hexo-neat
