@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#aaaa">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/site-icon/svg/MrYao02.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#aaaa">
+  <meta name="google-site-verification" content="oBPAMrbfd4SCViJ8ZMg-NDMRa4uK8W_SIoJeWESCuSI">
+  <meta name="baidu-site-verification" content="ICdzS4qVKo">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "6d0092ef"
+    });
+  daovoice('update');
+  </script>
+
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yaojusheng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"2Z9M5GO3BS","apiKey":"640cd38c21e14a012ef1735cf4e47453","indexName":"github_search","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+  <meta name="description" content="本文主要讲述 Hexo-yilia 主题中，关于背景和图片的相关配置。与前面一样，使用主题： hexo-theme-yilia-plus">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo搭建个人博客：yilia主题配置(二) - 背景图片">
+<meta property="og:url" content="http://yaojusheng.github.io/archives/4235.html">
+<meta property="og:site_name" content="Mr Yao 的博客">
+<meta property="og:description" content="本文主要讲述 Hexo-yilia 主题中，关于背景和图片的相关配置。与前面一样，使用主题： hexo-theme-yilia-plus">
+<meta property="og:locale">
+<meta property="og:image" content="http://yaojusheng.github.io/images/wangyiyun/changyemanman-20-02-20.png">
+<meta property="og:image" content="http://yaojusheng.github.io/images/wangyiyun/changyemanman-link-20-02-20.png">
+<meta property="article:published_time" content="2020-02-18T09:36:44.000Z">
+<meta property="article:modified_time" content="2026-02-03T02:39:00.716Z">
+<meta property="article:author" content="Jusheng Yao">
+<meta property="article:tag" content="yilia">
+<meta property="article:tag" content="背景图片">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yaojusheng.github.io/images/wangyiyun/changyemanman-20-02-20.png">
+
+<link rel="canonical" href="http://yaojusheng.github.io/archives/4235.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Hexo搭建个人博客：yilia主题配置(二) - 背景图片 | Mr Yao 的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Mr Yao 的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr Yao 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/resume/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-static-resume">
+
+    <a href="/static-resume/" rel="section"><i class="fa fa-fw fa-user-circle"></i>静态简历</a>
+
+  </li>
+        <li class="menu-item menu-item-dynamic-resume">
+
+    <a href="/dynamic-resume/" rel="section"><i class="fa fa-fw fa-bolt"></i>动态简历</a>
+
+  </li>
+        <li class="menu-item menu-item-make-resume">
+
+    <a href="/online-resume/" rel="section"><i class="fa fa-fw fa-id-card"></i>简历制作</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/yaojusheng/hexo-theme-next" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yaojusheng.github.io/archives/4235.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Jusheng Yao">
+      <meta itemprop="description" content="个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr Yao 的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hexo搭建个人博客：yilia主题配置(二) - 背景图片
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-18 17:36:44" itemprop="dateCreated datePublished" datetime="2020-02-18T17:36:44+08:00">2020-02-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%AB%99/" itemprop="url" rel="index"><span itemprop="name">网站</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/archives/4235.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/archives/4235.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本文主要讲述 <code>Hexo-yilia</code> 主题中，关于背景和图片的相关配置。与前面一样，使用主题： <a target="_blank" rel="noopener" href="https://github.com/JoeyBling/hexo-theme-yilia-plus">hexo-theme-yilia-plus</a></p>
+<span id="more"></span>
+
+<h2 id="1-头像与网站图标"><a href="#1-头像与网站图标" class="headerlink" title="1.头像与网站图标"></a>1.头像与网站图标</h2><h3 id="1-1-添加头像和网站图标"><a href="#1-1-添加头像和网站图标" class="headerlink" title="1.1.添加头像和网站图标"></a>1.1.添加头像和网站图标</h3><p>打开主题配置文件 <code>_config.yml</code>, 添加：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 网站图标</span></span><br><span class="line"><span class="attr">favicon:</span> <span class="string">/img/favicon.ico</span></span><br><span class="line"><span class="comment"># 你的头像url</span></span><br><span class="line"><span class="attr">avatar:</span> <span class="string">/images/avatar.jpg</span> </span><br></pre></td></tr></table></figure>
+<p><strong>头像地址可以分两种</strong>：</p>
+<ul>
+<li>本地<ul>
+<li>根目录中的 <code>source</code> 目录：可以在 <code>source</code> 目录下建立 <code>images</code> 文件夹，存放图片</li>
+<li>主题目录的 <code>source</code> 目录：建立 <code>img</code> 文件夹，存放图片</li>
+</ul>
+</li>
+<li>网络<ul>
+<li>配置后写链接地址</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2-头像旋转"><a href="#1-2-头像旋转" class="headerlink" title="1.2.头像旋转"></a>1.2.头像旋转</h3><p>修改 <code>yilia-plus\source\main.b8fa34.css</code> 文件 (原ylia主题是 <code>main.0cf68a.css</code> 文件)<br>文本编辑器 <code>Ctrl+F</code> , 搜索 <code>.left-col #header .profilepic img</code> ,修改为：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.left-col</span> <span class="selector-id">#header</span> <span class="selector-class">.profilepic</span> <span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#88acdb</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">0</span>;</span><br><span class="line">    -webkit-<span class="attribute">transition</span>: -webkit-transform <span class="number">1s</span> ease-out;</span><br><span class="line">    -moz-<span class="attribute">transition</span>: -moz-transform <span class="number">1s</span> ease-out;</span><br><span class="line">    -o-<span class="attribute">transition</span>: -o-transform <span class="number">1s</span> ease-out;</span><br><span class="line">    -ms-<span class="attribute">transition</span>: -ms-transform <span class="number">1s</span> ease-out</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.left-col</span> <span class="selector-id">#header</span> <span class="selector-class">.profilepic</span> <span class="selector-tag">img</span><span class="selector-class">.show</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.left-col</span> <span class="selector-id">#header</span> <span class="selector-class">.profilepic</span> <span class="selector-tag">img</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">1turn</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-左侧边栏配置"><a href="#2-左侧边栏配置" class="headerlink" title="2.左侧边栏配置"></a>2.左侧边栏配置</h2><blockquote>
+<p>同上，可以在css文件中设置，这里 <code>yilia-plus</code> 做了灵活的配置。</p>
+</blockquote>
+<h3 id="2-1-头像上方动图"><a href="#2-1-头像上方动图" class="headerlink" title="2.1.头像上方动图"></a>2.1.头像上方动图</h3><ul>
+<li>打开主题配置文件 <code>themes\yilia-plus\_config.yml</code>，找到 <code>style</code> 配置项，作如下修改：</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">style:</span></span><br><span class="line"><span class="comment"># 左侧头像板块动态图效果</span></span><br><span class="line">  <span class="attr">gif:</span></span><br><span class="line">    <span class="comment"># 是否启用</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 自定义背景图路径(默认可以不设置，提供默认背景图biubiubiu.gif)</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">这里是gif图片地址</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开left-col.ejs文件，修改配置：</li>
+</ul>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;% var defaultBg = <span class="string">&#x27;#4d4d4d&#x27;</span>; <span class="variable">%&gt;</span></span><br><span class="line">&lt;% var defaultBgImg = <span class="string">&#x27;/img/biubiubiu.gif&#x27;</span>; <span class="variable">%&gt;</span></span><br><span class="line">&lt;% var overlayBgImg= theme.style.gif &amp;&amp; theme.style.gif.enable &amp;&amp; theme.style.gif.path ? theme.style.gif.path : defaultBgImg; <span class="variable">%&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span>=&quot;<span class="title">overlay</span>&quot; <span class="title">style</span>=&quot;<span class="title">background</span>: &lt;%= <span class="title">theme</span>.<span class="title">style</span> &amp;&amp; <span class="title">theme</span>.<span class="title">style</span>.<span class="title">header</span> ? <span class="title">theme</span>.<span class="title">style</span>.<span class="title">header</span><span class="attr"> : defaultBg</span> %&gt;</span>;&lt;% <span class="keyword">if</span> (theme.style.gif &amp;&amp; theme.style.gif.enable)&#123; <span class="variable">%&gt;</span>background: url(<span class="string">&#x27;&lt;%- url_for(overlayBgImg) %&gt;&#x27;</span>) <span class="keyword">no</span>-repeat ;&lt;<span class="variable">%&#125;</span><span class="variable">%&gt;</span> z-<span class="keyword">index</span>:-<span class="number">1</span><span class="string">&quot;&gt;&lt;/div&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-左侧边栏背景"><a href="#2-2-左侧边栏背景" class="headerlink" title="2.2.左侧边栏背景"></a>2.2.左侧边栏背景</h3><ul>
+<li>打开主题配置文件 <code>themes\yilia-plus\_config.yml</code>，找到 <code>style</code> 配置项，作如下修改：</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">style:</span></span><br><span class="line">  <span class="comment"># 头像上面的背景颜色 e.g. linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5))</span></span><br><span class="line">  <span class="comment"># header: &#x27;#D3D1DC&#x27;</span></span><br><span class="line">  <span class="attr">header:</span> <span class="string">&#x27;rgba(0,0,0,0.5)&#x27;</span> <span class="comment">#设置背景透明度，不然头像上方是默认色</span></span><br><span class="line">  <span class="comment">#左侧头像板块的背景颜色(IE兼容设置：filter:alpha(opacity=80);)</span></span><br><span class="line">  <span class="attr">left_ground:</span> </span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">default:</span> <span class="string">&#x27;rgba(0,0,0,0.5)&#x27;</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">&#x27;url(这里是图片链接) no-repeat 100%;background-size:cover;opacity:0.8;filter:alpha(opacity=80);&#x27;</span></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+<ul>
+<li>打开布局文件 <code>themes\yilia-plus\layout\layout.ejs</code>，找到 <code>&lt;div class=&quot;left-col&quot; ... &lt;/div&gt;</code> ，改成:</li>
+</ul>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> <span class="keyword">class</span>=<span class="string">&quot;left-col&quot;</span> q-<span class="keyword">class</span>=<span class="string">&quot;show:isShow&quot;</span>  style=<span class="string">&quot;background: &lt;%= theme.style &amp;&amp; theme.style.left_ground.enable &amp;&amp; theme.style.left_ground.url ? theme.style.left_ground.url : theme.style.left_ground.default %&gt;&quot;</span>&gt;</span><br><span class="line">      &lt;%- partial(<span class="string">&#x27;_partial/left-col&#x27;</span>, <span class="literal">null</span>, &#123;cache: !config.relative_link&#125;) %&gt;</span><br><span class="line">    &lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开样式文件 <code>yilia-plus\source\main.b8fa34.css</code>，搜索 <code>.left-col</code> ，修改背景颜色如下：</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.left-col</span> &#123;</span><br><span class="line">    <span class="comment">/*background: #fff;*/</span></span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">linear-gradient</span>(<span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.5</span>), <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.5</span>));</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">transition</span>: all .<span class="number">2s</span> ease-in;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">999</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">overflow-y</span>: auto;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">15px</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-右滑板块背景"><a href="#2-3-右滑板块背景" class="headerlink" title="2.3.右滑板块背景"></a>2.3.右滑板块背景</h3><p>打开主题配置文件 <code>themes\yilia-plus\_config.yml</code>，找到 <code>style</code> 配置项修改 <code>slider</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">style:</span></span><br><span class="line">  <span class="comment"># 右滑板块背景</span></span><br><span class="line">  <span class="attr">slider:</span> <span class="string">&#x27;linear-gradient(200deg,#ccc,#000)&#x27;</span> </span><br></pre></td></tr></table></figure>
+<p>可以根据自己喜好调整</p>
+<h3 id="2-4-背景音乐插件"><a href="#2-4-背景音乐插件" class="headerlink" title="2.4.背景音乐插件"></a>2.4.背景音乐插件</h3><blockquote>
+<p>插入音乐视频前，先安装插件：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-tag-dplayer --save</span><br><span class="line">npm install hexo-tag-aplayer --save</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这里用<a target="_blank" rel="noopener" href="https://music.163.com/">网易云</a>插件，打开一首歌，下方有 <code>生成外链</code> 提示，如：</li>
+</ul>
+<div align="center">
+    <img src="/images/wangyiyun/changyemanman-20-02-20.png" width="400px">
+</div>
+
+<ul>
+<li>点击该链接，然后复制生成的HTML代码，配置时用。：</li>
+</ul>
+<div align="center">
+    <img src="/images/wangyiyun/changyemanman-link-20-02-20.png" width="450px">
+</div>
+
+<ul>
+<li>在主题配置文件 <code>_config.yml</code> 找到</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 网易云音乐插件</span></span><br><span class="line"><span class="attr">music:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 播放器尺寸类型(1：短尺寸、2：长尺寸)</span></span><br><span class="line">  <span class="attr">type:</span> <span class="number">2</span></span><br><span class="line">  <span class="attr">id:</span> <span class="number">411907505</span>  <span class="comment"># 网易云分享的音乐ID(更换音乐请更改此配置项)</span></span><br><span class="line">  <span class="attr">autoPlay:</span> <span class="literal">true</span>  <span class="comment"># 是否开启自动播放</span></span><br><span class="line">  <span class="comment"># 提示文本(关闭请设置为false)</span></span><br><span class="line">  <span class="attr">text:</span> <span class="string">&#x27;写一段说明文字&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在left-col.ejs文件中，添加配置：</li>
+</ul>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (<span class="built_in">theme</span>.music &amp;&amp; <span class="built_in">theme</span>.music.enable)&#123; %&gt;</span><br><span class="line">            &lt;%# <span class="string">&quot;网易云音乐插件&quot;</span> %&gt;</span><br><span class="line">            &lt;%# <span class="string">&quot;bottom:120px; left:auto;position:absolute;  width:85%&quot;</span> %&gt;</span><br><span class="line">            &lt;% var defaultHeight = <span class="built_in">theme</span>.music.type == <span class="number">1</span> ? <span class="string">&#x27;32&#x27;</span> : <span class="string">&#x27;66&#x27;</span>; %&gt;</span><br><span class="line">            &lt;% var defaultIframeHeight = <span class="built_in">theme</span>.music.type == <span class="number">1</span> ? <span class="string">&#x27;52&#x27;</span> : <span class="string">&#x27;86&#x27;</span>; %&gt;</span><br><span class="line">            &lt;div style=<span class="string">&quot;margin-right:10px;margin-left:0; padding:5px 0&quot;</span>&gt;</span><br><span class="line">                &lt;iframe frameborder=<span class="string">&quot;no&quot;</span> border=<span class="string">&quot;0&quot;</span> marginwidth=<span class="string">&quot;0&quot;</span> marginheight=<span class="string">&quot;0&quot;</span> width=<span class="string">&quot;250&quot;</span> height=<span class="string">&quot;&lt;%=defaultIframeHeight%&gt;&quot;</span> src=<span class="string">&quot;//music.163.com/outchain/player?type=2&amp;id=&lt;%=theme.music.id||411907505%&gt;&amp;auto=&lt;%=theme.music.autoPlay?1:0%&gt;&amp;height=&lt;%=defaultHeight%&gt;&quot;</span>&gt;&lt;/iframe&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;% <span class="keyword">if</span> (<span class="built_in">theme</span>.music.<span class="keyword">text</span> || <span class="built_in">theme</span>.music.<span class="keyword">text</span> == null)&#123; %&gt;</span><br><span class="line">                &lt;% var musicText = ( <span class="built_in">theme</span>.music.<span class="keyword">text</span> == null || <span class="built_in">theme</span>.music.<span class="keyword">text</span> == <span class="literal">true</span> ) ? <span class="string">&quot;默认说明文字&quot;</span> : <span class="built_in">theme</span>.music.<span class="keyword">text</span>; %&gt;</span><br><span class="line">                &lt;p style=<span class="string">&quot;font-size: 12px;&quot;</span>&gt;&lt;%-musicText%&gt;&lt;p&gt;</span><br><span class="line">            &lt;% &#125; %&gt;</span><br><span class="line">        &lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-右边正文背景"><a href="#3-右边正文背景" class="headerlink" title="3.右边正文背景"></a>3.右边正文背景</h2><ul>
+<li>和左侧边栏修改类似，打开文件 <code>themes\yilia-plus\_config.yml</code>，找到 <code>style</code> 配置项，作如下修改：</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">style:</span></span><br><span class="line">  <span class="comment"># 正文的背景颜色(IE兼容设置：opacity:0.8;filter:alpha(opacity=80);)</span></span><br><span class="line">  <span class="attr">article_ground:</span> </span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">default:</span> <span class="string">&#x27;rgba(25, 25, 25, 0)&#x27;</span>  <span class="comment">#设置背景透明度</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">&#x27;url(图片链接地址) no-repeat 100%;background-size:cover;opacity:0.7;filter:alpha(opacity=70);&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开布局文件 <code>themes\yilia-plus\layout\layout.ejs</code>，找到 <code>&lt;div class=&quot;mid-col&quot; ... &gt;</code> ，修改:</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="attribute">class</span>=<span class="string">&quot;mid-col&quot;</span> <span class="attribute">q-class</span>=<span class="string">&quot;show:isShow,hide:isShow|isFalse&quot;</span> <span class="attribute">style</span>=<span class="string">&quot;background: &lt;%= theme.style &amp;&amp; theme.style.article_ground.enable &amp;&amp; theme.style.article_ground.url ? theme.style.article_ground.url : theme.style.article_ground.default %&gt;&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果想修改正文显示部分的样式，可以打开样式文件 <code>yilia-plus\source\main.b8fa34.css</code>，搜索 <code>.article</code>、<code>.article-inner</code> 、<code>.archives-wrap</code> 、 <code>.archives .archive-article-title</code> 等，修改字体、背景颜色：</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.article</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ddd</span>;</span><br><span class="line">    <span class="attribute">border-top</span>: <span class="number">1px</span> solid <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">border-bottom</span>: <span class="number">1px</span> solid <span class="number">#fff</span>;</span><br><span class="line">    <span class="comment">/*background: #fff;*/</span></span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,.<span class="number">5</span>);</span><br><span class="line">    <span class="attribute">transition</span>: all .<span class="number">2s</span> ease-in;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*主页*/</span></span><br><span class="line"><span class="selector-class">.article-inner</span> &#123;</span><br><span class="line">    <span class="comment">/*border-color: #d1d1d1；*/</span></span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">193</span>, <span class="number">194</span>, <span class="number">195</span>,<span class="number">0.6</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left-col</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">linear-gradient</span>(<span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.5</span>), <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>,<span class="number">255</span>, <span class="number">0.5</span>));</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">transition</span>: all .<span class="number">2s</span> ease-in;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">999</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">overflow-y</span>: auto;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">15px</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*归档*/</span></span><br><span class="line"><span class="selector-class">.archives-wrap</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">padding-right</span>: <span class="number">60px</span>;</span><br><span class="line">    <span class="attribute">border-bottom</span>: <span class="number">1px</span> solid <span class="number">#eee</span>;</span><br><span class="line">    <span class="comment">/*background: #fff;*/</span></span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">236</span>, <span class="number">236</span>, <span class="number">236</span>,<span class="number">0.6</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*字体*/</span></span><br><span class="line"><span class="selector-class">.archives</span> <span class="selector-class">.archive-article-title</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">    <span class="comment">/*color: #333;*/</span></span><br><span class="line">    <span class="comment">/*transition: color .3s*/</span></span><br><span class="line">    <span class="attribute">background</span>: transparent;</span><br><span class="line">    <span class="attribute">text-decoration</span>: none;</span><br><span class="line">    <span class="attribute">color</span>: # af9;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-动态线条背景"><a href="#4-动态线条背景" class="headerlink" title="4.动态线条背景"></a>4.动态线条背景</h2><blockquote>
+<p>安装插件: npm install –save canvas-nest.js，或直接显式配置</p>
+</blockquote>
+<ul>
+<li>主题配置，在文件 <code>themes\yilia-plus\_config.yml</code> 中，添加：</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 动态线条效果，会向鼠标集中</span></span><br><span class="line"><span class="attr">canvas_nest:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">color:</span> <span class="string">&#x27;206, 187, 95&#x27;</span></span><br><span class="line">  <span class="attr">pointColor:</span> <span class="string">&#x27;249, 72, 97&#x27;</span>     </span><br><span class="line">  <span class="attr">opacity:</span> <span class="string">&#x27;0.9&#x27;</span>             </span><br><span class="line">  <span class="attr">count:</span> <span class="string">&#x27;136&#x27;</span>     </span><br><span class="line">  <span class="attr">zIndex:</span> <span class="string">&#x27;-1&#x27;</span>  </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>找到文件 <code>themes\yilia-plus\layout\layout.ejs</code>，添加：</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (theme.canvas_nest)&#123; %&gt;</span><br><span class="line">&lt;script <span class="attribute">type</span>=<span class="string">&quot;text/javascript&quot;</span></span><br><span class="line"><span class="attribute">color</span>=<span class="string">&quot;0,0,255&quot;</span> <span class="attribute">opacity</span>=<span class="string">&#x27;0.9&#x27;</span> <span class="attribute">zIndex</span>=<span class="string">&quot;-1&quot;</span> <span class="attribute">count</span>=<span class="string">&quot;300&quot;</span> <span class="attribute">src</span>=<span class="string">&quot;&lt;%- url_for(&#x27;//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js&#x27;) %&gt;&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="5-雪花特效"><a href="#5-雪花特效" class="headerlink" title="5.雪花特效"></a>5.雪花特效</h2><ul>
+<li>在主题目录 <code>source/lib</code> 下新建 <code>snow.js</code> 文件，内容添加：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> snow = &#123;</span><br><span class="line">  <span class="attr">info</span>: &#123;</span><br><span class="line">    <span class="attr">top</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">left</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">zIndex</span>: <span class="number">500</span>,</span><br><span class="line">    <span class="attr">number</span>: <span class="number">70</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">down</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> f = <span class="variable language_">window</span>.<span class="property">innerWidth</span>;</span><br><span class="line">    <span class="keyword">var</span> g = <span class="variable language_">window</span>.<span class="property">innerHeight</span>;</span><br><span class="line">    <span class="keyword">var</span> d = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;canvas&quot;</span>);</span><br><span class="line">    d.<span class="property">style</span>.<span class="property">position</span> = <span class="string">&quot;fixed&quot;</span>;</span><br><span class="line">    d.<span class="property">style</span>.<span class="property">pointerEvents</span> = <span class="string">&quot;none&quot;</span>;</span><br><span class="line">    d.<span class="property">style</span>.<span class="property">top</span> = snow.<span class="property">info</span>.<span class="property">top</span> + <span class="string">&quot;px&quot;</span>;</span><br><span class="line">    d.<span class="property">style</span>.<span class="property">left</span> = snow.<span class="property">info</span>.<span class="property">left</span> + <span class="string">&quot;px&quot;</span>;</span><br><span class="line">    d.<span class="property">style</span>.<span class="property">zIndex</span> = snow.<span class="property">info</span>.<span class="property">zIndex</span>;</span><br><span class="line">    d.<span class="property">width</span> = f;</span><br><span class="line">    d.<span class="property">height</span> = g;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(d);</span><br><span class="line">    <span class="keyword">var</span> c = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> a = <span class="number">0</span>; a &lt; snow.<span class="property">info</span>.<span class="property">number</span>; a++) &#123;</span><br><span class="line">      c.<span class="title function_">push</span>(&#123;</span><br><span class="line">        <span class="attr">x</span>: <span class="title class_">Math</span>.<span class="title function_">random</span>() * f,</span><br><span class="line">        <span class="attr">y</span>: <span class="title class_">Math</span>.<span class="title function_">random</span>() * g,</span><br><span class="line">        <span class="attr">r</span>: <span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">4</span> + <span class="number">1</span>,</span><br><span class="line">        <span class="attr">n</span>: <span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">70</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> b = d.<span class="title function_">getContext</span>(<span class="string">&quot;2d&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> e = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">setInterval</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        b.<span class="title function_">clearRect</span>(<span class="number">0</span>, <span class="number">0</span>, f, g);</span><br><span class="line">        b.<span class="property">fillStyle</span> = <span class="string">&quot;rgba(255, 255, 255, 0.6)&quot;</span>;</span><br><span class="line">        b.<span class="property">shadowBlur</span> = <span class="number">5</span>;</span><br><span class="line">        b.<span class="property">shadowColor</span> = <span class="string">&quot;rgba(255, 255, 255, 0.9)&quot;</span>;</span><br><span class="line">        b.<span class="title function_">beginPath</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">70</span>; j++) &#123;</span><br><span class="line">          <span class="keyword">var</span> h = c[j];</span><br><span class="line">          b.<span class="title function_">moveTo</span>(h.<span class="property">x</span>, h.<span class="property">y</span>);</span><br><span class="line">          b.<span class="title function_">arc</span>(h.<span class="property">x</span>, h.<span class="property">y</span>, h.<span class="property">r</span>, <span class="number">0</span>, <span class="title class_">Math</span>.<span class="property">PI</span> * <span class="number">2</span>, <span class="number">0</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        b.<span class="title function_">fill</span>();</span><br><span class="line">        e += <span class="number">0.01</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">70</span>; j++) &#123;</span><br><span class="line">          <span class="keyword">var</span> h = c[j];</span><br><span class="line">          h.<span class="property">y</span> += <span class="title class_">Math</span>.<span class="title function_">cos</span>(e + h.<span class="property">n</span>) + h.<span class="property">r</span> / <span class="number">2</span>;</span><br><span class="line">          h.<span class="property">x</span> += <span class="title class_">Math</span>.<span class="title function_">sin</span>(e) * <span class="number">2</span>;</span><br><span class="line">          <span class="keyword">if</span> (h.<span class="property">x</span> &gt; f + <span class="number">5</span> || h.<span class="property">x</span> &lt; -<span class="number">5</span> || h.<span class="property">y</span> &gt; g) &#123;</span><br><span class="line">            c[j] = j % <span class="number">3</span> &gt; <span class="number">0</span> ? &#123;</span><br><span class="line">              <span class="attr">x</span>: <span class="title class_">Math</span>.<span class="title function_">random</span>() * f,</span><br><span class="line">              <span class="attr">y</span>: -<span class="number">10</span>,</span><br><span class="line">              <span class="attr">r</span>: h.<span class="property">r</span>,</span><br><span class="line">              <span class="attr">n</span>: h.<span class="property">n</span></span><br><span class="line">            &#125; : <span class="title class_">Math</span>.<span class="title function_">sin</span>(e) &gt; <span class="number">0</span> ? &#123;</span><br><span class="line">              <span class="attr">x</span>: -<span class="number">5</span>,</span><br><span class="line">              <span class="attr">y</span>: <span class="title class_">Math</span>.<span class="title function_">random</span>() * g,</span><br><span class="line">              <span class="attr">r</span>: h.<span class="property">r</span>,</span><br><span class="line">              <span class="attr">n</span>: h.<span class="property">n</span></span><br><span class="line">            &#125; : &#123;</span><br><span class="line">              <span class="attr">x</span>: f + <span class="number">5</span>,</span><br><span class="line">              <span class="attr">y</span>: <span class="title class_">Math</span>.<span class="title function_">random</span>() * g,</span><br><span class="line">              <span class="attr">r</span>: h.<span class="property">r</span>,</span><br><span class="line">              <span class="attr">n</span>: h.<span class="property">n</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="number">15</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// yilia-plus主题已经集成了，可以直接用</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>布局文件<code>layout.ejs</code>，添加：</li>
+</ul>
+<figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml">&lt;%</span><span class="language-ruby"> <span class="keyword">if</span> (theme.snow)&#123; </span><span class="language-xml">%&gt;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;&lt;%-</span></span></span><span class="language-ruby"> url_for(<span class="string">&#x27;lib/snow.js&#x27;</span>) </span><span class="language-xml"><span class="tag"><span class="string">%&gt;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;&lt;%-</span></span></span><span class="language-ruby"> url_for(<span class="string">&#x27;lib/jquery-2.1.4.min.js&#x27;</span>) </span><span class="language-xml"><span class="tag"><span class="string">%&gt;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    snow.<span class="title function_">down</span>();</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    $(<span class="variable language_">window</span>).<span class="title function_">resize</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      $(<span class="string">&quot;canvas&quot;</span>).<span class="title function_">css</span>(<span class="string">&quot;z-index&quot;</span>,<span class="string">&quot;500&quot;</span>).<span class="title function_">remove</span>();</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      snow.<span class="title function_">down</span>();</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  &lt;%</span><span class="language-ruby"> &#125; </span><span class="language-xml">%&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>最后更新一下主题配置文件 <code>_config.yml</code>:</li>
+</ul>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 飘雪特效</span></span><br><span class="line"><span class="meta"># https:<span class="comment">//github.com/MlgmXyysd/snow.js</span></span></span><br><span class="line"><span class="symbol">snow:</span> true</span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>可以参考这篇博客： <a target="_blank" rel="noopener" href="https://yansheng836.github.io/article/cf9c6a5e.html#%E5%8A%A8%E6%80%81%E7%BA%BF%E6%9D%A1%E8%83%8C%E6%99%AF">hexo多种特效配置</a></p>
+</blockquote>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    
+    <div>
+      
+        <div style="text-align:center;color: red;font-size:14px;">
+          -------------   本文已结束  <i class="fa fa-paw"></i>  感谢您的阅读！  -------------
+        </div>
+      
+    </div>
+        <div class="reward-container">
+  <div>Donate comment here.</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Jusheng Yao 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Jusheng Yao 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      
+      
+      <div>
+        <div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/archives/4235.html">Hexo搭建个人博客：yilia主题配置(二) - 背景图片</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问  的个人博客"></a></p>
+  <p><span>发布时间:</span>2020年02月18日 - 17:36</p>
+  <p><span>最后更新:</span>2026年02月03日 - 10:39</p>
+  <p><span>原始链接:</span><a href="/archives/4235.html" title="Hexo搭建个人博客：yilia主题配置(二) - 背景图片">http://yaojusheng.github.io/archives/4235.html</a>
+    <span class="copy-path"  title="点击复制文章链接">
+      <i class="fa fa-clipboard" data-clipboard-text="http://yaojusheng.github.io/archives/4235.html"  aria-label="复制成功！"></i>
+    </span>
+  </p>
+  <p>
+    <span>版权声明:</span>
+    本博客所有文章除特别声明外，均采用 
+    <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">
+    <i class="fa fa-creative-commons"></i>BY-NC-SA </a>
+    许可协议。转载请注明出处!
+  </p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+      </div>
+      
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/atom.xml">
+                <span class="icon">
+                  <i class="fa fa-rss"></i>
+                </span>
+
+                <span class="label">RSS</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/yilia/" rel="tag"><i class="fa fa-tag"></i> yilia</a>
+              <a href="/tags/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/" rel="tag"><i class="fa fa-tag"></i> 背景图片</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/31784.html" rel="prev" title="Hexo搭建个人博客：yilia主题配置(一) - 基础配置">
+      <i class="fa fa-chevron-left"></i> Hexo搭建个人博客：yilia主题配置(一) - 基础配置
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/37394.html" rel="next" title="Hexo搭建个人博客：yilia主题配置(三) - 评论系统">
+      Hexo搭建个人博客：yilia主题配置(三) - 评论系统 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-utterance">utterance</a></li>
+            <li class="tab"><a href="#comment-valine">valine</a></li>
+        </ul>
+        <div class="tab-content">
+
+            <div class="tab-pane utterance" id="comment-utterance">
+              <div class="comments" id="utterance-container"></div>
+            </div>
+
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    
+    <div class="my-tag-cloud">
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <h3 class="widget-title">Tag Cloud</h3>
+          <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width:100%">
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Boxy/" rel="tag">Boxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E5%B8%83%E5%B1%80/" rel="tag">CSS布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CURD/" rel="tag">CURD</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitBook/" rel="tag">GitBook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Subnav%E5%9B%BE%E6%A0%87/" rel="tag">Subnav图标</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tkinter/" rel="tag">Tkinter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/" rel="tag">Webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi%E8%BF%9E%E6%8E%A5/" rel="tag">WiFi连接</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css%E5%B8%83%E5%B1%80/" rel="tag">css布局</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex%E5%B8%83%E5%B1%80/" rel="tag">flex布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gh-pages/" rel="tag">gh-pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid%E5%B8%83%E5%B1%80/" rel="tag">grid布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello-world/" rel="tag">hello world</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jupyter/" rel="tag">jupyter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/next/" rel="tag">next</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/" rel="tag">yilia</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="tag">交互式编程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/" rel="tag">代理配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92/" rel="tag">前后端交互</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0/" rel="tag">匿名函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/" rel="tag">双飞翼布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%A7%A3%E6%9E%90/" rel="tag">命令行解析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" rel="tag">命名空间</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80/" rel="tag">圣杯布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" rel="tag">基本操作</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/" rel="tag">基本配置</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B1%9E%E6%80%A7%E6%A0%B7%E5%BC%8F/" rel="tag">属性样式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" rel="tag">常用工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/" rel="tag">插件配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD/" rel="tag">方法重载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%87%E7%AD%BE%E5%88%86%E7%B1%BB/" rel="tag">标签分类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="tag">环境搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81/" rel="tag">用户密码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%B8%E5%86%8C%E8%A7%86%E9%A2%91/" rel="tag">相册视频</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1/" rel="tag">类与对象</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%B1%9E%E6%80%A7/" rel="tag">类属性</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E7%BB%A7%E6%89%BF/" rel="tag">类继承</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/" rel="tag">背景图片</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" rel="tag">虚拟环境</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BF%E9%97%AE%E9%99%90%E5%88%B6%E7%AC%A6/" rel="tag">访问限制符</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" rel="tag">评论系统</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B5%84%E6%BA%90%E5%8E%8B%E7%BC%A9/" rel="tag">资源压缩</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9F%B3%E9%A2%91/" rel="tag">音频</a><span class="tag-list-count">1</span></li></ul>
+            </canvas>
+          </div>
+        </div>
+      
+    </div>
+
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%A4%B4%E5%83%8F%E4%B8%8E%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87"><span class="nav-text">1.头像与网站图标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E6%B7%BB%E5%8A%A0%E5%A4%B4%E5%83%8F%E5%92%8C%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87"><span class="nav-text">1.1.添加头像和网站图标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E5%A4%B4%E5%83%8F%E6%97%8B%E8%BD%AC"><span class="nav-text">1.2.头像旋转</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B7%A6%E4%BE%A7%E8%BE%B9%E6%A0%8F%E9%85%8D%E7%BD%AE"><span class="nav-text">2.左侧边栏配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%A4%B4%E5%83%8F%E4%B8%8A%E6%96%B9%E5%8A%A8%E5%9B%BE"><span class="nav-text">2.1.头像上方动图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%B7%A6%E4%BE%A7%E8%BE%B9%E6%A0%8F%E8%83%8C%E6%99%AF"><span class="nav-text">2.2.左侧边栏背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E5%8F%B3%E6%BB%91%E6%9D%BF%E5%9D%97%E8%83%8C%E6%99%AF"><span class="nav-text">2.3.右滑板块背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E8%83%8C%E6%99%AF%E9%9F%B3%E4%B9%90%E6%8F%92%E4%BB%B6"><span class="nav-text">2.4.背景音乐插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%8F%B3%E8%BE%B9%E6%AD%A3%E6%96%87%E8%83%8C%E6%99%AF"><span class="nav-text">3.右边正文背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%8A%A8%E6%80%81%E7%BA%BF%E6%9D%A1%E8%83%8C%E6%99%AF"><span class="nav-text">4.动态线条背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E9%9B%AA%E8%8A%B1%E7%89%B9%E6%95%88"><span class="nav-text">5.雪花特效</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jusheng Yao"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Jusheng Yao</p>
+  <div class="site-description" itemprop="description">个人技术博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/YaoJusheng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;YaoJusheng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/YaoJusheng" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;YaoJusheng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github-alt"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_41599858" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_41599858" rel="noopener" target="_blank"><i class="fa fa-fw fa-mortar-board"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:jusheng_yao@outlook.com" title="E-Mail → mailto:jusheng_yao@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.bilibili.com/" title="技术视频网站"  target="_blank">
+              <img src="/images/ico/bili_favicon.ico" class="links-item-img">&emsp;
+            bilibili
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhihu.com/" title="知识、技术交流平台"  target="_blank">
+              <img src="/images/ico/zhihu_favicon.ico" class="links-item-img">&emsp;
+            知乎
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://tool.lu/" title="全面多样化的开发、站长类工具"  target="_blank">
+              <img src="/images/ico/onlinetool.ico" class="links-item-img">&emsp;
+            在线工具
+          </a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jusheng Yao</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">199k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:01</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v8.1.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 — <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+  <br>
+  
+  <div class="powered-by" style='color: gray'>
+    <i class="fa fa-user-md"></i>
+    <span id="busuanzi_container_site_uv">
+      本站总访客数:&nbsp;<span id="busuanzi_value_site_uv" style='color: silver'></span>&nbsp;人&nbsp;| 
+    </span>
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_container_site_pv">
+        &nbsp;本站总访问量:&nbsp;<span id="busuanzi_value_site_pv" style='color: silver'></span>&nbsp;次
+    </span>
+  </div>
+
+  <br>
+  
+  <div>
+    <span id="timeDate" class="color: lightblue;"></span>  
+    <span id="times" class="color: lightgreen;"></span>
+  </div>
+
+
+
+<script>
+  var now = new Date(); 
+  function createtime() { 
+      var grt= new Date("02/12/2020 18:00:00"); 
+      now.setTime(now.getTime()+250); 
+      days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+      if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+      mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+      snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+      document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+      document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+  } 
+  setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='0,0,255' opacity='0.8' zIndex='-2' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+<script type="text/javascript">
+  (function() {
+    // 匿名函数，防止污染全局变量
+    var utterances = document.createElement('script');
+    utterances.type = 'text/javascript';
+    utterances.async = true;
+    utterances.setAttribute('issue-term','title')
+    utterances.setAttribute('theme','github-light')
+    utterances.setAttribute('repo','yaojusheng/yaojusheng.github.io')
+    utterances.crossorigin = 'anonymous';
+    utterances.src = 'https://utteranc.es/client.js';
+    // content 是要插入评论的地方
+    document.getElementById('utterance-container').appendChild(utterances);
+  })();
+</script>
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'oT30CtobWiSnNhMrBtXP9d0A-gzGzoHsz',
+      appKey     : 'oVHGMlRjJJyTXPLmyrGKrWFu',
+      placeholder: "有话要说？",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+
+  
+  
+    <script type="text/javascript" src="/js/clicklove.js"></script>
+  
+
+</body>
+</html>

@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#aaaa">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/site-icon/svg/MrYao02.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#aaaa">
+  <meta name="google-site-verification" content="oBPAMrbfd4SCViJ8ZMg-NDMRa4uK8W_SIoJeWESCuSI">
+  <meta name="baidu-site-verification" content="ICdzS4qVKo">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "6d0092ef"
+    });
+  daovoice('update');
+  </script>
+
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yaojusheng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"2Z9M5GO3BS","apiKey":"640cd38c21e14a012ef1735cf4e47453","indexName":"github_search","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+  <meta name="description" content="本文主要是关于 评论系统 在 hexo-yilia 主题中的添加和配置。使用主题： hexo-theme-yilia-plus">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo搭建个人博客：yilia主题配置(三) - 评论系统">
+<meta property="og:url" content="http://yaojusheng.github.io/archives/37394.html">
+<meta property="og:site_name" content="Mr Yao 的博客">
+<meta property="og:description" content="本文主要是关于 评论系统 在 hexo-yilia 主题中的添加和配置。使用主题： hexo-theme-yilia-plus">
+<meta property="og:locale">
+<meta property="og:image" content="http://yaojusheng.github.io/images/gitissue/oauth.png">
+<meta property="article:published_time" content="2020-02-18T09:37:08.000Z">
+<meta property="article:modified_time" content="2026-02-03T02:39:00.716Z">
+<meta property="article:author" content="Jusheng Yao">
+<meta property="article:tag" content="yilia">
+<meta property="article:tag" content="评论系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yaojusheng.github.io/images/gitissue/oauth.png">
+
+<link rel="canonical" href="http://yaojusheng.github.io/archives/37394.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Hexo搭建个人博客：yilia主题配置(三) - 评论系统 | Mr Yao 的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Mr Yao 的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr Yao 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/resume/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-static-resume">
+
+    <a href="/static-resume/" rel="section"><i class="fa fa-fw fa-user-circle"></i>静态简历</a>
+
+  </li>
+        <li class="menu-item menu-item-dynamic-resume">
+
+    <a href="/dynamic-resume/" rel="section"><i class="fa fa-fw fa-bolt"></i>动态简历</a>
+
+  </li>
+        <li class="menu-item menu-item-make-resume">
+
+    <a href="/online-resume/" rel="section"><i class="fa fa-fw fa-id-card"></i>简历制作</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/yaojusheng/hexo-theme-next" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yaojusheng.github.io/archives/37394.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Jusheng Yao">
+      <meta itemprop="description" content="个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr Yao 的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hexo搭建个人博客：yilia主题配置(三) - 评论系统
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-18 17:37:08" itemprop="dateCreated datePublished" datetime="2020-02-18T17:37:08+08:00">2020-02-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%AB%99/" itemprop="url" rel="index"><span itemprop="name">网站</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/archives/37394.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/archives/37394.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本文主要是关于 <code>评论系统</code> 在 <code>hexo-yilia</code> 主题中的添加和配置。使用主题： <a target="_blank" rel="noopener" href="https://github.com/JoeyBling/hexo-theme-yilia-plus">hexo-theme-yilia-plus</a></p>
+<span id="more"></span>
+
+<h2 id="常用系统"><a href="#常用系统" class="headerlink" title="常用系统"></a>常用系统</h2><p>目前hexo可用的评论系统比较多，如：畅言、来必力、Disqus、Gitment、gitalk、utterances、Giteement、valine等等。不过有些已关停服务。</p>
+<p>这里列举五个hexo常用的评论系统：</p>
+<ul>
+<li><strong>1、<a href="#1-Gitment配置" target="_self">gitment</a></strong> ：基于GitHub issue的评论系统，可参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ac7658cc912f">简书</a>；</li>
+<li><strong>2、<a href="#2-Gitalk配置" target="_self">gitalk</a></strong> : 基于GitHub issue的评论系统，可参考：<a target="_blank" rel="noopener" href="https://github.com/gitalk/gitalk">gitalk</a>；</li>
+<li><strong>3、<a href="#3-Utterance配置" target="_self">utterance</a></strong> : 基于GitHub issue的评论系统，可参考：<a target="_blank" rel="noopener" href="https://utteranc.es/">详情</a></li>
+<li><strong>4、<a href="#4-Giteement配置" target="_self">giteement</a></strong> : 码云评论系统，国内用户建议使用这个，相对比较快，<a target="_blank" rel="noopener" href="https://gitee.com/zhousiwei/giteement">详情</a>；</li>
+<li><strong>5、<a href="#5-Valine配置" target="_self">valine</a></strong> : valine 评论系统，到 <a target="_blank" rel="noopener" href="https://leancloud.cn/dashboard/login.html#/signup">leancloud</a> 进行注册。</li>
+</ul>
+<h2 id="1-Gitment配置"><a href="#1-Gitment配置" class="headerlink" title="1.Gitment配置"></a>1.Gitment配置</h2><blockquote>
+<p>首先要注册 <a target="_blank" rel="noopener" href="https://github.com/settings/applications/new">OAuth Application</a> 当别人评论你的文章时，会需要它是授权。</p>
+</blockquote>
+<br>
+<!-- ![OAuth](/images/gitissue/oauth.png) -->
+<div align="center">
+  <img src="/images/gitissue/oauth.png" width="400px">
+</div>
+
+<p>注册成功后，会获取到 <code>Client ID/scerct</code> ，需要填入配置文件中。</p>
+<p>打开文件 <code>themes\yilia-plus\_config.yml</code> , 修改配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">gitment_owner:</span> <span class="string">&#x27;&#x27;</span>      <span class="comment"># 你的 GitHub ID (github 账户名)</span></span><br><span class="line"><span class="comment"># 是否使用官方js(false可以提升访问速度，本地修改过一部分的js，官方js可能会出现服务器不稳定，不太建议使用)</span></span><br><span class="line"><span class="attr">gitment_repo:</span> <span class="string">&#x27;如：xxx.github.io&#x27;</span>  <span class="comment">#存储评论的 repo name(需要在Github创建)</span></span><br><span class="line"><span class="attr">gitment_oauth:</span></span><br><span class="line">  <span class="attr">client_id:</span> <span class="string">&#x27;&#x27;</span>           <span class="comment">#client ID</span></span><br><span class="line">  <span class="attr">client_secret:</span> <span class="string">&#x27;&#x27;</span>       <span class="comment">#client secret</span></span><br></pre></td></tr></table></figure>
+
+<p>在 <code>themes\yilia-plus\layout\_partial\post</code> 目录下，会默认有一个 <code>gitment.ejs</code> 文件，可以自定义样式<br>对应的 <code>themes\yilia-plus\layout\_partial\article.ejs</code> 文件，会有 <code>gitment</code> 相关的配置。</p>
+<h2 id="2-Gitalk配置"><a href="#2-Gitalk配置" class="headerlink" title="2.Gitalk配置"></a>2.Gitalk配置</h2><h3 id="2-1-新建-gitalk-ejs-文件"><a href="#2-1-新建-gitalk-ejs-文件" class="headerlink" title="2.1.新建 gitalk.ejs 文件"></a>2.1.新建 <code>gitalk.ejs</code> 文件</h3><p>与 <code>gitment</code> 类似配置，首先在 <code>themes\yilia-plus\layout\_partial\post</code> 目录下，新建 <code>gitalk.ejs</code> 文件，<br>添加如下内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;gitalk-container&quot;</span> <span class="attr">style</span>=<span class="string">&quot;padding: 0px 30px 0px 30px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">if</span>(&lt;%=theme.<span class="property">gitalk</span>.<span class="property">enable</span>%&gt;)&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> gitalk = <span class="keyword">new</span> <span class="title class_">Gitalk</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">clientID</span>: <span class="string">&#x27;&lt;%=theme.gitalk.ClientID%&gt;&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">clientSecret</span>: <span class="string">&#x27;&lt;%=theme.gitalk.ClientSecret%&gt;&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">repo</span>: <span class="string">&#x27;&lt;%=theme.gitalk.repo%&gt;&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">owner</span>: <span class="string">&#x27;&lt;%=theme.gitalk.githubID%&gt;&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">admin</span>: [<span class="string">&#x27;&lt;%=theme.gitalk.adminUser%&gt;&#x27;</span>],</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">id</span>: <span class="string">&#x27;&lt;%= page.date %&gt;&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">distractionFreeMode</span>: <span class="string">&#x27;&lt;%=theme.gitalk.distractionFreeMode%&gt;&#x27;</span></span></span><br><span class="line"><span class="language-javascript">&#125;)</span></span><br><span class="line"><span class="language-javascript">gitalk.<span class="title function_">render</span>(<span class="string">&#x27;gitalk-container&#x27;</span>) </span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-修改文件-comment-scss"><a href="#2-2-修改文件-comment-scss" class="headerlink" title="2.2.修改文件 comment.scss"></a>2.2.修改文件 <code>comment.scss</code></h3><p>在文件 <code>themes\yilia\source-src\css\comment.scss</code> 中，做如下修改：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#disqus_thread</span>, <span class="selector-class">.duoshuo</span>, <span class="selector-class">.cloud-tie-wrapper</span>, <span class="selector-id">#SOHUCS</span>, <span class="selector-id">#gitment-ctn</span>, <span class="selector-id">#gitalk-container</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">30px</span> <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#SOHUCS</span> &#123;</span><br><span class="line">    <span class="selector-id">#SOHU_MAIN</span> <span class="selector-class">.module-cmt-list</span> <span class="selector-class">.block-cont-gw</span> &#123;</span><br><span class="line">        <span class="attribute">border-bottom</span>: <span class="number">1px</span> dashed <span class="number">#c8c8c8</span> <span class="meta">!important</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-修改主题配置文件-config-yml"><a href="#2-3-修改主题配置文件-config-yml" class="headerlink" title="2.3.修改主题配置文件 _config.yml"></a>2.3.修改主题配置文件 <code>_config.yml</code></h3><p>打开文件 <code>themes\yilia-plus\_config.yml</code> , 修改配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">gitalk:</span></span><br><span class="line">  <span class="attr">enable:</span>  <span class="literal">true</span></span><br><span class="line">  <span class="attr">githubID:</span>  <span class="string">&#x27;&#x27;</span>      <span class="comment"># 写自己github的ID</span></span><br><span class="line">  <span class="attr">repo:</span>  <span class="string">&#x27;&#x27;</span>          <span class="comment"># 新建存放评论的仓库名</span></span><br><span class="line">  <span class="attr">ClientID:</span>  <span class="string">&#x27;&#x27;</span>      <span class="comment"># 与 `gitment` 一样</span></span><br><span class="line">  <span class="attr">ClientSecret:</span>  <span class="string">&#x27;&#x27;</span>  <span class="comment"># 同上</span></span><br><span class="line">  <span class="attr">adminUser:</span>  <span class="string">&#x27;&#x27;</span>     <span class="comment"># 也填GitHub的ID</span></span><br><span class="line">  <span class="attr">distractionFreeMode:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-在文件-article-ejs-中添加配置"><a href="#2-4-在文件-article-ejs-中添加配置" class="headerlink" title="2.4.在文件 article.ejs 中添加配置"></a>2.4.在文件 <code>article.ejs</code> 中添加配置</h3><p>打开 <code>themes\yilia-plus\layout\_partial\article.ejs</code> 文件，添加：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span>(theme.<span class="property">gitalk</span>.<span class="property">enable</span>)&#123; %&gt;</span><br><span class="line">  &lt;%- <span class="title function_">partial</span>(<span class="string">&#x27;post/gitalk&#x27;</span>, &#123;</span><br><span class="line">      <span class="attr">key</span>: post.<span class="property">slug</span>,</span><br><span class="line">      <span class="attr">title</span>: post.<span class="property">title</span>,</span><br><span class="line">      <span class="attr">url</span>: config.<span class="property">url</span>+<span class="title function_">url_for</span>(post.<span class="property">path</span>)</span><br><span class="line">    &#125;) %&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Utterance配置"><a href="#3-Utterance配置" class="headerlink" title="3.Utterance配置"></a>3.Utterance配置</h2><h3 id="3-1-授权Utterance应用能访问仓库的issues"><a href="#3-1-授权Utterance应用能访问仓库的issues" class="headerlink" title="3.1.授权Utterance应用能访问仓库的issues"></a>3.1.授权Utterance应用能访问仓库的issues</h3><p>即安装 <code>Utterance</code> 应用，点击 <a target="_blank" rel="noopener" href="https://github.com/apps/utterances">install utterances</a>，选择需要安装的仓库。</p>
+<h3 id="3-2-fork项目"><a href="#3-2-fork项目" class="headerlink" title="3.2.fork项目"></a>3.2.fork项目</h3><p>去 <code>GitHub</code> 上 fork <a target="_blank" rel="noopener" href="https://github.com/utterance/utterances">Utterance</a>项目，按照它的教程在 <strong><code>SITES.md</code></strong> 文件中注册你的博客网址，否则可能会配置失败。</p>
+<h3 id="3-3-修改主题配置文件-config-yml"><a href="#3-3-修改主题配置文件-config-yml" class="headerlink" title="3.3.修改主题配置文件 _config.yml"></a>3.3.修改主题配置文件 <code>_config.yml</code></h3><p>打开文件 <code>themes\yilia-plus\_config.yml</code> , 修改配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># utteranc评论： https://utteranc.es (参数配置详见主页) 替换 gitment、gitalk</span></span><br><span class="line"><span class="attr">utterance:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">&#x27;&#x27;</span>     <span class="comment">#仓库名字,格式：你的用户ID/仓库名称，如：blog/utterance_repo</span></span><br><span class="line">  <span class="attr">issue_term:</span> <span class="string">&#x27;title&#x27;</span>            <span class="comment">#映射配置</span></span><br><span class="line">  <span class="attr">theme:</span> <span class="string">&#x27;github-light&#x27;</span>          <span class="comment">#主题</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4-在文件-article-ejs-中添加配置"><a href="#3-4-在文件-article-ejs-中添加配置" class="headerlink" title="3.4.在文件 article.ejs 中添加配置"></a>3.4.在文件 <code>article.ejs</code> 中添加配置</h3><p>打开 <code>themes\yilia-plus\layout\_partial\article.ejs</code> 文件，添加：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (theme.utterance &amp;&amp; theme.utterance.enable)&#123; %&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">id</span>=<span class="string">&quot;comments&quot;</span> <span class="attr">class</span>=<span class="string">&quot;comments&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.utterances</span>&#123;<span class="attribute">max-width</span>: <span class="number">100%</span>;&#125;</span></span><br><span class="line"><span class="language-css">      </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://utteranc.es/client.js&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">repo</span>=<span class="string">&quot;&lt;%= theme.utterance.repo %&gt;&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">issue-term</span>=<span class="string">&quot;&lt;%= theme.utterance.issue_term %&gt;&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">theme</span>=<span class="string">&quot;&lt;%= theme.utterance.theme %&gt;&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">crossorigin</span>=<span class="string">&quot;anonymous&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">async</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">  &lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Giteement配置"><a href="#4-Giteement配置" class="headerlink" title="4.Giteement配置"></a>4.Giteement配置</h2><blockquote>
+<p>基于码云的评论系统，类似GitHub的配置</p>
+</blockquote>
+<h3 id="4-1-新建-giteement-ejs-文件"><a href="#4-1-新建-giteement-ejs-文件" class="headerlink" title="4.1.新建 giteement.ejs 文件"></a>4.1.新建 <code>giteement.ejs</code> 文件</h3><p>在 <code>themes\yilia-plus\layout\_partial\post</code> 目录下，新建 <code>giteement.ejs</code> 文件，添加如下内容：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; post.comments &amp;&amp; theme.giteement &amp;&amp; theme.giteement.enable)&#123; %&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;giteement-ctn&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  &lt;% <span class="keyword">if</span> (theme.giteement &amp;&amp; theme.giteement.remote)&#123; %&gt;</span><br><span class="line">    &lt;!-- <span class="language-xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://giteement.oss-cn-beijing.aliyuncs.com/wd-discuss.css&quot;</span>&gt;</span> --&gt;</span></span><br><span class="line"><span class="language-xml">    <span class="comment">&lt;!-- </span></span><span class="language-xml"><span class="comment">&lt;script src=&quot;https://giteement.oss-cn-beijing.aliyuncs.com/discuss_hexo.js&quot;&gt;&lt;/script&gt;</span></span><span class="language-xml"><span class="comment"> --&gt;</span></span></span><br><span class="line"><span class="language-xml">    </span><span class="language-xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://giteement.oss-cn-beijing.aliyuncs.com/default.css&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    </span><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://giteement.oss-cn-beijing.aliyuncs.com/giteement.browser.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">  &lt;% &#125; else </span><span class="language-xquery">&#123; %&gt;</span></span><br><span class="line"><span class="language-xquery">    <span class="language-xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;&lt;%- url_for(&#x27;lib/default.css&#x27;) %&gt;&quot;</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-xquery">    </span><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;&lt;%- url_for(&#x27;lib/giteement.browser.js&#x27;) %&gt;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><span class="language-xml"></span></span></span><br><span class="line"><span class="language-xml"><span class="language-xquery">  &lt;% &#125;</span></span><span class="language-xml"> %&gt;</span></span><br><span class="line"><span class="language-xml">  </span><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-handlebars"><span class="language-xml"></span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars"><span class="language-xml">  <span class="comment">&lt;!-- id: &quot;&lt;%= page.title %&gt;&quot; --&gt;</span></span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars"><span class="language-xml">  var giteement = new Giteement(</span></span></span><span class="language-xquery"><span class="language-xquery">&#123;</span></span></span><br><span class="line"><span class="language-xquery"><span class="language-xquery">   <span class="built_in"> id</span>: <span class="string">&#x27;&lt;%=page.date.format(&#x27;</span>YYYYMMDDHHmmss<span class="string">&#x27;)%&gt;&#x27;</span>,</span></span></span><br><span class="line"><span class="language-xquery"><span class="language-xquery">    owner: <span class="string">&#x27;&lt;%=theme.giteement.giteeID%&gt;&#x27;</span>,</span></span></span><br><span class="line"><span class="language-xquery"><span class="language-xquery">    repo: <span class="string">&#x27;&lt;%=theme.giteement.repo%&gt;&#x27;</span>,</span></span></span><br><span class="line"><span class="language-xquery"><span class="language-xquery">    backcall_uri: <span class="string">&#x27;&lt;%=theme.giteement.redirect_uri%&gt;&#x27;</span>,</span></span></span><br><span class="line"><span class="language-xquery"><span class="language-xquery">    oauth_uri: <span class="string">&#x27;&lt;%=theme.giteement.oauth_uri%&gt;&#x27;</span>,</span></span></span><br><span class="line"><span class="language-xquery"><span class="language-xquery">    oauth: &#123;</span></span></span><br><span class="line"><span class="language-xquery"><span class="language-xquery">      client_id: <span class="string">&#x27;&lt;%=theme.giteement.gitment_oauth.client_id%&gt;&#x27;</span>,</span></span></span><br><span class="line"><span class="language-xquery"><span class="language-xquery">      client_secret: <span class="string">&#x27;&lt;%=theme.giteement.gitment_oauth.client_secret%&gt;&#x27;</span></span></span></span><br><span class="line"><span class="language-xquery"><span class="language-xquery">    &#125;</span></span><span class="language-xml"><span class="language-javascript">,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  giteement.<span class="title function_">render</span>(<span class="string">&#x27;giteement-ctn&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">&lt;% &#125; %&gt;</span></span><br><span class="line"><span class="language-xml"></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-修改主题配置文件-config-yml"><a href="#4-2-修改主题配置文件-config-yml" class="headerlink" title="4.2.修改主题配置文件 _config.yml"></a>4.2.修改主题配置文件 <code>_config.yml</code></h3><p>打开文件 <code>themes\yilia-plus\_config.yml</code> , 修改配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">giteement:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span>  <span class="comment"># 是否启用码云评论系统</span></span><br><span class="line">  <span class="comment"># 是否使用官方js(false可以提升访问速度)</span></span><br><span class="line">  <span class="attr">remote:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">redirect_uri:</span> <span class="string">&#x27;&#x27;</span>   <span class="comment"># 应用回调地址(请和配置的第三方应用保持一致)</span></span><br><span class="line">  <span class="comment"># 不能更改(网上开源项目https://github.com/Rob--W/cors-anywhere作者提供的专门用来跨域服务器的配置)</span></span><br><span class="line">  <span class="attr">oauth_uri:</span> <span class="string">https://cors-anywhere.herokuapp.com/https://gitee.com/oauth/token</span></span><br><span class="line">  <span class="attr">giteeID:</span> <span class="string">&#x27;&#x27;</span>  <span class="comment"># 你的码云账号英文名</span></span><br><span class="line">  <span class="comment"># 存储评论的 repo</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">yilia-plus-demo</span></span><br><span class="line">  <span class="attr">gitment_oauth:</span></span><br><span class="line">    <span class="attr">client_id:</span> <span class="string">&#x27;*********&#x27;</span>           <span class="comment">#client ID</span></span><br><span class="line">    <span class="attr">client_secret:</span> <span class="string">&#x27;*********&#x27;</span>       <span class="comment">#client secret</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-在文件-article-ejs-中添加配置"><a href="#4-3-在文件-article-ejs-中添加配置" class="headerlink" title="4.3.在文件 article.ejs 中添加配置"></a>4.3.在文件 <code>article.ejs</code> 中添加配置</h3><p>打开 <code>themes\yilia-plus\layout\_partial\article.ejs</code> 文件，添加：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (theme.<span class="property">giteement</span> &amp;&amp; theme.<span class="property">giteement</span>.<span class="property">enable</span>)&#123; %&gt;</span><br><span class="line">&lt;%- <span class="title function_">partial</span>(<span class="string">&#x27;post/giteement&#x27;</span>, &#123;</span><br><span class="line">      <span class="attr">key</span>: post.<span class="property">slug</span>,</span><br><span class="line">      <span class="attr">title</span>: post.<span class="property">title</span>,</span><br><span class="line">      <span class="attr">url</span>: config.<span class="property">url</span>+<span class="title function_">url_for</span>(post.<span class="property">path</span>)</span><br><span class="line">    &#125;) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-Valine配置"><a href="#5-Valine配置" class="headerlink" title="5.Valine配置"></a>5.Valine配置</h2><h3 id="5-1-注册-LeanCloud"><a href="#5-1-注册-LeanCloud" class="headerlink" title="5.1.注册 LeanCloud"></a>5.1.注册 <code>LeanCloud</code></h3><p>先到 <a target="_blank" rel="noopener" href="https://leancloud.cn/dashboard/login.html#/signup">leancloud</a>进行注册、创建应用等等，页面有帮助教程。</p>
+<p>到【设置】-【应用keys】，找到 <code>AppID</code> 和 <code>AppKey</code> ，配置需要。</p>
+<h3 id="5-2-部署云引擎"><a href="#5-2-部署云引擎" class="headerlink" title="5.2.部署云引擎"></a>5.2.部署云引擎</h3><ol>
+<li>在Leancloud 【云引擎】-【设置】界面，创建代码仓库，并保存：<code>https://github.com/DesertsP/Valine-Admin.git</code></li>
+<li>设置环境变量</li>
+<li>部署（分支选master）</li>
+</ol>
+<p>可参考：<a target="_blank" rel="noopener" href="https://deserts.io/valine-admin-document/">Valine配置手册</a></p>
+<h3 id="5-3-新建-valine-ejs-文件"><a href="#5-3-新建-valine-ejs-文件" class="headerlink" title="5.3.新建 valine.ejs 文件"></a>5.3.新建 <code>valine.ejs</code> 文件</h3><p>在 <code>themes\yilia-plus\layout\_partial\post</code> 目录下，新建 <code>valine.ejs</code> 文件，添加如下内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;valine_comment&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--载入js，在&lt;/body&gt;之前插入即可--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--Leancloud 操作库:--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;//cdn1.lncld.net/static/js/3.0.4/av-min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--Valine 的核心代码库--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;//unpkg.com/valine/dist/Valine.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">var</span> notify = <span class="string">&#x27;&lt;%= theme.valine.notify %&gt;&#x27;</span> == <span class="literal">true</span> ? <span class="literal">true</span> : <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">var</span> verify = <span class="string">&#x27;&lt;%= theme.valine.verify %&gt;&#x27;</span> == <span class="literal">true</span> ? <span class="literal">true</span> : <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">new</span> <span class="title class_">Valine</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">av</span>: <span class="variable constant_">AV</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">el</span>: <span class="string">&#x27;.valine_comment&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">emoticon_url</span>: <span class="string">&#x27;https://cloud.panjunwen.com/alu&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">emoticon_list</span>: [<span class="string">&quot;狂汗.png&quot;</span>,<span class="string">&quot;不说话.png&quot;</span>,<span class="string">&quot;汗.png&quot;</span>,<span class="string">&quot;坐等.png&quot;</span>,<span class="string">&quot;献花.png&quot;</span>,<span class="string">&quot;不高兴.png&quot;</span>,<span class="string">&quot;中刀.png&quot;</span>,<span class="string">&quot;害羞.png&quot;</span>,<span class="string">&quot;皱眉.png&quot;</span>,<span class="string">&quot;小眼睛.png&quot;</span>,<span class="string">&quot;暗地观察.png&quot;</span>],</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">app_id</span>: <span class="string">&#x27;&lt;%= theme.valine.appid %&gt;&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">app_key</span>: <span class="string">&#x27;&lt;%= theme.valine.appkey %&gt;&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">placeholder</span>: <span class="string">&#x27;&lt;%= theme.valine.placeholder %&gt;&#x27;</span></span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-4-修改主题配置文件-config-yml"><a href="#5-4-修改主题配置文件-config-yml" class="headerlink" title="5.4.修改主题配置文件 _config.yml"></a>5.4.修改主题配置文件 <code>_config.yml</code></h3><p>打开文件 <code>themes\yilia-plus\_config.yml</code> , 修改配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># valine 评论系统，到leancloud进行注册</span></span><br><span class="line"><span class="comment"># https://leancloud.cn/dashboard/login.html#/signup</span></span><br><span class="line"><span class="attr">valine:</span></span><br><span class="line"> <span class="attr">appid:</span> <span class="string">&#x27;&#x27;</span>  <span class="comment"># Leancloud应用的appId</span></span><br><span class="line"> <span class="attr">appkey:</span> <span class="string">&#x27;&#x27;</span>          <span class="comment"># Leancloud应用的appKey</span></span><br><span class="line"> <span class="attr">verify:</span> <span class="literal">false</span>      <span class="comment"># 验证码</span></span><br><span class="line"> <span class="attr">notify:</span> <span class="literal">true</span>       <span class="comment"># 评论回复提醒</span></span><br><span class="line"> <span class="attr">avatar:</span> <span class="string">mm</span>        <span class="comment"># 评论列表头像样式（https://valine.js.org/avatar）</span></span><br><span class="line"> <span class="attr">placeholder:</span> <span class="string">欢迎您的评论~</span> <span class="comment"># 评论框占位符</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-5-在文件-article-ejs-中添加配置"><a href="#5-5-在文件-article-ejs-中添加配置" class="headerlink" title="5.5.在文件 article.ejs 中添加配置"></a>5.5.在文件 <code>article.ejs</code> 中添加配置</h3><p>打开 <code>themes\yilia-plus\layout\_partial\article.ejs</code> 文件，添加：</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (<span class="built_in">theme</span>.valine &amp;&amp; <span class="built_in">theme</span>.valine.appid &amp;&amp; <span class="built_in">theme</span>.valine.appkey)&#123; %&gt;</span><br><span class="line">    &lt;section id=<span class="string">&quot;comments&quot;</span> style=<span class="string">&quot;margin:10px;padding:10px;background:#fff;&quot;</span>&gt;</span><br><span class="line">      &lt;%- partial(<span class="string">&#x27;post/valine&#x27;</span>, &#123;</span><br><span class="line">        key: post.slug,</span><br><span class="line">        <span class="built_in">title</span>: post.<span class="built_in">title</span>,</span><br><span class="line">        url: config.url+url_for(post.<span class="built_in">path</span>)</span><br><span class="line">        &#125;) %&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    
+    <div>
+      
+        <div style="text-align:center;color: red;font-size:14px;">
+          -------------   本文已结束  <i class="fa fa-paw"></i>  感谢您的阅读！  -------------
+        </div>
+      
+    </div>
+        <div class="reward-container">
+  <div>Donate comment here.</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Jusheng Yao 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Jusheng Yao 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      
+      
+      <div>
+        <div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/archives/37394.html">Hexo搭建个人博客：yilia主题配置(三) - 评论系统</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问  的个人博客"></a></p>
+  <p><span>发布时间:</span>2020年02月18日 - 17:37</p>
+  <p><span>最后更新:</span>2026年02月03日 - 10:39</p>
+  <p><span>原始链接:</span><a href="/archives/37394.html" title="Hexo搭建个人博客：yilia主题配置(三) - 评论系统">http://yaojusheng.github.io/archives/37394.html</a>
+    <span class="copy-path"  title="点击复制文章链接">
+      <i class="fa fa-clipboard" data-clipboard-text="http://yaojusheng.github.io/archives/37394.html"  aria-label="复制成功！"></i>
+    </span>
+  </p>
+  <p>
+    <span>版权声明:</span>
+    本博客所有文章除特别声明外，均采用 
+    <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">
+    <i class="fa fa-creative-commons"></i>BY-NC-SA </a>
+    许可协议。转载请注明出处!
+  </p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+      </div>
+      
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/atom.xml">
+                <span class="icon">
+                  <i class="fa fa-rss"></i>
+                </span>
+
+                <span class="label">RSS</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/yilia/" rel="tag"><i class="fa fa-tag"></i> yilia</a>
+              <a href="/tags/%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" rel="tag"><i class="fa fa-tag"></i> 评论系统</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/4235.html" rel="prev" title="Hexo搭建个人博客：yilia主题配置(二) - 背景图片">
+      <i class="fa fa-chevron-left"></i> Hexo搭建个人博客：yilia主题配置(二) - 背景图片
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/46241.html" rel="next" title="Hexo搭建个人博客：yilia主题配置(四) - 分类管理">
+      Hexo搭建个人博客：yilia主题配置(四) - 分类管理 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-utterance">utterance</a></li>
+            <li class="tab"><a href="#comment-valine">valine</a></li>
+        </ul>
+        <div class="tab-content">
+
+            <div class="tab-pane utterance" id="comment-utterance">
+              <div class="comments" id="utterance-container"></div>
+            </div>
+
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    
+    <div class="my-tag-cloud">
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <h3 class="widget-title">Tag Cloud</h3>
+          <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width:100%">
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Boxy/" rel="tag">Boxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E5%B8%83%E5%B1%80/" rel="tag">CSS布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CURD/" rel="tag">CURD</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitBook/" rel="tag">GitBook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Subnav%E5%9B%BE%E6%A0%87/" rel="tag">Subnav图标</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tkinter/" rel="tag">Tkinter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/" rel="tag">Webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi%E8%BF%9E%E6%8E%A5/" rel="tag">WiFi连接</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css%E5%B8%83%E5%B1%80/" rel="tag">css布局</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex%E5%B8%83%E5%B1%80/" rel="tag">flex布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gh-pages/" rel="tag">gh-pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid%E5%B8%83%E5%B1%80/" rel="tag">grid布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello-world/" rel="tag">hello world</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jupyter/" rel="tag">jupyter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/next/" rel="tag">next</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/" rel="tag">yilia</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="tag">交互式编程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/" rel="tag">代理配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92/" rel="tag">前后端交互</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0/" rel="tag">匿名函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/" rel="tag">双飞翼布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%A7%A3%E6%9E%90/" rel="tag">命令行解析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" rel="tag">命名空间</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80/" rel="tag">圣杯布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" rel="tag">基本操作</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/" rel="tag">基本配置</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B1%9E%E6%80%A7%E6%A0%B7%E5%BC%8F/" rel="tag">属性样式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" rel="tag">常用工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/" rel="tag">插件配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD/" rel="tag">方法重载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%87%E7%AD%BE%E5%88%86%E7%B1%BB/" rel="tag">标签分类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="tag">环境搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81/" rel="tag">用户密码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%B8%E5%86%8C%E8%A7%86%E9%A2%91/" rel="tag">相册视频</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1/" rel="tag">类与对象</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%B1%9E%E6%80%A7/" rel="tag">类属性</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E7%BB%A7%E6%89%BF/" rel="tag">类继承</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/" rel="tag">背景图片</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" rel="tag">虚拟环境</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BF%E9%97%AE%E9%99%90%E5%88%B6%E7%AC%A6/" rel="tag">访问限制符</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" rel="tag">评论系统</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B5%84%E6%BA%90%E5%8E%8B%E7%BC%A9/" rel="tag">资源压缩</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9F%B3%E9%A2%91/" rel="tag">音频</a><span class="tag-list-count">1</span></li></ul>
+            </canvas>
+          </div>
+        </div>
+      
+    </div>
+
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%B3%BB%E7%BB%9F"><span class="nav-text">常用系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Gitment%E9%85%8D%E7%BD%AE"><span class="nav-text">1.Gitment配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Gitalk%E9%85%8D%E7%BD%AE"><span class="nav-text">2.Gitalk配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%96%B0%E5%BB%BA-gitalk-ejs-%E6%96%87%E4%BB%B6"><span class="nav-text">2.1.新建 gitalk.ejs 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6-comment-scss"><span class="nav-text">2.2.修改文件 comment.scss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-config-yml"><span class="nav-text">2.3.修改主题配置文件 _config.yml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E5%9C%A8%E6%96%87%E4%BB%B6-article-ejs-%E4%B8%AD%E6%B7%BB%E5%8A%A0%E9%85%8D%E7%BD%AE"><span class="nav-text">2.4.在文件 article.ejs 中添加配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Utterance%E9%85%8D%E7%BD%AE"><span class="nav-text">3.Utterance配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%8E%88%E6%9D%83Utterance%E5%BA%94%E7%94%A8%E8%83%BD%E8%AE%BF%E9%97%AE%E4%BB%93%E5%BA%93%E7%9A%84issues"><span class="nav-text">3.1.授权Utterance应用能访问仓库的issues</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-fork%E9%A1%B9%E7%9B%AE"><span class="nav-text">3.2.fork项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-config-yml"><span class="nav-text">3.3.修改主题配置文件 _config.yml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E5%9C%A8%E6%96%87%E4%BB%B6-article-ejs-%E4%B8%AD%E6%B7%BB%E5%8A%A0%E9%85%8D%E7%BD%AE"><span class="nav-text">3.4.在文件 article.ejs 中添加配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Giteement%E9%85%8D%E7%BD%AE"><span class="nav-text">4.Giteement配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E6%96%B0%E5%BB%BA-giteement-ejs-%E6%96%87%E4%BB%B6"><span class="nav-text">4.1.新建 giteement.ejs 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-config-yml"><span class="nav-text">4.2.修改主题配置文件 _config.yml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E5%9C%A8%E6%96%87%E4%BB%B6-article-ejs-%E4%B8%AD%E6%B7%BB%E5%8A%A0%E9%85%8D%E7%BD%AE"><span class="nav-text">4.3.在文件 article.ejs 中添加配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Valine%E9%85%8D%E7%BD%AE"><span class="nav-text">5.Valine配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E6%B3%A8%E5%86%8C-LeanCloud"><span class="nav-text">5.1.注册 LeanCloud</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E9%83%A8%E7%BD%B2%E4%BA%91%E5%BC%95%E6%93%8E"><span class="nav-text">5.2.部署云引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E6%96%B0%E5%BB%BA-valine-ejs-%E6%96%87%E4%BB%B6"><span class="nav-text">5.3.新建 valine.ejs 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-config-yml"><span class="nav-text">5.4.修改主题配置文件 _config.yml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-%E5%9C%A8%E6%96%87%E4%BB%B6-article-ejs-%E4%B8%AD%E6%B7%BB%E5%8A%A0%E9%85%8D%E7%BD%AE"><span class="nav-text">5.5.在文件 article.ejs 中添加配置</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jusheng Yao"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Jusheng Yao</p>
+  <div class="site-description" itemprop="description">个人技术博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/YaoJusheng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;YaoJusheng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/YaoJusheng" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;YaoJusheng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github-alt"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_41599858" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_41599858" rel="noopener" target="_blank"><i class="fa fa-fw fa-mortar-board"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:jusheng_yao@outlook.com" title="E-Mail → mailto:jusheng_yao@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.bilibili.com/" title="技术视频网站"  target="_blank">
+              <img src="/images/ico/bili_favicon.ico" class="links-item-img">&emsp;
+            bilibili
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhihu.com/" title="知识、技术交流平台"  target="_blank">
+              <img src="/images/ico/zhihu_favicon.ico" class="links-item-img">&emsp;
+            知乎
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://tool.lu/" title="全面多样化的开发、站长类工具"  target="_blank">
+              <img src="/images/ico/onlinetool.ico" class="links-item-img">&emsp;
+            在线工具
+          </a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jusheng Yao</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">199k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:01</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v8.1.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 — <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+  <br>
+  
+  <div class="powered-by" style='color: gray'>
+    <i class="fa fa-user-md"></i>
+    <span id="busuanzi_container_site_uv">
+      本站总访客数:&nbsp;<span id="busuanzi_value_site_uv" style='color: silver'></span>&nbsp;人&nbsp;| 
+    </span>
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_container_site_pv">
+        &nbsp;本站总访问量:&nbsp;<span id="busuanzi_value_site_pv" style='color: silver'></span>&nbsp;次
+    </span>
+  </div>
+
+  <br>
+  
+  <div>
+    <span id="timeDate" class="color: lightblue;"></span>  
+    <span id="times" class="color: lightgreen;"></span>
+  </div>
+
+
+
+<script>
+  var now = new Date(); 
+  function createtime() { 
+      var grt= new Date("02/12/2020 18:00:00"); 
+      now.setTime(now.getTime()+250); 
+      days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+      if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+      mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+      snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+      document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+      document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+  } 
+  setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='0,0,255' opacity='0.8' zIndex='-2' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+<script type="text/javascript">
+  (function() {
+    // 匿名函数，防止污染全局变量
+    var utterances = document.createElement('script');
+    utterances.type = 'text/javascript';
+    utterances.async = true;
+    utterances.setAttribute('issue-term','title')
+    utterances.setAttribute('theme','github-light')
+    utterances.setAttribute('repo','yaojusheng/yaojusheng.github.io')
+    utterances.crossorigin = 'anonymous';
+    utterances.src = 'https://utteranc.es/client.js';
+    // content 是要插入评论的地方
+    document.getElementById('utterance-container').appendChild(utterances);
+  })();
+</script>
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'oT30CtobWiSnNhMrBtXP9d0A-gzGzoHsz',
+      appKey     : 'oVHGMlRjJJyTXPLmyrGKrWFu',
+      placeholder: "有话要说？",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+
+  
+  
+    <script type="text/javascript" src="/js/clicklove.js"></script>
+  
+
+</body>
+</html>
