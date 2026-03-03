@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#aaaa">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/site-icon/svg/MrYao02.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#aaaa">
+  <meta name="google-site-verification" content="oBPAMrbfd4SCViJ8ZMg-NDMRa4uK8W_SIoJeWESCuSI">
+  <meta name="baidu-site-verification" content="ICdzS4qVKo">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "6d0092ef"
+    });
+  daovoice('update');
+  </script>
+
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yaojusheng.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"2Z9M5GO3BS","apiKey":"640cd38c21e14a012ef1735cf4e47453","indexName":"github_search","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+  <meta name="description" content="如题，本文主要为博主对电脑上安装的一些软件，所做的备份整理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【工具】（七）：win10常用工具整理！！！">
+<meta property="og:url" content="http://yaojusheng.github.io/archives/b4695b9b.html">
+<meta property="og:site_name" content="Mr Yao 的博客">
+<meta property="og:description" content="如题，本文主要为博主对电脑上安装的一些软件，所做的备份整理。">
+<meta property="og:locale">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191004181710258.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191004182210332.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191004182814952.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191004183430786.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191004183804115.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191004185215425.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191004185433841.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-02-27T06:44:28.000Z">
+<meta property="article:modified_time" content="2026-03-03T16:19:59.606Z">
+<meta property="article:author" content="Jusheng Yao">
+<meta property="article:tag" content="常用工具">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20191004181710258.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70">
+
+<link rel="canonical" href="http://yaojusheng.github.io/archives/b4695b9b.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>【工具】（七）：win10常用工具整理！！！ | Mr Yao 的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Mr Yao 的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr Yao 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/resume/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/yaojusheng/hexo-theme-next" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yaojusheng.github.io/archives/b4695b9b.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Jusheng Yao">
+      <meta itemprop="description" content="个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr Yao 的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【工具】（七）：win10常用工具整理！！！
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-27 14:44:28" itemprop="dateCreated datePublished" datetime="2020-02-27T14:44:28+08:00">2020-02-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Win10/" itemprop="url" rel="index"><span itemprop="name">Win10</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/archives/b4695b9b.html#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/archives/b4695b9b.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>如题，本文主要为博主对电脑上安装的一些软件，所做的备份整理。</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="一、分类"><a href="#一、分类" class="headerlink" title="一、分类"></a>一、分类</h1><ul>
+<li><a href="#1-%E7%B3%BB%E7%BB%9F%E5%B7%A5%E5%85%B7">系统工具</a></li>
+<li><a href="#2-%E5%8A%9E%E5%85%AC%E8%BD%AF%E4%BB%B6">办公软件</a></li>
+<li><a href="#3-%E6%A1%8C%E9%9D%A2%E7%AE%A1%E7%90%86">桌面管理</a></li>
+<li><a href="#4-%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a></li>
+<li><a href="#5-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B7%A5%E5%85%B7">数据库相关</a></li>
+<li><a href="#6-%E5%9B%BE%E7%89%87%E8%A7%86%E9%A2%91%E5%B7%A5%E5%85%B7">图片视频工具</a></li>
+<li><a href="#7-%E7%BD%91%E7%BB%9C%E5%8F%8A%E4%B8%8B%E8%BD%BD%E5%B7%A5%E5%85%B7">网络及下载工具</a></li>
+<li><a href="#8-%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7">解压缩工具</a></li>
+<li><a href="#9-%E5%BD%B1%E9%9F%B3%E5%A8%B1%E4%B9%90%E5%B7%A5%E5%85%B7">影音娱乐工具</a></li>
+</ul>
+<h1 id="二、软件工具"><a href="#二、软件工具" class="headerlink" title="二、软件工具"></a>二、软件工具</h1><h2 id="1-系统工具"><a href="#1-系统工具" class="headerlink" title="1.系统工具"></a>1.系统工具</h2><h3 id="1-1-磁盘管理"><a href="#1-1-磁盘管理" class="headerlink" title="1.1. 磁盘管理"></a>1.1. 磁盘管理</h3><p><a target="_blank" rel="noopener" href="http://www.upantool.com/qita/fenqu/12795.html">PartAssist</a>：一款好用的磁盘分区管理工具。</p>
+<div>
+    <img src="https://img-blog.csdnimg.cn/20191004181710258.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70">
+</div>
+
+<h3 id="1-2-修复、引导"><a href="#1-2-修复、引导" class="headerlink" title="1.2. 修复、引导"></a>1.2. 修复、引导</h3><p><a target="_blank" rel="noopener" href="https://www.techspot.com/downloads/3112-easybcd.html">EasyBCD</a>：一款常用的系统引导和修复工具。</p>
+<div>
+    <img src="https://img-blog.csdnimg.cn/20191004182210332.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70">
+</div>
+
+<h3 id="1-3-虚拟机管理工具"><a href="#1-3-虚拟机管理工具" class="headerlink" title="1.3. 虚拟机管理工具"></a>1.3. 虚拟机管理工具</h3><blockquote>
+<p>win10 自带的Hyper-V，和常用的WMware工具</p>
+</blockquote>
+<p>Hyper-V：win10（企业版、专业版、教育版）自带。</p>
+<div>
+    <img src="https://img-blog.csdnimg.cn/20191004182814952.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70">
+</div>
+
+
+<p><a target="_blank" rel="noopener" href="https://my.vmware.com/web/vmware/downloads">WMware</a>：适用多种系统（也有破解版）。</p>
+<div>
+    <img src="https://img-blog.csdnimg.cn/20191004183430786.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70">
+</div>
+
+<h3 id="1-4-文件传输"><a href="#1-4-文件传输" class="headerlink" title="1.4. 文件传输"></a>1.4. 文件传输</h3><p><a target="_blank" rel="noopener" href="https://filezilla-project.org/download.php?type=client">FileZilla</a>：是一种快速、可信赖的FTP客户端以及服务器端开放源代码程序。</p>
+<div>
+    <img src="https://img-blog.csdnimg.cn/20191004183804115.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70">
+</div>
+
+<h3 id="1-5-启动盘制作"><a href="#1-5-启动盘制作" class="headerlink" title="1.5. 启动盘制作"></a>1.5. 启动盘制作</h3><ol>
+<li>制作PE启动盘工具：<br><a target="_blank" rel="noopener" href="http://www.wepe.com.cn/download.html">微PE工具箱</a>、<a target="_blank" rel="noopener" href="http://www.uqidong.com/download/">U启动</a>、<a target="_blank" rel="noopener" href="https://www.dabaicai.com/">大白菜</a>、<a target="_blank" rel="noopener" href="http://www.laomaotao.org/lmtwinpe/">老毛桃</a>、<a target="_blank" rel="noopener" href="http://www.onlinedown.net/soft/984199.htm">AbsolutePE工具箱</a>、<a target="_blank" rel="noopener" href="http://www.shendupan.com/">深度</a>等等。</li>
+<li>软碟通<br><a target="_blank" rel="noopener" href="http://www.onlinedown.net/soft/614.htm">UltraISO</a>：一个类似于WinISO的ISO文件编辑工具，可以用来制作启动光盘映像。</li>
+</ol>
+<div>
+    <img src="https://img-blog.csdnimg.cn/20191004185215425.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70">
+</div>
+
+<ol start="3">
+<li><a target="_blank" rel="noopener" href="https://rufus.ie/zh_CN.html">Rufus</a>：一个可以帮助格式化和创建可引导USB闪存盘的工具。</li>
+</ol>
+<div>
+    <img src="https://img-blog.csdnimg.cn/20191004185433841.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTU5OTg1OA==,size_16,color_FFFFFF,t_70">
+</div>
+
+
+<p><strong>&gt;&gt;&gt;</strong> <a href="#%E4%B8%80%E3%80%81%E5%88%86%E7%B1%BB">回到分类</a></p>
+<h2 id="2-办公软件"><a href="#2-办公软件" class="headerlink" title="2. 办公软件"></a>2. 办公软件</h2><blockquote>
+<p>不用多说，首选就是全套office办公软件，如：word、Excel、PowerPoint、Outlook、OneNote等等。</p>
+</blockquote>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://cidian.youdao.com/index.html">有道翻译</a>：以前用的一个翻译软件，当然Office Word也有在线翻译功能。</p>
+</li>
+<li><p>VoiceTra：语音翻译，PC用的话，可以下一个安卓模拟器试试。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://iskysoft-pdf-editor.findmysoft.com/">iSkysoft PDF Editor</a>：一款强大的全能PDF编辑软件。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.foxitsoftware.cn/downloads/">福昕阅读器</a>：PDF阅读器，其他，可见：<a target="_blank" rel="noopener" href="https://www.apowersoft.cn/windows-10-pdf-viewer.html">更多</a>。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.xmind.cn/">Xmind</a>：思维导图软件。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://everything.en.softonic.com/download">Everything</a>：一款文件索引工具（包括了路径、大小、扩展名、类型、修改时间、创建时间、访问时间、属性等）。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://pc.qq.com/detail/2/detail_24422.html">WizTree</a>：一款Windows 磁盘分析工具。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.rapidee.com/en/download">rapidee</a>：环境变量修改器。</p>
+</li>
+</ul>
+<p><strong>&gt;&gt;&gt;</strong> <a href="#%E4%B8%80%E3%80%81%E5%88%86%E7%B1%BB">回到分类</a></p>
+<h2 id="3-桌面管理"><a href="#3-桌面管理" class="headerlink" title="3. 桌面管理"></a>3. 桌面管理</h2><blockquote>
+<p>其实很多应用管家都是有自带的桌面整理工具，可以到工具箱去找，如电脑管家、360、腾讯管家等等。</p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://rocketdock.en.softonic.com/">RocketDock</a>：高度可定制的Mac风格桌面导航栏，搭配Mac OS X Leopard主题</li>
+<li><a target="_blank" rel="noopener" href="https://www.mydockfinder.com/">MyDock和MyFinder</a>：两款极致模仿mac os系统桌面的工具</li>
+<li><a target="_blank" rel="noopener" href="https://rainmeter.cn/">Rainmeter</a>：雨滴桌面，个性化桌面定制工具</li>
+<li><a target="_blank" rel="noopener" href="https://startisback.com/#download-tab">StartIsBack</a>：更改win图标，透明度，和任务栏样式等等</li>
+<li><a target="_blank" rel="noopener" href="https://www.fhyx.hk/item/1345.html">Wallpaper Engine</a>：steam壁纸软件，可以在 Windows 桌面上使用动态壁纸</li>
+</ul>
+<p><strong>&gt;&gt;&gt;</strong> <a href="#%E4%B8%80%E3%80%81%E5%88%86%E7%B1%BB">回到分类</a></p>
+<h2 id="4-编程开发"><a href="#4-编程开发" class="headerlink" title="4. 编程开发"></a>4. 编程开发</h2><h3 id="4-1-编辑器"><a href="#4-1-编辑器" class="headerlink" title="4.1. 编辑器"></a>4.1. 编辑器</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://notepad-plus-plus.org/downloads/">NotePad++</a>：一款好用的纯文本编辑器，也可用于多种语言脚本的开发。</li>
+<li><a target="_blank" rel="noopener" href="https://www.sublimetext.com/3">sublime text 3</a>：应用比较广泛的文本编辑器，功能非常强大，程序员必备。</li>
+<li><a target="_blank" rel="noopener" href="https://www.editplus.com/download.html">Editplus</a>：小巧但是功能强大的可处理文本、HTML和程序语言的Windows编辑器，你甚至可以通过设置用户工具将其作为C,Java,Php等等语言的一个简单的IDE。</li>
+<li><a target="_blank" rel="noopener" href="https://ivarptr.github.io/yu-writer.site/">Yu Writer</a>：一款支持多平台的Markdown编辑软件。</li>
+<li><a target="_blank" rel="noopener" href="https://atom.io/">Atom</a>：作用类似Vscode，常用于web开发，但也可以打造成多种语言开发的IDE工具。</li>
+<li><a target="_blank" rel="noopener" href="https://www.spyder-ide.org/#fh5co-download">spyder</a> ：一个简单的集成开发环境（python），配合Anaconda，做科学分析以及爬虫</li>
+<li><a target="_blank" rel="noopener" href="http://eric-ide.python-projects.org/eric-download.html">Eric6</a>：一款python的编辑器，配合PyQt5，多用来GUI编程</li>
+</ol>
+<h3 id="4-2-IDE"><a href="#4-2-IDE" class="headerlink" title="4.2. IDE"></a>4.2. IDE</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://sourceforge.net/projects/orwelldevcpp/">Dev-C++</a>：简单 开发C&#x2F;C++的集成开发环境（IDE）。</li>
+<li><a target="_blank" rel="noopener" href="https://www.jetbrains.com/pycharm/download/">Pycharm</a>：应用广泛的Python开发 IDE 工具。</li>
+<li><a target="_blank" rel="noopener" href="https://www.jetbrains.com/ruby/download/">RubyMine</a>：常用的Ruby开发的 IDE 工具。</li>
+<li><a target="_blank" rel="noopener" href="https://www.jetbrains.com/phpstorm/download/">PHPstorm</a>：用于PHP开发的 IDE 工具。</li>
+<li><a target="_blank" rel="noopener" href="https://www.jetbrains.com/webstorm/download/">Webstorm</a>：web开发的 IDE 工具。</li>
+<li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/">Visual  Studio Code</a>：功能强大的IDE工具，适用于多种语言。</li>
+</ol>
+<h3 id="4-3-Docker"><a href="#4-3-Docker" class="headerlink" title="4.3. Docker"></a>4.3. Docker</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.docker.com/docker-for-windows/install/">docker</a>：一个开源的应用容器引擎，使用镜像模拟多种开发环境。</li>
+</ul>
+<h3 id="4-4-集成环境"><a href="#4-4-集成环境" class="headerlink" title="4.4. 集成环境"></a>4.4. 集成环境</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.xp.cn/download.html">phpstudy</a>：PHP中文网开发的一款功能强大的php集成开发环境软件。</li>
+<li><a target="_blank" rel="noopener" href="https://sourceforge.net/projects/wampserver/">wampserver</a>：同样是强大的php集成开发环境工具。</li>
+</ul>
+<h3 id="4-5-项目开发管理"><a href="#4-5-项目开发管理" class="headerlink" title="4.5. 项目开发管理"></a>4.5. 项目开发管理</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://git-scm.com/downloads">Git</a>：最常用的项目托管工具。</li>
+<li><a target="_blank" rel="noopener" href="https://www.gitkraken.com/download">GitKraken</a>：冲突显示和解决工具。</li>
+<li><a target="_blank" rel="noopener" href="https://www.scootersoftware.com/download.php">Beyond Compare</a>：差异对比工具。</li>
+<li><a target="_blank" rel="noopener" href="https://tortoisegit.org/download/">TortoiseGit</a>：小乌龟，界面化一个仓库管理工具。</li>
+</ul>
+<h3 id="4-6-开发测试"><a href="#4-6-开发测试" class="headerlink" title="4.6. 开发测试"></a>4.6. 开发测试</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.getpostman.com/downloads/">postman</a>：用于模拟构造http请求的web工具。</li>
+<li><a target="_blank" rel="noopener" href="https://www.telerik.com/download/fiddler">Fiddler</a>：抓包工具。</li>
+<li><a target="_blank" rel="noopener" href="https://www.wireshark.org/download.html">WireShark</a>：抓包工具。</li>
+<li><a target="_blank" rel="noopener" href="https://airtest.netease.com/">Airtest</a>：一款 UI 界面自动化测试工具。</li>
+<li><a target="_blank" rel="noopener" href="https://www.jb51.net/softs/621119.html#downintro2">LoveString</a>：字符编码转换器。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/snail007/goproxy">goproxy 代理</a>：网络代理工具，支持多种协议，支持 ssh 穿透和 kcp 协议。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/gaia-pipeline/gaia">Gaia</a>：自动化运维平台，可以轻松有趣地以任何编程语言构建功能强大的管道。</li>
+</ul>
+<p><strong>&gt;&gt;&gt;</strong> <a href="#%E4%B8%80%E3%80%81%E5%88%86%E7%B1%BB">回到分类</a></p>
+<h2 id="5-数据库工具"><a href="#5-数据库工具" class="headerlink" title="5. 数据库工具"></a>5. 数据库工具</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/">MySQL</a>：广泛应用的关系型数据库工具。</li>
+<li><a target="_blank" rel="noopener" href="https://www.mongodb.com/download-center">MongoDB</a>：文档型（非关系型）数据库工具。</li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/download">Redis</a>： 基于内存亦可持久化的日志型、Key-Value数据库。</li>
+<li><a target="_blank" rel="noopener" href="https://www.sqlite.org/download.html">SqLite</a>：一个进程内的库，实现了自给自足的、无服务器的、零配置的、事务性的 SQL 数据库引擎。</li>
+<li><a target="_blank" rel="noopener" href="https://www.postgresql.org/download/">PostgreSQL</a>：开源的对象-关系数据库。</li>
+<li><a target="_blank" rel="noopener" href="http://www.formysql.com/xiazai.html">Navicat</a>：数据库可视化工具。</li>
+<li><a target="_blank" rel="noopener" href="https://sqlitestudio.pl/index.rvt">SQLiteStudio</a>：可视化sqlite数据库工具，Qt写的。</li>
+<li><a target="_blank" rel="noopener" href="https://www.dbkoda.com/">dbkoda</a>：MongoDB可视化工具，本以为IDE的Mongo插件数据显示效果已经相当OK了，不得不说这款颜值👍</li>
+</ul>
+<p><strong>&gt;&gt;&gt;</strong> <a href="#%E4%B8%80%E3%80%81%E5%88%86%E7%B1%BB">回到分类</a></p>
+<h2 id="6-图片视频工具"><a href="#6-图片视频工具" class="headerlink" title="6. 图片视频工具"></a>6. 图片视频工具</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.screentogif.com/downloads.html?l=zh_cn">ScreenToGif</a>：git动图制作、录屏小工具。</li>
+<li><a target="_blank" rel="noopener" href="https://faststone-capture.en.softonic.com/">Fastston capture</a>：可录像的滚动截图神器。</li>
+<li><a target="_blank" rel="noopener" href="http://www.pointofix.de/download.php">pointofix</a>：屏幕画笔。</li>
+<li><a target="_blank" rel="noopener" href="https://zh.snipaste.com/download.html">snipaste</a>：截图工具。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/lltcggie/waifu2x-caffe/releases">waifu2x</a>：图片无损放大器，一位来自日本的开发者所开源的项目。</li>
+<li><a target="_blank" rel="noopener" href="https://www.bandicam.com/free-screen-recorder/">Bandicam</a>：一款简单好用的录屏工具。</li>
+<li><a target="_blank" rel="noopener" href="https://pc.qq.com/detail/8/detail_22668.html">EVCapture</a>：录屏工具。</li>
+<li><a target="_blank" rel="noopener" href="https://www.shencut.com/">瞄影工厂</a>：gif、视频制作工具，类似会声会影。</li>
+</ul>
+<p><strong>&gt;&gt;&gt;</strong> <a href="#%E4%B8%80%E3%80%81%E5%88%86%E7%B1%BB">回到分类</a></p>
+<h2 id="7-网络及下载工具"><a href="#7-网络及下载工具" class="headerlink" title="7. 网络及下载工具"></a>7. 网络及下载工具</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://pan.baidu.com/download">百度网盘</a></li>
+<li><a target="_blank" rel="noopener" href="https://dl.pconline.com.cn/html_2/1/89/id=8342&pn=0.html">比特精灵</a>：下载工具，速度比较快，可以用它代替迅雷。</li>
+<li><a target="_blank" rel="noopener" href="https://pan.baidu.com/share/init?surl=duOpC04gbP8KaTawNkNJWQ">迅雷极速版</a>：提取码: j3dv（来源：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/52853014/answer/134346825">知乎</a>）</li>
+<li><a target="_blank" rel="noopener" href="http://www.carrotchou.blog/59.html">IDM</a>：（Internet Download Manager）国外的一款多线程下载神器。</li>
+<li><a target="_blank" rel="noopener" href="http://www.pc6.com/softview/SoftView_52259.html">冰点下载器</a>：无需积分也无需登录就可以自由下载百度和豆丁等文库。</li>
+<li><a target="_blank" rel="noopener" href="https://support.google.com/chrome/answer/95346?co=GENIE.Platform=Desktop&hl=en&oco=0">chrome</a>：谷歌浏览器，对开发比较友好，功能强大。</li>
+<li><a target="_blank" rel="noopener" href="https://www.mozilla.org/en-US/firefox/all/#product-desktop-release">Firefox</a>：火狐浏览器，也是比较好用的一款浏览器。</li>
+</ul>
+<p><strong>&gt;&gt;&gt;</strong> <a href="#%E4%B8%80%E3%80%81%E5%88%86%E7%B1%BB">回到分类</a></p>
+<h2 id="8-解压缩工具"><a href="#8-解压缩工具" class="headerlink" title="8. 解压缩工具"></a>8. 解压缩工具</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.7-zip.org/download.html">7-Zip</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.rarlab.com/download.htm">WinRAR</a></li>
+<li><a target="_blank" rel="noopener" href="http://haozip.2345.cc/">好压</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bandisoft.com/bandizip/">Bandizip</a>：网友推荐的一款多功能解压缩软件</li>
+</ul>
+<p><strong>&gt;&gt;&gt;</strong> <a href="#%E4%B8%80%E3%80%81%E5%88%86%E7%B1%BB">回到分类</a></p>
+<h2 id="9-影音娱乐工具"><a href="#9-影音娱乐工具" class="headerlink" title="9. 影音娱乐工具"></a>9. 影音娱乐工具</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://music.163.com/#/download">网易云音乐</a>：以前比较喜欢，现在好多资源缺失。</li>
+<li><a target="_blank" rel="noopener" href="https://y.qq.com/download/">QQ音乐</a></li>
+<li><a target="_blank" rel="noopener" href="https://listen1.github.io/listen1/">Listen 1</a>：一个比较全面的音乐播放器，可以搜索和播放来自网易云音乐，虾米，QQ音乐，酷狗音乐，酷我音乐网站的歌曲（同时也有Chrome插件版、Mac版…）。</li>
+<li><a target="_blank" rel="noopener" href="https://daumpotplayer.com/download/">Potplayer</a>：一款无广告，功能强大的视频播放器。</li>
+<li><a target="_blank" rel="noopener" href="https://pd.youku.com/?spm=a2hpd.20022520.uerCenter.5!5~5~5~A">优酷视频</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.iqiyi.com/">爱奇艺</a></li>
+<li><a target="_blank" rel="noopener" href="http://v.qq.com/download.html">腾讯视频</a></li>
+</ul>
+<p><strong>&gt;&gt;&gt;</strong> <a href="#%E4%B8%80%E3%80%81%E5%88%86%E7%B1%BB">回到分类</a></p>
+<hr>
+<blockquote>
+<p>原文地址： CSDN博客 - <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41599858/article/details/102084565">win10常用工具整理！</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    
+    <div>
+      
+        <div style="text-align:center;color: red;font-size:14px;">
+          -------------   本文已结束  <i class="fa fa-paw"></i>  感谢您的阅读！  -------------
+        </div>
+      
+    </div>
+        <div class="reward-container">
+  <div>Donate comment here.</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="Jusheng Yao 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="Jusheng Yao 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      
+      
+      <div>
+        <div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/archives/b4695b9b.html">【工具】（七）：win10常用工具整理！！！</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问  的个人博客"></a></p>
+  <p><span>发布时间:</span>2020年02月27日 - 14:44</p>
+  <p><span>最后更新:</span>2026年03月04日 - 00:19</p>
+  <p><span>原始链接:</span><a href="/archives/b4695b9b.html" title="【工具】（七）：win10常用工具整理！！！">http://yaojusheng.github.io/archives/b4695b9b.html</a>
+    <span class="copy-path"  title="点击复制文章链接">
+      <i class="fa fa-clipboard" data-clipboard-text="http://yaojusheng.github.io/archives/b4695b9b.html"  aria-label="复制成功！"></i>
+    </span>
+  </p>
+  <p>
+    <span>版权声明:</span>
+    本博客所有文章除特别声明外，均采用 
+    <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">
+    <i class="fa fa-creative-commons"></i>BY-NC-SA </a>
+    许可协议。转载请注明出处!
+  </p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+      </div>
+      
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/atom.xml">
+                <span class="icon">
+                  <i class="fa fa-rss"></i>
+                </span>
+
+                <span class="label">RSS</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" rel="tag"><i class="fa fa-tag"></i> 常用工具</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/ffda6757.html" rel="prev" title="【工具】（六）：衔接上一篇：Windows 10 下对docker镜像的简单使用及创建！">
+      <i class="fa fa-chevron-left"></i> 【工具】（六）：衔接上一篇：Windows 10 下对docker镜像的简单使用及创建！
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/32ea94eb.html" rel="next" title="Hexo搭建个人博客：Next主题-相关配置">
+      Hexo搭建个人博客：Next主题-相关配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-valine">valine</a></li>
+            <li class="tab"><a href="#comment-utterance">utterance</a></li>
+        </ul>
+        <div class="tab-content">
+
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+
+            <div class="tab-pane utterance" id="comment-utterance">
+              <div class="comments" id="utterance-container"></div>
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    
+    <div class="my-tag-cloud">
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <h3 class="widget-title">Tag Cloud</h3>
+          <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width:100%">
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Boxy/" rel="tag">Boxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E5%B8%83%E5%B1%80/" rel="tag">CSS布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CURD/" rel="tag">CURD</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitBook/" rel="tag">GitBook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Subnav%E5%9B%BE%E6%A0%87/" rel="tag">Subnav图标</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tkinter/" rel="tag">Tkinter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/" rel="tag">Webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WiFi%E8%BF%9E%E6%8E%A5/" rel="tag">WiFi连接</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css%E5%B8%83%E5%B1%80/" rel="tag">css布局</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex%E5%B8%83%E5%B1%80/" rel="tag">flex布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gh-pages/" rel="tag">gh-pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid%E5%B8%83%E5%B1%80/" rel="tag">grid布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello-world/" rel="tag">hello world</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jupyter/" rel="tag">jupyter</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/next/" rel="tag">next</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia/" rel="tag">yilia</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="tag">交互式编程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/" rel="tag">代理配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92/" rel="tag">前后端交互</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0/" rel="tag">匿名函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/" rel="tag">双飞翼布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%A7%A3%E6%9E%90/" rel="tag">命令行解析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" rel="tag">命名空间</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80/" rel="tag">圣杯布局</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" rel="tag">基本操作</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/" rel="tag">基本配置</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B1%9E%E6%80%A7%E6%A0%B7%E5%BC%8F/" rel="tag">属性样式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" rel="tag">常用工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/" rel="tag">插件配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD/" rel="tag">方法重载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%87%E7%AD%BE%E5%88%86%E7%B1%BB/" rel="tag">标签分类</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="tag">环境搭建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81/" rel="tag">用户密码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9B%B8%E5%86%8C%E8%A7%86%E9%A2%91/" rel="tag">相册视频</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1/" rel="tag">类与对象</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%B1%9E%E6%80%A7/" rel="tag">类属性</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E7%BB%A7%E6%89%BF/" rel="tag">类继承</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87/" rel="tag">背景图片</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" rel="tag">虚拟环境</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BF%E9%97%AE%E9%99%90%E5%88%B6%E7%AC%A6/" rel="tag">访问限制符</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" rel="tag">评论系统</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B5%84%E6%BA%90%E5%8E%8B%E7%BC%A9/" rel="tag">资源压缩</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9F%B3%E9%A2%91/" rel="tag">音频</a><span class="tag-list-count">1</span></li></ul>
+            </canvas>
+          </div>
+        </div>
+      
+    </div>
+
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%88%86%E7%B1%BB"><span class="nav-text">一、分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7"><span class="nav-text">二、软件工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%B3%BB%E7%BB%9F%E5%B7%A5%E5%85%B7"><span class="nav-text">1.系统工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86"><span class="nav-text">1.1. 磁盘管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E4%BF%AE%E5%A4%8D%E3%80%81%E5%BC%95%E5%AF%BC"><span class="nav-text">1.2. 修复、引导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="nav-text">1.3. 虚拟机管理工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93"><span class="nav-text">1.4. 文件传输</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-%E5%90%AF%E5%8A%A8%E7%9B%98%E5%88%B6%E4%BD%9C"><span class="nav-text">1.5. 启动盘制作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8A%9E%E5%85%AC%E8%BD%AF%E4%BB%B6"><span class="nav-text">2. 办公软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%A1%8C%E9%9D%A2%E7%AE%A1%E7%90%86"><span class="nav-text">3. 桌面管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91"><span class="nav-text">4. 编程开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E7%BC%96%E8%BE%91%E5%99%A8"><span class="nav-text">4.1. 编辑器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-IDE"><span class="nav-text">4.2. IDE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-Docker"><span class="nav-text">4.3. Docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E9%9B%86%E6%88%90%E7%8E%AF%E5%A2%83"><span class="nav-text">4.4. 集成环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E7%AE%A1%E7%90%86"><span class="nav-text">4.5. 项目开发管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95"><span class="nav-text">4.6. 开发测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B7%A5%E5%85%B7"><span class="nav-text">5. 数据库工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%9B%BE%E7%89%87%E8%A7%86%E9%A2%91%E5%B7%A5%E5%85%B7"><span class="nav-text">6. 图片视频工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E7%BD%91%E7%BB%9C%E5%8F%8A%E4%B8%8B%E8%BD%BD%E5%B7%A5%E5%85%B7"><span class="nav-text">7. 网络及下载工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7"><span class="nav-text">8. 解压缩工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E5%BD%B1%E9%9F%B3%E5%A8%B1%E4%B9%90%E5%B7%A5%E5%85%B7"><span class="nav-text">9. 影音娱乐工具</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jusheng Yao"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Jusheng Yao</p>
+  <div class="site-description" itemprop="description">个人技术博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/YaoJusheng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;YaoJusheng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/YaoJusheng" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;YaoJusheng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github-alt"></i>Gitee</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_41599858" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_41599858" rel="noopener" target="_blank"><i class="fa fa-fw fa-mortar-board"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:jusheng_yao@outlook.com" title="E-Mail → mailto:jusheng_yao@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.bilibili.com/" title="技术视频网站"  target="_blank">
+              <img src="/images/ico/bili_favicon.ico" class="links-item-img">&emsp;
+            bilibili
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhihu.com/" title="知识、技术交流平台"  target="_blank">
+              <img src="/images/ico/zhihu_favicon.ico" class="links-item-img">&emsp;
+            知乎
+          </a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://tool.lu/" title="全面多样化的开发、站长类工具"  target="_blank">
+              <img src="/images/ico/onlinetool.ico" class="links-item-img">&emsp;
+            在线工具
+          </a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jusheng Yao</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">199k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:01</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v8.1.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 — <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+  <br>
+  
+  <div class="powered-by" style='color: gray'>
+    <i class="fa fa-user-md"></i>
+    <span id="busuanzi_container_site_uv">
+      本站总访客数:&nbsp;<span id="busuanzi_value_site_uv" style='color: silver'></span>&nbsp;人&nbsp;| 
+    </span>
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_container_site_pv">
+        &nbsp;本站总访问量:&nbsp;<span id="busuanzi_value_site_pv" style='color: silver'></span>&nbsp;次
+    </span>
+  </div>
+
+  <br>
+  
+  <div>
+    <span id="timeDate" class="color: lightblue;"></span>  
+    <span id="times" class="color: lightgreen;"></span>
+  </div>
+
+
+
+<script>
+  var now = new Date(); 
+  function createtime() { 
+      var grt= new Date("02/12/2020 18:00:00"); 
+      now.setTime(now.getTime()+250); 
+      days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+      if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+      mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+      snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+      document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+      document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+  } 
+  setInterval("createtime()",250);
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='0,0,255' opacity='0.8' zIndex='-2' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'oT30CtobWiSnNhMrBtXP9d0A-gzGzoHsz',
+      appKey     : 'oVHGMlRjJJyTXPLmyrGKrWFu',
+      placeholder: "有话要说？",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+<script type="text/javascript">
+  (function() {
+    // 匿名函数，防止污染全局变量
+    var utterances = document.createElement('script');
+    utterances.type = 'text/javascript';
+    utterances.async = true;
+    utterances.setAttribute('issue-term','title')
+    utterances.setAttribute('theme','github-light')
+    utterances.setAttribute('repo','yaojusheng/yaojusheng.github.io')
+    utterances.crossorigin = 'anonymous';
+    utterances.src = 'https://utteranc.es/client.js';
+    // content 是要插入评论的地方
+    document.getElementById('utterance-container').appendChild(utterances);
+  })();
+</script>
+
+  
+  
+    <script type="text/javascript" src="/js/clicklove.js"></script>
+  
+
+</body>
+</html>
